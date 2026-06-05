@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COA Portfolio - Playbook Activities</title>
+    <!-- Google Fonts for Brutalist & Tech Aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Charcoal & Ember Brutalist Design Tokens */
+        :root {
+            --bg-primary: #0a0a0c; /* Deep warm charcoal */
+            --bg-card: #121216; /* Dark slate card */
+            --accent-orange: #f97316; /* Magma/Ember Orange */
+            --accent-amber: #fbbf24; /* Golden amber */
+            --accent-ember: #fb923c; /* Light ember for active/fetch states */
+            --accent-success: #facc15; /* Bright gold for SUCCESS states */
+            --accent-glow: rgba(249, 115, 22, 0.2);
+            --text-white: #f4f4f7;
+            --text-muted: #9ea2b0;
+            --border-width: 2.5px;
+            --border-color: #1c1c24;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-code: 'Fira Code', monospace;
+            --box-shadow: 6px 6px 0px #000000;
+            --box-shadow-hover: 2px 2px 0px #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Custom Scrollbar Styling (Scroll to CSS) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-orange);
+            border: 2px solid #0a0a0c;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-amber);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            background-image: radial-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-white);
+            font-family: var(--font-body);
+            line-height: 1.5;
+            padding: 2.5rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Top Header Nav Bullet */
+        .top-bullet {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* Chapter Title Styles */
+        .ch-num {
+            font-family: var(--font-code);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .ch-title {
+            font-family: var(--font-display);
+            font-size: 2.1rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--text-white);
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
+
+        .ch-title span {
+            color: var(--accent-orange);
+            text-decoration: underline;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.2);
+        }
+
+        .ch-desc {
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-top: 0.8rem;
+        }
+
+        .ch-subsection-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 1.8rem;
+        }
+
+        /* Dark terminal codes box */
+        .ch-terminal {
+            background: #070709;
+            border: 1px solid #1a1a24;
+            padding: 1.2rem;
+            border-radius: 4px;
+            font-family: var(--font-code);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-top: 1.2rem;
+            overflow-x: auto;
+            position: relative;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-orange) #070709;
+        }
+
+        .ch-terminal::before {
+            content: 'TERMINAL';
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            font-size: 0.6rem;
+            color: var(--accent-orange);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .ch-terminal-highlight {
+            color: var(--text-white);
+            font-weight: 600;
+        }
+
+        .ch-terminal-accent {
+            color: var(--accent-amber);
+        }
+
+        /* Checklist bullets style */
+        .ch-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .ch-bullet-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .ch-bullet-box {
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--accent-orange);
+            background: var(--bg-primary);
+            border-radius: 2px;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+            position: relative;
+        }
+
+        .ch-bullet-box::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-amber);
+            opacity: 0.8;
+        }
+
+        /* Calculator card */
+        .ch-calc-card {
+            background: #09090b;
+            border: 1.5px solid #1c1c24;
+            border-radius: 4px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            box-shadow: 4px 4px 0 #000000;
+            margin-top: 0.5rem;
+        }
+
+        .ch-calc-title {
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-bottom: 1px solid #1a1a24;
+            padding-bottom: 0.4rem;
+        }
+
+        .ch-calc-results {
+            border-top: 1px dashed #1c1c24;
+            padding-top: 1rem;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Profile cell grid table */
+        .brutalist-grid-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            border: var(--border-width) solid #000000;
+            background: var(--bg-card);
+            box-shadow: var(--box-shadow);
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .grid-cell {
+            padding: 0.8rem 1.2rem;
+            border-right: var(--border-width) solid #000000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .grid-cell:last-child {
+            border-right: none;
+        }
+
+        .cell-value {
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .cell-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: capitalize;
+            font-weight: 500;
+        }
+
+        /* Connection footer block layout rules */
+        .chapter-container {
+            border: var(--border-width) solid #000000;
+            background: var(--bg-card);
+            box-shadow: var(--box-shadow);
+            padding: 2.2rem;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 2.8rem;
+            position: relative;
+            align-items: flex-start;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .chapter-container:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0px #000000, 0 0 25px rgba(249, 115, 22, 0.12);
+            border-color: var(--accent-orange);
+        }
+
+        @media (max-width: 950px) {
+            .chapter-container {
+                grid-template-columns: 1fr;
+                gap: 2.2rem;
+                padding: 1.6rem;
+            }
+            .brutalist-grid-table {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid-cell:nth-child(2) {
+                border-right: none;
+            }
+            .grid-cell:nth-child(1), .grid-cell:nth-child(2) {
+                border-bottom: var(--border-width) solid #000000;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .brutalist-grid-table {
+                grid-template-columns: 1fr;
+            }
+            .grid-cell {
+                border-right: none !important;
+                border-bottom: var(--border-width) solid #000000;
+            }
+            .grid-cell:last-child {
+                border-bottom: none;
+            }
+        }
+
+        /* Brutalist Buttons */
+        .brutalist-btn {
+            padding: 0.8rem 1.8rem;
+            border: var(--border-width) solid #000000;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .brutalist-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .brutalist-btn.primary {
+            background-color: var(--accent-orange);
+            color: #000000;
+        }
+
+        .brutalist-btn.secondary {
+            background-color: var(--bg-card);
+            color: var(--text-white);
+        }
+
+        /* Playbook Activities Visual Navigation Grid */
+        .playbook-activities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 950px) {
+            .playbook-activities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes chapterSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .playbook-act-card {
+            background: var(--bg-card);
+            border: var(--border-width) solid #000000;
+            box-shadow: var(--box-shadow);
+            border-radius: 4px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            
+            opacity: 0;
+            transform: translateY(30px);
+            animation: chapterSlideUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        .playbook-act-card:nth-child(1) { animation-delay: 0.1s; }
+        .playbook-act-card:nth-child(2) { animation-delay: 0.2s; }
+        .playbook-act-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .playbook-act-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0px #000000, 0 0 20px rgba(249, 115, 22, 0.1);
+            border-color: var(--accent-orange);
+        }
+
+        .playbook-act-card.active {
+            border-color: var(--accent-orange);
+            box-shadow: 10px 10px 0px #000000;
+            background: #16161c;
+        }
+
+        .playbook-act-badge {
+            font-family: var(--font-code);
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-orange);
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            align-self: flex-start;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .playbook-act-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-white);
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .playbook-act-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Expanded Workspaces (All answers displayed and fully expanded in separate boxes) */
+        .playbook-workspace {
+            background: var(--bg-card);
+            border: var(--border-width) solid #000000;
+            box-shadow: var(--box-shadow);
+            border-radius: 4px;
+            margin-top: 1rem;
+            padding: 2.2rem;
+            display: block !important; /* Forces all workspaces to remain visible */
+            opacity: 1 !important;
+            transform: none !important;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .playbook-workspace:hover {
+            border-color: var(--accent-orange);
+            box-shadow: 10px 10px 0px #000000;
+        }
+
+        /* Shared Bus Simulation Styling */
+        .bus-cycle-timeline {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .bus-cycle-block {
+            flex: 1;
+            min-width: 90px;
+            background: #09090b;
+            border: 1.5px solid #1c1c24;
+            border-radius: 4px;
+            padding: 0.6rem;
+            text-align: center;
+            font-family: var(--font-code);
+            font-size: 0.72rem;
+            position: relative;
+        }
+
+        .bus-cycle-block.active-fetch {
+            border-color: var(--accent-ember);
+            background: rgba(251, 146, 60, 0.1);
+        }
+
+        .bus-cycle-block.active-mem {
+            border-color: var(--accent-orange);
+            background: rgba(249, 115, 22, 0.1);
+        }
+
+        .bus-cycle-block.stall-state {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            animation: pulse-red-border 1.5s infinite;
+        }
+
+        @keyframes pulse-red-border {
+            50% { border-color: rgba(239, 68, 68, 0.4); }
+        }
+
+        .bus-cycle-label {
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 0.3rem;
+        }
+
+        .solved-response-box {
+            background: #09090b;
+            border: 1.5px solid #1c1c24;
+            border-radius: 4px;
+            padding: 1.2rem;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        /* Blueprint SVG styles */
+        .blueprint-svg {
+            background: #08080a;
+            border: 1.5px solid #1a1a22;
+            border-radius: 4px;
+            width: 100%;
+            height: auto;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        .blueprint-grid {
+            stroke: #16161c;
+            stroke-width: 1;
+        }
+
+        .blueprint-line {
+            stroke: var(--accent-orange);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .blueprint-line.blue {
+            stroke: var(--accent-ember);
+        }
+
+        .blueprint-line.amber {
+            stroke: var(--accent-amber);
+        }
+
+        .blueprint-text {
+            fill: var(--text-white);
+            font-family: var(--font-code);
+            font-size: 11px;
+        }
+
+        .blueprint-text.muted {
+            fill: var(--text-muted);
+            font-size: 10px;
+        }
+
+        .blueprint-text.accent {
+            fill: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        .blueprint-box {
+            fill: #121216;
+            stroke: #2e2e3a;
+            stroke-width: 1.5;
+            transition: all 0.3s ease;
+        }
+
+        .blueprint-box.active-glow-blue {
+            stroke: var(--accent-ember);
+            fill: rgba(251, 146, 60, 0.05);
+            filter: drop-shadow(0 0 5px rgba(251, 146, 60, 0.3));
+        }
+
+        .blueprint-box.active-glow-orange {
+            stroke: var(--accent-orange);
+            fill: rgba(249, 115, 22, 0.05);
+            filter: drop-shadow(0 0 5px rgba(249, 115, 22, 0.2));
+        }
+
+        .blueprint-box.active-glow-red {
+            stroke: #ef4444;
+            fill: rgba(239, 68, 68, 0.05);
+            filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.2));
+        }
+
+        /* Animation Keyframes for glowing particles */
+        @keyframes pulse-opacity {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        .anim-pulse {
+            animation: pulse-opacity 2s infinite ease-in-out;
+        }
+
+        /* Simulation Canvas Box for Activity 1 */
+        .sim-canvas-box {
+            background: #070709;
+            border: 1px solid #1a1a24;
+            border-radius: 4px;
+            padding: 1.2rem;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sim-pipeline-container {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            background: #0d0d12;
+            border: 1px solid #15151c;
+            border-radius: 3px;
+            justify-content: center;
+        }
+
+        .sim-pipeline-stage {
+            padding: 0.4rem 0.8rem;
+            background: var(--bg-primary);
+            border: 1.5px solid #22222d;
+            border-radius: 3px;
+            font-family: var(--font-code);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: center;
+            transition: all 0.2s ease;
+            min-width: 60px;
+        }
+
+        .sim-pipeline-stage.active-stage {
+            border-color: var(--accent-ember);
+            color: var(--accent-ember);
+            background: rgba(251, 146, 60, 0.15);
+            box-shadow: 0 0 8px rgba(251, 146, 60, 0.2);
+        }
+
+        .sim-pipeline-stage.stall-stage {
+            border-color: #ef4444;
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            animation: pulse-red-border 1.5s infinite;
+        }
+
+        /* Activity 2 glowing pathway lines animations */
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -40;
+            }
+        }
+
+        .animated-flow-line {
+            stroke-dasharray: 8 6;
+            animation: dash 3s linear infinite;
+        }
+        
+        .animated-flow-line.paused {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Top Nav back linkage -->
+        <div class="top-bullet">
+            ◀ PLAYBOOK
+        </div>
+
+        <!-- Student Title Block -->
+        <div style="display: flex; flex-direction: column; gap: 0.2rem; margin-top: 0.5rem;">
+            <div style="font-family: var(--font-code); font-size: 0.85rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase;">
+                // DIGITAL PORTFOLIO PLAYBOOK
+            </div>
+            <div class="ch-title" style="font-size: 2.8rem;">
+                COA CHALLENGE <span>ANSWERS</span>
+            </div>
+        </div>
+
+        <!-- Persisted Student Parameter Grid -->
+        <div class="brutalist-grid-table">
+            <div class="grid-cell">
+                <div class="cell-value" id="cell-name">Sarvadnya Patil</div>
+                <span class="cell-label">Student Name</span>
+            </div>
+            <div class="grid-cell">
+                <div class="cell-value" id="cell-usn">02FE25BCS017</div>
+                <span class="cell-label">USN / ID</span>
+            </div>
+            <div class="grid-cell">
+                <div class="cell-value" id="cell-prog">B.E. CSE</div>
+                <span class="cell-label">Programme</span>
+            </div>
+            <div class="grid-cell">
+                <div class="cell-value" id="cell-inst">KLE Tech, Belagavi</div>
+                <span class="cell-label">Institution</span>
+            </div>
+        </div>
+
+        <p style="font-size: 1.05rem; color: var(--text-muted); max-width: 800px; line-height: 1.6; margin-bottom: 0.5rem; margin-top: -0.5rem;">
+            Welcome to your digital playbook challenge lab. These three solved assignments analyze structural computer limitations, split concurrency timing, and physical shared-bus conflicts in real-time. Scroll down to review the fully solved solutions and run interactive simulations.
+        </p>
+
+        <!-- Activities Anchor Navigation Deck Grid -->
+        <div class="playbook-activities-grid">
+            <!-- Activity 1 Card -->
+            <div class="playbook-act-card" onclick="scrollToSection('playbook-ws-1')">
+                <div class="playbook-act-badge" style="background: rgba(249, 115, 22, 0.1); border-color: var(--accent-orange); color: var(--accent-orange);">Reflect · Activity 1</div>
+                <div class="playbook-act-title">Performance Reflection</div>
+                <div class="playbook-act-desc">
+                    Analyze why laptops with fast GHz clocks run slow. Jump to dynamic memory wall pipeline simulator.
+                </div>
+                <div style="font-family: var(--font-code); font-size: 0.72rem; color: var(--accent-orange); text-align: right; margin-top: 0.5rem; font-weight: bold;">SCROLL TO VIEW ▼</div>
+            </div>
+
+            <!-- Activity 2 Card -->
+            <div class="playbook-act-card" onclick="scrollToSection('playbook-ws-2')">
+                <div class="playbook-act-badge">Contrast · Activity 2</div>
+                <div class="playbook-act-title">Harvard Architecture</div>
+                <div class="playbook-act-desc">
+                    Explore why microcontrollers favor Harvard. Jump to active concurrent blueprint and pathway flows.
+                </div>
+                <div style="font-family: var(--font-code); font-size: 0.72rem; color: var(--accent-orange); text-align: right; margin-top: 0.5rem; font-weight: bold;">SCROLL TO VIEW ▼</div>
+            </div>
+
+            <!-- Activity 3 Card -->
+            <div class="playbook-act-card" onclick="scrollToSection('playbook-ws-3')">
+                <div class="playbook-act-badge" style="background: rgba(251, 191, 36, 0.1); border-color: var(--accent-amber); color: var(--accent-amber);">Simulate · Activity 3</div>
+                <div class="playbook-act-title">Shared Bus Bottleneck</div>
+                <div class="playbook-act-desc">
+                    Explore shared bus delays. Jump to interval scheduler timeline and schematic cycle synchronizer.
+                </div>
+                <div style="font-family: var(--font-code); font-size: 0.72rem; color: var(--accent-amber); text-align: right; margin-top: 0.5rem; font-weight: bold;">SCROLL TO VIEW ▼</div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- Workspace 1: Performance Reflection (EXPANDED BOX) -->
+        <!-- ========================================================================= -->
+        <div class="playbook-workspace" id="playbook-ws-1">
+            <div class="ch-num" style="color: var(--accent-orange);">// WORKSPACE 01</div>
+            <div class="ch-title" style="margin-bottom: 1.5rem;">Activity 1: <span>Performance Reflection</span></div>
+            
+            <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: start;">
+                <div>
+                    <div style="border: 1px solid #1a1a24; background: #070709; padding: 1rem; border-radius: 4px; margin-bottom: 1.2rem; font-size: 0.9rem;">
+                        <span style="color: var(--accent-orange); font-weight: bold; font-family: var(--font-code);">PLAYBOOK TASK:</span><br>
+                        <span style="color: var(--text-white); font-style: italic;">"Why does your laptop feel slow even with a fast processor?" (real-world scenario)<br>
+                        <strong>Short reflection (150 words):</strong> Which unit affects performance the most and why?</span>
+                    </div>
+                    
+                    <div class="solved-response-box" style="border-left: 4px solid var(--accent-orange); padding-left: 1.5rem; font-size:0.96rem;">
+                        <strong>Portfolio Submission:</strong><br><br>
+                        A laptop with a fast GHz processor clock can still feel sluggish in real-world workloads due to systemic speed mismatches, primarily governed by the <strong>Memory</strong> and <strong>I/O</strong> units rather than the processing unit. While a modern CPU operates at high gigahertz frequencies—executing billions of clock cycles per second—accessing off-chip main memory (DRAM) suffers from a latency of roughly 50 to 100 nanoseconds. This latency forces the processing pipelines to wait hundreds of idle clock cycles for instruction code and variable packets to arrive (known as the 'Memory Wall'). Furthermore, I/O operations such as reading blocks from solid-state storage (SSDs) or fetching resources across background network threads introduce microsecond-to-millisecond delays. Consequently, overall system performance is heavily dominated by memory transfer bottlenecks and I/O interface latency, leaving the CPU pipelines stalled and making a fast laptop feel slow.
+                    </div>
+                </div>
+
+                <!-- Simulation & Reference Block -->
+                <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                    <div class="ch-calc-card" style="margin-top: 0px;">
+                        <div class="ch-calc-title" style="color: var(--accent-orange); border-color: rgba(249, 115, 22, 0.2);">Interactive Latency & Memory Wall Simulator</div>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">
+                            Compare CPU execution pipelines during **Cache Hits** (fast on-chip SRAM) vs. **Cache Misses** (slow off-chip DRAM latency stall).
+                        </p>
+                        
+                        <div style="display: flex; gap: 0.6rem;">
+                            <button id="latency-hit-btn" class="brutalist-btn primary" onclick="runLatencySim('hit')" style="font-size: 0.72rem; padding: 0.5rem 1rem; border-color: #000;">
+                                Simulate Cache Hit (1x Speed)
+                            </button>
+                            <button id="latency-miss-btn" class="brutalist-btn secondary" onclick="runLatencySim('miss')" style="font-size: 0.72rem; padding: 0.5rem 1rem; border-color: #000;">
+                                Simulate Cache Miss (Stall)
+                            </button>
+                        </div>
+                        
+                        <!-- Visual Pipeline Animate Area -->
+                        <div class="sim-canvas-box" id="latency-sim-box">
+                            <div style="display: flex; justify-content: space-between; font-family: var(--font-code); font-size: 0.72rem;">
+                                <span>Core Status: <strong id="latency-sim-status" style="color: var(--accent-success);">IDLE</strong></span>
+                                <span>Cycle: <strong id="latency-sim-cycle" style="color: var(--accent-ember);">0</strong></span>
+                            </div>
+                            
+                            <!-- Pipeline visualization -->
+                            <div class="sim-pipeline-container">
+                                <div class="sim-pipeline-stage" id="sim-stg-1">FI</div>
+                                <div class="sim-pipeline-stage" id="sim-stg-2">DI</div>
+                                <div class="sim-pipeline-stage" id="sim-stg-3">FO</div>
+                                <div class="sim-pipeline-stage" id="sim-stg-4">EI</div>
+                                <div class="sim-pipeline-stage" id="sim-stg-5">WO</div>
+                            </div>
+                            
+                            <div id="latency-sim-text" style="font-family: var(--font-code); font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; border-top: 1px dashed rgba(255,255,255,0.06); padding-top: 0.5rem;">
+                                // Click a mode button above to start tracing CPU pipeline stalls...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- Workspace 2: Harvard Microcontrollers (EXPANDED BOX) -->
+        <!-- ========================================================================= -->
+        <div class="playbook-workspace" id="playbook-ws-2" style="margin-top: 2rem;">
+            <div class="ch-num">// WORKSPACE 02</div>
+            <div class="ch-title" style="margin-bottom: 1.5rem;">Activity 2: <span>Harvard Architecture Mappings</span></div>
+            
+            <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: start;">
+                <div>
+                    <div style="border: 1px solid #1a1a24; background: #070709; padding: 1rem; border-radius: 4px; margin-bottom: 1.2rem; font-size: 0.9rem;">
+                        <span style="color: var(--accent-orange); font-weight: bold; font-family: var(--font-code);">PLAYBOOK TASK:</span><br>
+                        <span style="color: var(--text-white); font-style: italic;">"Why microcontrollers use Harvard architecture?"<br>
+                        <strong>Syllabus Submission:</strong> Concept sketch / Scanned diagrams with 3 key differences. All metrics expanded below.</span>
+                    </div>
+
+                    <!-- Stack of 3 Key Differences (All Expanded Simultaneously - Expanded Answers) -->
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="difference-card" style="border: 1.5px solid var(--accent-orange); background: var(--bg-card); padding: 1.2rem; border-radius: 4px; border-left: 4px solid var(--accent-orange); transition: all 0.3s ease;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 0.5rem; margin-bottom: 0.6rem;">
+                                <span style="font-family:var(--font-display); font-weight:700; font-size:0.95rem; color:var(--text-white);">1. Simultaneous Concurrency (Instruction + Data Paths)</span>
+                                <span style="font-family:var(--font-code); font-size:0.7rem; color:var(--accent-orange); background: var(--accent-glow); border: 1px solid var(--accent-orange); padding: 0.15rem 0.5rem; border-radius: 3px; font-weight: bold;">ACTIVE (SPLIT CONCURRENCY)</span>
+                            </div>
+                            <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">
+                                Small microcontrollers need to complete execution in deterministic cycles. Harvard physically isolates code memory (Flash) from data memory (SRAM) with separate address and data bus lines. This enables the processor to fetch program instruction words and read/write RAM variables **in parallel on the same clock cycle**, whereas Von Neumann's shared bus structurally prevents this.
+                            </p>
+                        </div>
+
+                        <div class="difference-card" style="border: 1.5px solid var(--accent-orange); background: var(--bg-card); padding: 1.2rem; border-radius: 4px; border-left: 4px solid var(--accent-orange); transition: all 0.3s ease;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 0.5rem; margin-bottom: 0.6rem;">
+                                <span style="font-family:var(--font-display); font-weight:700; font-size:0.95rem; color:var(--text-white);">2. Predictable Timing & Hardware Optimization</span>
+                                <span style="font-family:var(--font-code); font-size:0.7rem; color:var(--accent-orange); background: var(--accent-glow); border: 1px solid var(--accent-orange); padding: 0.15rem 0.5rem; border-radius: 3px; font-weight: bold;">ACTIVE (DETERMINISTIC TIMING)</span>
+                            </div>
+                            <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">
+                                Embedded control loops require exact timing predictability. Having separate memory buses guarantees that memory variable reads/writes never stall instruction fetches, avoiding dynamic cycle jitters. Additionally, code bus widths can differ from data widths (e.g. 16-bit instruction Flash, 8-bit registers), saving silicon gates while maximizing throughput!
+                            </p>
+                        </div>
+
+                        <div class="difference-card" style="border: 1.5px solid var(--accent-orange); background: var(--bg-card); padding: 1.2rem; border-radius: 4px; border-left: 4px solid var(--accent-orange); transition: all 0.3s ease;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 0.5rem; margin-bottom: 0.6rem;">
+                                <span style="font-family:var(--font-display); font-weight:700; font-size:0.95rem; color:var(--text-white);">3. Structural Memory Protection & Code Security</span>
+                                <span style="font-family:var(--font-code); font-size:0.7rem; color:var(--accent-orange); background: var(--accent-glow); border: 1px solid var(--accent-orange); padding: 0.15rem 0.5rem; border-radius: 3px; font-weight: bold;">ACTIVE (CODE PROTECTION)</span>
+                            </div>
+                            <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.6;">
+                                In microcontroller applications, safety is absolute. Since program instructions reside in physically distinct Flash ROM that is read-only during standard program loops, software variable data overflows in SRAM can never overflow and overwrite program code blocks. This structurally prevents buffer overflows, injection exploits, and sudden runtime crashes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Scanned-style Blueprint diagram with Simulation Animations -->
+                <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                    <div class="ch-calc-card" style="margin-top: 0px; padding: 1.2rem;">
+                        <div class="ch-calc-title">Scanned Concept Blueprint (Harvard vs Von Neumann)</div>
+                        <p style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.4;">
+                            A premium visual concept sketch highlighting the 3 major differences. Press button below to toggle real-time signal pathway animations.
+                        </p>
+                        
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="brutalist-btn primary" onclick="toggleBlueprintAnimation()" id="blueprint-anim-btn" style="font-size: 0.7rem; padding: 0.4rem 0.8rem;">
+                                Toggle Signal Animations
+                            </button>
+                        </div>
+                        
+                        <!-- Inline SVG representing student's scanned conceptual sketch -->
+                        <svg class="blueprint-svg" viewBox="0 0 340 330" xmlns="http://www.w3.org/2000/svg" id="blueprint-main-svg">
+                            <!-- Background Grid -->
+                            <defs>
+                                <pattern id="bg-grid-pat" width="15" height="15" patternUnits="userSpaceOnUse">
+                                    <path d="M 15 0 L 0 0 0 15" fill="none" stroke="#14141a" stroke-width="0.8"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#bg-grid-pat)" />
+                            
+                            <!-- VON NEUMANN SKETCH PANEL -->
+                            <g transform="translate(10, 10)">
+                                <!-- Title -->
+                                <text x="5" y="15" class="blueprint-text accent" style="font-size: 10px;">[ SKETCH A: VON NEUMANN (SHARED BUS) ]</text>
+                                
+                                <!-- CPU Box -->
+                                <rect x="5" y="25" width="65" height="40" rx="3" class="blueprint-box" id="blueprint-vn-cpu"/>
+                                <text x="22" y="48" class="blueprint-text" style="font-weight: bold;">CPU</text>
+                                
+                                <!-- Unified Memory Box -->
+                                <rect x="180" y="25" width="120" height="40" rx="3" class="blueprint-box"/>
+                                <text x="210" y="42" class="blueprint-text" style="font-size: 9px; font-weight: bold;">Unified Memory</text>
+                                <text x="188" y="55" class="blueprint-text muted" style="font-size: 8px;">[Instructions + Data]</text>
+                                
+                                <!-- Shared Bus Line -->
+                                <path d="M 70 45 L 180 45" class="blueprint-line animated-flow-line" id="vn-flow-line"/>
+                                <text x="82" y="38" class="blueprint-text muted" style="font-size: 8px;">Shared Bus (1 Path)</text>
+                                
+                                <!-- Conflict Highlight -->
+                                <circle cx="125" cy="45" r="4" fill="#ef4444" opacity="0.8"/>
+                                <line x1="121" y1="41" x2="129" y2="49" stroke="#fff" stroke-width="1.5"/>
+                                <line x1="129" y1="41" x2="121" y2="49" stroke="#fff" stroke-width="1.5"/>
+                                <text x="85" y="60" class="blueprint-text" style="fill: #ef4444; font-size: 8px; font-weight: bold;">⚠️ SERIALIZED BOTTLENECK</text>
+                            </g>
+                            
+                            <!-- Divider Line -->
+                            <line x1="10" y1="90" x2="330" y2="90" stroke="#1c1c24" stroke-width="1" stroke-dasharray="3 3"/>
+                            
+                            <!-- HARVARD SKETCH PANEL -->
+                            <g transform="translate(10, 100)">
+                                <!-- Title -->
+                                <text x="5" y="15" class="blueprint-text accent" style="font-size: 10px; fill: var(--accent-amber);">[ SKETCH B: HARVARD MICROCONTROLLER ]</text>
+                                
+                                <!-- CPU Box -->
+                                <rect x="5" y="45" width="65" height="50" rx="3" class="blueprint-box" id="blueprint-hv-cpu"/>
+                                <text x="22" y="74" class="blueprint-text" style="font-weight: bold;">CPU</text>
+                                
+                                <!-- Flash Instruction Memory ROM -->
+                                <rect x="180" y="20" width="120" height="40" rx="3" class="blueprint-box" style="stroke: var(--accent-amber);"/>
+                                <text x="195" y="38" class="blueprint-text accent" style="font-size: 9px; fill: var(--accent-amber);">Flash ROM (Code)</text>
+                                <text x="186" y="51" class="blueprint-text muted" style="font-size: 8px;">32KB Program [16-bit word]</text>
+                                
+                                <!-- Data Memory SRAM -->
+                                <rect x="180" y="80" width="120" height="40" rx="3" class="blueprint-box" style="stroke: var(--accent-amber);"/>
+                                <text x="195" y="98" class="blueprint-text" style="font-size: 9px; fill: var(--accent-amber); font-weight: bold;">SRAM RAM (Data)</text>
+                                <text x="186" y="111" class="blueprint-text muted" style="font-size: 8px;">2KB Variables [8-bit word]</text>
+                                
+                                <!-- Separate Instruction Bus Line -->
+                                <path d="M 70 55 L 180 40" class="blueprint-line blue animated-flow-line" id="hv-flow-code"/>
+                                <text x="75" y="32" class="blueprint-text muted" style="font-size: 8px; fill: var(--accent-amber);">Code Bus (Fetch)</text>
+                                
+                                <!-- Separate Data Bus Line -->
+                                <path d="M 70 85 L 180 100" class="blueprint-line amber animated-flow-line" id="hv-flow-data"/>
+                                <text x="72" y="116" class="blueprint-text muted" style="font-size: 8px; fill: var(--accent-amber);">Data Bus (R/W)</text>
+                                
+                                <text x="75" y="74" class="blueprint-text" style="fill: var(--accent-amber); font-size: 8px; font-weight: bold;">⚡ PARALLEL STREAM ACTIVE</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- Workspace 3: Shared Bus Simulator (EXPANDED BOX) -->
+        <!-- ========================================================================= -->
+        <div class="playbook-workspace" id="playbook-ws-3" style="margin-top: 2rem;">
+            <div class="ch-num" style="color: var(--accent-amber);">// WORKSPACE 03</div>
+            <div class="ch-title" style="margin-bottom: 1.5rem;">Activity 3: <span>Shared Bus Bottleneck & Timing</span></div>
+            
+            <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: start;">
+                <div>
+                    <div style="border: 1px solid #1a1a24; background: #070709; padding: 1rem; border-radius: 4px; margin-bottom: 1.2rem; font-size: 0.9rem;">
+                        <span style="color: var(--accent-amber); font-weight: bold; font-family: var(--font-code);">PLAYBOOK TASK:</span><br>
+                        <span style="color: var(--text-white); font-style: italic;">"What happens if data and instruction share the same bus?"<br>
+                        <strong>Syllabus Submission:</strong> Concept sketch: Instruction fetch cycle with bus interaction. Run simulations below.</span>
+                    </div>
+
+                    <div style="display:flex; gap:1rem; margin-top:1.2rem; margin-bottom:1.2rem;">
+                        <button id="bus-shared-btn" class="brutalist-btn primary" onclick="runBusSim('shared')" style="font-size: 0.8rem; padding: 0.6rem 1.4rem;">
+                            Run Shared Bus (Von Neumann)
+                        </button>
+                        <button id="bus-split-btn" class="brutalist-btn secondary" onclick="runBusSim('split')" style="font-size: 0.8rem; padding: 0.6rem 1.4rem;">
+                            Run Split Bus (Harvard)
+                        </button>
+                    </div>
+
+                    <!-- Live simulation display -->
+                    <div class="ch-terminal" id="bus-sim-console" style="min-height: 110px; font-size:0.8rem; line-height:1.5;">
+                        // Click a button above to run the bus scheduling simulation...<br>
+                        // Idle...
+                    </div>
+                    
+                    <!-- Concept sketch SVG inline (Fully Animated and Synced) -->
+                    <h5 class="ch-subsection-title" style="margin-top: 1.5rem; font-size: 0.95rem;">Concept Sketch: Fetch Cycle with Bus Interaction (Active Sync)</h5>
+                    <svg class="blueprint-svg" viewBox="0 0 460 210" xmlns="http://www.w3.org/2000/svg" id="active-concept-sketch-svg">
+                        <rect width="100%" height="100%" fill="url(#bg-grid-pat)" />
+                        
+                        <!-- PHASE 1 PANEL -->
+                        <g transform="translate(10, 10)">
+                            <!-- Title -->
+                            <text x="5" y="15" class="blueprint-text accent" style="font-size: 10px; fill: var(--accent-amber);">[ CYCLE 1: INSTRUCTION FETCH ]</text>
+                            
+                            <!-- CPU Box -->
+                            <rect x="5" y="25" width="60" height="130" rx="3" class="blueprint-box" id="sketch-cpu-p1"/>
+                            <text x="22" y="80" class="blueprint-text" style="font-weight: bold; font-size: 10px;">CPU</text>
+                            <text x="12" y="95" class="blueprint-text muted" style="font-size: 8px;">[PC=0x100]</text>
+                            
+                            <!-- Shared RAM Box -->
+                            <rect x="150" y="25" width="60" height="130" rx="3" class="blueprint-box" id="sketch-mem-p1"/>
+                            <text x="162" y="70" class="blueprint-text" style="font-weight: bold; font-size: 10px;">Unified</text>
+                            <text x="165" y="85" class="blueprint-text" style="font-weight: bold; font-size: 10px;">Memory</text>
+                            <text x="155" y="110" class="blueprint-text muted" style="font-size: 8px;">[Code: ADD]</text>
+                            
+                            <!-- Bus Route Fetch -->
+                            <path d="M 65 60 L 150 60" class="blueprint-line blue animated-flow-line paused" id="sketch-flow-p1" />
+                            <!-- Flow Arrow -->
+                            <polygon points="95,57 105,60 95,63" fill="var(--accent-amber)"/>
+                            <text x="70" y="52" class="blueprint-text" style="font-size: 8px; fill: var(--accent-amber);">1. Fetch Code</text>
+                            
+                            <text x="5" y="172" class="blueprint-text muted" style="font-size: 8px; fill: var(--text-white);">Bus active with instruction word transfer.</text>
+                        </g>
+                        
+                        <!-- Vertical Divider -->
+                        <line x1="230" y1="10" x2="230" y2="200" stroke="#1c1c24" stroke-width="1" stroke-dasharray="3 3"/>
+                        
+                        <!-- PHASE 2 PANEL -->
+                        <g transform="translate(240, 10)">
+                            <!-- Title -->
+                            <text x="5" y="15" class="blueprint-text accent" style="font-size: 10px;">[ CYCLE 2: OPERAND READ (CONFLICT) ]</text>
+                            
+                            <!-- CPU Box -->
+                            <rect x="5" y="25" width="60" height="130" rx="3" class="blueprint-box" id="sketch-cpu-p2"/>
+                            <text x="22" y="80" class="blueprint-text" style="font-weight: bold; font-size: 10px;">CPU</text>
+                            <text x="12" y="95" class="blueprint-text" id="sketch-cpu-text-p2" style="font-size: 8px; fill: var(--text-muted);">[Decode]</text>
+                            
+                            <!-- Shared RAM Box -->
+                            <rect x="150" y="25" width="60" height="130" rx="3" class="blueprint-box" id="sketch-mem-p2"/>
+                            <text x="162" y="70" class="blueprint-text" style="font-weight: bold; font-size: 10px;">Unified</text>
+                            <text x="165" y="85" class="blueprint-text" style="font-weight: bold; font-size: 10px;">Memory</text>
+                            <text x="158" y="110" class="blueprint-text muted" style="font-size: 8px;">[Data: (R2)]</text>
+                            
+                            <!-- Bus Route Data -->
+                            <path d="M 65 110 L 150 110" class="blueprint-line animated-flow-line paused" id="sketch-flow-data-p2" />
+                            <!-- Flow Arrow -->
+                            <polygon points="105,107 95,110 105,113" fill="var(--accent-orange)"/>
+                            <text x="70" y="125" class="blueprint-text" style="font-size: 8px; fill: var(--accent-orange);">2. Load Data</text>
+                            
+                            <!-- Blocked Fetch Arrow representation -->
+                            <path d="M 65 60 L 150 60" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3 2" fill="none" />
+                            <text x="70" y="52" class="blueprint-text" id="sketch-blocked-text-p2" style="font-size: 8px; fill: var(--text-muted);">Shared Pathway</text>
+                            
+                            <text x="5" y="172" class="blueprint-text muted" id="sketch-footer-text-p2" style="font-size: 8px; fill: var(--text-white);">Shared bus trunk cycles through access phases.</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="ch-calc-card" style="margin-top: 0px;">
+                    <div class="ch-calc-title">Bus Scheduling Timeline</div>
+                    
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.4rem;">
+                        <span style="font-size:0.75rem; color:var(--text-muted);">Simulation Status:</span>
+                        <strong id="bus-sim-status" style="font-family:var(--font-code); font-size:0.8rem; color:var(--text-muted);">IDLE</strong>
+                    </div>
+
+                    <div class="bus-cycle-timeline" id="bus-sim-timeline">
+                        <div class="bus-cycle-block">
+                            <div class="bus-cycle-label">Cycle 1</div>
+                            <span style="color:var(--text-muted);">-</span>
+                        </div>
+                        <div class="bus-cycle-block">
+                            <div class="bus-cycle-label">Cycle 2</div>
+                            <span style="color:var(--text-muted);">-</span>
+                        </div>
+                        <div class="bus-cycle-block">
+                            <div class="bus-cycle-label">Cycle 3</div>
+                            <span style="color:var(--text-muted);">-</span>
+                        </div>
+                        <div class="bus-cycle-block">
+                            <div class="bus-cycle-label">Cycle 4</div>
+                            <span style="color:var(--text-muted);">-</span>
+                        </div>
+                    </div>
+
+                    <div id="bus-sim-explanation" style="font-size:0.78rem; color:var(--text-muted); line-height:1.4; margin-top: 1rem; border-top:1px dashed rgba(255,255,255,0.08); padding-top:0.8rem;">
+                        Choose an architecture to trace instructions fetches and memory bus interactions.
+                        <br><br>
+                        <strong>Fetch Cycle & Bus Interaction Concept (Solved):</strong><br>
+                        When data and instructions share the same bus topology (Von Neumann), the bus becomes a single resource bottleneck. Fetching instructions and accessing variables cannot occur simultaneously. When Instruction 1 performs a memory load, the bus is occupied, forcing the next Instruction 2 fetch cycle to stall.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- Connection / Contact Footer Section (Chapter 7 styled Connection card) -->
+        <!-- ========================================================================= -->
+        <div class="chapter-container" style="margin-top: 2rem; margin-bottom: 2rem;">
+            <div>
+                <div class="ch-num">// CONNECT</div>
+                <div class="ch-title">Establish <span>Connection</span></div>
+                <p class="ch-desc">
+                    Have a question about the COA Playbook, pipeline simulations, or looking to collaborate? Feel free to reach out via email or connect through professional networks. Link status is active and open for inbound packets.
+                </p>
+                
+                <div class="ch-subsection-title">Connection Parameters</div>
+                <p class="ch-desc" style="font-size:0.92rem; margin-top:0.4rem;">
+                    The ports below are configured for direct bypass transmission. Select a channel to initiate direct communication handshakes.
+                </p>
+                
+                <!-- Terminal Connection status box -->
+                <div class="ch-terminal" id="contact-term" style="margin-top: 1.2rem;">
+                    // Interface Bus: <span class="ch-terminal-highlight">Transceiver Core v1.0</span><br>
+                    Port Status:   <span class="ch-terminal-accent" style="color: var(--accent-amber); font-weight: bold;">ACTIVE (0x01)</span><br>
+                    Email Link:    <a href="mailto:sarvadnyapatil04@gmail.com" style="color: var(--accent-orange); text-decoration: none; font-weight: 600; transition: all 0.2s ease;">sarvadnyapatil04@gmail.com</a><br>
+                    LinkedIn URL:  <a href="https://www.linkedin.com/in/sarvadnyapatil" target="_blank" style="color: var(--accent-orange); text-decoration: none; font-weight: 600; transition: all 0.2s ease;">linkedin.com/in/sarvadnyapatil</a><br>
+                    Node Location: <span class="ch-terminal-highlight">Belagavi, Karnataka, India</span>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                
+                <!-- Brutalist cards or button list for contacts -->
+                <div class="ch-calc-card">
+                    <div class="ch-calc-title">Transceiver Ports</div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem;">
+                        <!-- Email Port Button -->
+                        <a href="mailto:sarvadnyapatil04@gmail.com" class="brutalist-btn primary" style="justify-content: flex-start; text-decoration: none; padding: 0.9rem 1.4rem;">
+                            <svg width="20" height="16" viewBox="0 0 24 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
+                            <span style="font-family: var(--font-code); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+                                EMAIL PORT [SEND]
+                            </span>
+                        </a>
+                        
+                        <!-- LinkedIn Port Button -->
+                        <a href="https://www.linkedin.com/in/sarvadnyapatil" target="_blank" class="brutalist-btn secondary" style="justify-content: flex-start; text-decoration: none; padding: 0.9rem 1.4rem;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                            <span style="font-family: var(--font-code); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+                                LINKEDIN CORE [BYPASS]
+                            </span>
+                        </a>
+
+                        <!-- Location Port Button -->
+                        <div class="brutalist-btn secondary" style="justify-content: flex-start; cursor: default; padding: 0.9rem 1.4rem; pointer-events: none; opacity: 0.85;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="22" y1="12" x2="18" y2="12"></line>
+                                <line x1="6" y1="12" x2="2" y2="12"></line>
+                                <line x1="12" y1="6" x2="12" y2="2"></line>
+                                <line x1="12" y1="22" x2="12" y2="18"></line>
+                            </svg>
+                            <span style="font-family: var(--font-code); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+                                LOC: BELAGAVI, IN
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="ch-calc-results" style="margin-top: 1rem; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 0.8rem; font-size: 0.76rem; line-height: 1.4;">
+                        Core Status: <span style="color: var(--accent-amber); font-weight: bold;">ONLINE</span><br>
+                        Device Latency: <span style="color: var(--accent-amber); font-weight: bold;">&lt; 1 ms</span><br>
+                        Protocol: <span style="color: var(--accent-orange); font-weight: bold;">TCP/IP COA-SYS v1.0</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script to handle editing & storage sync -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Load names into static text elements dynamically from localStorage (linked automatically)
+            const savedName = localStorage.getItem('coa_student_name') || 'Sarvadnya Patil';
+            document.getElementById('cell-name').innerText = savedName;
+            
+            document.getElementById('cell-usn').innerText = localStorage.getItem('coa_student_usn') || '02FE25BCS017';
+            document.getElementById('cell-prog').innerText = localStorage.getItem('coa_student_prog') || 'B.E. CSE';
+            document.getElementById('cell-inst').innerText = localStorage.getItem('coa_student_inst') || 'KLE Tech, Belagavi';
+            
+            // Start default pathway flows paused
+            document.getElementById('vn-flow-line').classList.add('paused');
+            document.getElementById('hv-flow-code').classList.add('paused');
+            document.getElementById('hv-flow-data').classList.add('paused');
+        });
+
+        // Smooth scroll to sections (Anchor visual navigation)
+        function scrollToSection(sectionId) {
+            const el = document.getElementById(sectionId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // ================= ACTIVITY 1: LATENCY MEMORY WALL SIMULATOR =================
+        let latencySimTimeout = null;
+        function runLatencySim(mode) {
+            const statusEl = document.getElementById('latency-sim-status');
+            const cycleEl = document.getElementById('latency-sim-cycle');
+            const textEl = document.getElementById('latency-sim-text');
+            
+            // Toggle active button states
+            const hitBtn = document.getElementById('latency-hit-btn');
+            const missBtn = document.getElementById('latency-miss-btn');
+            if (hitBtn && missBtn) {
+                if (mode === 'hit') {
+                    hitBtn.className = "brutalist-btn primary";
+                    missBtn.className = "brutalist-btn secondary";
+                } else {
+                    hitBtn.className = "brutalist-btn secondary";
+                    missBtn.className = "brutalist-btn primary";
+                }
+            }
+
+            // Clear any active sim timeouts
+            if (latencySimTimeout) clearTimeout(latencySimTimeout);
+            
+            // Reset pipeline stages classes
+            document.querySelectorAll('.sim-pipeline-stage').forEach(stg => {
+                stg.className = 'sim-pipeline-stage';
+            });
+            
+            let cycle = 0;
+            statusEl.textContent = "RUNNING";
+            statusEl.style.color = "var(--accent-ember)";
+            cycleEl.textContent = "0";
+            
+            if (mode === 'hit') {
+                textEl.innerHTML = `// Cache Hit Triggered.<br>// Fetching data operand from L1 cache (1ns, ~4 cycles latency).<br>`;
+                
+                let step = 0;
+                const hitInterval = () => {
+                    cycle++;
+                    cycleEl.textContent = cycle;
+                    step++;
+                    
+                    // Light up stages sequentially
+                    document.querySelectorAll('.sim-pipeline-stage').forEach((stg, idx) => {
+                        stg.className = 'sim-pipeline-stage';
+                        if (idx === step - 1) {
+                            stg.classList.add('active-stage');
+                        }
+                    });
+                    
+                    if (step === 1) textEl.innerHTML += `Cycle 1: [FI] Prefetching instruction word.<br>`;
+                    if (step === 2) textEl.innerHTML += `Cycle 2: [DI] Decode instruction ADD R1, (R2).<br>`;
+                    if (step === 3) textEl.innerHTML += `Cycle 3: [FO] Loading operand data packet from L1 Cache (HIT!).<br>`;
+                    if (step === 4) textEl.innerHTML += `Cycle 4: [EI] ALU Execute completed in 1 clock cycle.<br>`;
+                    if (step === 5) {
+                        textEl.innerHTML += `Cycle 5: [WO] Writeback completed. Pipeline retired instruction successfully!<br><strong style="color:var(--accent-success);">Result: 0 STALL CYCLES. Execution latency: 5 cycles.</strong>`;
+                        statusEl.textContent = "SUCCESS";
+                        statusEl.style.color = "var(--accent-success)";
+                        return;
+                    }
+                    latencySimTimeout = setTimeout(hitInterval, 800);
+                };
+                latencySimTimeout = setTimeout(hitInterval, 400);
+                
+            } else {
+                textEl.innerHTML = `// Cache Miss Triggered!<br>// CPU requesting off-chip DRAM packet over System Bus.<br>// Latency: 100ns (forces ~400 idle CPU pipeline cycles!).<br>`;
+                
+                let step = 0;
+                let stallCycle = 0;
+                
+                const missInterval = () => {
+                    cycle++;
+                    cycleEl.textContent = cycle;
+                    step++;
+                    
+                    if (step === 1) {
+                        document.getElementById('sim-stg-1').classList.add('active-stage');
+                        textEl.innerHTML += `Cycle 1: [FI] Prefetched Instruction word successfully.<br>`;
+                        latencySimTimeout = setTimeout(missInterval, 800);
+                    } 
+                    else if (step === 2) {
+                        document.getElementById('sim-stg-1').className = 'sim-pipeline-stage';
+                        document.getElementById('sim-stg-2').classList.add('active-stage');
+                        textEl.innerHTML += `Cycle 2: [DI] Decoded instruction operand references.<br>`;
+                        latencySimTimeout = setTimeout(missInterval, 800);
+                    }
+                    else if (step === 3) {
+                        // Enter STALL block
+                        document.getElementById('sim-stg-2').className = 'sim-pipeline-stage';
+                        document.getElementById('sim-stg-3').className = 'sim-pipeline-stage stall-state';
+                        statusEl.textContent = "STALLED";
+                        statusEl.style.color = "#ef4444";
+                        
+                        textEl.innerHTML += `<span style="color:#ef4444; font-weight:bold;">[STALL TRIGGERED]</span> requesting off-chip SRAM/DRAM variable block...<br>`;
+                        
+                        const doStall = () => {
+                            stallCycle++;
+                            cycle++;
+                            cycleEl.textContent = cycle;
+                            
+                            if (stallCycle < 4) {
+                                textEl.innerHTML += `... Waiting. Latency Elapsed: ${(stallCycle*25)}ns (${stallCycle*100} CPU cycles idle) ...<br>`;
+                                latencySimTimeout = setTimeout(doStall, 600);
+                            } else {
+                                textEl.innerHTML += `<span style="color:var(--accent-success); font-weight:bold;">[DRAM RETURNED]</span> Memory Block arrived at CPU latch pins.<br>`;
+                                step = 4; // Continue to execute
+                                latencySimTimeout = setTimeout(missInterval, 800);
+                            }
+                        };
+                        latencySimTimeout = setTimeout(doStall, 600);
+                    }
+                    else if (step === 4) {
+                        document.getElementById('sim-stg-3').className = 'sim-pipeline-stage';
+                        document.getElementById('sim-stg-4').classList.add('active-stage');
+                        textEl.innerHTML += `Cycle ${cycle}: [EI] Data loaded. ALU executing instruction calculations.<br>`;
+                        latencySimTimeout = setTimeout(missInterval, 800);
+                    }
+                    else if (step === 5) {
+                        document.getElementById('sim-stg-4').className = 'sim-pipeline-stage';
+                        document.getElementById('sim-stg-5').classList.add('active-stage');
+                        textEl.innerHTML += `Cycle ${cycle}: [WO] Writeback results compiled into register files.<br><strong style="color:#ef4444;">Result: 4 STALLS OCCURRED (100ns wait). Total cycles: 9 cycles (Pipeline idle 44% of time!).</strong>`;
+                        statusEl.textContent = "RESOLVED";
+                        statusEl.style.color = "var(--accent-success)";
+                    }
+                };
+                latencySimTimeout = setTimeout(missInterval, 400);
+            }
+        }
+
+        // ================= ACTIVITY 2: SIGNAL FLOW ANIMATOR =================
+        let blueprintAnimActive = false;
+        function toggleBlueprintAnimation() {
+            blueprintAnimActive = !blueprintAnimActive;
+            const btn = document.getElementById('blueprint-anim-btn');
+            
+            const vnLine = document.getElementById('vn-flow-line');
+            const hvCode = document.getElementById('hv-flow-code');
+            const hvData = document.getElementById('hv-flow-data');
+            
+            if (blueprintAnimActive) {
+                btn.textContent = "Pause Animations";
+                btn.style.backgroundColor = "var(--accent-amber)";
+                
+                vnLine.classList.remove('paused');
+                hvCode.classList.remove('paused');
+                hvData.classList.remove('paused');
+                
+                // Add minor pulsing classes to CPU boxes
+                document.getElementById('blueprint-vn-cpu').style.filter = "drop-shadow(0 0 4px rgba(249, 115, 22, 0.2))";
+                document.getElementById('blueprint-hv-cpu').style.filter = "drop-shadow(0 0 6px rgba(251, 146, 60, 0.3))";
+            } else {
+                btn.textContent = "Toggle Signal Animations";
+                btn.style.backgroundColor = "var(--accent-orange)";
+                
+                vnLine.classList.add('paused');
+                hvCode.classList.add('paused');
+                hvData.classList.add('paused');
+                
+                document.getElementById('blueprint-vn-cpu').style.filter = "none";
+                document.getElementById('blueprint-hv-cpu').style.filter = "none";
+            }
+        }
+
+        // ================= ACTIVITY 3: SCHEDULER & SCHEMATIC SYNCHRONIZER =================
+        let playbookBusSimInterval = null;
+        function runBusSim(mode) {
+            const consoleEl = document.getElementById('bus-sim-console');
+            const statusEl = document.getElementById('bus-sim-status');
+            const timelineEl = document.getElementById('bus-sim-timeline');
+            const explanationEl = document.getElementById('bus-sim-explanation');
+            
+            // Toggle active button states
+            const sharedBtn = document.getElementById('bus-shared-btn');
+            const splitBtn = document.getElementById('bus-split-btn');
+            if (sharedBtn && splitBtn) {
+                if (mode === 'shared') {
+                    sharedBtn.className = "brutalist-btn primary";
+                    splitBtn.className = "brutalist-btn secondary";
+                } else {
+                    sharedBtn.className = "brutalist-btn secondary";
+                    splitBtn.className = "brutalist-btn primary";
+                }
+            }
+            
+            // Fetch SVG sketch objects to update paths synchronously
+            const cpuP1 = document.getElementById('sketch-cpu-p1');
+            const memP1 = document.getElementById('sketch-mem-p1');
+            const flowP1 = document.getElementById('sketch-flow-p1');
+            
+            const cpuP2 = document.getElementById('sketch-cpu-p2');
+            const memP2 = document.getElementById('sketch-mem-p2');
+            const flowP2 = document.getElementById('sketch-flow-data-p2');
+            const blockedText = document.getElementById('sketch-blocked-text-p2');
+            const cpuTextP2 = document.getElementById('sketch-cpu-text-p2');
+            const footerTextP2 = document.getElementById('sketch-footer-text-p2');
+            
+            if (playbookBusSimInterval) clearInterval(playbookBusSimInterval);
+            
+            // Clear highlights from sketch
+            cpuP1.className = 'blueprint-box';
+            memP1.className = 'blueprint-box';
+            flowP1.classList.add('paused');
+            
+            cpuP2.className = 'blueprint-box';
+            memP2.className = 'blueprint-box';
+            flowP2.classList.add('paused');
+            blockedText.textContent = "Shared Pathway";
+            blockedText.style.fill = "var(--text-muted)";
+            cpuTextP2.textContent = "[Decode]";
+            cpuTextP2.style.fill = "var(--text-muted)";
+            
+            statusEl.textContent = "RUNNING";
+            statusEl.style.color = "var(--accent-ember)";
+            
+            let cycle = 1;
+            consoleEl.innerHTML = `// Initializing ${mode === 'shared' ? 'Shared Bus (Von Neumann)' : 'Split Bus (Harvard)'} Simulator & Schematic Sync...<br>`;
+            
+            const cyclesData = mode === 'shared' ? [
+                { title: 'I-Fetch', class: 'active-fetch', console: 'Cycle 1: Fetching Instruction 1 (Add R1, (R2)). Bus is active for instruction code transfer.' },
+                { title: 'Decode', class: '', console: 'Cycle 2: Decoding Instruction 1. ALU identifying operand registers (R1, R2). Bus is IDLE.' },
+                { title: 'Data-Load', class: 'active-mem', console: 'Cycle 3: Loading memory operand from address in R2. Address & Data Bus are active. <span style="color:#ef4444; font-weight:bold;">[CONFLICT]</span> Instruction 2 Fetch request is blocked!' },
+                { title: 'Stall', class: 'stall-state', console: 'Cycle 4: <span style="color:#ef4444; font-weight:bold;">[STALL]</span> Instruction 2 Fetch is delayed by 1 cycle due to active memory data access.' },
+                { title: 'I-Fetch 2', class: 'active-fetch', console: 'Cycle 5: Memory load complete. Bus is free. Instruction 2 (Mul R3, R4) is successfully fetched.' }
+            ] : [
+                { title: 'I-Fetch 1', class: 'active-fetch', console: 'Cycle 1: Fetching Instruction 1 (Add R1, (R2)) over split Code Bus.' },
+                { title: 'Decode 1', class: '', console: 'Cycle 2: Decoding Instruction 1. ALU identifying registers. Code Bus is free.' },
+                { title: 'Parallel', class: 'active-mem', console: 'Cycle 3: <span style="color:var(--accent-success); font-weight:bold;">[PARALLEL]</span> Loading memory data for Instruction 1 over Data Bus AND fetching Instruction 2 over Code Bus concurrently!' },
+                { title: 'Execute 2', class: 'active-fetch', console: 'Cycle 4: Instruction 1 retired. Instruction 2 is decoded and executing without stalls.' }
+            ];
+            
+            // Clear timeline classes
+            timelineEl.innerHTML = '';
+            
+            playbookBusSimInterval = setInterval(() => {
+                if (cycle <= cyclesData.length) {
+                    const step = cyclesData[cycle - 1];
+                    consoleEl.innerHTML += `${step.console}<br>`;
+                    
+                    // Add block to timeline
+                    const block = document.createElement('div');
+                    block.className = `bus-cycle-block ${step.class}`;
+                    block.innerHTML = `
+                        <div class="bus-cycle-label">Cycle ${cycle}</div>
+                        <strong style="color:var(--text-white); font-size: 0.76rem;">${step.title}</strong>
+                    `;
+                    timelineEl.appendChild(block);
+                    
+                    // ================= DYNAMIC SCHEMATIC ANIMATION & SYNC HOOKS =================
+                    if (mode === 'shared') {
+                        if (cycle === 1) {
+                            // Highlight Phase 1: Instruction fetch path active
+                            cpuP1.classList.add('active-glow-blue');
+                            memP1.classList.add('active-glow-blue');
+                            flowP1.classList.remove('paused');
+                        }
+                        else if (cycle === 2) {
+                            // Decode phase (internal)
+                            cpuP1.className = 'blueprint-box';
+                            memP1.className = 'blueprint-box';
+                            flowP1.classList.add('paused');
+                        }
+                        else if (cycle === 3) {
+                            // Phase 2: Memory Access load path active
+                            cpuP2.classList.add('active-glow-orange');
+                            memP2.classList.add('active-glow-orange');
+                            flowP2.classList.remove('paused');
+                            
+                            // Highlight the block warning
+                            blockedText.textContent = "⚠️ STALL HAZARD";
+                            blockedText.style.fill = "#ef4444";
+                            blockedText.style.fontWeight = "bold";
+                            
+                            footerTextP2.textContent = "Shared bus is saturated by variable access!";
+                            footerTextP2.style.fill = "var(--accent-orange)";
+                        }
+                        else if (cycle === 4) {
+                            // Stall phase
+                            cpuP2.className = 'blueprint-box active-glow-red';
+                            flowP2.classList.add('paused');
+                            cpuTextP2.textContent = "[STALLED!]";
+                            cpuTextP2.style.fill = "#ef4444";
+                            cpuTextP2.style.fontWeight = "bold";
+                            
+                            footerTextP2.textContent = "CPU pipeline is idle! No prefetch possible.";
+                            footerTextP2.style.fill = "#ef4444";
+                        }
+                        else if (cycle === 5) {
+                            // Complete stall release
+                            cpuP2.className = 'blueprint-box';
+                            memP2.className = 'blueprint-box';
+                            blockedText.textContent = "Released";
+                            blockedText.style.fill = "var(--accent-success)";
+                            cpuTextP2.textContent = "[Prefetch 2]";
+                            cpuTextP2.style.fill = "var(--accent-success)";
+                            footerTextP2.textContent = "Stall released. Bus returned to instruction fetch.";
+                            footerTextP2.style.fill = "var(--text-white)";
+                        }
+                    } else {
+                        // Harvard concurrent split-bus visualization sync
+                        if (cycle === 1) {
+                            cpuP1.classList.add('active-glow-blue');
+                            memP1.classList.add('active-glow-blue');
+                            flowP1.classList.remove('paused');
+                        }
+                        else if (cycle === 3) {
+                            // Parallel Instruction Fetch and Data Load!
+                            cpuP1.className = 'blueprint-box active-glow-blue';
+                            memP1.className = 'blueprint-box active-glow-blue';
+                            flowP1.classList.remove('paused');
+                            
+                            cpuP2.className = 'blueprint-box active-glow-orange';
+                            memP2.className = 'blueprint-box active-glow-orange';
+                            flowP2.classList.remove('paused');
+                            
+                            blockedText.textContent = "⚡ CONCURRENT";
+                            blockedText.style.fill = "var(--accent-success)";
+                            blockedText.style.fontWeight = "bold";
+                            
+                            footerTextP2.textContent = "Flash ROM Code Bus AND SRAM RAM Data Bus active simultaneously!";
+                            footerTextP2.style.fill = "var(--accent-success)";
+                        } else if (cycle === 4) {
+                            cpuP1.className = 'blueprint-box';
+                            memP1.className = 'blueprint-box';
+                            flowP1.classList.add('paused');
+                            cpuP2.className = 'blueprint-box';
+                            memP2.className = 'blueprint-box';
+                            flowP2.classList.add('paused');
+                        }
+                    }
+                    
+                    cycle++;
+                } else {
+                    clearInterval(playbookBusSimInterval);
+                    statusEl.textContent = "COMPLETE";
+                    statusEl.style.color = "var(--accent-success)";
+                    
+                    // Stop animation flows
+                    flowP1.classList.add('paused');
+                    flowP2.classList.add('paused');
+                    
+                    if (mode === 'shared') {
+                        explanationEl.innerHTML = `<strong>Von Neumann Bottleneck:</strong> Instruction fetch and data load shared the same bus trunk, causing a <strong>1-cycle hardware stall</strong>. Program takes 5 cycles to pipeline.<br><br><strong>Sketch Target Met:</strong> Accessing variables blocks code prefetches, creating structural hazard stalls.`;
+                    } else {
+                        explanationEl.innerHTML = `<strong>Harvard Split-Bus Predictability:</strong> Physical split of instruction ROM and data RAM paths allows parallel fetches. <strong>0 stalls achieved</strong>. Program takes 4 cycles to pipeline.<br><br><strong>Sketch Target Met:</strong> Physically split code & data buses enable concurrent overlapping instruction/data fetches on the same cycle!`;
+                    }
+                }
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
