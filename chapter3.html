@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,23 @@
     <!-- Google Fonts for Brutalist & Tech Aesthetics -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800;900&display=swap"
+        rel="stylesheet">
+
     <style>
         /* Charcoal & Ember Brutalist Design Tokens */
         :root {
-            --bg-primary: #0a0a0c; /* Deep warm charcoal */
-            --bg-card: #121216; /* Dark slate card */
-            --accent-orange: #f97316; /* Magma/Ember Orange */
-            --accent-amber: #fbbf24; /* Golden amber */
-            --accent-blue: #38bdf8; /* Sky blue */
+            --bg-primary: #0a0a0c;
+            /* Deep warm charcoal */
+            --bg-card: #121216;
+            /* Dark slate card */
+            --accent-orange: #f97316;
+            /* Magma/Ember Orange */
+            --accent-amber: #fbbf24;
+            /* Golden amber */
+            --accent-blue: #38bdf8;
+            /* Sky blue */
             --accent-glow: rgba(249, 115, 22, 0.2);
             --text-white: #f4f4f7;
             --text-muted: #9ea2b0;
@@ -40,14 +48,17 @@
             width: 8px;
             height: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #0a0a0c;
         }
+
         ::-webkit-scrollbar-thumb {
             background: var(--accent-orange);
             border: 2px solid #0a0a0c;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent-amber);
         }
@@ -263,7 +274,8 @@
             margin-bottom: 0;
         }
 
-        .answer-content ul, .answer-content ol {
+        .answer-content ul,
+        .answer-content ol {
             margin-bottom: 1rem;
             padding-left: 1.5rem;
         }
@@ -303,11 +315,13 @@
             padding: 0 0.25rem;
             font-family: var(--font-code);
         }
+
         .fraction .numerator {
             border-bottom: 1.5px solid var(--text-white);
             padding-bottom: 2px;
             font-size: 0.85em;
         }
+
         .fraction .denominator {
             padding-top: 2px;
             font-size: 0.85em;
@@ -338,17 +352,21 @@
             border: var(--border-width) solid #000000;
             box-shadow: 4px 4px 0px #000000;
         }
-        .brutalist-table th, .brutalist-table td {
+
+        .brutalist-table th,
+        .brutalist-table td {
             border: 1.5px solid #1c1c24;
             padding: 0.8rem;
             text-align: left;
         }
+
         .brutalist-table th {
             background: #0f0f13;
             color: var(--accent-orange);
             font-weight: 700;
             font-family: var(--font-display);
         }
+
         .brutalist-table tr:nth-child(even) {
             background: #0d0d11;
         }
@@ -363,7 +381,7 @@
             box-shadow: 4px 4px 0 #000000;
             padding: 1.5rem;
         }
-        
+
         .sim-title {
             font-family: var(--font-display);
             font-size: 1.1rem;
@@ -677,12 +695,14 @@
         .active-bus {
             stroke: var(--accent-orange) !important;
             stroke-width: 3px !important;
-            stroke-dasharray: 4,4;
+            stroke-dasharray: 4, 4;
             animation: traceFlow 1.2s infinite linear;
         }
 
         @keyframes traceFlow {
-            to { stroke-dashoffset: -20; }
+            to {
+                stroke-dashoffset: -20;
+            }
         }
 
         /* Staggered Animations */
@@ -691,6 +711,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -707,24 +728,29 @@
             .playbook-activities-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
             .brutalist-grid-table {
                 grid-template-columns: 1fr 1fr;
             }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        
+
         <!-- Header -->
         <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
-            <div class="top-bullet">
-                <span>//</span> Chapter 3
+           <div class="top-bullet">
+                ◀ Chapter 3
             </div>
             <div class="ch-title">Chapter 3: <span>CPU Datapath & Memory Design</span></div>
             <p class="ch-desc" style="max-width: 800px;">
-                Investigate the internal hardware layouts of the processor. Design and simulate an 8-bit Arithmetic Logic Unit (ALU), build a 4x4 RAM block using single-cell components, expand memories to support larger word spaces, trace dual-ported register file access paths, and analyze execution stages in a custom processor pipeline.
+                Investigate the internal hardware layouts of the processor. Design and simulate an 8-bit Arithmetic
+                Logic Unit (ALU), build a 4x4 RAM block using single-cell components, expand memories to support larger
+                word spaces, trace dual-ported register file access paths, and analyze execution stages in a custom
+                processor pipeline.
             </p>
         </div>
 
@@ -781,48 +807,76 @@
             <!-- PROBLEM 1 -->
             <div class="playbook-workspace" id="problem-card-1">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 01</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     8-Bit ALU Design & Implementation
                 </h3>
                 <div class="question-text">
-                    Design and implement an 8-bit ALU to perform the 14 operations listed below in the specified order. Construct a table of operations, write briefly about the ALU operations, and simulate the circuit.
+                    Design and implement an 8-bit ALU to perform the 14 operations listed below in the specified order.
+                    Construct a table of operations, write briefly about the ALU operations, and simulate the circuit.
                 </div>
 
                 <!-- Interactive 8-Bit ALU Simulator -->
                 <div class="simulator-box">
                     <div class="sim-title">
-                        <span><svg viewBox="0 0 24 24" width="16" height="16" style="display:inline-block; vertical-align:middle; fill:none; stroke:var(--accent-orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:6px;"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0-7-7"/><path d="M9 14h2"/><path d="M9 12a2 2 0 1 1 2 2v6"/><path d="m17 3-3 3 2 2 3-3Z"/></svg>8-Bit ALU Simulator</span>
+                        <span><svg viewBox="0 0 24 24" width="16" height="16"
+                                style="display:inline-block; vertical-align:middle; fill:none; stroke:var(--accent-orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:6px;">
+                                <path d="M6 18h8" />
+                                <path d="M3 22h18" />
+                                <path d="M14 22a7 7 0 1 0-7-7" />
+                                <path d="M9 14h2" />
+                                <path d="M9 12a2 2 0 1 1 2 2v6" />
+                                <path d="m17 3-3 3 2 2 3-3Z" />
+                            </svg>8-Bit ALU Simulator</span>
                         <span style="font-size: 0.72rem; color: var(--text-muted);">Interactive Control Panel</span>
                     </div>
                     <div class="sim-grid">
                         <div class="sim-controls">
                             <!-- Opcode custom dropdown -->
-                            <div class="sim-slider-row" style="flex-direction:column; align-items:flex-start; gap:0.3rem;">
+                            <div class="sim-slider-row"
+                                style="flex-direction:column; align-items:flex-start; gap:0.3rem;">
                                 <span class="sim-slider-label" style="width:100%;">Select Operation (Opcode)</span>
                                 <div class="custom-dropdown" id="alu-opcode-dropdown">
-                                    <div class="custom-dropdown-trigger" onclick="toggleDropdown('alu-opcode-dropdown')">
+                                    <div class="custom-dropdown-trigger"
+                                        onclick="toggleDropdown('alu-opcode-dropdown')">
                                         <span id="alu-opcode-label">ADD (0x02)</span>
                                         <span class="custom-dropdown-arrow">▼</span>
                                     </div>
                                     <div class="custom-dropdown-menu">
-                                        <div class="custom-dropdown-option" data-value="load" onclick="selectAluOp(this, 'load', 'LOAD A (0x00)')">LOAD A (0x00)</div>
-                                        <div class="custom-dropdown-option" data-value="store" onclick="selectAluOp(this, 'store', 'STORE A (0x01)')">STORE A (0x01)</div>
-                                        <div class="custom-dropdown-option selected" data-value="add" onclick="selectAluOp(this, 'add', 'ADD (0x02)')">ADD (0x02)</div>
-                                        <div class="custom-dropdown-option" data-value="sub" onclick="selectAluOp(this, 'sub', 'SUB (0x03)')">SUB (0x03)</div>
-                                        <div class="custom-dropdown-option" data-value="mul" onclick="selectAluOp(this, 'mul', 'MUL (0x04)')">MUL (0x04)</div>
-                                        <div class="custom-dropdown-option" data-value="div" onclick="selectAluOp(this, 'div', 'DIV (0x05)')">DIV (0x05)</div>
-                                        <div class="custom-dropdown-option" data-value="and" onclick="selectAluOp(this, 'and', 'AND (0x06)')">AND (0x06)</div>
-                                        <div class="custom-dropdown-option" data-value="or" onclick="selectAluOp(this, 'or', 'OR (0x07)')">OR (0x07)</div>
-                                        <div class="custom-dropdown-option" data-value="xor" onclick="selectAluOp(this, 'xor', 'XOR (0x08)')">XOR (0x08)</div>
-                                        <div class="custom-dropdown-option" data-value="complement" onclick="selectAluOp(this, 'complement', '2\'s COMPLEMENT (0x09)')">2's COMP (0x09)</div>
-                                        <div class="custom-dropdown-option" data-value="compare" onclick="selectAluOp(this, 'compare', 'COMPARATOR (0x0A)')">COMPARATOR (0x0A)</div>
-                                        <div class="custom-dropdown-option" data-value="shl" onclick="selectAluOp(this, 'shl', 'SHL, #n (0x0B)')">SHL, #n (0x0B)</div>
-                                        <div class="custom-dropdown-option" data-value="shr" onclick="selectAluOp(this, 'shr', 'SHR, #n (0x0C)')">SHR, #n (0x0C)</div>
-                                        <div class="custom-dropdown-option" data-value="asr" onclick="selectAluOp(this, 'asr', 'ASR, #n (0x0D)')">ASR, #n (0x0D)</div>
+                                        <div class="custom-dropdown-option" data-value="load"
+                                            onclick="selectAluOp(this, 'load', 'LOAD A (0x00)')">LOAD A (0x00)</div>
+                                        <div class="custom-dropdown-option" data-value="store"
+                                            onclick="selectAluOp(this, 'store', 'STORE A (0x01)')">STORE A (0x01)</div>
+                                        <div class="custom-dropdown-option selected" data-value="add"
+                                            onclick="selectAluOp(this, 'add', 'ADD (0x02)')">ADD (0x02)</div>
+                                        <div class="custom-dropdown-option" data-value="sub"
+                                            onclick="selectAluOp(this, 'sub', 'SUB (0x03)')">SUB (0x03)</div>
+                                        <div class="custom-dropdown-option" data-value="mul"
+                                            onclick="selectAluOp(this, 'mul', 'MUL (0x04)')">MUL (0x04)</div>
+                                        <div class="custom-dropdown-option" data-value="div"
+                                            onclick="selectAluOp(this, 'div', 'DIV (0x05)')">DIV (0x05)</div>
+                                        <div class="custom-dropdown-option" data-value="and"
+                                            onclick="selectAluOp(this, 'and', 'AND (0x06)')">AND (0x06)</div>
+                                        <div class="custom-dropdown-option" data-value="or"
+                                            onclick="selectAluOp(this, 'or', 'OR (0x07)')">OR (0x07)</div>
+                                        <div class="custom-dropdown-option" data-value="xor"
+                                            onclick="selectAluOp(this, 'xor', 'XOR (0x08)')">XOR (0x08)</div>
+                                        <div class="custom-dropdown-option" data-value="complement"
+                                            onclick="selectAluOp(this, 'complement', '2\'s COMPLEMENT (0x09)')">2's COMP
+                                            (0x09)</div>
+                                        <div class="custom-dropdown-option" data-value="compare"
+                                            onclick="selectAluOp(this, 'compare', 'COMPARATOR (0x0A)')">COMPARATOR
+                                            (0x0A)</div>
+                                        <div class="custom-dropdown-option" data-value="shl"
+                                            onclick="selectAluOp(this, 'shl', 'SHL, #n (0x0B)')">SHL, #n (0x0B)</div>
+                                        <div class="custom-dropdown-option" data-value="shr"
+                                            onclick="selectAluOp(this, 'shr', 'SHR, #n (0x0C)')">SHR, #n (0x0C)</div>
+                                        <div class="custom-dropdown-option" data-value="asr"
+                                            onclick="selectAluOp(this, 'asr', 'ASR, #n (0x0D)')">ASR, #n (0x0D)</div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Slider A -->
                             <div class="sim-slider-row">
                                 <span class="sim-slider-label">Input A (Decimal)</span>
@@ -848,16 +902,26 @@
                         <div class="sim-visual">
                             <div class="sim-terminal" style="line-height:1.6;">
                                 <div><span class="sim-highlight">// ALU 8-Bit Arithmetic/Logic State</span></div>
-                                <div style="margin-top: 0.3rem;">Input A:  <span class="sim-highlight" id="terminal-bin-a">00011001</span>₂ (0x<span class="sim-highlight" id="terminal-hex-a">19</span>)</div>
-                                <div id="terminal-bin-b-row">Input B:  <span class="sim-highlight" id="terminal-bin-b">00101000</span>₂ (0x<span class="sim-highlight" id="terminal-hex-b">28</span>)</div>
-                                <div>Result:   <span class="sim-accent" id="terminal-bin-res">01000001</span>₂ (0x<span class="sim-accent" id="terminal-hex-res">41</span>) [Dec: <span class="sim-accent" id="terminal-dec-res">65</span>]</div>
-                                
+                                <div style="margin-top: 0.3rem;">Input A: <span class="sim-highlight"
+                                        id="terminal-bin-a">00011001</span>₂ (0x<span class="sim-highlight"
+                                        id="terminal-hex-a">19</span>)</div>
+                                <div id="terminal-bin-b-row">Input B: <span class="sim-highlight"
+                                        id="terminal-bin-b">00101000</span>₂ (0x<span class="sim-highlight"
+                                        id="terminal-hex-b">28</span>)</div>
+                                <div>Result: <span class="sim-accent" id="terminal-bin-res">01000001</span>₂ (0x<span
+                                        class="sim-accent" id="terminal-hex-res">41</span>) [Dec: <span
+                                        class="sim-accent" id="terminal-dec-res">65</span>]</div>
+
                                 <div style="margin-top: 0.5rem; border-top: 1px dashed #1c1c24; padding-top: 0.4rem;">
                                     <span class="sim-highlight">Status Flags:</span>
-                                    <span style="margin-left: 0.8rem;">Z: <span id="flag-z" class="sim-highlight">0</span></span>
-                                    <span style="margin-left: 0.8rem;">C: <span id="flag-c" class="sim-highlight">0</span></span>
-                                    <span style="margin-left: 0.8rem;">S: <span id="flag-s" class="sim-highlight">0</span></span>
-                                    <span style="margin-left: 0.8rem;">OV: <span id="flag-ov" class="sim-highlight">0</span></span>
+                                    <span style="margin-left: 0.8rem;">Z: <span id="flag-z"
+                                            class="sim-highlight">0</span></span>
+                                    <span style="margin-left: 0.8rem;">C: <span id="flag-c"
+                                            class="sim-highlight">0</span></span>
+                                    <span style="margin-left: 0.8rem;">S: <span id="flag-s"
+                                            class="sim-highlight">0</span></span>
+                                    <span style="margin-left: 0.8rem;">OV: <span id="flag-ov"
+                                            class="sim-highlight">0</span></span>
                                 </div>
                                 <div style="margin-top: 0.2rem;" id="terminal-comp-detail"></div>
                             </div>
@@ -867,9 +931,12 @@
 
                 <!-- Hosted Image Embed Placeholder -->
                 <div class="image-card-container">
-                    <div class="ch-num" style="color:var(--accent-orange); align-self:flex-start;">// ALU Figure 1.1: 8-Bit ALU Schematic</div>
-                    <div class="image-placeholder-box" id="img-container-alu" style="border-style: solid; padding: 0.5rem;">
-                        <img src="https://i.ibb.co/YB0H0mCZ/1.png" alt="8-Bit ALU Schematic" class="datapath-img" style="max-height: 500px;">
+                    <div class="ch-num" style="color:var(--accent-orange); align-self:flex-start;">// ALU Figure 1.1:
+                        8-Bit ALU Schematic</div>
+                    <div class="image-placeholder-box" id="img-container-alu"
+                        style="border-style: solid; padding: 0.5rem;">
+                        <img src="https://i.ibb.co/YB0H0mCZ/1.png" alt="8-Bit ALU Schematic" class="datapath-img"
+                            style="max-height: 500px;">
                     </div>
                 </div>
 
@@ -877,8 +944,9 @@
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">
                         <p><strong>1. Table of Operations (ALU Function Mappings):</strong></p>
-                        <p>The ALU is designed as an 8-bit execution unit. A 4-bit Select/Opcode bus chooses the active operation as detailed below:</p>
-                        
+                        <p>The ALU is designed as an 8-bit execution unit. A 4-bit Select/Opcode bus chooses the active
+                            operation as detailed below:</p>
+
                         <table class="brutalist-table">
                             <thead>
                                 <tr>
@@ -893,37 +961,43 @@
                                     <td><code>0x00</code></td>
                                     <td><strong>LOAD A</strong></td>
                                     <td>$Y = A$</td>
-                                    <td>Passes input $A$ directly to output $Y$. Registers state change flags (Z, S).</td>
+                                    <td>Passes input $A$ directly to output $Y$. Registers state change flags (Z, S).
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><code>0x01</code></td>
                                     <td><strong>STORE A</strong></td>
                                     <td>$Y = A$</td>
-                                    <td>Passes operand $A$ to output bus to be buffered by primary memory data lines.</td>
+                                    <td>Passes operand $A$ to output bus to be buffered by primary memory data lines.
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><code>0x02</code></td>
                                     <td><strong>ADD</strong></td>
                                     <td>$Y = A + B$</td>
-                                    <td>Computes 8-bit binary addition. Updates Zero (Z), Carry (C), Sign (S), and Overflow (OV) status flags.</td>
+                                    <td>Computes 8-bit binary addition. Updates Zero (Z), Carry (C), Sign (S), and
+                                        Overflow (OV) status flags.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x03</code></td>
                                     <td><strong>SUB</strong></td>
                                     <td>$Y = A - B$</td>
-                                    <td>Computes 8-bit binary subtraction. Updates flags. Carry (C) acts as borrow-out.</td>
+                                    <td>Computes 8-bit binary subtraction. Updates flags. Carry (C) acts as borrow-out.
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><code>0x04</code></td>
                                     <td><strong>MUL</strong></td>
                                     <td>$Y = (A \times B) \pmod{256}$</td>
-                                    <td>Performs unsigned multiplication. Truncates result to the lower 8 bits. Sets Z and S flags.</td>
+                                    <td>Performs unsigned multiplication. Truncates result to the lower 8 bits. Sets Z
+                                        and S flags.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x05</code></td>
                                     <td><strong>DIV</strong></td>
                                     <td>$Y = \lfloor A / B \rfloor$</td>
-                                    <td>Performs unsigned division. If $B = 0$, registers division-by-zero error, and output remains $0$ with overflow active.</td>
+                                    <td>Performs unsigned division. If $B = 0$, registers division-by-zero error, and
+                                        output remains $0$ with overflow active.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x06</code></td>
@@ -947,41 +1021,55 @@
                                     <td><code>0x09</code></td>
                                     <td><strong>2's COMP</strong></td>
                                     <td>$Y = \overline{A} + 1$</td>
-                                    <td>Calculates the 2's complement (negation) of input $A$ by inverting all bits and adding $1$.</td>
+                                    <td>Calculates the 2's complement (negation) of input $A$ by inverting all bits and
+                                        adding $1$.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x0A</code></td>
                                     <td><strong>COMPARE</strong></td>
                                     <td>$A - B$ (flags only)</td>
-                                    <td>Compares $A$ and $B$. Status flag bits are set ($Z=1$ if $A=B$, $S=1$ if $A < B$, etc.). Results bus remains $0$.</td>
+                                    <td>Compares $A$ and $B$. Status flag bits are set ($Z=1$ if $A=B$, $S=1$ if $A <
+                                            B$, etc.). Results bus remains $0$.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x0B</code></td>
                                     <td><strong>SHL, #n</strong></td>
                                     <td>$Y = A \ll n$</td>
-                                    <td>Logical Shift Left: shifts operand $A$ to the left by $n$ bits. LSB positions are filled with zeros.</td>
+                                    <td>Logical Shift Left: shifts operand $A$ to the left by $n$ bits. LSB positions
+                                        are filled with zeros.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x0C</code></td>
                                     <td><strong>SHR, #n</strong></td>
                                     <td>$Y = A \gg n$</td>
-                                    <td>Logical Shift Right: shifts operand $A$ to the right by $n$ bits. MSB positions are filled with zeros.</td>
+                                    <td>Logical Shift Right: shifts operand $A$ to the right by $n$ bits. MSB positions
+                                        are filled with zeros.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x0D</code></td>
                                     <td><strong>ASR, #n</strong></td>
                                     <td>$Y = A \text{ ASR } n$</td>
-                                    <td>Arithmetic Shift Right: shifts operand $A$ to the right by $n$ bits, replicating the sign bit ($A_7$) in all shifted MSB spots.</td>
+                                    <td>Arithmetic Shift Right: shifts operand $A$ to the right by $n$ bits, replicating
+                                        the sign bit ($A_7$) in all shifted MSB spots.</td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <p><strong>2. Summary of ALU Flag Operations:</strong></p>
                         <ul>
-                            <li><strong>Zero Flag (Z):</strong> Evaluated using a NOR gate combining all output bits ($Z = \overline{Y_7 + Y_6 + \dots + Y_0}$). Evaluates to $1$ if the result is exactly $0$.</li>
-                            <li><strong>Carry Flag (C):</strong> Set when an addition generates a carry out of the MSB ($C_8$), or when a subtraction requires a borrow out of the MSB. For shifts, it caches the last shifted-out bit.</li>
-                            <li><strong>Sign Flag (S):</strong> Set equal to the MSB of the output result ($S = Y_7$), representing negative results in 2's complement notation.</li>
-                            <li><strong>Overflow Flag (OV):</strong> Indicates signed arithmetic overflow. For addition, it is set if adding two positive numbers yields a negative, or two negative numbers yields a positive: $OV = A_7 \cdot B_7 \cdot \overline{Y_7} + \overline{A_7} \cdot \overline{B_7} \cdot Y_7$. For subtraction, it occurs if subtracting a negative from a positive gives a negative result, or vice versa.</li>
+                            <li><strong>Zero Flag (Z):</strong> Evaluated using a NOR gate combining all output bits ($Z
+                                = \overline{Y_7 + Y_6 + \dots + Y_0}$). Evaluates to $1$ if the result is exactly $0$.
+                            </li>
+                            <li><strong>Carry Flag (C):</strong> Set when an addition generates a carry out of the MSB
+                                ($C_8$), or when a subtraction requires a borrow out of the MSB. For shifts, it caches
+                                the last shifted-out bit.</li>
+                            <li><strong>Sign Flag (S):</strong> Set equal to the MSB of the output result ($S = Y_7$),
+                                representing negative results in 2's complement notation.</li>
+                            <li><strong>Overflow Flag (OV):</strong> Indicates signed arithmetic overflow. For addition,
+                                it is set if adding two positive numbers yields a negative, or two negative numbers
+                                yields a positive: $OV = A_7 \cdot B_7 \cdot \overline{Y_7} + \overline{A_7} \cdot
+                                \overline{B_7} \cdot Y_7$. For subtraction, it occurs if subtracting a negative from a
+                                positive gives a negative result, or vice versa.</li>
                         </ul>
                     </div>
                 </div>
@@ -990,18 +1078,30 @@
             <!-- PROBLEM 2 -->
             <div class="playbook-workspace" id="problem-card-2">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 02</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     4x4 Memory Array using Single-Cell Memory
                 </h3>
                 <div class="question-text">
-                    Design and implement a 4x4 memory array using single-cell memory components. Explain the working of a single cell with a diagram, detail the circuit architecture of the larger RAM array, and explain read/write operations.
+                    Design and implement a 4x4 memory array using single-cell memory components. Explain the working of
+                    a single cell with a diagram, detail the circuit architecture of the larger RAM array, and explain
+                    read/write operations.
                 </div>
 
                 <!-- Interactive 4x4 Memory Grid Simulator -->
                 <div class="simulator-box">
                     <div class="sim-title">
-                        <span><svg viewBox="0 0 24 24" width="16" height="16" style="display:inline-block; vertical-align:middle; fill:none; stroke:var(--accent-orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:6px;"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0-7-7"/><path d="M9 14h2"/><path d="M9 12a2 2 0 1 1 2 2v6"/><path d="m17 3-3 3 2 2 3-3Z"/></svg>4x4 Memory Matrix Simulator</span>
-                        <span style="font-size: 0.72rem; color: var(--text-muted);">Row Select & Write Enable Latch</span>
+                        <span><svg viewBox="0 0 24 24" width="16" height="16"
+                                style="display:inline-block; vertical-align:middle; fill:none; stroke:var(--accent-orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:6px;">
+                                <path d="M6 18h8" />
+                                <path d="M3 22h18" />
+                                <path d="M14 22a7 7 0 1 0-7-7" />
+                                <path d="M9 14h2" />
+                                <path d="M9 12a2 2 0 1 1 2 2v6" />
+                                <path d="m17 3-3 3 2 2 3-3Z" />
+                            </svg>4x4 Memory Matrix Simulator</span>
+                        <span style="font-size: 0.72rem; color: var(--text-muted);">Row Select & Write Enable
+                            Latch</span>
                     </div>
                     <div class="sim-grid">
                         <div class="sim-controls">
@@ -1013,38 +1113,64 @@
                                         <span class="custom-dropdown-arrow">▼</span>
                                     </div>
                                     <div class="custom-dropdown-menu">
-                                        <div class="custom-dropdown-option selected" data-value="0" onclick="selectMemAddr(this, 0, '00 (Word 0)')">00 (Word 0)</div>
-                                        <div class="custom-dropdown-option" data-value="1" onclick="selectMemAddr(this, 1, '01 (Word 1)')">01 (Word 1)</div>
-                                        <div class="custom-dropdown-option" data-value="2" onclick="selectMemAddr(this, 2, '10 (Word 2)')">10 (Word 2)</div>
-                                        <div class="custom-dropdown-option" data-value="3" onclick="selectMemAddr(this, 3, '11 (Word 3)')">11 (Word 3)</div>
+                                        <div class="custom-dropdown-option selected" data-value="0"
+                                            onclick="selectMemAddr(this, 0, '00 (Word 0)')">00 (Word 0)</div>
+                                        <div class="custom-dropdown-option" data-value="1"
+                                            onclick="selectMemAddr(this, 1, '01 (Word 1)')">01 (Word 1)</div>
+                                        <div class="custom-dropdown-option" data-value="2"
+                                            onclick="selectMemAddr(this, 2, '10 (Word 2)')">10 (Word 2)</div>
+                                        <div class="custom-dropdown-option" data-value="3"
+                                            onclick="selectMemAddr(this, 3, '11 (Word 3)')">11 (Word 3)</div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="sim-slider-row" style="flex-direction:column; align-items:flex-start; gap:0.5rem; margin-top:0.5rem;">
+                            <div class="sim-slider-row"
+                                style="flex-direction:column; align-items:flex-start; gap:0.5rem; margin-top:0.5rem;">
                                 <span class="sim-slider-label">Set Data Input (D₃ D₂ D₁ D₀)</span>
                                 <div style="display:flex; gap:0.5rem; width:100%;">
-                                    <button class="sim-btn" id="bit-input-3" onclick="toggleInputBit(3)" style="flex:1;">D₃: 0</button>
-                                    <button class="sim-btn" id="bit-input-2" onclick="toggleInputBit(2)" style="flex:1;">D₂: 0</button>
-                                    <button class="sim-btn" id="bit-input-1" onclick="toggleInputBit(1)" style="flex:1;">D₁: 0</button>
-                                    <button class="sim-btn" id="bit-input-0" onclick="toggleInputBit(0)" style="flex:1;">D₀: 0</button>
+                                    <button class="sim-btn" id="bit-input-3" onclick="toggleInputBit(3)"
+                                        style="flex:1;">D₃: 0</button>
+                                    <button class="sim-btn" id="bit-input-2" onclick="toggleInputBit(2)"
+                                        style="flex:1;">D₂: 0</button>
+                                    <button class="sim-btn" id="bit-input-1" onclick="toggleInputBit(1)"
+                                        style="flex:1;">D₁: 0</button>
+                                    <button class="sim-btn" id="bit-input-0" onclick="toggleInputBit(0)"
+                                        style="flex:1;">D₀: 0</button>
                                 </div>
                             </div>
 
                             <div class="sim-btn-row">
-                                <button class="sim-btn active" id="mem-write-btn" onclick="executeMemoryCycle('WRITE')"><svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block; vertical-align:middle; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:4px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Write to Address</button>
-                                <button class="sim-btn" id="mem-read-btn" onclick="executeMemoryCycle('READ')" style="border-color:var(--accent-blue); color:var(--accent-blue);"><svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block; vertical-align:middle; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:4px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2Z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7Z"/></svg>Read Address</button>
+                                <button class="sim-btn active" id="mem-write-btn"
+                                    onclick="executeMemoryCycle('WRITE')"><svg viewBox="0 0 24 24" width="14"
+                                        height="14"
+                                        style="display:inline-block; vertical-align:middle; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:4px;">
+                                        <path d="M12 20h9" />
+                                        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                                    </svg>Write to Address</button>
+                                <button class="sim-btn" id="mem-read-btn" onclick="executeMemoryCycle('READ')"
+                                    style="border-color:var(--accent-blue); color:var(--accent-blue);"><svg
+                                        viewBox="0 0 24 24" width="14" height="14"
+                                        style="display:inline-block; vertical-align:middle; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:4px;">
+                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2Z" />
+                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7Z" />
+                                    </svg>Read Address</button>
                             </div>
                         </div>
 
                         <div class="sim-visual">
-                            <span class="cell-label" style="align-self:flex-start; color: var(--accent-amber);">4x4 RAM Cell Matrix (Click Cells to Manually Toggle Bits)</span>
+                            <span class="cell-label" style="align-self:flex-start; color: var(--accent-amber);">4x4 RAM
+                                Cell Matrix (Click Cells to Manually Toggle Bits)</span>
                             <div class="memory-4x4-grid" id="memory-grid-container">
                                 <!-- Row 0 -->
-                                <button class="memory-cell-btn active-row" id="cell-0-3" onclick="toggleCellState(0, 3)">0</button>
-                                <button class="memory-cell-btn active-row" id="cell-0-2" onclick="toggleCellState(0, 2)">0</button>
-                                <button class="memory-cell-btn active-row" id="cell-0-1" onclick="toggleCellState(0, 1)">0</button>
-                                <button class="memory-cell-btn active-row" id="cell-0-0" onclick="toggleCellState(0, 0)">0</button>
+                                <button class="memory-cell-btn active-row" id="cell-0-3"
+                                    onclick="toggleCellState(0, 3)">0</button>
+                                <button class="memory-cell-btn active-row" id="cell-0-2"
+                                    onclick="toggleCellState(0, 2)">0</button>
+                                <button class="memory-cell-btn active-row" id="cell-0-1"
+                                    onclick="toggleCellState(0, 1)">0</button>
+                                <button class="memory-cell-btn active-row" id="cell-0-0"
+                                    onclick="toggleCellState(0, 0)">0</button>
                                 <!-- Row 1 -->
                                 <button class="memory-cell-btn" id="cell-1-3" onclick="toggleCellState(1, 3)">0</button>
                                 <button class="memory-cell-btn" id="cell-1-2" onclick="toggleCellState(1, 2)">0</button>
@@ -1061,7 +1187,7 @@
                                 <button class="memory-cell-btn" id="cell-3-1" onclick="toggleCellState(3, 1)">0</button>
                                 <button class="memory-cell-btn" id="cell-3-0" onclick="toggleCellState(3, 0)">0</button>
                             </div>
-                            
+
                             <div class="sim-terminal" id="memory-terminal">
                                 <strong>Read Bus Output:</strong> [Pending Read Cycle]
                             </div>
@@ -1072,17 +1198,26 @@
                 <!-- Hosted Image Embed Placeholder -->
                 <div class="image-card-container">
                     <div style="display: flex; flex-direction: column; gap: 1.5rem; width: 100%;">
-                        <div style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
-                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure 2.1: Single Memory Cell Schematic</div>
-                            <img src="https://i.ibb.co/6c8hzv54/2-1.jpg" alt="Single Memory Cell Schematic" class="datapath-img">
+                        <div
+                            style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
+                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure
+                                2.1: Single Memory Cell Schematic</div>
+                            <img src="https://i.ibb.co/6c8hzv54/2-1.jpg" alt="Single Memory Cell Schematic"
+                                class="datapath-img">
                         </div>
-                        <div style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
-                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure 2.2: 4x4 Memory Matrix Circuit</div>
-                            <img src="https://i.ibb.co/LzxT03DD/2-2.jpg" alt="4x4 Memory Matrix Circuit" class="datapath-img">
+                        <div
+                            style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
+                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure
+                                2.2: 4x4 Memory Matrix Circuit</div>
+                            <img src="https://i.ibb.co/LzxT03DD/2-2.jpg" alt="4x4 Memory Matrix Circuit"
+                                class="datapath-img">
                         </div>
-                        <div style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
-                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure 2.3: Logisim Simulation in Action</div>
-                            <img src="https://i.ibb.co/pv5dhQr8/2-3.jpg" alt="Logisim Simulation Snapshot" class="datapath-img">
+                        <div
+                            style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
+                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure
+                                2.3: Logisim Simulation in Action</div>
+                            <img src="https://i.ibb.co/pv5dhQr8/2-3.jpg" alt="Logisim Simulation Snapshot"
+                                class="datapath-img">
                         </div>
                     </div>
                 </div>
@@ -1091,26 +1226,49 @@
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">
                         <p><strong>1. Single-Cell Memory Working Principle:</strong></p>
-                        <p>A single bit of memory (a Binary Cell) is constructed using a D latch or gated SR latch coupled with logic gates. The cell interface contains three control terminals:</p>
+                        <p>A single bit of memory (a Binary Cell) is constructed using a D latch or gated SR latch
+                            coupled with logic gates. The cell interface contains three control terminals:</p>
                         <ul>
-                            <li><strong>Select Input (SEL):</strong> Activated by the row decoder to enable the cell for reading or writing.</li>
-                            <li><strong>Write Enable (WE):</strong> Gated with SEL. When $SEL=1$ and $WE=1$, input data on the data line is latched into the cell.</li>
-                            <li><strong>Read/Output Enable:</strong> Controls the connection of the internal latch output $Q$ to the output Bit Line via a tri-state buffer. When $SEL=1$ and $WE=0$, the buffer is active and drives the stored data onto the output line.</li>
+                            <li><strong>Select Input (SEL):</strong> Activated by the row decoder to enable the cell for
+                                reading or writing.</li>
+                            <li><strong>Write Enable (WE):</strong> Gated with SEL. When $SEL=1$ and $WE=1$, input data
+                                on the data line is latched into the cell.</li>
+                            <li><strong>Read/Output Enable:</strong> Controls the connection of the internal latch
+                                output $Q$ to the output Bit Line via a tri-state buffer. When $SEL=1$ and $WE=0$, the
+                                buffer is active and drives the stored data onto the output line.</li>
                         </ul>
-                        <p>Inside the cell, the logic structure ensures that the latch's enable terminal $E = SEL \cdot WE$. Output $Q$ is driven to Data Out through a tri-state buffer: $DataOut = (SEL \cdot \overline{WE}) ? Q : \text{High-Z}$.</p>
+                        <p>Inside the cell, the logic structure ensures that the latch's enable terminal $E = SEL \cdot
+                            WE$. Output $Q$ is driven to Data Out through a tri-state buffer: $DataOut = (SEL \cdot
+                            \overline{WE}) ? Q : \text{High-Z}$.</p>
 
                         <p><strong>2. Structural Layout of the 4x4 RAM Array:</strong></p>
-                        <p>To arrange 16 bits of storage as a 4-word by 4-bit array, the cells are structured in a 2D matrix (4 rows $\times$ 4 columns):</p>
+                        <p>To arrange 16 bits of storage as a 4-word by 4-bit array, the cells are structured in a 2D
+                            matrix (4 rows $\times$ 4 columns):</p>
                         <ul>
-                            <li><strong>Address Decoder:</strong> A 2-to-4 active-high binary decoder takes address lines $A_1 A_0$ to generate four Word Lines ($WL_0$ to $WL_3$). Each Word Line is connected in parallel to the Select (SEL) pin of all four cells in its respective row.</li>
-                            <li><strong>Write Control Lines:</strong> The Write Enable ($WE$) signal from the CPU is routed in parallel to all 16 cells in the array.</li>
-                            <li><strong>Bit Lines (Data Inputs/Outputs):</strong> The array contains four vertical Data Input paths ($D_3$ to $D_0$) and four vertical Data Output paths ($Q_3$ to $Q_0$). Column $j$ cells share input line $D_j$ and output line $Q_j$ via tri-state terminals.</li>
+                            <li><strong>Address Decoder:</strong> A 2-to-4 active-high binary decoder takes address
+                                lines $A_1 A_0$ to generate four Word Lines ($WL_0$ to $WL_3$). Each Word Line is
+                                connected in parallel to the Select (SEL) pin of all four cells in its respective row.
+                            </li>
+                            <li><strong>Write Control Lines:</strong> The Write Enable ($WE$) signal from the CPU is
+                                routed in parallel to all 16 cells in the array.</li>
+                            <li><strong>Bit Lines (Data Inputs/Outputs):</strong> The array contains four vertical Data
+                                Input paths ($D_3$ to $D_0$) and four vertical Data Output paths ($Q_3$ to $Q_0$).
+                                Column $j$ cells share input line $D_j$ and output line $Q_j$ via tri-state terminals.
+                            </li>
                         </ul>
 
                         <p><strong>3. Write and Read Operations Flow:</strong></p>
                         <ul>
-                            <li><strong>Write Operation ($A_1A_0 = \text{address}, WE = 1$):</strong> The 2-to-4 decoder activates one Word Line (e.g. $WL_k$). The Select pin of all four cells in row $k$ goes High. Because $WE = 1$, the gate logic inside the cells activates their latch clocks. The values on input lines $D_3 - D_0$ are immediately written into the latches of row $k$. Cells in inactive rows ($WL = 0$) remain unaffected.</li>
-                            <li><strong>Read Operation ($A_1A_0 = \text{address}, WE = 0$):</strong> The decoder activates Word Line $WL_k$. Since $WE = 0$, the tri-state buffer of all four cells in row $k$ is enabled. Their stored charge values drive the shared vertical column Bit Lines, sending the data out on lines $Q_3 - Q_0$. Cells in all other rows remain disconnected (in High-Z state).</li>
+                            <li><strong>Write Operation ($A_1A_0 = \text{address}, WE = 1$):</strong> The 2-to-4 decoder
+                                activates one Word Line (e.g. $WL_k$). The Select pin of all four cells in row $k$ goes
+                                High. Because $WE = 1$, the gate logic inside the cells activates their latch clocks.
+                                The values on input lines $D_3 - D_0$ are immediately written into the latches of row
+                                $k$. Cells in inactive rows ($WL = 0$) remain unaffected.</li>
+                            <li><strong>Read Operation ($A_1A_0 = \text{address}, WE = 0$):</strong> The decoder
+                                activates Word Line $WL_k$. Since $WE = 0$, the tri-state buffer of all four cells in
+                                row $k$ is enabled. Their stored charge values drive the shared vertical column Bit
+                                Lines, sending the data out on lines $Q_3 - Q_0$. Cells in all other rows remain
+                                disconnected (in High-Z state).</li>
                         </ul>
                     </div>
                 </div>
@@ -1119,18 +1277,29 @@
             <!-- PROBLEM 3 -->
             <div class="playbook-workspace" id="problem-card-3">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 03</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Memory Capacity Expansion (1024x32 RAM Module)
                 </h3>
                 <div class="question-text">
-                    Design and implement a larger memory module of size 1024x32 using smaller memory chips of size 512x16. Write all design steps, detail read/write operations, and simulate.
+                    Design and implement a larger memory module of size 1024x32 using smaller memory chips of size
+                    512x16. Write all design steps, detail read/write operations, and simulate.
                 </div>
 
                 <!-- Interactive Memory Router Simulator -->
                 <div class="simulator-box">
                     <div class="sim-title">
-                        <span><svg viewBox="0 0 24 24" width="16" height="16" style="display:inline-block; vertical-align:middle; fill:none; stroke:var(--accent-orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:6px;"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0-7-7"/><path d="M9 14h2"/><path d="M9 12a2 2 0 1 1 2 2v6"/><path d="m17 3-3 3 2 2 3-3Z"/></svg>Memory Address Router Simulator</span>
-                        <span style="font-size: 0.72rem; color: var(--text-muted);">Chip Select & Bank Selection Decoder</span>
+                        <span><svg viewBox="0 0 24 24" width="16" height="16"
+                                style="display:inline-block; vertical-align:middle; fill:none; stroke:var(--accent-orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:6px;">
+                                <path d="M6 18h8" />
+                                <path d="M3 22h18" />
+                                <path d="M14 22a7 7 0 1 0-7-7" />
+                                <path d="M9 14h2" />
+                                <path d="M9 12a2 2 0 1 1 2 2v6" />
+                                <path d="m17 3-3 3 2 2 3-3Z" />
+                            </svg>Memory Address Router Simulator</span>
+                        <span style="font-size: 0.72rem; color: var(--text-muted);">Chip Select & Bank Selection
+                            Decoder</span>
                     </div>
                     <div class="sim-grid">
                         <div class="sim-controls">
@@ -1140,44 +1309,79 @@
                                 <input type="range" class="sim-slider" id="exp-addr" min="0" max="1023" value="384">
                                 <div class="sim-val" id="disp-exp-addr" style="width: 75px;">0x180</div>
                             </div>
-                            
+
                             <!-- Input Data -->
-                            <div class="sim-slider-row" style="flex-direction:column; align-items:flex-start; gap:0.5rem; margin-top:0.3rem;">
+                            <div class="sim-slider-row"
+                                style="flex-direction:column; align-items:flex-start; gap:0.5rem; margin-top:0.3rem;">
                                 <span class="sim-slider-label">32-Bit Hex Write Data</span>
                                 <div style="display:flex; width:100%; gap:0.5rem;">
-                                    <input type="text" id="exp-data-input" value="AFAF5E5E" style="background:#121216; border:2px solid var(--accent-orange); border-radius:4px; color:#fff; font-family:var(--font-code); font-size:0.85rem; padding:0.4rem; flex:1; text-align:center; text-transform:uppercase;">
+                                    <input type="text" id="exp-data-input" value="AFAF5E5E"
+                                        style="background:#121216; border:2px solid var(--accent-orange); border-radius:4px; color:#fff; font-family:var(--font-code); font-size:0.85rem; padding:0.4rem; flex:1; text-align:center; text-transform:uppercase;">
                                 </div>
                             </div>
 
                             <div class="sim-btn-row">
-                                <button class="sim-btn active" id="exp-write-btn" onclick="routeMemory('WRITE')"><svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block; vertical-align:middle; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:4px;"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Write Cycle</button>
-                                <button class="sim-btn" id="exp-read-btn" onclick="routeMemory('READ')" style="border-color:var(--accent-blue); color:var(--accent-blue);"><svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block; vertical-align:middle; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:4px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2Z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7Z"/></svg>Read Cycle</button>
+                                <button class="sim-btn active" id="exp-write-btn" onclick="routeMemory('WRITE')"><svg
+                                        viewBox="0 0 24 24" width="14" height="14"
+                                        style="display:inline-block; vertical-align:middle; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:4px;">
+                                        <path d="M12 20h9" />
+                                        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                                    </svg>Write Cycle</button>
+                                <button class="sim-btn" id="exp-read-btn" onclick="routeMemory('READ')"
+                                    style="border-color:var(--accent-blue); color:var(--accent-blue);"><svg
+                                        viewBox="0 0 24 24" width="14" height="14"
+                                        style="display:inline-block; vertical-align:middle; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:4px;">
+                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2Z" />
+                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7Z" />
+                                    </svg>Read Cycle</button>
                             </div>
                         </div>
 
                         <div class="sim-visual">
-                            <span class="cell-label" style="align-self:flex-start; color: var(--accent-amber);">Active Chip Blocks & Bus Paths</span>
-                            
-                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.8rem; width:100%; margin:0.5rem 0;">
-                                <div id="chip-block-0-0" style="border: 2px solid var(--border-color); padding: 0.6rem; border-radius:4px; text-align:center; background:#0c0c0e;">
+                            <span class="cell-label" style="align-self:flex-start; color: var(--accent-amber);">Active
+                                Chip Blocks & Bus Paths</span>
+
+                            <div
+                                style="display:grid; grid-template-columns: 1fr 1fr; gap:0.8rem; width:100%; margin:0.5rem 0;">
+                                <div id="chip-block-0-0"
+                                    style="border: 2px solid var(--border-color); padding: 0.6rem; border-radius:4px; text-align:center; background:#0c0c0e;">
                                     <div class="cell-label" style="color:var(--accent-orange);">Chip 0 (Low)</div>
-                                    <div style="font-size:0.65rem; color:var(--text-muted); font-family:var(--font-code); margin-top:0.2rem;">Bank 0: 512x16</div>
-                                    <div id="chip-val-0-0" style="font-family:var(--font-code); font-size:0.75rem; color:#fff; margin-top:0.3rem;">0x0000</div>
+                                    <div
+                                        style="font-size:0.65rem; color:var(--text-muted); font-family:var(--font-code); margin-top:0.2rem;">
+                                        Bank 0: 512x16</div>
+                                    <div id="chip-val-0-0"
+                                        style="font-family:var(--font-code); font-size:0.75rem; color:#fff; margin-top:0.3rem;">
+                                        0x0000</div>
                                 </div>
-                                <div id="chip-block-0-1" style="border: 2px solid var(--border-color); padding: 0.6rem; border-radius:4px; text-align:center; background:#0c0c0e;">
+                                <div id="chip-block-0-1"
+                                    style="border: 2px solid var(--border-color); padding: 0.6rem; border-radius:4px; text-align:center; background:#0c0c0e;">
                                     <div class="cell-label" style="color:var(--accent-orange);">Chip 1 (High)</div>
-                                    <div style="font-size:0.65rem; color:var(--text-muted); font-family:var(--font-code); margin-top:0.2rem;">Bank 0: 512x16</div>
-                                    <div id="chip-val-0-1" style="font-family:var(--font-code); font-size:0.75rem; color:#fff; margin-top:0.3rem;">0x0000</div>
+                                    <div
+                                        style="font-size:0.65rem; color:var(--text-muted); font-family:var(--font-code); margin-top:0.2rem;">
+                                        Bank 0: 512x16</div>
+                                    <div id="chip-val-0-1"
+                                        style="font-family:var(--font-code); font-size:0.75rem; color:#fff; margin-top:0.3rem;">
+                                        0x0000</div>
                                 </div>
-                                <div id="chip-block-1-0" style="border: 2px solid var(--border-color); padding: 0.6rem; border-radius:4px; text-align:center; background:#0c0c0e;">
+                                <div id="chip-block-1-0"
+                                    style="border: 2px solid var(--border-color); padding: 0.6rem; border-radius:4px; text-align:center; background:#0c0c0e;">
                                     <div class="cell-label" style="color:var(--accent-orange);">Chip 2 (Low)</div>
-                                    <div style="font-size:0.65rem; color:var(--text-muted); font-family:var(--font-code); margin-top:0.2rem;">Bank 1: 512x16</div>
-                                    <div id="chip-val-1-0" style="font-family:var(--font-code); font-size:0.75rem; color:#fff; margin-top:0.3rem;">0x0000</div>
+                                    <div
+                                        style="font-size:0.65rem; color:var(--text-muted); font-family:var(--font-code); margin-top:0.2rem;">
+                                        Bank 1: 512x16</div>
+                                    <div id="chip-val-1-0"
+                                        style="font-family:var(--font-code); font-size:0.75rem; color:#fff; margin-top:0.3rem;">
+                                        0x0000</div>
                                 </div>
-                                <div id="chip-block-1-1" style="border: 2px solid var(--border-color); padding: 0.6rem; border-radius:4px; text-align:center; background:#0c0c0e;">
+                                <div id="chip-block-1-1"
+                                    style="border: 2px solid var(--border-color); padding: 0.6rem; border-radius:4px; text-align:center; background:#0c0c0e;">
                                     <div class="cell-label" style="color:var(--accent-orange);">Chip 3 (High)</div>
-                                    <div style="font-size:0.65rem; color:var(--text-muted); font-family:var(--font-code); margin-top:0.2rem;">Bank 1: 512x16</div>
-                                    <div id="chip-val-1-1" style="font-family:var(--font-code); font-size:0.75rem; color:#fff; margin-top:0.3rem;">0x0000</div>
+                                    <div
+                                        style="font-size:0.65rem; color:var(--text-muted); font-family:var(--font-code); margin-top:0.2rem;">
+                                        Bank 1: 512x16</div>
+                                    <div id="chip-val-1-1"
+                                        style="font-family:var(--font-code); font-size:0.75rem; color:#fff; margin-top:0.3rem;">
+                                        0x0000</div>
                                 </div>
                             </div>
 
@@ -1190,9 +1394,12 @@
 
                 <!-- Hosted Image Embed Placeholder -->
                 <div class="image-card-container">
-                    <div class="ch-num" style="color:var(--accent-orange); align-self:flex-start;">// Memory Figure 3.1: 1024x32 Memory System Expansion Layout</div>
-                    <div class="image-placeholder-box" id="img-container-memory-expansion" style="border-style: solid; padding: 0.5rem;">
-                        <img src="https://i.ibb.co/SwdyWwD1/3.jpg" alt="Memory Expansion Schematic" class="datapath-img">
+                    <div class="ch-num" style="color:var(--accent-orange); align-self:flex-start;">// Memory Figure 3.1:
+                        1024x32 Memory System Expansion Layout</div>
+                    <div class="image-placeholder-box" id="img-container-memory-expansion"
+                        style="border-style: solid; padding: 0.5rem;">
+                        <img src="https://i.ibb.co/SwdyWwD1/3.jpg" alt="Memory Expansion Schematic"
+                            class="datapath-img">
                     </div>
                 </div>
 
@@ -1200,54 +1407,79 @@
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">
                         <p><strong>1. Systematic Calculations & Design Steps:</strong></p>
-                        <p>To construct a $1024 \times 32$ memory array using $512 \times 16$ basic memory chips, we calculate the requirements for both word size (bit width) and word capacity (address space):</p>
-                        
+                        <p>To construct a $1024 \times 32$ memory array using $512 \times 16$ basic memory chips, we
+                            calculate the requirements for both word size (bit width) and word capacity (address space):
+                        </p>
+
                         <ul>
-                            <li><strong>Data Word Size (Bit-Width) Expansion:</strong> The target word size is 32 bits, while each chip provides only 16 bits. We must place chips in parallel.
+                            <li><strong>Data Word Size (Bit-Width) Expansion:</strong> The target word size is 32 bits,
+                                while each chip provides only 16 bits. We must place chips in parallel.
                                 <div class="fraction">
                                     <span class="numerator">Target Word Width</span>
                                     <span class="denominator">Chip Word Width</span>
-                                </div> = 
+                                </div> =
                                 <div class="fraction">
                                     <span class="numerator">32 bits</span>
                                     <span class="denominator">16 bits</span>
-                                </div> = $2$ chips in parallel. Each row bank requires two chips: Column 0 (Low half) handles bits $D_{15} - D_0$, while Column 1 (High half) handles bits $D_{31} - D_{16}$.
+                                </div> = $2$ chips in parallel. Each row bank requires two chips: Column 0 (Low half)
+                                handles bits $D_{15} - D_0$, while Column 1 (High half) handles bits $D_{31} - D_{16}$.
                             </li>
-                            <li><strong>Word Capacity (Address Space) Expansion:</strong> The target capacity is 1024 words, while each chip holds only 512 words. We must stack chips vertically in banks.
+                            <li><strong>Word Capacity (Address Space) Expansion:</strong> The target capacity is 1024
+                                words, while each chip holds only 512 words. We must stack chips vertically in banks.
                                 <div class="fraction">
                                     <span class="numerator">Target Word Capacity</span>
                                     <span class="denominator">Chip Word Capacity</span>
-                                </div> = 
+                                </div> =
                                 <div class="fraction">
                                     <span class="numerator">1024 words</span>
                                     <span class="denominator">512 words</span>
                                 </div> = $2$ stacked banks of chips.
                             </li>
-                            <li><strong>Total Basic Chips Required:</strong> 
-                                $\text{Total Chips} = \text{Capacity Expansion} \times \text{Width Expansion} = 2 \text{ rows} \times 2 \text{ columns} = 4 \text{ chips}$.
+                            <li><strong>Total Basic Chips Required:</strong>
+                                $\text{Total Chips} = \text{Capacity Expansion} \times \text{Width Expansion} = 2 \text{
+                                rows} \times 2 \text{ columns} = 4 \text{ chips}$.
                             </li>
                             <li><strong>Address Line Mapping:</strong>
                                 <ul>
-                                    <li>A $1024$-word capacity requires $10$ address lines ($A_9 - A_0$) since $2^{10} = 1024$.</li>
-                                    <li>Each $512$-word chip requires $9$ address lines ($A_8 - A_0$) since $2^9 = 512$.</li>
-                                    <li>The lower $9$ address lines ($A_8 - A_0$) are wired in parallel directly to the address pins of all four chips.</li>
-                                    <li>The MSB address line ($A_9$) is decoded to select between Bank 0 (upper row) and Bank 1 (lower row).</li>
+                                    <li>A $1024$-word capacity requires $10$ address lines ($A_9 - A_0$) since $2^{10} =
+                                        1024$.</li>
+                                    <li>Each $512$-word chip requires $9$ address lines ($A_8 - A_0$) since $2^9 = 512$.
+                                    </li>
+                                    <li>The lower $9$ address lines ($A_8 - A_0$) are wired in parallel directly to the
+                                        address pins of all four chips.</li>
+                                    <li>The MSB address line ($A_9$) is decoded to select between Bank 0 (upper row) and
+                                        Bank 1 (lower row).</li>
                                 </ul>
                             </li>
                             <li><strong>Chip Select (CS) Logic Generation:</strong>
                                 <ul>
-                                    <li>We use a 1-to-2 active-high decoder (or an inverter) fed by address line $A_9$.</li>
-                                    <li>$\text{Bank Select 0 } (BS_0) = \overline{A_9}$. Selects Bank 0 when address space is $0$ to $511$ ($0\text{x}000$ to $0\text{x}1\text{FF}$). It drives the CS pins of Chip 0 and Chip 1.</li>
-                                    <li>$\text{Bank Select 1 } (BS_1) = A_9$. Selects Bank 1 when address space is $512$ to $1023$ ($0\text{x}200$ to $0\text{x}3\text{FF}$). It drives the CS pins of Chip 2 and Chip 3.</li>
+                                    <li>We use a 1-to-2 active-high decoder (or an inverter) fed by address line $A_9$.
+                                    </li>
+                                    <li>$\text{Bank Select 0 } (BS_0) = \overline{A_9}$. Selects Bank 0 when address
+                                        space is $0$ to $511$ ($0\text{x}000$ to $0\text{x}1\text{FF}$). It drives the
+                                        CS pins of Chip 0 and Chip 1.</li>
+                                    <li>$\text{Bank Select 1 } (BS_1) = A_9$. Selects Bank 1 when address space is $512$
+                                        to $1023$ ($0\text{x}200$ to $0\text{x}3\text{FF}$). It drives the CS pins of
+                                        Chip 2 and Chip 3.</li>
                                 </ul>
                             </li>
                         </ul>
 
                         <p><strong>2. Detailed Read/Write Operations:</strong></p>
                         <ul>
-                            <li><strong>Data Bus Splitting:</strong> The 32-bit CPU Data Bus ($D_{31} - D_0$) is split into two halves. The lower data bus lines ($D_{15} - D_0$) connect to Chip 0 (Bank 0) and Chip 2 (Bank 1). The upper data bus lines ($D_{31} - D_{16}$) connect to Chip 1 (Bank 0) and Chip 3 (Bank 1).</li>
-                            <li><strong>Write Cycle ($WE=1$):</strong> The CPU drives a 10-bit address onto $A_9 - A_0$ and 32-bit write data onto $D_{31} - D_0$. If $A_9 = 0$, $BS_0$ goes High, enabling Chip 0 and Chip 1. The lower 9 bits ($A_8-A_0$) identify the offset within the bank. Chip 0 writes $D_{15}-D_0$ and Chip 1 writes $D_{31}-D_{16}$ into offset location $A_8-A_0$. Chips 2 and 3 remain disabled ($BS_1=0$).</li>
-                            <li><strong>Read Cycle ($WE=0$):</strong> The CPU drives the address. If $A_9 = 1$, $BS_1$ goes High, activating Chip 2 and Chip 3. Chip 2 outputs its stored 16-bit word onto data lines $D_{15}-D_0$, and Chip 3 outputs its stored 16-bit word onto data lines $D_{31}-D_{16}$. Together, they form the 32-bit word read by the CPU.</li>
+                            <li><strong>Data Bus Splitting:</strong> The 32-bit CPU Data Bus ($D_{31} - D_0$) is split
+                                into two halves. The lower data bus lines ($D_{15} - D_0$) connect to Chip 0 (Bank 0)
+                                and Chip 2 (Bank 1). The upper data bus lines ($D_{31} - D_{16}$) connect to Chip 1
+                                (Bank 0) and Chip 3 (Bank 1).</li>
+                            <li><strong>Write Cycle ($WE=1$):</strong> The CPU drives a 10-bit address onto $A_9 - A_0$
+                                and 32-bit write data onto $D_{31} - D_0$. If $A_9 = 0$, $BS_0$ goes High, enabling Chip
+                                0 and Chip 1. The lower 9 bits ($A_8-A_0$) identify the offset within the bank. Chip 0
+                                writes $D_{15}-D_0$ and Chip 1 writes $D_{31}-D_{16}$ into offset location $A_8-A_0$.
+                                Chips 2 and 3 remain disabled ($BS_1=0$).</li>
+                            <li><strong>Read Cycle ($WE=0$):</strong> The CPU drives the address. If $A_9 = 1$, $BS_1$
+                                goes High, activating Chip 2 and Chip 3. Chip 2 outputs its stored 16-bit word onto data
+                                lines $D_{15}-D_0$, and Chip 3 outputs its stored 16-bit word onto data lines
+                                $D_{31}-D_{16}$. Together, they form the 32-bit word read by the CPU.</li>
                         </ul>
                     </div>
                 </div>
@@ -1256,27 +1488,40 @@
             <!-- PROBLEM 4 -->
             <div class="playbook-workspace" id="problem-card-4">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 04</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Dual-Ported Register File
                 </h3>
                 <div class="question-text">
-                    Design and implement both alternatives of a dual-ported 8-bit register file containing 8 registers. Explain register select, data read, and write operations, and simulate.
+                    Design and implement both alternatives of a dual-ported 8-bit register file containing 8 registers.
+                    Explain register select, data read, and write operations, and simulate.
                 </div>
 
                 <!-- Interactive Dual-Port Register File Simulator -->
                 <div class="simulator-box">
                     <div class="sim-title">
-                        <span><svg viewBox="0 0 24 24" width="16" height="16" style="display:inline-block; vertical-align:middle; fill:none; stroke:var(--accent-orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:6px;"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0-7-7"/><path d="M9 14h2"/><path d="M9 12a2 2 0 1 1 2 2v6"/><path d="m17 3-3 3 2 2 3-3Z"/></svg>Dual-Ported Register File Simulator</span>
+                        <span><svg viewBox="0 0 24 24" width="16" height="16"
+                                style="display:inline-block; vertical-align:middle; fill:none; stroke:var(--accent-orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:6px;">
+                                <path d="M6 18h8" />
+                                <path d="M3 22h18" />
+                                <path d="M14 22a7 7 0 1 0-7-7" />
+                                <path d="M9 14h2" />
+                                <path d="M9 12a2 2 0 1 1 2 2v6" />
+                                <path d="m17 3-3 3 2 2 3-3Z" />
+                            </svg>Dual-Ported Register File Simulator</span>
                         <span style="font-size: 0.72rem; color: var(--text-muted);">Concurrent Port Access Trace</span>
                     </div>
                     <div class="sim-grid">
                         <div class="sim-controls">
                             <!-- Alternative Selector -->
                             <div style="margin-bottom:0.5rem;">
-                                <span class="sim-slider-label" style="width:100%; margin-bottom:0.3rem;">Select Architectural Design</span>
+                                <span class="sim-slider-label" style="width:100%; margin-bottom:0.3rem;">Select
+                                    Architectural Design</span>
                                 <div style="display:flex; gap:0.4rem;">
-                                    <button class="sim-btn active" id="btn-alt-1" onclick="switchRegAlternative(1)">Alt 1: Monolithic 3-Port</button>
-                                    <button class="sim-btn" id="btn-alt-2" onclick="switchRegAlternative(2)">Alt 2: Replicated Banks</button>
+                                    <button class="sim-btn active" id="btn-alt-1" onclick="switchRegAlternative(1)">Alt
+                                        1: Monolithic 3-Port</button>
+                                    <button class="sim-btn" id="btn-alt-2" onclick="switchRegAlternative(2)">Alt 2:
+                                        Replicated Banks</button>
                                 </div>
                             </div>
 
@@ -1289,14 +1534,22 @@
                                         <span class="custom-dropdown-arrow">▼</span>
                                     </div>
                                     <div class="custom-dropdown-menu">
-                                        <div class="custom-dropdown-option" data-value="0" onclick="selectRegRead(this, 'a', 0, 'R0')">R0</div>
-                                        <div class="custom-dropdown-option selected" data-value="1" onclick="selectRegRead(this, 'a', 1, 'R1')">R1</div>
-                                        <div class="custom-dropdown-option" data-value="2" onclick="selectRegRead(this, 'a', 2, 'R2')">R2</div>
-                                        <div class="custom-dropdown-option" data-value="3" onclick="selectRegRead(this, 'a', 3, 'R3')">R3</div>
-                                        <div class="custom-dropdown-option" data-value="4" onclick="selectRegRead(this, 'a', 4, 'R4')">R4</div>
-                                        <div class="custom-dropdown-option" data-value="5" onclick="selectRegRead(this, 'a', 5, 'R5')">R5</div>
-                                        <div class="custom-dropdown-option" data-value="6" onclick="selectRegRead(this, 'a', 6, 'R6')">R6</div>
-                                        <div class="custom-dropdown-option" data-value="7" onclick="selectRegRead(this, 'a', 7, 'R7')">R7</div>
+                                        <div class="custom-dropdown-option" data-value="0"
+                                            onclick="selectRegRead(this, 'a', 0, 'R0')">R0</div>
+                                        <div class="custom-dropdown-option selected" data-value="1"
+                                            onclick="selectRegRead(this, 'a', 1, 'R1')">R1</div>
+                                        <div class="custom-dropdown-option" data-value="2"
+                                            onclick="selectRegRead(this, 'a', 2, 'R2')">R2</div>
+                                        <div class="custom-dropdown-option" data-value="3"
+                                            onclick="selectRegRead(this, 'a', 3, 'R3')">R3</div>
+                                        <div class="custom-dropdown-option" data-value="4"
+                                            onclick="selectRegRead(this, 'a', 4, 'R4')">R4</div>
+                                        <div class="custom-dropdown-option" data-value="5"
+                                            onclick="selectRegRead(this, 'a', 5, 'R5')">R5</div>
+                                        <div class="custom-dropdown-option" data-value="6"
+                                            onclick="selectRegRead(this, 'a', 6, 'R6')">R6</div>
+                                        <div class="custom-dropdown-option" data-value="7"
+                                            onclick="selectRegRead(this, 'a', 7, 'R7')">R7</div>
                                     </div>
                                 </div>
                             </div>
@@ -1310,14 +1563,22 @@
                                         <span class="custom-dropdown-arrow">▼</span>
                                     </div>
                                     <div class="custom-dropdown-menu">
-                                        <div class="custom-dropdown-option" data-value="0" onclick="selectRegRead(this, 'b', 0, 'R0')">R0</div>
-                                        <div class="custom-dropdown-option" data-value="1" onclick="selectRegRead(this, 'b', 1, 'R1')">R1</div>
-                                        <div class="custom-dropdown-option selected" data-value="2" onclick="selectRegRead(this, 'b', 2, 'R2')">R2</div>
-                                        <div class="custom-dropdown-option" data-value="3" onclick="selectRegRead(this, 'b', 3, 'R3')">R3</div>
-                                        <div class="custom-dropdown-option" data-value="4" onclick="selectRegRead(this, 'b', 4, 'R4')">R4</div>
-                                        <div class="custom-dropdown-option" data-value="5" onclick="selectRegRead(this, 'b', 5, 'R5')">R5</div>
-                                        <div class="custom-dropdown-option" data-value="6" onclick="selectRegRead(this, 'b', 6, 'R6')">R6</div>
-                                        <div class="custom-dropdown-option" data-value="7" onclick="selectRegRead(this, 'b', 7, 'R7')">R7</div>
+                                        <div class="custom-dropdown-option" data-value="0"
+                                            onclick="selectRegRead(this, 'b', 0, 'R0')">R0</div>
+                                        <div class="custom-dropdown-option" data-value="1"
+                                            onclick="selectRegRead(this, 'b', 1, 'R1')">R1</div>
+                                        <div class="custom-dropdown-option selected" data-value="2"
+                                            onclick="selectRegRead(this, 'b', 2, 'R2')">R2</div>
+                                        <div class="custom-dropdown-option" data-value="3"
+                                            onclick="selectRegRead(this, 'b', 3, 'R3')">R3</div>
+                                        <div class="custom-dropdown-option" data-value="4"
+                                            onclick="selectRegRead(this, 'b', 4, 'R4')">R4</div>
+                                        <div class="custom-dropdown-option" data-value="5"
+                                            onclick="selectRegRead(this, 'b', 5, 'R5')">R5</div>
+                                        <div class="custom-dropdown-option" data-value="6"
+                                            onclick="selectRegRead(this, 'b', 6, 'R6')">R6</div>
+                                        <div class="custom-dropdown-option" data-value="7"
+                                            onclick="selectRegRead(this, 'b', 7, 'R7')">R7</div>
                                     </div>
                                 </div>
                             </div>
@@ -1331,14 +1592,22 @@
                                         <span class="custom-dropdown-arrow">▼</span>
                                     </div>
                                     <div class="custom-dropdown-menu">
-                                        <div class="custom-dropdown-option selected" data-value="0" onclick="selectRegWrite(this, 0, 'R0')">R0</div>
-                                        <div class="custom-dropdown-option" data-value="1" onclick="selectRegWrite(this, 1, 'R1')">R1</div>
-                                        <div class="custom-dropdown-option" data-value="2" onclick="selectRegWrite(this, 2, 'R2')">R2</div>
-                                        <div class="custom-dropdown-option" data-value="3" onclick="selectRegWrite(this, 3, 'R3')">R3</div>
-                                        <div class="custom-dropdown-option" data-value="4" onclick="selectRegWrite(this, 4, 'R4')">R4</div>
-                                        <div class="custom-dropdown-option" data-value="5" onclick="selectRegWrite(this, 5, 'R5')">R5</div>
-                                        <div class="custom-dropdown-option" data-value="6" onclick="selectRegWrite(this, 6, 'R6')">R6</div>
-                                        <div class="custom-dropdown-option" data-value="7" onclick="selectRegWrite(this, 7, 'R7')">R7</div>
+                                        <div class="custom-dropdown-option selected" data-value="0"
+                                            onclick="selectRegWrite(this, 0, 'R0')">R0</div>
+                                        <div class="custom-dropdown-option" data-value="1"
+                                            onclick="selectRegWrite(this, 1, 'R1')">R1</div>
+                                        <div class="custom-dropdown-option" data-value="2"
+                                            onclick="selectRegWrite(this, 2, 'R2')">R2</div>
+                                        <div class="custom-dropdown-option" data-value="3"
+                                            onclick="selectRegWrite(this, 3, 'R3')">R3</div>
+                                        <div class="custom-dropdown-option" data-value="4"
+                                            onclick="selectRegWrite(this, 4, 'R4')">R4</div>
+                                        <div class="custom-dropdown-option" data-value="5"
+                                            onclick="selectRegWrite(this, 5, 'R5')">R5</div>
+                                        <div class="custom-dropdown-option" data-value="6"
+                                            onclick="selectRegWrite(this, 6, 'R6')">R6</div>
+                                        <div class="custom-dropdown-option" data-value="7"
+                                            onclick="selectRegWrite(this, 7, 'R7')">R7</div>
                                     </div>
                                 </div>
                             </div>
@@ -1350,29 +1619,39 @@
                             </div>
 
                             <div class="sim-btn-row">
-                                <button class="sim-btn active" onclick="executeRegisterCycle()"><svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block; vertical-align:middle; fill:currentColor; stroke:none; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Trigger Clock Edge</button>
+                                <button class="sim-btn active" onclick="executeRegisterCycle()"><svg viewBox="0 0 24 24"
+                                        width="14" height="14"
+                                        style="display:inline-block; vertical-align:middle; fill:currentColor; stroke:none; margin-right:4px;">
+                                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                                    </svg>Trigger Clock Edge</button>
                             </div>
                         </div>
 
                         <div class="sim-visual">
                             <div style="display:flex; width:100%; gap:0.6rem;">
                                 <!-- Reg file block A -->
-                                <div style="flex:1; border:1px solid #1c1c24; padding:0.5rem; border-radius:4px; background:#08080b;" id="bank-a-container">
-                                    <div class="cell-label" style="text-align:center; color:var(--accent-orange); margin-bottom:0.4rem;" id="bank-a-title">Register Bank</div>
+                                <div style="flex:1; border:1px solid #1c1c24; padding:0.5rem; border-radius:4px; background:#08080b;"
+                                    id="bank-a-container">
+                                    <div class="cell-label"
+                                        style="text-align:center; color:var(--accent-orange); margin-bottom:0.4rem;"
+                                        id="bank-a-title">Register Bank</div>
                                     <div style="display:flex; flex-direction:column; gap:0.25rem;" id="bank-a-reglist">
                                         <!-- Dynamic load -->
                                     </div>
                                 </div>
 
                                 <!-- Reg file block B for Alt 2 -->
-                                <div style="flex:1; border:1px solid #1c1c24; padding:0.5rem; border-radius:4px; background:#08080b; display:none;" id="bank-b-container">
-                                    <div class="cell-label" style="text-align:center; color:var(--accent-blue); margin-bottom:0.4rem;">Register Bank B</div>
+                                <div style="flex:1; border:1px solid #1c1c24; padding:0.5rem; border-radius:4px; background:#08080b; display:none;"
+                                    id="bank-b-container">
+                                    <div class="cell-label"
+                                        style="text-align:center; color:var(--accent-blue); margin-bottom:0.4rem;">
+                                        Register Bank B</div>
                                     <div style="display:flex; flex-direction:column; gap:0.25rem;" id="bank-b-reglist">
                                         <!-- Dynamic load -->
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="sim-terminal" id="reg-terminal" style="font-size:0.72rem; line-height:1.5;">
                                 <strong>Log:</strong> Ready to read/write registers...
                             </div>
@@ -1383,17 +1662,26 @@
                 <!-- Hosted Image Embed Placeholder -->
                 <div class="image-card-container">
                     <div style="display: flex; flex-direction: column; gap: 1.5rem; width: 100%;">
-                        <div style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
-                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure 4.1: Dedicated Multi-Port (Alternative 1)</div>
-                            <img src="https://i.ibb.co/v4Z6RsLF/4-1.jpg" alt="Dedicated Multi-Port Schematic" class="datapath-img">
+                        <div
+                            style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
+                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure
+                                4.1: Dedicated Multi-Port (Alternative 1)</div>
+                            <img src="https://i.ibb.co/v4Z6RsLF/4-1.jpg" alt="Dedicated Multi-Port Schematic"
+                                class="datapath-img">
                         </div>
-                        <div style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
-                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure 4.2: Replicated Register Bank (Alternative 2)</div>
-                            <img src="https://i.ibb.co/NdL4VhjW/4-2.png" alt="Replicated Register Bank Schematic" class="datapath-img">
+                        <div
+                            style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
+                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure
+                                4.2: Replicated Register Bank (Alternative 2)</div>
+                            <img src="https://i.ibb.co/NdL4VhjW/4-2.png" alt="Replicated Register Bank Schematic"
+                                class="datapath-img">
                         </div>
-                        <div style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
-                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure 4.3: Dual-Port Register File Simulation Trace</div>
-                            <img src="https://i.ibb.co/G4th9Mhy/4-3.png" alt="Dual-Port Register File Simulation Snapshot" class="datapath-img">
+                        <div
+                            style="border: 2px solid var(--border-color); padding: 1rem; border-radius: 4px; background: #08080b;">
+                            <div class="ch-num" style="color:var(--accent-orange); margin-bottom: 0.5rem;">// Figure
+                                4.3: Dual-Port Register File Simulation Trace</div>
+                            <img src="https://i.ibb.co/G4th9Mhy/4-3.png"
+                                alt="Dual-Port Register File Simulation Snapshot" class="datapath-img">
                         </div>
                     </div>
                 </div>
@@ -1401,22 +1689,51 @@
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">
-                        <p>A dual-ported register file containing 8 registers ($R_0 - R_7$) of 8 bits each is designed to allow two read operations and one write operation to proceed concurrently during a single clock cycle. This multi-port functionality is achieved using one of two primary architectural alternatives:</p>
-                        
-                        <p><strong>Alternative 1: Monolithic Multi-Ported Register Bank (1 Write, 2 Read Ports)</strong></p>
+                        <p>A dual-ported register file containing 8 registers ($R_0 - R_7$) of 8 bits each is designed
+                            to allow two read operations and one write operation to proceed concurrently during a single
+                            clock cycle. This multi-port functionality is achieved using one of two primary
+                            architectural alternatives:</p>
+
+                        <p><strong>Alternative 1: Monolithic Multi-Ported Register Bank (1 Write, 2 Read Ports)</strong>
+                        </p>
                         <ul>
-                            <li><strong>Architecture:</strong> Constructed using single-latch or D Flip-Flop registers with integrated dual-routing multiplexer networks. Each of the 8 registers outputs its 8-bit contents in parallel to two independent 8-to-1 multiplexer trees (Mux A and Mux B).</li>
-                            <li><strong>Read Operations:</strong> The CPU provides two 3-bit read addresses, $\text{Addr}_A$ and $\text{Addr}_B$. Mux A select lines are driven by $\text{Addr}_A$, outputting the selected register onto Bus A. Mux B select lines are driven by $\text{Addr}_B$, outputting the selected register onto Bus B. Both reads are purely combinational and occur simultaneously.</li>
-                            <li><strong>Write Operation:</strong> Driven by a 3-bit write address ($\text{Addr}_W$), 8-bit input write data ($\text{Data}_W$), and a Write Enable ($\text{WE}$) control signal. A 3-to-8 decoder asserts one of 8 Write Select lines when $WE = 1$. The write is edge-triggered, latching data into the selected register on the rising edge of the system clock.</li>
-                            <li><strong>Complexity & Hazards:</strong> Highly area-efficient but can suffer from write-during-read hazards. If a register is written to and read from in the same cycle, forwarding bypass gates are required to forward the write data directly to the output ports.</li>
+                            <li><strong>Architecture:</strong> Constructed using single-latch or D Flip-Flop registers
+                                with integrated dual-routing multiplexer networks. Each of the 8 registers outputs its
+                                8-bit contents in parallel to two independent 8-to-1 multiplexer trees (Mux A and Mux
+                                B).</li>
+                            <li><strong>Read Operations:</strong> The CPU provides two 3-bit read addresses,
+                                $\text{Addr}_A$ and $\text{Addr}_B$. Mux A select lines are driven by $\text{Addr}_A$,
+                                outputting the selected register onto Bus A. Mux B select lines are driven by
+                                $\text{Addr}_B$, outputting the selected register onto Bus B. Both reads are purely
+                                combinational and occur simultaneously.</li>
+                            <li><strong>Write Operation:</strong> Driven by a 3-bit write address ($\text{Addr}_W$),
+                                8-bit input write data ($\text{Data}_W$), and a Write Enable ($\text{WE}$) control
+                                signal. A 3-to-8 decoder asserts one of 8 Write Select lines when $WE = 1$. The write is
+                                edge-triggered, latching data into the selected register on the rising edge of the
+                                system clock.</li>
+                            <li><strong>Complexity & Hazards:</strong> Highly area-efficient but can suffer from
+                                write-during-read hazards. If a register is written to and read from in the same cycle,
+                                forwarding bypass gates are required to forward the write data directly to the output
+                                ports.</li>
                         </ul>
 
                         <p><strong>Alternative 2: Replicated Register File (Synchronized Banks)</strong></p>
                         <ul>
-                            <li><strong>Architecture:</strong> Replicates the storage cells by implementing two identical copies of the register bank: Bank A and Bank B. Each bank is a simpler 2-ported design (1 Write, 1 Read).</li>
-                            <li><strong>Read Operations:</strong> Port A read accesses Bank A; Port B read accesses Bank B. Since the files are separate, no routing congestion occurs between Port A and Port B.</li>
-                            <li><strong>Write Operation:</strong> To maintain data consistency (coherence) across the replicated structures, every write operation is broadcast to both Bank A and Bank B in parallel. Both banks receive the same $\text{Addr}_W$, $\text{Data}_W$, and $WE$ control signal, updating their respective register slots simultaneously on the active clock edge.</li>
-                            <li><strong>Complexity & Hazards:</strong> Eliminates read-port routing bottlenecks and avoids read-ports conflict delays, making it highly suitable for high-speed pipelines. However, it doubles the silicon layout area and increases dynamic power consumption due to synchronized duplicate writes.</li>
+                            <li><strong>Architecture:</strong> Replicates the storage cells by implementing two
+                                identical copies of the register bank: Bank A and Bank B. Each bank is a simpler
+                                2-ported design (1 Write, 1 Read).</li>
+                            <li><strong>Read Operations:</strong> Port A read accesses Bank A; Port B read accesses Bank
+                                B. Since the files are separate, no routing congestion occurs between Port A and Port B.
+                            </li>
+                            <li><strong>Write Operation:</strong> To maintain data consistency (coherence) across the
+                                replicated structures, every write operation is broadcast to both Bank A and Bank B in
+                                parallel. Both banks receive the same $\text{Addr}_W$, $\text{Data}_W$, and $WE$ control
+                                signal, updating their respective register slots simultaneously on the active clock
+                                edge.</li>
+                            <li><strong>Complexity & Hazards:</strong> Eliminates read-port routing bottlenecks and
+                                avoids read-ports conflict delays, making it highly suitable for high-speed pipelines.
+                                However, it doubles the silicon layout area and increases dynamic power consumption due
+                                to synchronized duplicate writes.</li>
                         </ul>
                     </div>
                 </div>
@@ -1425,27 +1742,42 @@
             <!-- PROBLEM 5 -->
             <div class="playbook-workspace" id="problem-card-5">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 05</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Register-ALU Hardware Datapath Simulation
                 </h3>
                 <div class="question-text">
-                    Design and implement the hardware needed to compute the instructions <code>Add R0, R1, R2</code> and <code>Add R0, R1, #0x45</code>. Design the datapath between the Register Bank and the ALU, step through execution cycles, and verify results.
+                    Design and implement the hardware needed to compute the instructions <code>Add R0, R1, R2</code> and
+                    <code>Add R0, R1, #0x45</code>. Design the datapath between the Register Bank and the ALU, step
+                    through execution cycles, and verify results.
                 </div>
 
                 <!-- Interactive Register-ALU Datapath Simulator -->
                 <div class="simulator-box">
                     <div class="sim-title">
-                        <span><svg viewBox="0 0 24 24" width="16" height="16" style="display:inline-block; vertical-align:middle; fill:none; stroke:var(--accent-orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:6px;"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0-7-7"/><path d="M9 14h2"/><path d="M9 12a2 2 0 1 1 2 2v6"/><path d="m17 3-3 3 2 2 3-3Z"/></svg>Register-ALU Datapath Cycle Tracer</span>
-                        <span style="font-size: 0.72rem; color: var(--text-muted);">Instruction Decode & Execution Control</span>
+                        <span><svg viewBox="0 0 24 24" width="16" height="16"
+                                style="display:inline-block; vertical-align:middle; fill:none; stroke:var(--accent-orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-right:6px;">
+                                <path d="M6 18h8" />
+                                <path d="M3 22h18" />
+                                <path d="M14 22a7 7 0 1 0-7-7" />
+                                <path d="M9 14h2" />
+                                <path d="M9 12a2 2 0 1 1 2 2v6" />
+                                <path d="m17 3-3 3 2 2 3-3Z" />
+                            </svg>Register-ALU Datapath Cycle Tracer</span>
+                        <span style="font-size: 0.72rem; color: var(--text-muted);">Instruction Decode & Execution
+                            Control</span>
                     </div>
                     <div class="sim-grid">
                         <div class="sim-controls">
                             <!-- Select Instruction -->
                             <div style="margin-bottom:0.5rem;">
-                                <span class="sim-slider-label" style="width:100%; margin-bottom:0.3rem;">Select Target Instruction</span>
+                                <span class="sim-slider-label" style="width:100%; margin-bottom:0.3rem;">Select Target
+                                    Instruction</span>
                                 <div style="display:flex; gap:0.4rem;">
-                                    <button class="sim-btn active" id="btn-inst-reg" onclick="switchDatapathInst(1)">Add R0, R1, R2</button>
-                                    <button class="sim-btn" id="btn-inst-imm" onclick="switchDatapathInst(2)">Add R0, R1, #0x45</button>
+                                    <button class="sim-btn active" id="btn-inst-reg" onclick="switchDatapathInst(1)">Add
+                                        R0, R1, R2</button>
+                                    <button class="sim-btn" id="btn-inst-imm" onclick="switchDatapathInst(2)">Add R0,
+                                        R1, #0x45</button>
                                 </div>
                             </div>
 
@@ -1464,17 +1796,22 @@
                             </div>
 
                             <div class="sim-btn-row">
-                                <button class="sim-btn active" onclick="stepDatapath()" id="btn-dp-step">Step Stage</button>
-                                <button class="sim-btn" onclick="resetDatapath()" style="border-color:var(--accent-amber); color:var(--accent-amber);">Reset</button>
+                                <button class="sim-btn active" onclick="stepDatapath()" id="btn-dp-step">Step
+                                    Stage</button>
+                                <button class="sim-btn" onclick="resetDatapath()"
+                                    style="border-color:var(--accent-amber); color:var(--accent-amber);">Reset</button>
                             </div>
                         </div>
 
                         <div class="sim-visual">
-                            <div class="sim-terminal" style="font-size:0.75rem; line-height:1.6; height:180px; overflow-y:auto;" id="dp-terminal">
+                            <div class="sim-terminal"
+                                style="font-size:0.75rem; line-height:1.6; height:180px; overflow-y:auto;"
+                                id="dp-terminal">
                                 <strong>System Initialize:</strong> Click "Step Stage" to fetch the instruction.
                             </div>
-                            
-                            <table class="brutalist-table" style="margin: 0.5rem 0 0 0; font-size:0.72rem; box-shadow:none;">
+
+                            <table class="brutalist-table"
+                                style="margin: 0.5rem 0 0 0; font-size:0.72rem; box-shadow:none;">
                                 <thead>
                                     <tr>
                                         <th>Stage</th>
@@ -1508,12 +1845,24 @@
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">
                         <p><strong>1. Register-ALU Interconnection Datapath Layout:</strong></p>
-                        <p>The hardware routing between the register file and the ALU consists of a multi-bus path coordinated by multiplexers to select input operands:</p>
+                        <p>The hardware routing between the register file and the ALU consists of a multi-bus path
+                            coordinated by multiplexers to select input operands:</p>
                         <ul>
-                            <li><strong>Register File Ports:</strong> Two read registers are selected by instruction fields <code>rs</code> (bits [25-21]) and <code>rt</code> (bits [20-16]). The register file outputs their contents to <strong>Bus A</strong> (operand 1) and <strong>Bus B</strong> (operand 2).</li>
-                            <li><strong>ALUSrc Multiplexer (2-to-1 Mux):</strong> Positioned at the second operand input of the ALU. Mux input 0 is fed by Bus B (Register output). Mux input 1 is fed by the Sign-Extended 16-bit Immediate offset value from the instruction register. Control signal <code>ALUSrc</code> selects between them.</li>
-                            <li><strong>ALU Core:</strong> Receives Bus A directly as Operand 1, and the ALUSrc Mux output as Operand 2. It performs addition, generating an 8-bit result and status flags.</li>
-                            <li><strong>Writeback Bus:</strong> The ALU output is routed back to the Register File write data port. The destination register is selected by <code>rd</code> (bits [15-11]) or <code>rt</code>, coordinated by the <code>RegDst</code> Mux, and latched when <code>RegWrite = 1</code>.</li>
+                            <li><strong>Register File Ports:</strong> Two read registers are selected by instruction
+                                fields <code>rs</code> (bits [25-21]) and <code>rt</code> (bits [20-16]). The register
+                                file outputs their contents to <strong>Bus A</strong> (operand 1) and <strong>Bus
+                                    B</strong> (operand 2).</li>
+                            <li><strong>ALUSrc Multiplexer (2-to-1 Mux):</strong> Positioned at the second operand input
+                                of the ALU. Mux input 0 is fed by Bus B (Register output). Mux input 1 is fed by the
+                                Sign-Extended 16-bit Immediate offset value from the instruction register. Control
+                                signal <code>ALUSrc</code> selects between them.</li>
+                            <li><strong>ALU Core:</strong> Receives Bus A directly as Operand 1, and the ALUSrc Mux
+                                output as Operand 2. It performs addition, generating an 8-bit result and status flags.
+                            </li>
+                            <li><strong>Writeback Bus:</strong> The ALU output is routed back to the Register File write
+                                data port. The destination register is selected by <code>rd</code> (bits [15-11]) or
+                                <code>rt</code>, coordinated by the <code>RegDst</code> Mux, and latched when
+                                <code>RegWrite = 1</code>.</li>
                         </ul>
 
                         <p><strong>2. Control Signal Specifications:</strong></p>
@@ -1556,10 +1905,18 @@
 
                         <p><strong>3. Step-by-Step Instruction Execution Stages:</strong></p>
                         <ol>
-                            <li><strong>Fetch (IF):</strong> The instruction is fetched from Code Memory at the location pointed to by the Program Counter (PC) and loaded into the Instruction Register (IR). PC is incremented ($PC \leftarrow PC + 4$).</li>
-                            <li><strong>Decode (ID):</strong> The Control Unit parses the opcode. Register file addresses are read: Register R1 is loaded onto Bus A. For R-type, Register R2 is loaded onto Bus B. For I-type, the immediate constant <code>0x45</code> is sign-extended.</li>
-                            <li><strong>Execute (EX):</strong> The ALUSrc Mux routes either Bus B (R2) or the Immediate constant to the ALU. The ALU performs addition: $\text{ALUOut} = R1 + \text{Operand}_2$.</li>
-                            <li><strong>Writeback (WB):</strong> The control signal <code>RegWrite = 1</code> is asserted. The value on the writeback bus ($\text{ALUOut}$) is written back to Register R0 on the rising clock edge.</li>
+                            <li><strong>Fetch (IF):</strong> The instruction is fetched from Code Memory at the location
+                                pointed to by the Program Counter (PC) and loaded into the Instruction Register (IR). PC
+                                is incremented ($PC \leftarrow PC + 4$).</li>
+                            <li><strong>Decode (ID):</strong> The Control Unit parses the opcode. Register file
+                                addresses are read: Register R1 is loaded onto Bus A. For R-type, Register R2 is loaded
+                                onto Bus B. For I-type, the immediate constant <code>0x45</code> is sign-extended.</li>
+                            <li><strong>Execute (EX):</strong> The ALUSrc Mux routes either Bus B (R2) or the Immediate
+                                constant to the ALU. The ALU performs addition: $\text{ALUOut} = R1 + \text{Operand}_2$.
+                            </li>
+                            <li><strong>Writeback (WB):</strong> The control signal <code>RegWrite = 1</code> is
+                                asserted. The value on the writeback bus ($\text{ALUOut}$) is written back to Register
+                                R0 on the rising clock edge.</li>
                         </ol>
                     </div>
                 </div>
@@ -1577,11 +1934,11 @@
         window.addEventListener('DOMContentLoaded', () => {
             const savedName = localStorage.getItem('coa_student_name') || 'Sarvadnya Patil';
             document.getElementById('cell-name').innerText = savedName;
-            
+
             document.getElementById('cell-usn').innerText = localStorage.getItem('coa_student_usn') || '02FE25BCS017';
             document.getElementById('cell-prog').innerText = localStorage.getItem('coa_student_prog') || 'B.E. CSE';
             document.getElementById('cell-inst').innerText = localStorage.getItem('coa_student_inst') || 'KLE Tech, Belagavi';
-            
+
             // Initialize Register files
             initializeRegisters();
             // Initialize Datapath
@@ -1622,11 +1979,11 @@
         // PROBLEM 1: ALU SIMULATOR LOGIC
         // ==========================================
         let activeAluOp = 'add';
-        
+
         const sliderA = document.getElementById('val-a');
         const sliderB = document.getElementById('val-b');
         const sliderShift = document.getElementById('val-shift');
-        
+
         const dispA = document.getElementById('disp-a');
         const dispB = document.getElementById('disp-b');
         const dispShift = document.getElementById('disp-shift');
@@ -1637,21 +1994,21 @@
 
         function selectAluOp(optElement, opName, labelText) {
             activeAluOp = opName;
-            
+
             // Update labels
             document.getElementById('alu-opcode-label').innerText = labelText;
-            
+
             // Update selected class
             const options = optElement.parentElement.querySelectorAll('.custom-dropdown-option');
             options.forEach(opt => opt.classList.remove('selected'));
             optElement.classList.add('selected');
             optElement.parentElement.parentElement.classList.remove('active');
-            
+
             // Show/Hide inputs as needed
             const rowB = document.getElementById('row-b');
             const rowShift = document.getElementById('row-shift');
             const termBinBRow = document.getElementById('terminal-bin-b-row');
-            
+
             if (opName === 'shl' || opName === 'shr' || opName === 'asr') {
                 rowB.style.display = 'none';
                 rowShift.style.display = 'flex';
@@ -1665,19 +2022,19 @@
                 rowShift.style.display = 'none';
                 termBinBRow.style.display = 'block';
             }
-            
+
             computeALU();
         }
 
         function toBin8(num) {
             let s = (num & 0xFF).toString(2);
-            while(s.length < 8) s = '0' + s;
+            while (s.length < 8) s = '0' + s;
             return s;
         }
 
         function toHex2(num) {
             let s = (num & 0xFF).toString(16).toUpperCase();
-            while(s.length < 2) s = '0' + s;
+            while (s.length < 2) s = '0' + s;
             return s;
         }
 
@@ -1685,7 +2042,7 @@
             const A = parseInt(sliderA.value);
             const B = parseInt(sliderB.value);
             const shiftVal = parseInt(sliderShift.value);
-            
+
             let result = 0;
             let flagZ = 0;
             let flagC = 0;
@@ -1699,7 +2056,7 @@
             document.getElementById('terminal-bin-b').innerText = toBin8(B);
             document.getElementById('terminal-hex-b').innerText = toHex2(B);
 
-            switch(activeAluOp) {
+            switch (activeAluOp) {
                 case 'load':
                 case 'store':
                     result = A;
@@ -1817,7 +2174,7 @@
         function selectMemAddr(optEl, addrVal, labelText) {
             selectedMemAddr = parseInt(addrVal);
             document.getElementById('mem-addr-label').innerText = labelText;
-            
+
             // UI dropdown close
             const parent = optEl.parentElement;
             parent.querySelectorAll('.custom-dropdown-option').forEach(o => o.classList.remove('selected'));
@@ -1825,17 +2182,17 @@
             parent.parentElement.classList.remove('active');
 
             // Visual active-row styling update
-            for(let r=0; r<4; r++) {
-                for(let c=0; c<4; c++) {
+            for (let r = 0; r < 4; r++) {
+                for (let c = 0; c < 4; c++) {
                     const btn = document.getElementById(`cell-${r}-${c}`);
-                    if(r === selectedMemAddr) {
+                    if (r === selectedMemAddr) {
                         btn.classList.add('active-row');
                     } else {
                         btn.classList.remove('active-row');
                     }
                 }
             }
-            
+
             document.getElementById('memory-terminal').innerHTML = `<strong>Address Selected:</strong> Word Line <code>WL_${selectedMemAddr}</code> activated. Ready for memory operation...`;
         }
 
@@ -1849,13 +2206,13 @@
         function toggleCellState(row, col) {
             memoryMatrix[row][col] = memoryMatrix[row][col] === 0 ? 1 : 0;
             updateMemoryGridUI();
-            
+
             document.getElementById('memory-terminal').innerHTML = `<strong>Manual Override:</strong> Direct hardware latch in Cell [Row ${row}, Bit ${col}] toggled to <code>${memoryMatrix[row][col]}</code>.`;
         }
 
         function updateMemoryGridUI() {
-            for(let r=0; r<4; r++) {
-                for(let c=0; c<4; c++) {
+            for (let r = 0; r < 4; r++) {
+                for (let c = 0; c < 4; c++) {
                     const cellVal = memoryMatrix[r][c];
                     const btn = document.getElementById(`cell-${r}-${c}`);
                     btn.innerText = cellVal;
@@ -1866,14 +2223,14 @@
 
         function executeMemoryCycle(mode) {
             const term = document.getElementById('memory-terminal');
-            
+
             // Highlight button states
             document.getElementById('mem-write-btn').classList.toggle('active', mode === 'WRITE');
             document.getElementById('mem-read-btn').classList.toggle('active', mode === 'READ');
 
-            if(mode === 'WRITE') {
+            if (mode === 'WRITE') {
                 // Write inputBits to memoryMatrix[selectedMemAddr]
-                for(let c=0; c<4; c++) {
+                for (let c = 0; c < 4; c++) {
                     memoryMatrix[selectedMemAddr][c] = inputBits[c];
                 }
                 updateMemoryGridUI();
@@ -1890,7 +2247,7 @@
         // ==========================================
         const sliderExpAddr = document.getElementById('exp-addr');
         const dispExpAddr = document.getElementById('disp-exp-addr');
-        
+
         sliderExpAddr.addEventListener('input', () => {
             const addr = parseInt(sliderExpAddr.value);
             dispExpAddr.innerText = `0x${addr.toString(16).toUpperCase().padStart(3, '0')}`;
@@ -1899,8 +2256,8 @@
         });
 
         function clearRouterHighlights() {
-            for(let r=0; r<2; r++) {
-                for(let c=0; c<2; c++) {
+            for (let r = 0; r < 2; r++) {
+                for (let c = 0; c < 2; c++) {
                     document.getElementById(`chip-block-${r}-${c}`).style.borderColor = 'var(--border-color)';
                     document.getElementById(`chip-block-${r}-${c}`).style.background = '#0c0c0e';
                 }
@@ -1911,7 +2268,7 @@
             const addr = parseInt(sliderExpAddr.value);
             const dataHex = document.getElementById('exp-data-input').value.trim().toUpperCase() || '00000000';
             const logTerm = document.getElementById('exp-terminal');
-            
+
             document.getElementById('exp-write-btn').classList.toggle('active', mode === 'WRITE');
             document.getElementById('exp-read-btn').classList.toggle('active', mode === 'READ');
 
@@ -1933,22 +2290,22 @@
 
             document.getElementById(chipLowId).style.borderColor = 'var(--accent-orange)';
             document.getElementById(chipLowId).style.background = 'rgba(249, 115, 22, 0.05)';
-            
+
             document.getElementById(chipHighId).style.borderColor = 'var(--accent-orange)';
             document.getElementById(chipHighId).style.background = 'rgba(249, 115, 22, 0.05)';
 
             if (mode === 'WRITE') {
                 document.getElementById(`chip-val-${bank}-0`).innerText = `0x${dataLow}`;
                 document.getElementById(`chip-val-${bank}-1`).innerText = `0x${dataHigh}`;
-                
+
                 logTerm.innerHTML = `<span class="sim-accent">WRITE CYCLE:</span> Address <code>0x${addr.toString(16).toUpperCase()}</code> maps to <span class="sim-highlight">Bank ${bank}</span> (A₉ = ${bank}). Offset address <code>0x${offsetHex}</code> sent to all chips. <br/>
-                Data Bus split: <code>0x${dataLow}</code> routed to Chip ${bank*2} (Low 16-bits), <code>0x${dataHigh}</code> routed to Chip ${bank*2+1} (High 16-bits). Chip Select (CS) active for Bank ${bank}.`;
+                Data Bus split: <code>0x${dataLow}</code> routed to Chip ${bank * 2} (Low 16-bits), <code>0x${dataHigh}</code> routed to Chip ${bank * 2 + 1} (High 16-bits). Chip Select (CS) active for Bank ${bank}.`;
             } else {
                 const retrievedLow = document.getElementById(`chip-val-${bank}-0`).innerText;
                 const retrievedHigh = document.getElementById(`chip-val-${bank}-1`).innerText;
-                
+
                 logTerm.innerHTML = `<span style="color:var(--accent-blue);">READ CYCLE:</span> Address <code>0x${addr.toString(16).toUpperCase()}</code> decoder output selects <span class="sim-highlight">Bank ${bank}</span> (CS${bank} = 1). <br/>
-                Chip ${bank*2} drives low data bus with <code>${retrievedLow}</code>. Chip ${bank*2+1} drives high data bus with <code>${retrievedHigh}</code>. Combined Data Bus Out: <span class="sim-highlight" style="color:var(--accent-blue);">${retrievedHigh.replace('0x','')}${retrievedLow.replace('0x','')}</span>.`;
+                Chip ${bank * 2} drives low data bus with <code>${retrievedLow}</code>. Chip ${bank * 2 + 1} drives high data bus with <code>${retrievedHigh}</code>. Combined Data Bus Out: <span class="sim-highlight" style="color:var(--accent-blue);">${retrievedHigh.replace('0x', '')}${retrievedLow.replace('0x', '')}</span>.`;
             }
         }
 
@@ -1959,7 +2316,7 @@
         let regReadAAddr = 1; // R1
         let regReadBAddr = 2; // R2
         let regWriteAddr = 0; // R0
-        
+
         let registerValuesBankA = [12, 65, 35, 0, 0, 0, 0, 0]; // R0 to R7
         let registerValuesBankB = [12, 65, 35, 0, 0, 0, 0, 0]; // for replicated bank alternative
 
@@ -1979,12 +2336,12 @@
             document.getElementById('bank-a-title').innerText = altNum === 1 ? 'Register Bank' : 'Register Bank A';
 
             updateRegUI();
-            
+
             document.getElementById('reg-terminal').innerHTML = `<strong>Switched architecture to Alternative ${altNum}</strong>: ${altNum === 1 ? 'Monolithic 3-Ported register file with dual read buses' : 'Replicated symmetric register banks'}.`;
         }
 
         function selectRegRead(optEl, port, regIndex, labelText) {
-            if(port === 'a') {
+            if (port === 'a') {
                 regReadAAddr = parseInt(regIndex);
                 document.getElementById('reg-read-a-label').innerText = labelText;
             } else {
@@ -2019,28 +2376,28 @@
         function updateRegUI() {
             const listA = document.getElementById('bank-a-reglist');
             const listB = document.getElementById('bank-b-reglist');
-            
+
             listA.innerHTML = "";
             listB.innerHTML = "";
 
-            for(let i=0; i<8; i++) {
+            for (let i = 0; i < 8; i++) {
                 // Bank A
                 let classA = "";
                 let badge = "";
-                if(i === regWriteAddr) {
+                if (i === regWriteAddr) {
                     classA = "border:1px solid var(--accent-orange); background:rgba(249,115,22,0.06);";
                     badge = `<span class="sim-accent" style="font-size:0.6rem; float:right;">[WRITE]</span>`;
                 }
-                if(i === regReadAAddr) {
+                if (i === regReadAAddr) {
                     classA = "border:1px solid var(--accent-amber); background:rgba(251,191,36,0.06);";
                     badge = `<span style="color:var(--accent-amber); font-size:0.6rem; float:right;">[READ A]</span>`;
                 }
-                if(i === regReadBAddr) {
+                if (i === regReadBAddr) {
                     // Combine styles if read both or read and write
                     classA = "border:1px solid var(--accent-blue); background:rgba(56,189,248,0.06);";
                     badge += `<span style="color:var(--accent-blue); font-size:0.6rem; float:right;">[READ B]</span>`;
                 }
-                if(i === regReadAAddr && i === regReadBAddr) {
+                if (i === regReadAAddr && i === regReadBAddr) {
                     classA = "border:1px solid var(--text-white); background:rgba(255,255,255,0.06);";
                 }
 
@@ -2054,11 +2411,11 @@
                 // Bank B (Only displayed in Alt 2)
                 let classB = "";
                 let badgeB = "";
-                if(i === regWriteAddr) {
+                if (i === regWriteAddr) {
                     classB = "border:1px solid var(--accent-orange); background:rgba(249,115,22,0.06);";
                     badgeB = `<span class="sim-accent" style="font-size:0.6rem; float:right;">[WRITE]</span>`;
                 }
-                if(i === regReadBAddr) {
+                if (i === regReadBAddr) {
                     classB = "border:1px solid var(--accent-blue); background:rgba(56,189,248,0.06);";
                     badgeB += `<span style="color:var(--accent-blue); font-size:0.6rem; float:right;">[READ B]</span>`;
                 }
@@ -2082,7 +2439,7 @@
 
             // Perform Write (Latched on rising edge)
             registerValuesBankA[regWriteAddr] = val;
-            if(activeRegAlternative === 2) {
+            if (activeRegAlternative === 2) {
                 registerValuesBankB[regWriteAddr] = val; // Synchronized broadcast
             }
 
@@ -2130,7 +2487,7 @@
 
         function resetDatapath() {
             dpStage = 0;
-            
+
             document.getElementById('dp-tbl-stage').innerText = "INIT";
             document.getElementById('dp-tbl-pc').innerText = "0x0004";
             document.getElementById('dp-tbl-ir').innerText = "--";
@@ -2149,24 +2506,24 @@
             const valR1 = parseInt(dpSliderR1.value);
             const valR2 = parseInt(dpSliderR2.value);
             const immVal = 0x45; // fixed immediate value
-            
+
             const term = document.getElementById('dp-terminal');
             dpStage++;
 
-            if(dpStage === 1) { // FETCH
+            if (dpStage === 1) { // FETCH
                 document.getElementById('dp-tbl-stage').innerText = "FETCH";
                 document.getElementById('dp-tbl-pc').innerText = "0x0008"; // PC + 4
-                
+
                 const irVal = (dpActiveInst === 1) ? "ADD R0, R1, R2" : "ADD R0, R1, #0x45";
                 document.getElementById('dp-tbl-ir').innerText = irVal;
 
                 term.innerHTML = `<span class="sim-accent">CYCLE 1: FETCH (IF)</span><br/>
                 Program Counter (PC) drives address <code>0x0004</code> onto code memory bus. Instruction loaded into IR: <code>${irVal}</code>. PC incremented to <code>0x0008</code>.`;
-            
-            } else if(dpStage === 2) { // DECODE
+
+            } else if (dpStage === 2) { // DECODE
                 document.getElementById('dp-tbl-stage').innerText = "DECODE";
                 document.getElementById('dp-tbl-busa').innerText = `0x${toHex2(valR1)}`;
-                
+
                 if (dpActiveInst === 1) {
                     document.getElementById('dp-tbl-busb').innerText = `0x${toHex2(valR2)}`;
                     term.innerHTML = `<span class="sim-accent">CYCLE 2: DECODE (ID)</span><br/>
@@ -2179,9 +2536,9 @@
                     Register File outputs: R1 (<code>0x${toHex2(valR1)}</code>) to Bus A. Immediate generator sign-extends <code>#0x45</code>.`;
                 }
 
-            } else if(dpStage === 3) { // EXECUTE
+            } else if (dpStage === 3) { // EXECUTE
                 document.getElementById('dp-tbl-stage').innerText = "EXECUTE";
-                
+
                 let result = 0;
                 if (dpActiveInst === 1) {
                     result = (valR1 + valR2) & 0xFF;
@@ -2194,29 +2551,30 @@
                     ALUSrc Mux selects sign-extended immediate input. ALU receives Bus A (<code>0x${toHex2(valR1)}</code>) and constant (<code>0x${toHex2(immVal)}</code>). <br/>
                     ALU computes addition: <code>0x${toHex2(valR1)} + 0x${toHex2(immVal)} = 0x${toHex2(result)}</code>. Result routed to writeback bus.`;
                 }
-                
+
                 document.getElementById('dp-tbl-alures').innerText = `0x${toHex2(result)}`;
 
-            } else if(dpStage === 4) { // WRITEBACK
+            } else if (dpStage === 4) { // WRITEBACK
                 document.getElementById('dp-tbl-stage').innerText = "WRITEBACK";
-                
+
                 let result = 0;
                 if (dpActiveInst === 1) {
                     result = (valR1 + valR2) & 0xFF;
                 } else {
                     result = (valR1 + immVal) & 0xFF;
                 }
-                
+
                 document.getElementById('dp-tbl-r0').innerText = `0x${toHex2(result)}`;
 
                 term.innerHTML = `<span class="sim-accent">CYCLE 4: WRITEBACK (WB)</span><br/>
                 Write enable signal active (RegWrite = 1). MemtoReg selects ALU Out. Writeback bus contents (<code>0x${toHex2(result)}</code>) latched into destination Register <code>R0</code> on clock edge. <br/>
                 <span style="color:var(--accent-amber); font-weight:bold;">Execution Complete! Register R0 updated.</span>`;
-                
+
                 document.getElementById('btn-dp-step').innerText = "Finished";
                 document.getElementById('btn-dp-step').className = "sim-btn";
             }
         }
     </script>
 </body>
+
 </html>

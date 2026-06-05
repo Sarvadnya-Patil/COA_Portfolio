@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,21 @@
     <!-- Google Fonts for Brutalist & Tech Aesthetics -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800;900&display=swap"
+        rel="stylesheet">
+
     <style>
         /* Charcoal & Ember Brutalist Design Tokens */
         :root {
-            --bg-primary: #0a0a0c; /* Deep warm charcoal */
-            --bg-card: #121216; /* Dark slate card */
-            --accent-orange: #f97316; /* Magma/Ember Orange */
-            --accent-amber: #fbbf24; /* Golden amber */
+            --bg-primary: #0a0a0c;
+            /* Deep warm charcoal */
+            --bg-card: #121216;
+            /* Dark slate card */
+            --accent-orange: #f97316;
+            /* Magma/Ember Orange */
+            --accent-amber: #fbbf24;
+            /* Golden amber */
             --accent-glow: rgba(249, 115, 22, 0.2);
             --text-white: #f4f4f7;
             --text-muted: #9ea2b0;
@@ -39,14 +46,17 @@
             width: 8px;
             height: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #0a0a0c;
         }
+
         ::-webkit-scrollbar-thumb {
             background: var(--accent-orange);
             border: 2px solid #0a0a0c;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent-amber);
         }
@@ -278,11 +288,13 @@
             padding: 0 0.15rem;
             font-family: var(--font-code);
         }
+
         .fraction .numerator {
             border-bottom: 1.5px solid var(--text-white);
             padding-bottom: 2px;
             font-size: 0.85em;
         }
+
         .fraction .denominator {
             padding-top: 2px;
             font-size: 0.85em;
@@ -298,16 +310,20 @@
             border: var(--border-width) solid #000000;
             box-shadow: 4px 4px 0px #000000;
         }
-        .pipeline-trace-table th, .pipeline-trace-table td {
+
+        .pipeline-trace-table th,
+        .pipeline-trace-table td {
             border: 1.5px solid #1c1c24;
             padding: 0.6rem 0.4rem;
             text-align: center;
         }
+
         .pipeline-trace-table th {
             background: #0f0f13;
             color: var(--accent-orange);
             font-weight: 700;
         }
+
         .pipeline-trace-table td.inst-cell {
             text-align: left;
             font-weight: 600;
@@ -316,12 +332,14 @@
             padding-left: 0.8rem;
             min-width: 170px;
         }
+
         .pipeline-trace-table td.stall-cell {
             background: rgba(249, 115, 22, 0.12);
             color: var(--accent-orange);
             font-weight: bold;
             background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(249, 115, 22, 0.08) 4px, rgba(249, 115, 22, 0.08) 8px);
         }
+
         .pipeline-trace-table td.empty-cell {
             background: #060608;
         }
@@ -349,6 +367,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -365,24 +384,28 @@
             .playbook-activities-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
             .brutalist-grid-table {
                 grid-template-columns: 1fr 1fr;
             }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        
+
         <!-- Header -->
         <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
             <div class="top-bullet">
-                <span>//</span> Chapter 5
+                ◀ Chapter 5
             </div>
             <div class="ch-title">Chapter 5: <span>Pipelining Problems Workspace</span></div>
             <p class="ch-desc" style="max-width: 800px;">
-                Investigate data and control hazards, trace cycle overlapping in instruction pipelines, compute execution times with intermediate buffer overheads, and analyze compiler optimizations for branch delay slots. Review the 12 numerical and conceptual problems below.
+                Investigate data and control hazards, trace cycle overlapping in instruction pipelines, compute
+                execution times with intermediate buffer overheads, and analyze compiler optimizations for branch delay
+                slots. Review the 12 numerical and conceptual problems below.
             </p>
         </div>
 
@@ -467,59 +490,69 @@
             <!-- PROBLEM 1 -->
             <div class="playbook-workspace" id="problem-card-1">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 01</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     5-Stage Branch-Taken Cycle Sizing
                 </h3>
                 <div class="question-text">
-                    Consider an instruction pipeline with five stages without any branch prediction: Fetch Instruction (FI), Decode Instruction (DI), Fetch Operand (FO), Execute Instruction (EI) and Write Operand (WO). The stage delays for FI, DI, FO, EI and WO are 5ns, 7ns, 10ns, 8ns, 6ns respectively. There are intermediate storage buffers after each stage and the delay of each buffer is 1 ns. A program consisting of 12 instructions I1, I2, I3 ....... I12 is executed in this pipelined processor. Instruction I4 is the only branch instruction and its branch target is I9. If the branch is taken during the execution of this program, calculate the time (ns) needed to complete the program.
+                    Consider an instruction pipeline with five stages without any branch prediction: Fetch Instruction
+                    (FI), Decode Instruction (DI), Fetch Operand (FO), Execute Instruction (EI) and Write Operand (WO).
+                    The stage delays for FI, DI, FO, EI and WO are 5ns, 7ns, 10ns, 8ns, 6ns respectively. There are
+                    intermediate storage buffers after each stage and the delay of each buffer is 1 ns. A program
+                    consisting of 12 instructions I1, I2, I3 ....... I12 is executed in this pipelined processor.
+                    Instruction I4 is the only branch instruction and its branch target is I9. If the branch is taken
+                    during the execution of this program, calculate the time (ns) needed to complete the program.
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content"><strong>Given:</strong>
-  Pipeline Stages:
-  FI = 5 ns
-  DI = 7 ns
-  FO = 10 ns
-  EI = 8 ns
-  WO = 6 ns
-  Buffer delay = 1 ns
+                        Pipeline Stages:
+                        FI = 5 ns
+                        DI = 7 ns
+                        FO = 10 ns
+                        EI = 8 ns
+                        WO = 6 ns
+                        Buffer delay = 1 ns
 
-<strong>1) Clock cycle time:</strong>
-  T<sub>cycle</sub> = max(5, 7, 10, 8, 6) + 1
-  T<sub>cycle</sub> = 10 + 1 = 11 ns //
+                        <strong>1) Clock cycle time:</strong>
+                        T<sub>cycle</sub> = max(5, 7, 10, 8, 6) + 1
+                        T<sub>cycle</sub> = 10 + 1 = 11 ns //
 
-<strong>2) Taken Branch Execution:</strong>
-  Branch instruction = I4
-  Branch target = I9
+                        <strong>2) Taken Branch Execution:</strong>
+                        Branch instruction = I4
+                        Branch target = I9
 
-  Since the branch is taken, the executed instructions are:
-  I1, I2, I3, I4, I9, I10, I11, I12
-  Total executed instructions (n) = 8
-  
-  For a 5-Stage pipeline (k = 5):
-  Total cycles = k + n - 1
-               = 5 + 8 - 1 = 12 cycles
+                        Since the branch is taken, the executed instructions are:
+                        I1, I2, I3, I4, I9, I10, I11, I12
+                        Total executed instructions (n) = 8
 
-  Branch penalty = 3 cycles
-  ∴ Total cycles = 12 + 3 = 15 cycles
+                        For a 5-Stage pipeline (k = 5):
+                        Total cycles = k + n - 1
+                        = 5 + 8 - 1 = 12 cycles
 
-<strong>3) Execution time:</strong>
-  Execution time = Total Cycles &times; T<sub>cycle</sub>
-                 = 15 &times; 11 = 165 ns
-  ∴ Execution time = 165 ns</div>
+                        Branch penalty = 3 cycles
+                        ∴ Total cycles = 12 + 3 = 15 cycles
+
+                        <strong>3) Execution time:</strong>
+                        Execution time = Total Cycles &times; T<sub>cycle</sub>
+                        = 15 &times; 11 = 165 ns
+                        ∴ Execution time = 165 ns
+                    </div>
                 </div>
             </div>
 
             <!-- PROBLEM 2 -->
             <div class="playbook-workspace" id="problem-card-2">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 02</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Data Dependency Hazard Identification
                 </h3>
                 <div class="question-text">
-                    Consider the following set of instructions and identify if hazards occur. Draw a neat timing diagram to illustrate the pipeline stalls that occur due to these hazards.
+                    Consider the following set of instructions and identify if hazards occur. Draw a neat timing diagram
+                    to illustrate the pipeline stalls that occur due to these hazards.
                     <blockquote>
                         <strong>Set A:</strong> A &larr; 3 + A, &nbsp; B &larr; 4 &times; A<br>
                         <strong>Set B:</strong> A &larr; 5 &times; C, &nbsp; B &larr; 20 + C<br>
@@ -530,101 +563,108 @@
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
-                    <div class="answer-content"><strong>1) Analysis of Set A:</strong> A &larr; 3 + A, B &larr; 4 &times; A
-   - **Hazard**: RAW hazard on variable A because B &larr; 4 &times; A needs the updated value of A before A &larr; 3 + A writes it back.
-   - **Stalls**: Without forwarding, Instruction 2 stalls in Decode for 2 cycles until Instruction 1 writes back A.
-   <table class="pipeline-trace-table">
-       <thead>
-           <tr>
-               <th>Instruction</th>
-               <th>1</th>
-               <th>2</th>
-               <th>3</th>
-               <th>4</th>
-               <th>5</th>
-               <th>6</th>
-               <th>7</th>
-               <th>8</th>
-           </tr>
-       </thead>
-       <tbody>
-           <tr>
-               <td class="inst-cell">I1: A &larr; 3 + A</td>
-               <td>F<sub>1</sub></td>
-               <td>D<sub>1</sub></td>
-               <td>FO<sub>1</sub></td>
-               <td>E<sub>1</sub></td>
-               <td>W<sub>1</sub></td>
-               <td class="empty-cell"></td>
-               <td class="empty-cell"></td>
-               <td class="empty-cell"></td>
-           </tr>
-           <tr>
-               <td class="inst-cell">I2: B &larr; 4 &times; A</td>
-               <td class="empty-cell"></td>
-               <td>F<sub>2</sub></td>
-               <td>D<sub>2</sub></td>
-               <td class="stall-cell">STALL</td>
-               <td class="stall-cell">STALL</td>
-               <td>FO<sub>2</sub></td>
-               <td>E<sub>2</sub></td>
-               <td>W<sub>2</sub></td>
-           </tr>
-       </tbody>
-   </table>
+                    <div class="answer-content"><strong>1) Analysis of Set A:</strong> A &larr; 3 + A, B &larr; 4
+                        &times; A
+                        - **Hazard**: RAW hazard on variable A because B &larr; 4 &times; A needs the updated value of A
+                        before A &larr; 3 + A writes it back.
+                        - **Stalls**: Without forwarding, Instruction 2 stalls in Decode for 2 cycles until Instruction
+                        1 writes back A.
+                        <table class="pipeline-trace-table">
+                            <thead>
+                                <tr>
+                                    <th>Instruction</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="inst-cell">I1: A &larr; 3 + A</td>
+                                    <td>F<sub>1</sub></td>
+                                    <td>D<sub>1</sub></td>
+                                    <td>FO<sub>1</sub></td>
+                                    <td>E<sub>1</sub></td>
+                                    <td>W<sub>1</sub></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I2: B &larr; 4 &times; A</td>
+                                    <td class="empty-cell"></td>
+                                    <td>F<sub>2</sub></td>
+                                    <td>D<sub>2</sub></td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td>FO<sub>2</sub></td>
+                                    <td>E<sub>2</sub></td>
+                                    <td>W<sub>2</sub></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-<strong>2) Analysis of Set B:</strong> A &larr; 5 &times; C, B &larr; 20 + C
-   - **Hazard**: None. Both instructions read variable C and write to separate destination variables (A and B). Since there are no dependencies, no stalls or bubbles are introduced.
+                        <strong>2) Analysis of Set B:</strong> A &larr; 5 &times; C, B &larr; 20 + C
+                        - **Hazard**: None. Both instructions read variable C and write to separate destination
+                        variables (A and B). Since there are no dependencies, no stalls or bubbles are introduced.
 
-<strong>3) Analysis of Set C:</strong> MUL R4, R3, R2, ADD R6, R4, R5
-   - **Hazard**: RAW hazard because ADD (I2) uses register R4 produced by MUL (I1). The instruction I2 needs the result before I1 writes it back.
-   - **Pipeline Diagram (Without Forwarding):**
-   <table class="pipeline-trace-table">
-       <thead>
-           <tr>
-               <th>Instruction</th>
-               <th>1</th>
-               <th>2</th>
-               <th>3</th>
-               <th>4</th>
-               <th>5</th>
-               <th>6</th>
-               <th>7</th>
-               <th>8</th>
-           </tr>
-       </thead>
-       <tbody>
-           <tr>
-               <td class="inst-cell">I1: MUL R4, R3, R2</td>
-               <td>F<sub>1</sub></td>
-               <td>D<sub>1</sub></td>
-               <td>FO<sub>1</sub></td>
-               <td>E<sub>1</sub></td>
-               <td>W<sub>1</sub></td>
-               <td class="empty-cell"></td>
-               <td class="empty-cell"></td>
-               <td class="empty-cell"></td>
-           </tr>
-           <tr>
-               <td class="inst-cell">I2: ADD R6, R4, R5</td>
-               <td class="empty-cell"></td>
-               <td>F<sub>2</sub></td>
-               <td>D<sub>2</sub></td>
-               <td class="stall-cell">STALL</td>
-               <td class="stall-cell">STALL</td>
-               <td>FO<sub>2</sub></td>
-               <td>E<sub>2</sub></td>
-               <td>W<sub>2</sub></td>
-           </tr>
-       </tbody>
-   </table></div>
+                        <strong>3) Analysis of Set C:</strong> MUL R4, R3, R2, ADD R6, R4, R5
+                        - **Hazard**: RAW hazard because ADD (I2) uses register R4 produced by MUL (I1). The instruction
+                        I2 needs the result before I1 writes it back.
+                        - **Pipeline Diagram (Without Forwarding):**
+                        <table class="pipeline-trace-table">
+                            <thead>
+                                <tr>
+                                    <th>Instruction</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="inst-cell">I1: MUL R4, R3, R2</td>
+                                    <td>F<sub>1</sub></td>
+                                    <td>D<sub>1</sub></td>
+                                    <td>FO<sub>1</sub></td>
+                                    <td>E<sub>1</sub></td>
+                                    <td>W<sub>1</sub></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I2: ADD R6, R4, R5</td>
+                                    <td class="empty-cell"></td>
+                                    <td>F<sub>2</sub></td>
+                                    <td>D<sub>2</sub></td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td>FO<sub>2</sub></td>
+                                    <td>E<sub>2</sub></td>
+                                    <td>W<sub>2</sub></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- PROBLEM 3 -->
             <div class="playbook-workspace" id="problem-card-3">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 03</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Assembly Line RAW & Load-Use Pipeline Analysis
                 </h3>
                 <div class="question-text">
@@ -634,171 +674,174 @@
                     <code>I3: Add R3, R3, 4</code><br>
                     <code>I4: Load R9, (R3)</code><br>
                     <code>I5: BLE R8, R9, L3</code><br>
-                    Draw the timing diagram for a 5-stage pipelined architecture. Identify the hazards w.r.t pipelined architecture and suggest ways to handle them.
+                    Draw the timing diagram for a 5-stage pipelined architecture. Identify the hazards w.r.t pipelined
+                    architecture and suggest ways to handle them.
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content"><strong>1) Hazards Identified:</strong>
-   - <strong>RAW Hazard:</strong> I2 uses R3 produced by I1.
-   - <strong>RAW Hazard:</strong> I4 uses updated R3 from I3.
-   - <strong>Control Hazard:</strong> I5 is a branch instruction.
+                        - <strong>RAW Hazard:</strong> I2 uses R3 produced by I1.
+                        - <strong>RAW Hazard:</strong> I4 uses updated R3 from I3.
+                        - <strong>Control Hazard:</strong> I5 is a branch instruction.
 
-<strong>2) Pipeline Diagram:</strong>
-   <div style="overflow-x: auto;">
-       <table class="pipeline-trace-table" style="min-width: 800px;">
-           <thead>
-               <tr>
-                   <th>Instruction</th>
-                   <th>1</th>
-                   <th>2</th>
-                   <th>3</th>
-                   <th>4</th>
-                   <th>5</th>
-                   <th>6</th>
-                   <th>7</th>
-                   <th>8</th>
-                   <th>9</th>
-                   <th>10</th>
-                   <th>11</th>
-                   <th>12</th>
-                   <th>13</th>
-                   <th>14</th>
-                   <th>15</th>
-                   <th>16</th>
-                   <th>17</th>
-                   <th>18</th>
-                   <th>19</th>
-               </tr>
-           </thead>
-           <tbody>
-               <tr>
-                   <td class="inst-cell">I1: MOVE R3, R7</td>
-                   <td>F<sub>1</sub></td>
-                   <td>D<sub>1</sub></td>
-                   <td>FO<sub>1</sub></td>
-                   <td>E<sub>1</sub></td>
-                   <td>W<sub>1</sub></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-               </tr>
-               <tr>
-                   <td class="inst-cell">I2: Load R8, (R3)</td>
-                   <td class="empty-cell"></td>
-                   <td>F<sub>2</sub></td>
-                   <td>D<sub>2</sub></td>
-                   <td>-</td>
-                   <td>-</td>
-                   <td class="stall-cell">STALL</td>
-                   <td>FO<sub>2</sub></td>
-                   <td class="stall-cell">STALL</td>
-                   <td>E<sub>2</sub></td>
-                   <td>W<sub>2</sub></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-               </tr>
-               <tr>
-                   <td class="inst-cell">I3: Add R3, R3, 4</td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td>F<sub>3</sub></td>
-                   <td>-</td>
-                   <td>-</td>
-                   <td>D<sub>3</sub></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td>FO<sub>3</sub></td>
-                   <td>E<sub>3</sub></td>
-                   <td>W<sub>3</sub></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-               </tr>
-               <tr>
-                   <td class="inst-cell">I4: Load R9, (R3)</td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td>F<sub>4</sub></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td>D<sub>4</sub></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="stall-cell">STALL</td>
-                   <td class="stall-cell">STALL</td>
-                   <td>FO<sub>4</sub></td>
-                   <td class="stall-cell">STALL</td>
-                   <td>E<sub>4</sub></td>
-                   <td>W<sub>4</sub></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-               </tr>
-               <tr>
-                   <td class="inst-cell">I5: BLE R8, R9, L3</td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td>F<sub>5</sub></td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td>D<sub>5</sub></td>
-                   <td>-</td>
-                   <td>-</td>
-                   <td class="empty-cell"></td>
-                   <td class="empty-cell"></td>
-                   <td>FO<sub>5</sub></td>
-                   <td>E<sub>5</sub></td>
-                   <td>W<sub>5</sub></td>
-               </tr>
-           </tbody>
-       </table>
-   </div>
+                        <strong>2) Pipeline Diagram:</strong>
+                        <div style="overflow-x: auto;">
+                            <table class="pipeline-trace-table" style="min-width: 800px;">
+                                <thead>
+                                    <tr>
+                                        <th>Instruction</th>
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th>4</th>
+                                        <th>5</th>
+                                        <th>6</th>
+                                        <th>7</th>
+                                        <th>8</th>
+                                        <th>9</th>
+                                        <th>10</th>
+                                        <th>11</th>
+                                        <th>12</th>
+                                        <th>13</th>
+                                        <th>14</th>
+                                        <th>15</th>
+                                        <th>16</th>
+                                        <th>17</th>
+                                        <th>18</th>
+                                        <th>19</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="inst-cell">I1: MOVE R3, R7</td>
+                                        <td>F<sub>1</sub></td>
+                                        <td>D<sub>1</sub></td>
+                                        <td>FO<sub>1</sub></td>
+                                        <td>E<sub>1</sub></td>
+                                        <td>W<sub>1</sub></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inst-cell">I2: Load R8, (R3)</td>
+                                        <td class="empty-cell"></td>
+                                        <td>F<sub>2</sub></td>
+                                        <td>D<sub>2</sub></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td class="stall-cell">STALL</td>
+                                        <td>FO<sub>2</sub></td>
+                                        <td class="stall-cell">STALL</td>
+                                        <td>E<sub>2</sub></td>
+                                        <td>W<sub>2</sub></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inst-cell">I3: Add R3, R3, 4</td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td>F<sub>3</sub></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>D<sub>3</sub></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td>FO<sub>3</sub></td>
+                                        <td>E<sub>3</sub></td>
+                                        <td>W<sub>3</sub></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inst-cell">I4: Load R9, (R3)</td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td>F<sub>4</sub></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td>D<sub>4</sub></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="stall-cell">STALL</td>
+                                        <td class="stall-cell">STALL</td>
+                                        <td>FO<sub>4</sub></td>
+                                        <td class="stall-cell">STALL</td>
+                                        <td>E<sub>4</sub></td>
+                                        <td>W<sub>4</sub></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inst-cell">I5: BLE R8, R9, L3</td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td>F<sub>5</sub></td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td>D<sub>5</sub></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td class="empty-cell"></td>
+                                        <td class="empty-cell"></td>
+                                        <td>FO<sub>5</sub></td>
+                                        <td>E<sub>5</sub></td>
+                                        <td>W<sub>5</sub></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-<strong>3) Handling Methods:</strong>
-   - Operand Forwarding
-   - Pipeline Stalls
-   - Pipeline Flushing
-   - Delayed Branching</div>
+                        <strong>3) Handling Methods:</strong>
+                        - Operand Forwarding
+                        - Pipeline Stalls
+                        - Pipeline Flushing
+                        - Delayed Branching
+                    </div>
                 </div>
             </div>
 
             <!-- PROBLEM 4 -->
             <div class="playbook-workspace" id="problem-card-4">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 04</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     ALU Operand Cycle & Interstage Buffer Contents
                 </h3>
                 <div class="question-text">
@@ -807,168 +850,181 @@
                     <code>Mul R3, R2, #0x03</code><br>
                     <code>And R4, R1, #0x3A</code><br>
                     <code>Add R5, R3, R2</code><br>
-                    Initially register R0 and R2 contain 200 and 50 respectively. These instructions are executed in a computer that has a 5 stage pipeline. Assume that the first instruction is fetched in clock cycle 1, and that instruction fetch requires only one clock cycle.<br>
-                    <strong>(i)</strong> Draw a diagram to describe the operation being performed by each of the clock cycles 1 through 4.<br>
-                    <strong>(ii)</strong> Give the contents of the interstage buffers, B1, B2 and B3 during the clock cycles 2 to 5.
+                    Initially register R0 and R2 contain 200 and 50 respectively. These instructions are executed in a
+                    computer that has a 5 stage pipeline. Assume that the first instruction is fetched in clock cycle 1,
+                    and that instruction fetch requires only one clock cycle.<br>
+                    <strong>(i)</strong> Draw a diagram to describe the operation being performed by each of the clock
+                    cycles 1 through 4.<br>
+                    <strong>(ii)</strong> Give the contents of the interstage buffers, B1, B2 and B3 during the clock
+                    cycles 2 to 5.
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content"><strong>Given:</strong>
-  R0 = 200, R2 = 50
+                        R0 = 200, R2 = 50
 
-<strong>Results:</strong>
-  - I1: R1 = 200 + 32 = 232
-  - I2: R3 = 50 &times; 3 = 150
-  - I3: R4 = 232 AND 0x3A
-        232 = 11101000<sub>2</sub>
-        0x3A = 00111010<sub>2</sub>
-        R4 = 00101000<sub>2</sub> = 40
-  - I4: R5 = 150 + 50 = 200
+                        <strong>Results:</strong>
+                        - I1: R1 = 200 + 32 = 232
+                        - I2: R3 = 50 &times; 3 = 150
+                        - I3: R4 = 232 AND 0x3A
+                        232 = 11101000<sub>2</sub>
+                        0x3A = 00111010<sub>2</sub>
+                        R4 = 00101000<sub>2</sub> = 40
+                        - I4: R5 = 150 + 50 = 200
 
-<strong>i) Pipeline Diagram:</strong>
-<table class="pipeline-trace-table">
-    <thead>
-        <tr>
-            <th>Instruction</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>9</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="inst-cell">I1: Add R1, R0, #0x20</td>
-            <td>FI<sub>1</sub></td>
-            <td>DI<sub>1</sub></td>
-            <td>FO<sub>1</sub></td>
-            <td>EI<sub>1</sub></td>
-            <td>WO<sub>1</sub></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I2: Mul R3, R2, #0x03</td>
-            <td class="empty-cell"></td>
-            <td>FI<sub>2</sub></td>
-            <td>DI<sub>2</sub></td>
-            <td>FO<sub>2</sub></td>
-            <td>EI<sub>2</sub></td>
-            <td>WO<sub>2</sub></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I3: And R4, R1, #0x3A</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>FI<sub>3</sub></td>
-            <td>DI<sub>3</sub></td>
-            <td>FO<sub>3</sub></td>
-            <td>EI<sub>3</sub></td>
-            <td>WO<sub>3</sub></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I4: Add R5, R3, R2</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>FI<sub>4</sub></td>
-            <td>DI<sub>4</sub></td>
-            <td>FO<sub>4</sub></td>
-            <td>EI<sub>4</sub></td>
-            <td>WO<sub>4</sub></td>
-        </tr>
-    </tbody>
-</table>
+                        <strong>i) Pipeline Diagram:</strong>
+                        <table class="pipeline-trace-table">
+                            <thead>
+                                <tr>
+                                    <th>Instruction</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                    <th>9</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="inst-cell">I1: Add R1, R0, #0x20</td>
+                                    <td>FI<sub>1</sub></td>
+                                    <td>DI<sub>1</sub></td>
+                                    <td>FO<sub>1</sub></td>
+                                    <td>EI<sub>1</sub></td>
+                                    <td>WO<sub>1</sub></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I2: Mul R3, R2, #0x03</td>
+                                    <td class="empty-cell"></td>
+                                    <td>FI<sub>2</sub></td>
+                                    <td>DI<sub>2</sub></td>
+                                    <td>FO<sub>2</sub></td>
+                                    <td>EI<sub>2</sub></td>
+                                    <td>WO<sub>2</sub></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I3: And R4, R1, #0x3A</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>FI<sub>3</sub></td>
+                                    <td>DI<sub>3</sub></td>
+                                    <td>FO<sub>3</sub></td>
+                                    <td>EI<sub>3</sub></td>
+                                    <td>WO<sub>3</sub></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I4: Add R5, R3, R2</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>FI<sub>4</sub></td>
+                                    <td>DI<sub>4</sub></td>
+                                    <td>FO<sub>4</sub></td>
+                                    <td>EI<sub>4</sub></td>
+                                    <td>WO<sub>4</sub></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-<strong>ii) Interstage Buffers:</strong>
-  - <strong>Cycle 2:</strong>
-    B1 &rarr; I1 decode values
-  - <strong>Cycle 3:</strong>
-    B1 &rarr; I2 decoded
-    B2 &rarr; ALU result of I1 = 232
-  - <strong>Cycle 4:</strong>
-    B1 &rarr; I3 decoded
-    B2 &rarr; ALU result of I2 = 150
-    B3 &rarr; I1 write back result
-  - <strong>Cycle 5:</strong>
-    B1 &rarr; I4 decoded
-    B2 &rarr; ALU result of I3 = 40
-    B3 &rarr; I2 writeback result</div>
+                        <strong>ii) Interstage Buffers:</strong>
+                        - <strong>Cycle 2:</strong>
+                        B1 &rarr; I1 decode values
+                        - <strong>Cycle 3:</strong>
+                        B1 &rarr; I2 decoded
+                        B2 &rarr; ALU result of I1 = 232
+                        - <strong>Cycle 4:</strong>
+                        B1 &rarr; I3 decoded
+                        B2 &rarr; ALU result of I2 = 150
+                        B3 &rarr; I1 write back result
+                        - <strong>Cycle 5:</strong>
+                        B1 &rarr; I4 decoded
+                        B2 &rarr; ALU result of I3 = 40
+                        B3 &rarr; I2 writeback result
+                    </div>
                 </div>
             </div>
 
             <!-- PROBLEM 5 -->
             <div class="playbook-workspace" id="problem-card-5">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 05</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     3-Stage Processor Execution Time Calculation
                 </h3>
                 <div class="question-text">
-                    Consider a 3 stage pipelined processor having a delay of 10ns, 20ns and 14ns, for first, second, and third stages, respectively. Assume that there is no other delay and the processor does not suffer from any pipeline hazards. Also assume that one instruction is fetched every cycle. The total execution time for executing 100 instructions on this processor is -----ns.
+                    Consider a 3 stage pipelined processor having a delay of 10ns, 20ns and 14ns, for first, second, and
+                    third stages, respectively. Assume that there is no other delay and the processor does not suffer
+                    from any pipeline hazards. Also assume that one instruction is fetched every cycle. The total
+                    execution time for executing 100 instructions on this processor is -----ns.
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content"><strong>Given:</strong>
-  3-Stage pipeline delays: 10 ns, 20 ns, 14 ns
-  Clock cycle time:
-  T = 20 ns
+                        3-Stage pipeline delays: 10 ns, 20 ns, 14 ns
+                        Clock cycle time:
+                        T = 20 ns
 
-  Instructions = 100
-  Total cycles: n + k - 1
-               = 100 + 3 - 1
-               = 102
+                        Instructions = 100
+                        Total cycles: n + k - 1
+                        = 100 + 3 - 1
+                        = 102
 
-  Execution time: 102 &times; 20 = 2040 ns//</div>
+                        Execution time: 102 &times; 20 = 2040 ns//</div>
                 </div>
             </div>
 
             <!-- PROBLEM 6 -->
             <div class="playbook-workspace" id="problem-card-6">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 06</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Slowest Stage Cycle time with Register overheads
                 </h3>
                 <div class="question-text">
-                    A five stage pipeline has stage delays 150, 120, 150, 160 and 140 nanoseconds. The registers that are used between the pipeline stages have a delay of 5ns each. The total time to execute 100 independent instructions on this pipeline, assuming there are no pipeline stalls, is ----nS.
+                    A five stage pipeline has stage delays 150, 120, 150, 160 and 140 nanoseconds. The registers that
+                    are used between the pipeline stages have a delay of 5ns each. The total time to execute 100
+                    independent instructions on this pipeline, assuming there are no pipeline stalls, is ----nS.
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content"><strong>Stage delays:</strong>
-  150, 120, 150, 160, 140 ns
-  Register delay = 5 ns
+                        150, 120, 150, 160, 140 ns
+                        Register delay = 5 ns
 
-  Clock cycle: 160 + 5 = 165 ns
-  Instructions = 100
-  Pipeline Stages = 5
+                        Clock cycle: 160 + 5 = 165 ns
+                        Instructions = 100
+                        Pipeline Stages = 5
 
-  Total cycles: 100 + 5 - 1 = 104
-  Execution time: 104 &times; 165 = 17160 ns//</div>
+                        Total cycles: 100 + 5 - 1 = 104
+                        Execution time: 104 &times; 165 = 17160 ns//</div>
                 </div>
             </div>
 
             <!-- PROBLEM 7 -->
             <div class="playbook-workspace" id="problem-card-7">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 07</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     4-Stage Pipeline Stage Execution trace
                 </h3>
                 <div class="question-text">
@@ -977,89 +1033,95 @@
                     <code>Mul #3, R2, R3</code><br>
                     <code>And #3A, R2, R4</code><br>
                     <code>Add R0, R2, R5</code><br>
-                    In all instructions the destination operand is given last. Initially register R0 and R2 contain 2000 and 50 respectively. These instructions are executed in a computer that has a 4 stage pipeline. Assume that the first instruction is fetched in clock cycle 1, and that instruction fetch requires only one clock cycle. Draw a diagram to describe the operation being performed by each of the clock cycles 1 through 4.
+                    In all instructions the destination operand is given last. Initially register R0 and R2 contain 2000
+                    and 50 respectively. These instructions are executed in a computer that has a 4 stage pipeline.
+                    Assume that the first instruction is fetched in clock cycle 1, and that instruction fetch requires
+                    only one clock cycle. Draw a diagram to describe the operation being performed by each of the clock
+                    cycles 1 through 4.
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content"><strong>Given:</strong>
-  R0 = 2000, R2 = 50
+                        R0 = 2000, R2 = 50
 
-<strong>Register result:</strong>
-  - I1: R1 = 2000 + 20 = 2020
-  - I2: R3 = 50 &times; 3 = 150
-  - I3: R4 = 50 AND 0x3A
-        Binary:
-        50 = 00110010<sub>2</sub>
-        0x3A = 00111010<sub>2</sub>
-        R4 = 00110010<sub>2</sub> = 50
-  - I4: R5 = 2000 + 50 = 2050
+                        <strong>Register result:</strong>
+                        - I1: R1 = 2000 + 20 = 2020
+                        - I2: R3 = 50 &times; 3 = 150
+                        - I3: R4 = 50 AND 0x3A
+                        Binary:
+                        50 = 00110010<sub>2</sub>
+                        0x3A = 00111010<sub>2</sub>
+                        R4 = 00110010<sub>2</sub> = 50
+                        - I4: R5 = 2000 + 50 = 2050
 
-<strong>Pipeline Diagram:</strong>
-<table class="pipeline-trace-table">
-    <thead>
-        <tr>
-            <th>Instruction</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="inst-cell">I1: Add #20, R0, R1</td>
-            <td>f</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I2: Mul #3, R2, R3</td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I3: And #3A, R2, R4</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I4: Add R0, R2, R5</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-        </tr>
-    </tbody>
-</table></div>
+                        <strong>Pipeline Diagram:</strong>
+                        <table class="pipeline-trace-table">
+                            <thead>
+                                <tr>
+                                    <th>Instruction</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="inst-cell">I1: Add #20, R0, R1</td>
+                                    <td>f</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I2: Mul #3, R2, R3</td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I3: And #3A, R2, R4</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I4: Add R0, R2, R5</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- PROBLEM 8 -->
             <div class="playbook-workspace" id="problem-card-8">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 08</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     5-Stage Pipeline Flowcharting & Stage Mapping
                 </h3>
                 <div class="question-text">
@@ -1068,479 +1130,511 @@
                     <code>1004 Subtract R5, R4, #3</code><br>
                     <code>1008 And R6, R4, #0x3A</code><br>
                     <code>1012 Add R7, R2, R4</code><br>
-                    Initially, registers R2 and R4 contain 2000 and 50, respectively. These instructions are executed in a computer that has a five-stage pipeline. The first instruction is fetched in clock cycle 1, and the remaining instructions are fetched in successive cycles. Draw a pipelined execution diagram that represents the flow of the instructions through the pipeline. Describe the operation being performed by each pipeline stage during clock cycles 1 through 8.
+                    Initially, registers R2 and R4 contain 2000 and 50, respectively. These instructions are executed in
+                    a computer that has a five-stage pipeline. The first instruction is fetched in clock cycle 1, and
+                    the remaining instructions are fetched in successive cycles. Draw a pipelined execution diagram that
+                    represents the flow of the instructions through the pipeline. Describe the operation being performed
+                    by each pipeline stage during clock cycles 1 through 8.
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content"><strong>Given:</strong>
-  R2 = 2000, R4 = 50
+                        R2 = 2000, R4 = 50
 
-<strong>Register results:</strong>
-  - I1 (1000 Add): R3 = 2020
-  - I2 (1004 Subtract): R5 = 50 - 3 = 47
-  - I3 (1008 And): R6 = 50 AND 58 = 50
-  - I4 (1012 Add): R7 = 2000 + 50 = 2050
+                        <strong>Register results:</strong>
+                        - I1 (1000 Add): R3 = 2020
+                        - I2 (1004 Subtract): R5 = 50 - 3 = 47
+                        - I3 (1008 And): R6 = 50 AND 58 = 50
+                        - I4 (1012 Add): R7 = 2000 + 50 = 2050
 
-<strong>Pipeline Diagram:</strong>
-<table class="pipeline-trace-table">
-    <thead>
-        <tr>
-            <th>Instruction</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="inst-cell">I1: Add R3, R2, #20</td>
-            <td>FI<sub>1</sub></td>
-            <td>DI<sub>1</sub></td>
-            <td>FO<sub>1</sub></td>
-            <td>EI<sub>1</sub></td>
-            <td>WI<sub>1</sub></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I2: Subtract R5, R4, #3</td>
-            <td class="empty-cell"></td>
-            <td>F<sub>2</sub></td>
-            <td>D<sub>2</sub></td>
-            <td>FO<sub>2</sub></td>
-            <td>E<sub>2</sub></td>
-            <td>W<sub>2</sub></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I3: And R6, R4, #0x3A</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F<sub>3</sub></td>
-            <td>D<sub>3</sub></td>
-            <td>FO<sub>3</sub></td>
-            <td>E<sub>3</sub></td>
-            <td>W<sub>3</sub></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I4: Add R7, R2, R4</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F<sub>4</sub></td>
-            <td>D<sub>4</sub></td>
-            <td>FO<sub>4</sub></td>
-            <td>E<sub>4</sub></td>
-            <td>W<sub>4</sub></td>
-        </tr>
-    </tbody>
-</table></div>
+                        <strong>Pipeline Diagram:</strong>
+                        <table class="pipeline-trace-table">
+                            <thead>
+                                <tr>
+                                    <th>Instruction</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="inst-cell">I1: Add R3, R2, #20</td>
+                                    <td>FI<sub>1</sub></td>
+                                    <td>DI<sub>1</sub></td>
+                                    <td>FO<sub>1</sub></td>
+                                    <td>EI<sub>1</sub></td>
+                                    <td>WI<sub>1</sub></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I2: Subtract R5, R4, #3</td>
+                                    <td class="empty-cell"></td>
+                                    <td>F<sub>2</sub></td>
+                                    <td>D<sub>2</sub></td>
+                                    <td>FO<sub>2</sub></td>
+                                    <td>E<sub>2</sub></td>
+                                    <td>W<sub>2</sub></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I3: And R6, R4, #0x3A</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F<sub>3</sub></td>
+                                    <td>D<sub>3</sub></td>
+                                    <td>FO<sub>3</sub></td>
+                                    <td>E<sub>3</sub></td>
+                                    <td>W<sub>3</sub></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I4: Add R7, R2, R4</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F<sub>4</sub></td>
+                                    <td>D<sub>4</sub></td>
+                                    <td>FO<sub>4</sub></td>
+                                    <td>E<sub>4</sub></td>
+                                    <td>W<sub>4</sub></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- PROBLEM 9 -->
             <div class="playbook-workspace" id="problem-card-9">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 09</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Parallel Decode Units & Write Ports Bubble Elimination
                 </h3>
                 <div class="question-text">
-                    The delay bubble arises because instruction I2 is delayed in the Decode stage. As a result, instructions I3 and I4 are delayed even if they do not depend upon either I1 or I2. Assume that the Decode stage allows two Decode steps to proceed in parallel. Show that the delay bubble can be completely eliminated if the register file allows two Write steps to proceed in parallel.
+                    The delay bubble arises because instruction I2 is delayed in the Decode stage. As a result,
+                    instructions I3 and I4 are delayed even if they do not depend upon either I1 or I2. Assume that the
+                    Decode stage allows two Decode steps to proceed in parallel. Show that the delay bubble can be
+                    completely eliminated if the register file allows two Write steps to proceed in parallel.
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
-                    <div class="answer-content">Instruction I2 depends on the result of I1, so I2 stalls in decode stage. This blocks I3 and I4, creating a delay bubble.
+                    <div class="answer-content">Instruction I2 depends on the result of I1, so I2 stalls in decode
+                        stage. This blocks I3 and I4, creating a delay bubble.
 
-<strong>Original Pipeline:</strong>
-<table class="pipeline-trace-table">
-    <thead>
-        <tr>
-            <th>Instruction</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>9</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="inst-cell">I1</td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I2</td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>D</td>
-            <td class="stall-cell">STALL</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I3</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>"</td>
-            <td class="stall-cell">STALL</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I4</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-        </tr>
-    </tbody>
-</table>
+                        <strong>Original Pipeline:</strong>
+                        <table class="pipeline-trace-table">
+                            <thead>
+                                <tr>
+                                    <th>Instruction</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                    <th>9</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="inst-cell">I1</td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I2</td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I3</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>"</td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I4</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-If decode stage allows two decode operations simultaneously and register file allows two writes simultaneously, then independent instructions can proceed without waiting.
+                        If decode stage allows two decode operations simultaneously and register file allows two writes
+                        simultaneously, then independent instructions can proceed without waiting.
 
-<strong>Improved Pipeline:</strong>
-<table class="pipeline-trace-table">
-    <thead>
-        <tr>
-            <th>Instruction</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>9</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="inst-cell">I1</td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I2</td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>D</td>
-            <td class="stall-cell">STALL</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I3</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I4</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-    </tbody>
-</table>
+                        <strong>Improved Pipeline:</strong>
+                        <table class="pipeline-trace-table">
+                            <thead>
+                                <tr>
+                                    <th>Instruction</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                    <th>9</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="inst-cell">I1</td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I2</td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I3</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I4</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-Using parallel decode and dual write operations removes the delay bubble and improves pipeline performance.</div>
+                        Using parallel decode and dual write operations removes the delay bubble and improves pipeline
+                        performance.
+                    </div>
                 </div>
             </div>
 
             <!-- PROBLEM 10 -->
             <div class="playbook-workspace" id="problem-card-10">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 10</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Storage Queue & Out-Of-Order Reservation Stations
                 </h3>
                 <div class="question-text">
-                    Instruction I2 is delayed because it depends on the results of I1. By occupying the Decode stage, instruction I2 blocks I3, which in turn blocks I4. Assuming that I3 and I4 do not depend on either I1 or I2 and that the register file allows two Write steps to proceed in parallel, how would you use additional storage buffers to make it possible for I3 and I4 to proceed earlier than in the Figure shown. Redraw the figure, showing the new order of steps.
+                    Instruction I2 is delayed because it depends on the results of I1. By occupying the Decode stage,
+                    instruction I2 blocks I3, which in turn blocks I4. Assuming that I3 and I4 do not depend on either
+                    I1 or I2 and that the register file allows two Write steps to proceed in parallel, how would you use
+                    additional storage buffers to make it possible for I3 and I4 to proceed earlier than in the Figure
+                    shown. Redraw the figure, showing the new order of steps.
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">I2 stalls due to dependency on I1. This blocks I3, I4.
-This issue can be solved by introducing an Instruction buffer between IF and ID.
+                        This issue can be solved by introducing an Instruction buffer between IF and ID.
 
-- **Queue / Reservation buffer before decode when I2 stalls:**
-  - I3 and I4 are temporarily stored.
-  - Fetch stage continues normally.
-  - Independent instructions proceed since decode becomes free.
-  - Using a 4-stage pipeline.
+                        - **Queue / Reservation buffer before decode when I2 stalls:**
+                        - I3 and I4 are temporarily stored.
+                        - Fetch stage continues normally.
+                        - Independent instructions proceed since decode becomes free.
+                        - Using a 4-stage pipeline.
 
-<strong>Original Pipeline:</strong>
-<table class="pipeline-trace-table">
-    <thead>
-        <tr>
-            <th>Instruction</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>9</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="inst-cell">I1</td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I2</td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>D</td>
-            <td class="stall-cell">STALL</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I3</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td class="stall-cell">STALL</td>
-            <td class="stall-cell">STALL</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I4</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="stall-cell">STALL</td>
-            <td class="stall-cell">STALL</td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-        </tr>
-    </tbody>
-</table>
+                        <strong>Original Pipeline:</strong>
+                        <table class="pipeline-trace-table">
+                            <thead>
+                                <tr>
+                                    <th>Instruction</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                    <th>9</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="inst-cell">I1</td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I2</td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I3</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I4</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-<strong>Improved Pipeline with buffers:</strong>
-<table class="pipeline-trace-table">
-    <thead>
-        <tr>
-            <th>Instruction</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>9</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="inst-cell">I1</td>
-            <td>F</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I2</td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>D</td>
-            <td class="stall-cell">STALL</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I3</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>Buf</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-        </tr>
-        <tr>
-            <td class="inst-cell">I4</td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td class="empty-cell"></td>
-            <td>F</td>
-            <td>Buf</td>
-            <td>D</td>
-            <td>E</td>
-            <td>W</td>
-            <td class="empty-cell"></td>
-        </tr>
-    </tbody>
-</table></div>
+                        <strong>Improved Pipeline with buffers:</strong>
+                        <table class="pipeline-trace-table">
+                            <thead>
+                                <tr>
+                                    <th>Instruction</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                    <th>9</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="inst-cell">I1</td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I2</td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>D</td>
+                                    <td class="stall-cell">STALL</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I3</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>Buf</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                                <tr>
+                                    <td class="inst-cell">I4</td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td class="empty-cell"></td>
+                                    <td>F</td>
+                                    <td>Buf</td>
+                                    <td>D</td>
+                                    <td>E</td>
+                                    <td>W</td>
+                                    <td class="empty-cell"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <!-- PROBLEM 11 -->
             <div class="playbook-workspace" id="problem-card-11">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 11</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Branch Delay Slot Optimization Speedups
                 </h3>
                 <div class="question-text">
-                    A pipelined processor has two branch delay slots. An optimizing compiler can fill one of these slots 85 percent of the time and can fill the second slot only 20 percent of the time. What is the percentage improvement in performance achieved by this optimization, assuming that 20 percent of the instructions executed are branch instructions?
+                    A pipelined processor has two branch delay slots. An optimizing compiler can fill one of these slots
+                    85 percent of the time and can fill the second slot only 20 percent of the time. What is the
+                    percentage improvement in performance achieved by this optimization, assuming that 20 percent of the
+                    instructions executed are branch instructions?
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content"><strong>Given:</strong>
-  Branch Instructions = 20%
-  Two branch delay slots.
-  First slot = 85%
-  Second slot = 20%
+                        Branch Instructions = 20%
+                        Two branch delay slots.
+                        First slot = 85%
+                        Second slot = 20%
 
-  Average useful slots filled = 0.85 + 0.20 = 1.05
-  Unused delay slots = 2 - 1.05 = 0.95
+                        Average useful slots filled = 0.85 + 0.20 = 1.05
+                        Unused delay slots = 2 - 1.05 = 0.95
 
-  Branch penalty before optimization = 2 cycles
-  After Optimization = 0.95 cycles
-  Savings = 2 - 0.95 = 1.05
+                        Branch penalty before optimization = 2 cycles
+                        After Optimization = 0.95 cycles
+                        Savings = 2 - 0.95 = 1.05
 
-  Overall CPI Improvement = 0.20 &times; 1.05 = 0.21
-  Percentage Improvement = <div class="fraction"><span class="numerator">0.21</span><span class="denominator">1 + 0.4</span></div> &times; 100
-                         = <div class="fraction"><span class="numerator">0.21</span><span class="denominator">1.4</span></div> &times; 100
-                         = 15%//
+                        Overall CPI Improvement = 0.20 &times; 1.05 = 0.21
+                        Percentage Improvement = <div class="fraction"><span class="numerator">0.21</span><span
+                                class="denominator">1 + 0.4</span></div> &times; 100
+                        = <div class="fraction"><span class="numerator">0.21</span><span class="denominator">1.4</span>
+                        </div> &times; 100
+                        = 15%//
 
-  ∴ Percentage Improvement = 15%</div>
+                        ∴ Percentage Improvement = 15%</div>
                 </div>
             </div>
 
             <!-- PROBLEM 12 -->
             <div class="playbook-workspace" id="problem-card-12">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 12</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Slowest Stage Cycle Sizing with Buffer Overheads
                 </h3>
                 <div class="question-text">
-                    Consider an instruction pipeline with five stages without any branch prediction: Fetch Instruction (FI), Decode Instruction (DI), Fetch Operand (FO), Execute Instruction (EI) and Write Operand (WO). The stage delays for FI, DI, FO, EI and WO are 15ns, 4ns, 15ns, 5ns, 15ns respectively. There are intermediate storage buffers after each stage and the delay of each buffer is 4 ns. A program consisting of 10 instructions I1, I2, I3 ....... I10 is executed in this pipelined processor. Instruction I2 is the only branch instruction and its branch target is I9. If the branch is taken during the execution of this program, calculate the time (ns) needed to complete the program.
+                    Consider an instruction pipeline with five stages without any branch prediction: Fetch Instruction
+                    (FI), Decode Instruction (DI), Fetch Operand (FO), Execute Instruction (EI) and Write Operand (WO).
+                    The stage delays for FI, DI, FO, EI and WO are 15ns, 4ns, 15ns, 5ns, 15ns respectively. There are
+                    intermediate storage buffers after each stage and the delay of each buffer is 4 ns. A program
+                    consisting of 10 instructions I1, I2, I3 ....... I10 is executed in this pipelined processor.
+                    Instruction I2 is the only branch instruction and its branch target is I9. If the branch is taken
+                    during the execution of this program, calculate the time (ns) needed to complete the program.
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content"><strong>Given:</strong>
-  Stage - Delay:
-  FI = 15 ns
-  DI = 4 ns
-  FO = 15 ns
-  EI = 5 ns
-  WO = 15 ns
-  Buffer delay = 4 ns
+                        Stage - Delay:
+                        FI = 15 ns
+                        DI = 4 ns
+                        FO = 15 ns
+                        EI = 5 ns
+                        WO = 15 ns
+                        Buffer delay = 4 ns
 
-  Clock cycle:
-  T = max(15, 4, 15, 5, 15) + 4
-    = 15 + 4
-  T = 19 ns
+                        Clock cycle:
+                        T = max(15, 4, 15, 5, 15) + 4
+                        = 15 + 4
+                        T = 19 ns
 
-  Branch instruction = I2
-  Target = I9
+                        Branch instruction = I2
+                        Target = I9
 
-  Executed Instructions:
-  I1, I2, I9, I10
-  Total instructions executed = 4
-  Pipeline stages = 5
+                        Executed Instructions:
+                        I1, I2, I9, I10
+                        Total instructions executed = 4
+                        Pipeline stages = 5
 
-  Base cycles = 5 + 4 - 1 = 8
-  Branch penalty = 3 cycles
-  Total cycles = 8 + 3 = 11
+                        Base cycles = 5 + 4 - 1 = 8
+                        Branch penalty = 3 cycles
+                        Total cycles = 8 + 3 = 11
 
-  Execution time = 11 &times; 19 = 209 ns
-  ∴ Execution time = 209 ns//</div>
+                        Execution time = 11 &times; 19 = 209 ns
+                        ∴ Execution time = 209 ns//</div>
                 </div>
             </div>
 
@@ -1554,7 +1648,7 @@ This issue can be solved by introducing an Instruction buffer between IF and ID.
         window.addEventListener('DOMContentLoaded', () => {
             const savedName = localStorage.getItem('coa_student_name') || 'Sarvadnya Patil';
             document.getElementById('cell-name').innerText = savedName;
-            
+
             document.getElementById('cell-usn').innerText = localStorage.getItem('coa_student_usn') || '02FE25BCS017';
             document.getElementById('cell-prog').innerText = localStorage.getItem('coa_student_prog') || 'B.E. CSE';
             document.getElementById('cell-inst').innerText = localStorage.getItem('coa_student_inst') || 'KLE Tech, Belagavi';
@@ -1569,4 +1663,5 @@ This issue can be solved by introducing an Instruction buffer between IF and ID.
         }
     </script>
 </body>
+
 </html>

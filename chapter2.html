@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,25 @@
     <!-- Google Fonts for Brutalist & Tech Aesthetics -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800;900&display=swap"
+        rel="stylesheet">
+
     <style>
         /* Charcoal & Ember Brutalist Design Tokens */
         :root {
-            --bg-primary: #0a0a0c; /* Deep warm charcoal */
-            --bg-card: #121216; /* Dark slate card */
-            --accent-orange: #f97316; /* Magma/Ember Orange */
-            --accent-amber: #fbbf24; /* Golden amber */
-            --accent-ember: #fb923c; /* Light ember for active states */
-            --accent-success: #facc15; /* Bright gold for success */
+            --bg-primary: #0a0a0c;
+            /* Deep warm charcoal */
+            --bg-card: #121216;
+            /* Dark slate card */
+            --accent-orange: #f97316;
+            /* Magma/Ember Orange */
+            --accent-amber: #fbbf24;
+            /* Golden amber */
+            --accent-ember: #fb923c;
+            /* Light ember for active states */
+            --accent-success: #facc15;
+            /* Bright gold for success */
             --accent-glow: rgba(249, 115, 22, 0.2);
             --text-white: #f4f4f7;
             --text-muted: #9ea2b0;
@@ -41,14 +50,17 @@
             width: 8px;
             height: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #0a0a0c;
         }
+
         ::-webkit-scrollbar-thumb {
             background: var(--accent-orange);
             border: 2px solid #0a0a0c;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent-amber);
         }
@@ -302,11 +314,13 @@
             padding: 0 0.15rem;
             font-family: var(--font-code);
         }
+
         .fraction .numerator {
             border-bottom: 1.5px solid var(--text-white);
             padding-bottom: 2px;
             font-size: 0.85em;
         }
+
         .fraction .denominator {
             padding-top: 2px;
             font-size: 0.85em;
@@ -356,9 +370,11 @@
             .widget-controls {
                 grid-template-columns: 1fr;
             }
+
             .playbook-activities-grid {
                 grid-template-columns: 1fr 1fr;
             }
+
             .brutalist-grid-table {
                 grid-template-columns: 1fr 1fr;
             }
@@ -440,7 +456,8 @@
             text-align: left;
         }
 
-        .brutalist-table th, .brutalist-table td {
+        .brutalist-table th,
+        .brutalist-table td {
             padding: 0.5rem 0.8rem;
             border: 1px solid #1c1c24;
         }
@@ -490,17 +507,32 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .playbook-workspace:nth-child(1) { animation-delay: 0.1s; }
-        .playbook-workspace:nth-child(2) { animation-delay: 0.15s; }
-        .playbook-workspace:nth-child(3) { animation-delay: 0.2s; }
-        .playbook-workspace:nth-child(4) { animation-delay: 0.25s; }
-        .playbook-workspace:nth-child(5) { animation-delay: 0.3s; }
+        .playbook-workspace:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .playbook-workspace:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .playbook-workspace:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .playbook-workspace:nth-child(4) {
+            animation-delay: 0.25s;
+        }
+
+        .playbook-workspace:nth-child(5) {
+            animation-delay: 0.3s;
+        }
 
         .utilities-bar {
             background: #0c0c10;
@@ -531,10 +563,11 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        
+
         <!-- Header -->
         <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
             <div class="top-bullet">
@@ -542,7 +575,9 @@
             </div>
             <div class="ch-title">Chapter 2: <span>Performance Metrics Workspace</span></div>
             <p class="ch-desc" style="max-width: 800px;">
-                Evaluate processor throughput limits, calculate instruction mixes, resolve instruction counts, and compute parallel speedups under Amdahl's Law. Review the 10 numerical problems, direct answers, and interactive simulators below.
+                Evaluate processor throughput limits, calculate instruction mixes, resolve instruction counts, and
+                compute parallel speedups under Amdahl's Law. Review the 10 numerical problems, direct answers, and
+                interactive simulators below.
             </p>
         </div>
 
@@ -619,99 +654,152 @@
             <!-- PROBLEM 1 -->
             <div class="playbook-workspace" id="problem-card-1">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 01</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Dual Pentium Resource Optimization
                 </h3>
                 <div class="question-text">
-                    We will run two applications on dual Pentium processor, but the resource requirements are not the same. The first application needs 80% of the resources, and the other only 20% of the resources.<br><br>
-                    <strong>i)</strong> Given that 40% of the first application is parallelizable, how much speed up will we achieve with that application, if run in isolation?<br>
-                    <strong>ii)</strong> Given that 99% of the second application is parallelizable, how much speed up will this application observe, if run in isolation?
+                    We will run two applications on dual Pentium processor, but the resource requirements are not the
+                    same. The first application needs 80% of the resources, and the other only 20% of the
+                    resources.<br><br>
+                    <strong>i)</strong> Given that 40% of the first application is parallelizable, how much speed up
+                    will we achieve with that application, if run in isolation?<br>
+                    <strong>ii)</strong> Given that 99% of the second application is parallelizable, how much speed up
+                    will this application observe, if run in isolation?
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">Using Amdahl's Law:
-Speedup = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">N</span></div></span></div>
-Where:
-- P = Parallelizable fraction of the application
-- N = Number of processors = 2
+                        Speedup = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 -
+                                P) + <div class="fraction"><span class="numerator">P</span><span
+                                        class="denominator">N</span></div></span></div>
+                        Where:
+                        - P = Parallelizable fraction of the application
+                        - N = Number of processors = 2
 
-i) First Application:
-- Given: P = 40% = 0.4
-- Speedup = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - 0.4) + <div class="fraction"><span class="numerator">0.4</span><span class="denominator">2</span></div></span></div>
-          = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.6 + 0.2</span></div>
-          = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.8</span></div>
-          = 1.25 times
+                        i) First Application:
+                        - Given: P = 40% = 0.4
+                        - Speedup = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 -
+                                0.4) + <div class="fraction"><span class="numerator">0.4</span><span
+                                        class="denominator">2</span></div></span></div>
+                        = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.6 +
+                                0.2</span></div>
+                        = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.8</span>
+                        </div>
+                        = 1.25 times
 
-ii) Second Application:
-- Given: P = 99% = 0.99
-- Speedup = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - 0.99) + <div class="fraction"><span class="numerator">0.99</span><span class="denominator">2</span></div></span></div>
-          = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.01 + 0.495</span></div>
-          = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.505</span></div>
-          = 1.98 times</div>
+                        ii) Second Application:
+                        - Given: P = 99% = 0.99
+                        - Speedup = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 -
+                                0.99) + <div class="fraction"><span class="numerator">0.99</span><span
+                                        class="denominator">2</span></div></span></div>
+                        = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.01 +
+                                0.495</span></div>
+                        = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.505</span>
+                        </div>
+                        = 1.98 times</div>
                 </div>
             </div>
 
             <!-- PROBLEM 2 -->
             <div class="playbook-workspace" id="problem-card-2">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 02</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Quad Core Targeted Amdahl's Law Solver
                 </h3>
                 <div class="question-text">
-                    A quad core processor could speed up a computer by a factor of 4 but this rarely happens. Use Amdahl’s Law to compute the percentage of program execution that needs to be distributed across all 4 cores to achieve an overall speedup of:<br>
-                    <strong>i)</strong> 3 &nbsp;&nbsp;&nbsp;&nbsp; <strong>ii)</strong> 2 &nbsp;&nbsp;&nbsp;&nbsp; <strong>iii)</strong> 1.5 &nbsp;&nbsp;&nbsp;&nbsp; <strong>iv)</strong> 1.25
+                    A quad core processor could speed up a computer by a factor of 4 but this rarely happens. Use
+                    Amdahl’s Law to compute the percentage of program execution that needs to be distributed across all
+                    4 cores to achieve an overall speedup of:<br>
+                    <strong>i)</strong> 3 &nbsp;&nbsp;&nbsp;&nbsp; <strong>ii)</strong> 2 &nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong>iii)</strong> 1.5 &nbsp;&nbsp;&nbsp;&nbsp; <strong>iv)</strong> 1.25
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">Using Amdahl's Law:
-Speedup (S) = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span></div></span></div>
+                        Speedup (S) = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1
+                                - P) + <div class="fraction"><span class="numerator">P</span><span
+                                        class="denominator">4</span></div></span></div>
 
-i) For Speedup (S) = 3:
-   3 = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span></div></span></div>
-   (1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span></div> = <div class="fraction"><span class="numerator">1</span><span class="denominator">3</span></div>
-   1 - <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div> = <div class="fraction"><span class="numerator">1</span><span class="denominator">3</span></div>
-   <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div> = <div class="fraction"><span class="numerator">2</span><span class="denominator">3</span></div>
-   P = <div class="fraction"><span class="numerator">8</span><span class="denominator">9</span></div> = 0.8889
-   => P = 88.89%
+                        i) For Speedup (S) = 3:
+                        3 = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) +
+                                <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span>
+                                </div></span></div>
+                        (1 - P) + <div class="fraction"><span class="numerator">P</span><span
+                                class="denominator">4</span></div> = <div class="fraction"><span
+                                class="numerator">1</span><span class="denominator">3</span></div>
+                        1 - <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span>
+                        </div> = <div class="fraction"><span class="numerator">1</span><span
+                                class="denominator">3</span></div>
+                        <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div>
+                        = <div class="fraction"><span class="numerator">2</span><span class="denominator">3</span></div>
+                        P = <div class="fraction"><span class="numerator">8</span><span class="denominator">9</span>
+                        </div> = 0.8889
+                        => P = 88.89%
 
-ii) For Speedup (S) = 2:
-   2 = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span></div></span></div>
-   (1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span></div> = 0.5
-   1 - <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div> = 0.5
-   <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div> = 0.5
-   P = <div class="fraction"><span class="numerator">2</span><span class="denominator">3</span></div> = 0.6667
-   => P = 66.67%
+                        ii) For Speedup (S) = 2:
+                        2 = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) +
+                                <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span>
+                                </div></span></div>
+                        (1 - P) + <div class="fraction"><span class="numerator">P</span><span
+                                class="denominator">4</span></div> = 0.5
+                        1 - <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span>
+                        </div> = 0.5
+                        <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div>
+                        = 0.5
+                        P = <div class="fraction"><span class="numerator">2</span><span class="denominator">3</span>
+                        </div> = 0.6667
+                        => P = 66.67%
 
-iii) For Speedup (S) = 1.5:
-   1.5 = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span></div></span></div>
-   (1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span></div> = <div class="fraction"><span class="numerator">1</span><span class="denominator">1.5</span></div> = <div class="fraction"><span class="numerator">2</span><span class="denominator">3</span></div>
-   1 - <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div> = 0.6667
-   <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div> = 0.3333
-   P = 0.4444
-   => P = 44.44%
+                        iii) For Speedup (S) = 1.5:
+                        1.5 = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) +
+                                <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span>
+                                </div></span></div>
+                        (1 - P) + <div class="fraction"><span class="numerator">P</span><span
+                                class="denominator">4</span></div> = <div class="fraction"><span
+                                class="numerator">1</span><span class="denominator">1.5</span></div> = <div
+                            class="fraction"><span class="numerator">2</span><span class="denominator">3</span></div>
+                        1 - <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span>
+                        </div> = 0.6667
+                        <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div>
+                        = 0.3333
+                        P = 0.4444
+                        => P = 44.44%
 
-iv) For Speedup (S) = 1.25:
-   1.25 = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span></div></span></div>
-   (1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span></div> = <div class="fraction"><span class="numerator">1</span><span class="denominator">1.25</span></div> = 0.8
-   1 - <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div> = 0.8
-   <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div> = 0.2
-   P = <div class="fraction"><span class="numerator">0.8</span><span class="denominator">3</span></div> = 0.2667
-   => P = 26.67%</div>
+                        iv) For Speedup (S) = 1.25:
+                        1.25 = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) +
+                                <div class="fraction"><span class="numerator">P</span><span class="denominator">4</span>
+                                </div></span></div>
+                        (1 - P) + <div class="fraction"><span class="numerator">P</span><span
+                                class="denominator">4</span></div> = <div class="fraction"><span
+                                class="numerator">1</span><span class="denominator">1.25</span></div> = 0.8
+                        1 - <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span>
+                        </div> = 0.8
+                        <div class="fraction"><span class="numerator">3P</span><span class="denominator">4</span></div>
+                        = 0.2
+                        P = <div class="fraction"><span class="numerator">0.8</span><span class="denominator">3</span>
+                        </div> = 0.2667
+                        => P = 26.67%
+                    </div>
                 </div>
             </div>
 
             <!-- PROBLEM 3 -->
             <div class="playbook-workspace" id="problem-card-3">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 03</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Amdahl's Usability Enhancement Limits
                 </h3>
                 <div class="question-text">
-                    Suppose that we are considering an enhancement that runs 10 times faster than the original machine, but is usable only 40% of the time. What is the overall speedup gained by incorporating the enhancement?<br><br>
+                    Suppose that we are considering an enhancement that runs 10 times faster than the original machine,
+                    but is usable only 40% of the time. What is the overall speedup gained by incorporating the
+                    enhancement?<br><br>
                     <strong>i)</strong> What is the overall speedup if you make 10% of a program 90 times faster?<br>
                     <strong>ii)</strong> What is the overall speedup if you make 90% of a program 10 times faster?
                 </div>
@@ -720,44 +808,61 @@ iv) For Speedup (S) = 1.25:
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">Using Amdahl's Law:
-Speedup (S) = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - P) + <div class="fraction"><span class="numerator">P</span><span class="denominator">k</span></div></span></div>
-Where:
-- P = Enhanced fraction of the program
-- k = Enhancement factor
+                        Speedup (S) = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1
+                                - P) + <div class="fraction"><span class="numerator">P</span><span
+                                        class="denominator">k</span></div></span></div>
+                        Where:
+                        - P = Enhanced fraction of the program
+                        - k = Enhancement factor
 
-i) 40% enhanced by factor 10:
-   - Given: P = 0.40, k = 10
-   - S = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - 0.40) + <div class="fraction"><span class="numerator">0.40</span><span class="denominator">10</span></div></span></div>
-       = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.6 + 0.04</span></div>
-       = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.64</span></div>
-       = 1.5625 times
+                        i) 40% enhanced by factor 10:
+                        - Given: P = 0.40, k = 10
+                        - S = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - 0.40)
+                                + <div class="fraction"><span class="numerator">0.40</span><span
+                                        class="denominator">10</span></div></span></div>
+                        = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.6 +
+                                0.04</span></div>
+                        = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.64</span>
+                        </div>
+                        = 1.5625 times
 
-ii) 10% enhanced by factor 90:
-   - Given: P = 0.10, k = 90
-   - S = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - 0.10) + <div class="fraction"><span class="numerator">0.10</span><span class="denominator">90</span></div></span></div>
-       = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.9 + 0.00111</span></div>
-       = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.90111</span></div>
-       = 1.11 times
+                        ii) 10% enhanced by factor 90:
+                        - Given: P = 0.10, k = 90
+                        - S = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - 0.10)
+                                + <div class="fraction"><span class="numerator">0.10</span><span
+                                        class="denominator">90</span></div></span></div>
+                        = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.9 +
+                                0.00111</span></div>
+                        = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.90111</span>
+                        </div>
+                        = 1.11 times
 
-iii) 90% enhanced by factor 10:
-   - Given: P = 0.90, k = 10
-   - S = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - 0.90) + <div class="fraction"><span class="numerator">0.90</span><span class="denominator">10</span></div></span></div>
-       = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.1 + 0.09</span></div>
-       = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.19</span></div>
-       = 5.26 times</div>
+                        iii) 90% enhanced by factor 10:
+                        - Given: P = 0.90, k = 10
+                        - S = <div class="fraction"><span class="numerator">1</span><span class="denominator">(1 - 0.90)
+                                + <div class="fraction"><span class="numerator">0.90</span><span
+                                        class="denominator">10</span></div></span></div>
+                        = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.1 +
+                                0.09</span></div>
+                        = <div class="fraction"><span class="numerator">1</span><span class="denominator">0.19</span>
+                        </div>
+                        = 5.26 times</div>
                 </div>
             </div>
 
             <!-- PROBLEM 4 -->
             <div class="playbook-workspace" id="problem-card-4">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 04</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Benchmark Execution & Speedup Comparisons
                 </h3>
                 <div class="question-text">
-                    Assume that a benchmark program executes in 480 seconds on a reference machine A. The same program executes on systems B, C, and D in 360, 540, and 210 seconds, respectively.<br><br>
+                    Assume that a benchmark program executes in 480 seconds on a reference machine A. The same program
+                    executes on systems B, C, and D in 360, 540, and 210 seconds, respectively.<br><br>
                     <strong>a.</strong> Show the speedup of each of the three systems under test relative to A.<br>
-                    <strong>b.</strong> Now show the relative speedup of the three systems. Comment on the three ways of comparing machines (execution time, speedup, relative speedup).
+                    <strong>b.</strong> Now show the relative speedup of the three systems. Comment on the three ways of
+                    comparing machines (execution time, speedup, relative speedup).
                 </div>
 
                 <!-- Answer Box -->
@@ -765,39 +870,49 @@ iii) 90% enhanced by factor 10:
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">Reference Machine A Execution Time (T<sub>A</sub>) = 480 s
 
-a) Speedup relative to A:
-   Formula: Speedup = <div class="fraction"><span class="numerator">T<sub>A</sub></span><span class="denominator">T<sub>X</sub></span></div>
+                        a) Speedup relative to A:
+                        Formula: Speedup = <div class="fraction"><span class="numerator">T<sub>A</sub></span><span
+                                class="denominator">T<sub>X</sub></span></div>
 
-   - System B: <div class="fraction"><span class="numerator">480</span><span class="denominator">360</span></div> = 1.33
-   - System C: <div class="fraction"><span class="numerator">480</span><span class="denominator">540</span></div> = 0.89
-   - System D: <div class="fraction"><span class="numerator">480</span><span class="denominator">210</span></div> = 2.29
+                        - System B: <div class="fraction"><span class="numerator">480</span><span
+                                class="denominator">360</span></div> = 1.33
+                        - System C: <div class="fraction"><span class="numerator">480</span><span
+                                class="denominator">540</span></div> = 0.89
+                        - System D: <div class="fraction"><span class="numerator">480</span><span
+                                class="denominator">210</span></div> = 2.29
 
-   Relative Speedups:
-   - B = 1.33
-   - C = 0.89
-   - D = 2.29
+                        Relative Speedups:
+                        - B = 1.33
+                        - C = 0.89
+                        - D = 2.29
 
-b) Relative Speedup (taking D as fastest):
-   Formula: Relative Speedup = <div class="fraction"><span class="numerator">T<sub>slow</sub></span><span class="denominator">T<sub>fast</sub></span></div>
+                        b) Relative Speedup (taking D as fastest):
+                        Formula: Relative Speedup = <div class="fraction"><span
+                                class="numerator">T<sub>slow</sub></span><span
+                                class="denominator">T<sub>fast</sub></span></div>
 
-   - D faster than B: <div class="fraction"><span class="numerator">360</span><span class="denominator">210</span></div> = 1.71
-   - D faster than C: <div class="fraction"><span class="numerator">540</span><span class="denominator">210</span></div> = 2.57
+                        - D faster than B: <div class="fraction"><span class="numerator">360</span><span
+                                class="denominator">210</span></div> = 1.71
+                        - D faster than C: <div class="fraction"><span class="numerator">540</span><span
+                                class="denominator">210</span></div> = 2.57
 
-Conclusion:
-i) Lower execution time means better performance.
-ii) Higher speedup indicates faster execution.
-iii) Relative speedup directly compares systems against each other.</div>
+                        Conclusion:
+                        i) Lower execution time means better performance.
+                        ii) Higher speedup indicates faster execution.
+                        iii) Relative speedup directly compares systems against each other.</div>
                 </div>
             </div>
 
             <!-- PROBLEM 5 -->
             <div class="playbook-workspace" id="problem-card-5">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 05</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     40 MHz Instruction Mix Analysis
                 </h3>
                 <div class="question-text">
-                    A benchmark program is run on a 40 MHz processor. The executed program consists of 100,000 instruction executions, with the following instruction mix and clock cycle count:
+                    A benchmark program is run on a 40 MHz processor. The executed program consists of 100,000
+                    instruction executions, with the following instruction mix and clock cycle count:
                     <blockquote>
                         <strong>Integer arithmetic:</strong> 45,000 instructions (1 cycle per instruction)<br>
                         <strong>Data transfer:</strong> 32,000 instructions (2 cycles per instruction)<br>
@@ -812,40 +927,51 @@ iii) Relative speedup directly compares systems against each other.</div>
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">Given Clock Rate = 40 MHz = 40 * 10<sup>6</sup> Hz
 
-Total Cycles = (45,000 * 1) + (32,000 * 2) + (15,000 * 2) + (8,000 * 2)
-             = 45,000 + 64,000 + 30,000 + 16,000
-             = 155,000 cycles
+                        Total Cycles = (45,000 * 1) + (32,000 * 2) + (15,000 * 2) + (8,000 * 2)
+                        = 45,000 + 64,000 + 30,000 + 16,000
+                        = 155,000 cycles
 
-Total Instructions = 45,000 + 32,000 + 15,000 + 8,000 = 100,000 instructions
+                        Total Instructions = 45,000 + 32,000 + 15,000 + 8,000 = 100,000 instructions
 
-1) Effective CPI:
-   CPI = <div class="fraction"><span class="numerator">Total Cycles</span><span class="denominator">Total Instructions</span></div>
-       = <div class="fraction"><span class="numerator">155,000</span><span class="denominator">100,000</span></div>
-       = 1.55
+                        1) Effective CPI:
+                        CPI = <div class="fraction"><span class="numerator">Total Cycles</span><span
+                                class="denominator">Total Instructions</span></div>
+                        = <div class="fraction"><span class="numerator">155,000</span><span
+                                class="denominator">100,000</span></div>
+                        = 1.55
 
-2) MIPS Rate:
-   MIPS = <div class="fraction"><span class="numerator">Clock Rate</span><span class="denominator">CPI &times; 10<sup>6</sup></span></div>
-        = <div class="fraction"><span class="numerator">40 &times; 10<sup>6</sup></span><span class="denominator">1.55 &times; 10<sup>6</sup></span></div>
-        = 25.81 MIPS
+                        2) MIPS Rate:
+                        MIPS = <div class="fraction"><span class="numerator">Clock Rate</span><span
+                                class="denominator">CPI &times; 10<sup>6</sup></span></div>
+                        = <div class="fraction"><span class="numerator">40 &times; 10<sup>6</sup></span><span
+                                class="denominator">1.55 &times; 10<sup>6</sup></span></div>
+                        = 25.81 MIPS
 
-3) Execution Time (T):
-   T = <div class="fraction"><span class="numerator">Total Cycles</span><span class="denominator">Clock Rate</span></div>
-     = <div class="fraction"><span class="numerator">155,000</span><span class="denominator">40 &times; 10<sup>6</sup></span></div>
-     = 0.003875 s (or 3.875 ms)</div>
+                        3) Execution Time (T):
+                        T = <div class="fraction"><span class="numerator">Total Cycles</span><span
+                                class="denominator">Clock Rate</span></div>
+                        = <div class="fraction"><span class="numerator">155,000</span><span class="denominator">40
+                                &times; 10<sup>6</sup></span></div>
+                        = 0.003875 s (or 3.875 ms)</div>
                 </div>
             </div>
 
             <!-- PROBLEM 6 -->
             <div class="playbook-workspace" id="problem-card-6">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 06</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Dual Architectural Instruction Set Comparison
                 </h3>
                 <div class="question-text">
-                    Consider two different machines, with two different instruction sets, both of which have a clock rate of 200 MHz. The following measurements are recorded on the two machines running a given set of benchmark programs:
+                    Consider two different machines, with two different instruction sets, both of which have a clock
+                    rate of 200 MHz. The following measurements are recorded on the two machines running a given set of
+                    benchmark programs:
                     <blockquote>
-                        <strong>Machine A:</strong> Arithmetic/Logic (8M count, 1 CPI), Load/Store (4M count, 3 CPI), Branch (2M count, 4 CPI), Others (4M count, 3 CPI)<br>
-                        <strong>Machine B:</strong> Arithmetic/Logic (10M count, 1 CPI), Load/Store (8M count, 2 CPI), Branch (2M count, 4 CPI), Others (4M count, 3 CPI)
+                        <strong>Machine A:</strong> Arithmetic/Logic (8M count, 1 CPI), Load/Store (4M count, 3 CPI),
+                        Branch (2M count, 4 CPI), Others (4M count, 3 CPI)<br>
+                        <strong>Machine B:</strong> Arithmetic/Logic (10M count, 1 CPI), Load/Store (8M count, 2 CPI),
+                        Branch (2M count, 4 CPI), Others (4M count, 3 CPI)
                     </blockquote>
                     Determine the effective CPI, MIPS rate and execution time for each machine. Comment on the results.
                 </div>
@@ -855,48 +981,67 @@ Total Instructions = 45,000 + 32,000 + 15,000 + 8,000 = 100,000 instructions
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">Given Clock Rate = 200 MHz = 200 * 10<sup>6</sup> Hz
 
-1) Machine A calculations:
-   - Total Instructions (IC<sub>A</sub>) = 8M + 4M + 2M + 4M = 18M = 18 * 10<sup>6</sup>
-   - Total Cycles = (8M * 1) + (4M * 3) + (2M * 4) + (4M * 3)
-                  = 8M + 12M + 8M + 12M = 40M cycles = 40 * 10<sup>6</sup> cycles
-   - Effective CPI<sub>A</sub> = <div class="fraction"><span class="numerator">Total Cycles</span><span class="denominator">Total Instructions</span></div>
-                     = <div class="fraction"><span class="numerator">40M</span><span class="denominator">18M</span></div> = 2.22
-   - MIPS Rate<sub>A</sub> = <div class="fraction"><span class="numerator">Clock Rate</span><span class="denominator">CPI<sub>A</sub> &times; 10<sup>6</sup></span></div>
-                  = <div class="fraction"><span class="numerator">200</span><span class="denominator">2.22</span></div> = 90.09 MIPS
-   - Execution Time<sub>A</sub> = <div class="fraction"><span class="numerator">Total Cycles</span><span class="denominator">Clock Rate</span></div>
-                      = <div class="fraction"><span class="numerator">40 &times; 10<sup>6</sup></span><span class="denominator">200 &times; 10<sup>6</sup></span></div> = 0.20 s
+                        1) Machine A calculations:
+                        - Total Instructions (IC<sub>A</sub>) = 8M + 4M + 2M + 4M = 18M = 18 * 10<sup>6</sup>
+                        - Total Cycles = (8M * 1) + (4M * 3) + (2M * 4) + (4M * 3)
+                        = 8M + 12M + 8M + 12M = 40M cycles = 40 * 10<sup>6</sup> cycles
+                        - Effective CPI<sub>A</sub> = <div class="fraction"><span class="numerator">Total
+                                Cycles</span><span class="denominator">Total Instructions</span></div>
+                        = <div class="fraction"><span class="numerator">40M</span><span class="denominator">18M</span>
+                        </div> = 2.22
+                        - MIPS Rate<sub>A</sub> = <div class="fraction"><span class="numerator">Clock Rate</span><span
+                                class="denominator">CPI<sub>A</sub> &times; 10<sup>6</sup></span></div>
+                        = <div class="fraction"><span class="numerator">200</span><span class="denominator">2.22</span>
+                        </div> = 90.09 MIPS
+                        - Execution Time<sub>A</sub> = <div class="fraction"><span class="numerator">Total
+                                Cycles</span><span class="denominator">Clock Rate</span></div>
+                        = <div class="fraction"><span class="numerator">40 &times; 10<sup>6</sup></span><span
+                                class="denominator">200 &times; 10<sup>6</sup></span></div> = 0.20 s
 
-2) Machine B calculations:
-   - Total Instructions (IC<sub>B</sub>) = 10M + 8M + 2M + 4M = 24M = 24 * 10<sup>6</sup>
-   - Total Cycles = (10M * 1) + (8M * 2) + (2M * 4) + (4M * 3)
-                  = 10M + 16M + 8M + 12M = 46M cycles = 46 * 10<sup>6</sup> cycles
-   - Effective CPI<sub>B</sub> = <div class="fraction"><span class="numerator">Total Cycles</span><span class="denominator">Total Instructions</span></div>
-                     = <div class="fraction"><span class="numerator">46M</span><span class="denominator">24M</span></div> = 1.92
-   - MIPS Rate<sub>B</sub> = <div class="fraction"><span class="numerator">Clock Rate</span><span class="denominator">CPI<sub>B</sub> &times; 10<sup>6</sup></span></div>
-                  = <div class="fraction"><span class="numerator">200</span><span class="denominator">1.92</span></div> = 104.17 MIPS
-   - Execution Time<sub>B</sub> = <div class="fraction"><span class="numerator">Total Cycles</span><span class="denominator">Clock Rate</span></div>
-                      = <div class="fraction"><span class="numerator">46 &times; 10<sup>6</sup></span><span class="denominator">200 &times; 10<sup>6</sup></span></div> = 0.23 s
+                        2) Machine B calculations:
+                        - Total Instructions (IC<sub>B</sub>) = 10M + 8M + 2M + 4M = 24M = 24 * 10<sup>6</sup>
+                        - Total Cycles = (10M * 1) + (8M * 2) + (2M * 4) + (4M * 3)
+                        = 10M + 16M + 8M + 12M = 46M cycles = 46 * 10<sup>6</sup> cycles
+                        - Effective CPI<sub>B</sub> = <div class="fraction"><span class="numerator">Total
+                                Cycles</span><span class="denominator">Total Instructions</span></div>
+                        = <div class="fraction"><span class="numerator">46M</span><span class="denominator">24M</span>
+                        </div> = 1.92
+                        - MIPS Rate<sub>B</sub> = <div class="fraction"><span class="numerator">Clock Rate</span><span
+                                class="denominator">CPI<sub>B</sub> &times; 10<sup>6</sup></span></div>
+                        = <div class="fraction"><span class="numerator">200</span><span class="denominator">1.92</span>
+                        </div> = 104.17 MIPS
+                        - Execution Time<sub>B</sub> = <div class="fraction"><span class="numerator">Total
+                                Cycles</span><span class="denominator">Clock Rate</span></div>
+                        = <div class="fraction"><span class="numerator">46 &times; 10<sup>6</sup></span><span
+                                class="denominator">200 &times; 10<sup>6</sup></span></div> = 0.23 s
 
-Conclusion:
-Execution Time Ratio = <div class="fraction"><span class="numerator">Time<sub>B</sub></span><span class="denominator">Time<sub>A</sub></span></div> = <div class="fraction"><span class="numerator">0.23</span><span class="denominator">0.20</span></div> = 1.15.
-Machine A is 1.15 times faster than Machine B, even though Machine B has a lower CPI and higher MIPS rate (due to Machine B executing 33.3% more instructions).</div>
+                        Conclusion:
+                        Execution Time Ratio = <div class="fraction"><span
+                                class="numerator">Time<sub>B</sub></span><span
+                                class="denominator">Time<sub>A</sub></span></div> = <div class="fraction"><span
+                                class="numerator">0.23</span><span class="denominator">0.20</span></div> = 1.15.
+                        Machine A is 1.15 times faster than Machine B, even though Machine B has a lower CPI and higher
+                        MIPS rate (due to Machine B executing 33.3% more instructions).</div>
                 </div>
             </div>
 
             <!-- PROBLEM 7 -->
             <div class="playbook-workspace" id="problem-card-7">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 07</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     CISC VAX vs RISC IBM Performance Sizing
                 </h3>
                 <div class="question-text">
-                    Early examples of CISC and RISC design are the VAX 11/780 and the IBM RS/6000, respectively. Using a typical benchmark program, the following machine characteristics result:
+                    Early examples of CISC and RISC design are the VAX 11/780 and the IBM RS/6000, respectively. Using a
+                    typical benchmark program, the following machine characteristics result:
                     <blockquote>
                         <strong>VAX 11/780:</strong> 5 MHz Clock, 1 MIPS Performance, 12x CPU Time (seconds)<br>
                         <strong>IBM RS/6000:</strong> 25 MHz Clock, 18 MIPS Performance, x CPU Time (seconds)
                     </blockquote>
                     The final column shows that the VAX required 12 times longer than the IBM measured in CPU time.<br>
-                    <strong>i)</strong> What is the relative size of the instruction count of the machine code for this benchmark program running on the two machines?<br>
+                    <strong>i)</strong> What is the relative size of the instruction count of the machine code for this
+                    benchmark program running on the two machines?<br>
                     <strong>ii)</strong> What are the CPI values for the two machines?
                 </div>
 
@@ -904,134 +1049,212 @@ Machine A is 1.15 times faster than Machine B, even though Machine B has a lower
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">Given Parameters:
-- VAX 11/780: Clock Rate = 5 MHz, Performance = 1 MIPS, Execution Time = 12 * x
-- IBM RS/6000: Clock Rate = 25 MHz, Performance = 18 MIPS, Execution Time = x
+                        - VAX 11/780: Clock Rate = 5 MHz, Performance = 1 MIPS, Execution Time = 12 * x
+                        - IBM RS/6000: Clock Rate = 25 MHz, Performance = 18 MIPS, Execution Time = x
 
-i) Relative Size of Instruction Count:
-   Formula: Instruction Count (IC) = MIPS &times; Execution Time &times; 10<sup>6</sup>
-   - IC<sub>VAX</sub> = 1 &times; 10<sup>6</sup> &times; (12 &times; x) = 12M &times; x instructions
-   - IC<sub>IBM</sub> = 18 &times; 10<sup>6</sup> &times; x = 18M &times; x instructions
-   - Relative size <div class="fraction"><span class="numerator">VAX</span><span class="denominator">IBM</span></div> = <div class="fraction"><span class="numerator">12M &times; x</span><span class="denominator">18M &times; x</span></div> = <div class="fraction"><span class="numerator">12</span><span class="denominator">18</span></div> = <div class="fraction"><span class="numerator">2</span><span class="denominator">3</span></div> (or 0.67)
-   Thus, VAX executes <div class="fraction"><span class="numerator">2</span><span class="denominator">3</span></div> the instructions of IBM (IBM has 1.5x more instructions).
+                        i) Relative Size of Instruction Count:
+                        Formula: Instruction Count (IC) = MIPS &times; Execution Time &times; 10<sup>6</sup>
+                        - IC<sub>VAX</sub> = 1 &times; 10<sup>6</sup> &times; (12 &times; x) = 12M &times; x
+                        instructions
+                        - IC<sub>IBM</sub> = 18 &times; 10<sup>6</sup> &times; x = 18M &times; x instructions
+                        - Relative size <div class="fraction"><span class="numerator">VAX</span><span
+                                class="denominator">IBM</span></div> = <div class="fraction"><span class="numerator">12M
+                                &times; x</span><span class="denominator">18M &times; x</span></div> = <div
+                            class="fraction"><span class="numerator">12</span><span class="denominator">18</span></div>
+                        = <div class="fraction"><span class="numerator">2</span><span class="denominator">3</span></div>
+                        (or 0.67)
+                        Thus, VAX executes <div class="fraction"><span class="numerator">2</span><span
+                                class="denominator">3</span></div> the instructions of IBM (IBM has 1.5x more
+                        instructions).
 
-ii) CPI Values:
-   Formula: CPI = <div class="fraction"><span class="numerator">Clock Rate</span><span class="denominator">MIPS &times; 10<sup>6</sup></span></div>
-   - CPI<sub>VAX</sub> = <div class="fraction"><span class="numerator">5 &times; 10<sup>6</sup></span><span class="denominator">1 &times; 10<sup>6</sup></span></div> = 5.00
-   - CPI<sub>IBM</sub> = <div class="fraction"><span class="numerator">25 &times; 10<sup>6</sup></span><span class="denominator">18 &times; 10<sup>6</sup></span></div> = 1.39</div>
+                        ii) CPI Values:
+                        Formula: CPI = <div class="fraction"><span class="numerator">Clock Rate</span><span
+                                class="denominator">MIPS &times; 10<sup>6</sup></span></div>
+                        - CPI<sub>VAX</sub> = <div class="fraction"><span class="numerator">5 &times;
+                                10<sup>6</sup></span><span class="denominator">1 &times; 10<sup>6</sup></span></div> =
+                        5.00
+                        - CPI<sub>IBM</sub> = <div class="fraction"><span class="numerator">25 &times;
+                                10<sup>6</sup></span><span class="denominator">18 &times; 10<sup>6</sup></span></div> =
+                        1.39</div>
                 </div>
             </div>
 
             <!-- PROBLEM 8 -->
             <div class="playbook-workspace" id="problem-card-8">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 08</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Multi-program Benchmarking Mean Ranker
                 </h3>
                 <div class="question-text">
-                    Four benchmark programs are executed on three computers with the following results (execution times in seconds, with 100,000,000 instructions executed in each program):
+                    Four benchmark programs are executed on three computers with the following results (execution times
+                    in seconds, with 100,000,000 instructions executed in each program):
                     <blockquote>
                         <strong>Program 1:</strong> Computer A (1s), Computer B (10s), Computer C (20s)<br>
                         <strong>Program 2:</strong> Computer A (1000s), Computer B (100s), Computer C (20s)<br>
                         <strong>Program 3:</strong> Computer A (500s), Computer B (1000s), Computer C (50s)<br>
                         <strong>Program 4:</strong> Computer A (100s), Computer B (800s), Computer C (100s)
                     </blockquote>
-                    Calculate the MIPS values for each computer for each program. Then calculate the arithmetic and harmonic means assuming equal weights for the four programs, and rank the computers based on arithmetic mean and harmonic mean. Based on these ratings, can you draw a clear conclusion regarding the relative performance of the three computers?
+                    Calculate the MIPS values for each computer for each program. Then calculate the arithmetic and
+                    harmonic means assuming equal weights for the four programs, and rank the computers based on
+                    arithmetic mean and harmonic mean. Based on these ratings, can you draw a clear conclusion regarding
+                    the relative performance of the three computers?
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">Each program executes 100,000,000 (100M) instructions.
-Formula: MIPS = <div class="fraction"><span class="numerator">Instructions</span><span class="denominator">Execution Time &times; 10<sup>6</sup></span></div> = <div class="fraction"><span class="numerator">100</span><span class="denominator">Time (seconds)</span></div>
+                        Formula: MIPS = <div class="fraction"><span class="numerator">Instructions</span><span
+                                class="denominator">Execution Time &times; 10<sup>6</sup></span></div> = <div
+                            class="fraction"><span class="numerator">100</span><span class="denominator">Time
+                                (seconds)</span></div>
 
-1) Compute MIPS values for each Computer and Program:
-   - Program 1 MIPS:
-     Comp A = <div class="fraction"><span class="numerator">100</span><span class="denominator">1</span></div> = 100 MIPS
-     Comp B = <div class="fraction"><span class="numerator">100</span><span class="denominator">10</span></div> = 10 MIPS
-     Comp C = <div class="fraction"><span class="numerator">100</span><span class="denominator">20</span></div> = 5 MIPS
-   - Program 2 MIPS:
-     Comp A = <div class="fraction"><span class="numerator">100</span><span class="denominator">1000</span></div> = 0.1 MIPS
-     Comp B = <div class="fraction"><span class="numerator">100</span><span class="denominator">100</span></div> = 1 MIPS
-     Comp C = <div class="fraction"><span class="numerator">100</span><span class="denominator">20</span></div> = 5 MIPS
-   - Program 3 MIPS:
-     Comp A = <div class="fraction"><span class="numerator">100</span><span class="denominator">500</span></div> = 0.2 MIPS
-     Comp B = <div class="fraction"><span class="numerator">100</span><span class="denominator">1000</span></div> = 0.1 MIPS
-     Comp C = <div class="fraction"><span class="numerator">100</span><span class="denominator">50</span></div> = 2 MIPS
-   - Program 4 MIPS:
-     Comp A = <div class="fraction"><span class="numerator">100</span><span class="denominator">100</span></div> = 1 MIPS
-     Comp B = <div class="fraction"><span class="numerator">100</span><span class="denominator">800</span></div> = 0.125 MIPS
-     Comp C = <div class="fraction"><span class="numerator">100</span><span class="denominator">100</span></div> = 1 MIPS
+                        1) Compute MIPS values for each Computer and Program:
+                        - Program 1 MIPS:
+                        Comp A = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">1</span></div> = 100 MIPS
+                        Comp B = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">10</span></div> = 10 MIPS
+                        Comp C = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">20</span></div> = 5 MIPS
+                        - Program 2 MIPS:
+                        Comp A = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">1000</span></div> = 0.1 MIPS
+                        Comp B = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">100</span></div> = 1 MIPS
+                        Comp C = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">20</span></div> = 5 MIPS
+                        - Program 3 MIPS:
+                        Comp A = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">500</span></div> = 0.2 MIPS
+                        Comp B = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">1000</span></div> = 0.1 MIPS
+                        Comp C = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">50</span></div> = 2 MIPS
+                        - Program 4 MIPS:
+                        Comp A = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">100</span></div> = 1 MIPS
+                        Comp B = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">800</span></div> = 0.125 MIPS
+                        Comp C = <div class="fraction"><span class="numerator">100</span><span
+                                class="denominator">100</span></div> = 1 MIPS
 
-2) Calculate Arithmetic Mean (AM):
-   Formula: AM = <div class="fraction"><span class="numerator">MIPS<sub>P1</sub> + MIPS<sub>P2</sub> + MIPS<sub>P3</sub> + MIPS<sub>P4</sub></span><span class="denominator">4</span></div>
-   - Comp A = <div class="fraction"><span class="numerator">100 + 0.1 + 0.2 + 1</span><span class="denominator">4</span></div> = <div class="fraction"><span class="numerator">101.3</span><span class="denominator">4</span></div> = 25.325 MIPS
-   - Comp B = <div class="fraction"><span class="numerator">10 + 1 + 0.1 + 0.125</span><span class="denominator">4</span></div> = <div class="fraction"><span class="numerator">11.225</span><span class="denominator">4</span></div> = 2.806 MIPS
-   - Comp C = <div class="fraction"><span class="numerator">5 + 5 + 2 + 1</span><span class="denominator">4</span></div> = <div class="fraction"><span class="numerator">13</span><span class="denominator">4</span></div> = 3.25 MIPS
-   Ranking by Arithmetic Mean: Comp A (25.33 MIPS) > Comp C (3.25 MIPS) > Comp B (2.81 MIPS)
+                        2) Calculate Arithmetic Mean (AM):
+                        Formula: AM = <div class="fraction"><span class="numerator">MIPS<sub>P1</sub> +
+                                MIPS<sub>P2</sub> + MIPS<sub>P3</sub> + MIPS<sub>P4</sub></span><span
+                                class="denominator">4</span></div>
+                        - Comp A = <div class="fraction"><span class="numerator">100 + 0.1 + 0.2 + 1</span><span
+                                class="denominator">4</span></div> = <div class="fraction"><span
+                                class="numerator">101.3</span><span class="denominator">4</span></div> = 25.325 MIPS
+                        - Comp B = <div class="fraction"><span class="numerator">10 + 1 + 0.1 + 0.125</span><span
+                                class="denominator">4</span></div> = <div class="fraction"><span
+                                class="numerator">11.225</span><span class="denominator">4</span></div> = 2.806 MIPS
+                        - Comp C = <div class="fraction"><span class="numerator">5 + 5 + 2 + 1</span><span
+                                class="denominator">4</span></div> = <div class="fraction"><span
+                                class="numerator">13</span><span class="denominator">4</span></div> = 3.25 MIPS
+                        Ranking by Arithmetic Mean: Comp A (25.33 MIPS) > Comp C (3.25 MIPS) > Comp B (2.81 MIPS)
 
-3) Calculate Harmonic Mean (HM):
-   Formula: HM = <div class="fraction"><span class="numerator">4</span><span class="denominator"><div class="fraction"><span class="numerator">1</span><span class="denominator">MIPS<sub>P1</sub></span></div> + <div class="fraction"><span class="numerator">1</span><span class="denominator">MIPS<sub>P2</sub></span></div> + <div class="fraction"><span class="numerator">1</span><span class="denominator">MIPS<sub>P3</sub></span></div> + <div class="fraction"><span class="numerator">1</span><span class="denominator">MIPS<sub>P4</sub></span></div></span></div>
-               = <div class="fraction"><span class="numerator">4</span><span class="denominator"><div class="fraction"><span class="numerator">Time<sub>P1</sub></span><span class="denominator">100</span></div> + <div class="fraction"><span class="numerator">Time<sub>P2</sub></span><span class="denominator">100</span></div> + <div class="fraction"><span class="numerator">Time<sub>P3</sub></span><span class="denominator">100</span></div> + <div class="fraction"><span class="numerator">Time<sub>P4</sub></span><span class="denominator">100</span></div></span></div>
-               = <div class="fraction"><span class="numerator">400</span><span class="denominator">Total Execution Time</span></div>
-   - Comp A = <div class="fraction"><span class="numerator">400</span><span class="denominator">1 + 1000 + 500 + 100</span></div> = <div class="fraction"><span class="numerator">400</span><span class="denominator">1601</span></div> = 0.25 MIPS
-   - Comp B = <div class="fraction"><span class="numerator">400</span><span class="denominator">10 + 100 + 1000 + 800</span></div> = <div class="fraction"><span class="numerator">400</span><span class="denominator">1910</span></div> = 0.209 MIPS
-   - Comp C = <div class="fraction"><span class="numerator">400</span><span class="denominator">20 + 20 + 50 + 100</span></div> = <div class="fraction"><span class="numerator">400</span><span class="denominator">190</span></div> = 2.105 MIPS
-   Ranking by Harmonic Mean: Comp C (2.105 MIPS) > Comp A (0.25 MIPS) > Comp B (0.209 MIPS)
+                        3) Calculate Harmonic Mean (HM):
+                        Formula: HM = <div class="fraction"><span class="numerator">4</span><span class="denominator">
+                                <div class="fraction"><span class="numerator">1</span><span
+                                        class="denominator">MIPS<sub>P1</sub></span></div> + <div class="fraction"><span
+                                        class="numerator">1</span><span class="denominator">MIPS<sub>P2</sub></span>
+                                </div> + <div class="fraction"><span class="numerator">1</span><span
+                                        class="denominator">MIPS<sub>P3</sub></span></div> + <div class="fraction"><span
+                                        class="numerator">1</span><span class="denominator">MIPS<sub>P4</sub></span>
+                                </div>
+                            </span></div>
+                        = <div class="fraction"><span class="numerator">4</span><span class="denominator">
+                                <div class="fraction"><span class="numerator">Time<sub>P1</sub></span><span
+                                        class="denominator">100</span></div> + <div class="fraction"><span
+                                        class="numerator">Time<sub>P2</sub></span><span class="denominator">100</span>
+                                </div> + <div class="fraction"><span class="numerator">Time<sub>P3</sub></span><span
+                                        class="denominator">100</span></div> + <div class="fraction"><span
+                                        class="numerator">Time<sub>P4</sub></span><span class="denominator">100</span>
+                                </div>
+                            </span></div>
+                        = <div class="fraction"><span class="numerator">400</span><span class="denominator">Total
+                                Execution Time</span></div>
+                        - Comp A = <div class="fraction"><span class="numerator">400</span><span class="denominator">1 +
+                                1000 + 500 + 100</span></div> = <div class="fraction"><span
+                                class="numerator">400</span><span class="denominator">1601</span></div> = 0.25 MIPS
+                        - Comp B = <div class="fraction"><span class="numerator">400</span><span class="denominator">10
+                                + 100 + 1000 + 800</span></div> = <div class="fraction"><span
+                                class="numerator">400</span><span class="denominator">1910</span></div> = 0.209 MIPS
+                        - Comp C = <div class="fraction"><span class="numerator">400</span><span class="denominator">20
+                                + 20 + 50 + 100</span></div> = <div class="fraction"><span
+                                class="numerator">400</span><span class="denominator">190</span></div> = 2.105 MIPS
+                        Ranking by Harmonic Mean: Comp C (2.105 MIPS) > Comp A (0.25 MIPS) > Comp B (0.209 MIPS)
 
-Conclusion:
-No single computer is globally superior. Comp A is faster for workloads dominated by Program 1 (highly skewed Arithmetic Mean). Comp C is better for balanced multi-program execution (higher Harmonic Mean/lower total runtime).</div>
+                        Conclusion:
+                        No single computer is globally superior. Comp A is faster for workloads dominated by Program 1
+                        (highly skewed Arithmetic Mean). Comp C is better for balanced multi-program execution (higher
+                        Harmonic Mean/lower total runtime).</div>
                 </div>
             </div>
 
             <!-- PROBLEM 9 -->
             <div class="playbook-workspace" id="problem-card-9">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 09</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Textbook Trace Experiment CPI & MIPS Sizing
                 </h3>
                 <div class="question-text">
-                    The instruction mix and the CPI for each instruction type are given below based on the result of a program trace experiment:
+                    The instruction mix and the CPI for each instruction type are given below based on the result of a
+                    program trace experiment:
                     <blockquote>
                         <strong>Arithmetic and logic:</strong> 60% instruction mix (1 Cycle per instruction)<br>
                         <strong>Load/store with cache hit:</strong> 18% instruction mix (2 Cycles per instruction)<br>
                         <strong>Branch:</strong> 12% instruction mix (4 Cycles per instruction)<br>
-                        <strong>Memory reference with cache miss:</strong> 10% instruction mix (8 Cycles per instruction)
+                        <strong>Memory reference with cache miss:</strong> 10% instruction mix (8 Cycles per
+                        instruction)
                     </blockquote>
-                    Calculate the average CPI and the corresponding MIPS rate when the above program is executed on a uniprocessor with the above trace results (assuming a reference clock rate of 400 MHz).
+                    Calculate the average CPI and the corresponding MIPS rate when the above program is executed on a
+                    uniprocessor with the above trace results (assuming a reference clock rate of 400 MHz).
                 </div>
 
                 <!-- Answer Box -->
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">Given parameters:
-- Reference Clock Rate = 200 MHz = 200 * 10<sup>6</sup> Hz
-- Instruction Mix & CPI:
-  * Arithmetic/Logic: Mix = 60%, CPI = 1
-  * Load/Store cache hit: Mix = 18%, CPI = 2
-  * Branch: Mix = 12%, CPI = 4
-  * Memory cache miss: Mix = 10%, CPI = 8
+                        - Reference Clock Rate = 200 MHz = 200 * 10<sup>6</sup> Hz
+                        - Instruction Mix & CPI:
+                        * Arithmetic/Logic: Mix = 60%, CPI = 1
+                        * Load/Store cache hit: Mix = 18%, CPI = 2
+                        * Branch: Mix = 12%, CPI = 4
+                        * Memory cache miss: Mix = 10%, CPI = 8
 
-1) Calculate Average CPI:
-   Formula: Average CPI = Sum(Instruction Mix<sub>i</sub> &times; CPI<sub>i</sub>)
-   Average CPI = (1)(0.6) + (2)(0.18) + (4)(0.12) + (8)(0.10)
-               = 0.6 + 0.36 + 0.48 + 0.8
-               = 2.24
+                        1) Calculate Average CPI:
+                        Formula: Average CPI = Sum(Instruction Mix<sub>i</sub> &times; CPI<sub>i</sub>)
+                        Average CPI = (1)(0.6) + (2)(0.18) + (4)(0.12) + (8)(0.10)
+                        = 0.6 + 0.36 + 0.48 + 0.8
+                        = 2.24
 
-2) Calculate MIPS Rate:
-   Formula: MIPS Rate = <div class="fraction"><span class="numerator">Clock Rate (MHz)</span><span class="denominator">Average CPI</span></div>
-   MIPS Rate = <div class="fraction"><span class="numerator">200</span><span class="denominator">2.24</span></div>
-             = 89.29 MIPS</div>
+                        2) Calculate MIPS Rate:
+                        Formula: MIPS Rate = <div class="fraction"><span class="numerator">Clock Rate (MHz)</span><span
+                                class="denominator">Average CPI</span></div>
+                        MIPS Rate = <div class="fraction"><span class="numerator">200</span><span
+                                class="denominator">2.24</span></div>
+                        = 89.29 MIPS</div>
                 </div>
             </div>
 
             <!-- PROBLEM 10 -->
             <div class="playbook-workspace" id="problem-card-10">
                 <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 10</div>
-                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                <h3 class="playbook-act-title"
+                    style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
                     Parallel Thread Scaling & Cache Penalty Solver
                 </h3>
                 <div class="question-text">
-                    In the above example 9, assume that the program can be executed in eight parallel tasks or threads with roughly equal number of instructions executed in each task. Execution is on an 8-core system with each core (processor) having the same performance as the single processor originally used. Coordination and synchronization between the parts adds an extra 25,000 instruction executions to each task. Assume the same instruction mix as in the example for each task, but increase the CPI for memory reference with cache miss to 12 cycles due to contention for memory.<br><br>
+                    In the above example 9, assume that the program can be executed in eight parallel tasks or threads
+                    with roughly equal number of instructions executed in each task. Execution is on an 8-core system
+                    with each core (processor) having the same performance as the single processor originally used.
+                    Coordination and synchronization between the parts adds an extra 25,000 instruction executions to
+                    each task. Assume the same instruction mix as in the example for each task, but increase the CPI for
+                    memory reference with cache miss to 12 cycles due to contention for memory.<br><br>
                     <strong>a.</strong> Determine the average CPI.<br>
                     <strong>b.</strong> Determine the corresponding MIPS rate.<br>
                     <strong>c.</strong> Calculate the speedup factor.
@@ -1041,33 +1264,37 @@ No single computer is globally superior. Comp A is faster for workloads dominate
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">Given Parameters:
-- Number of cores = 8
-- Original program instructions = N
-- Coordination overhead instructions per core task = 25,000
-- New Cache Miss CPI = 12
-- Core Task Instruction Mix & CPI:
-  * Arithmetic/Logic: Mix = 60%, CPI = 1
-  * Load/Store cache hit: Mix = 18%, CPI = 2
-  * Branch: Mix = 12%, CPI = 4
-  * Memory cache miss: Mix = 10%, CPI = 12 (increased from 8)
+                        - Number of cores = 8
+                        - Original program instructions = N
+                        - Coordination overhead instructions per core task = 25,000
+                        - New Cache Miss CPI = 12
+                        - Core Task Instruction Mix & CPI:
+                        * Arithmetic/Logic: Mix = 60%, CPI = 1
+                        * Load/Store cache hit: Mix = 18%, CPI = 2
+                        * Branch: Mix = 12%, CPI = 4
+                        * Memory cache miss: Mix = 10%, CPI = 12 (increased from 8)
 
-a) Determine Average CPI:
-   Formula: Average CPI = Sum(Instruction Mix<sub>i</sub> &times; CPI<sub>i</sub>)
-   Average CPI = (1)(0.6) + (2)(0.18) + (4)(0.12) + (12)(0.10)
-               = 0.6 + 0.36 + 0.48 + 1.2
-               = 2.64
+                        a) Determine Average CPI:
+                        Formula: Average CPI = Sum(Instruction Mix<sub>i</sub> &times; CPI<sub>i</sub>)
+                        Average CPI = (1)(0.6) + (2)(0.18) + (4)(0.12) + (12)(0.10)
+                        = 0.6 + 0.36 + 0.48 + 1.2
+                        = 2.64
 
-b) Determine MIPS Rate per task:
-   Assuming Clock Rate = 200 MHz:
-   Formula: MIPS Rate = <div class="fraction"><span class="numerator">Clock Rate (MHz)</span><span class="denominator">Average CPI</span></div>
-   MIPS Rate = <div class="fraction"><span class="numerator">200</span><span class="denominator">2.64</span></div>
-             = 75.76 MIPS
+                        b) Determine MIPS Rate per task:
+                        Assuming Clock Rate = 200 MHz:
+                        Formula: MIPS Rate = <div class="fraction"><span class="numerator">Clock Rate (MHz)</span><span
+                                class="denominator">Average CPI</span></div>
+                        MIPS Rate = <div class="fraction"><span class="numerator">200</span><span
+                                class="denominator">2.64</span></div>
+                        = 75.76 MIPS
 
-c) Calculate speedup factor:
-   Assume original instructions = N
-   Parallel execution = <div class="fraction"><span class="numerator">N</span><span class="denominator">8</span></div> + 25,000
-   Approximate speedup = <div class="fraction"><span class="numerator">8 &times; 2.24</span><span class="denominator">2.64</span></div>
-                       = 6.79 times</div>
+                        c) Calculate speedup factor:
+                        Assume original instructions = N
+                        Parallel execution = <div class="fraction"><span class="numerator">N</span><span
+                                class="denominator">8</span></div> + 25,000
+                        Approximate speedup = <div class="fraction"><span class="numerator">8 &times; 2.24</span><span
+                                class="denominator">2.64</span></div>
+                        = 6.79 times</div>
                 </div>
             </div>
 
@@ -1081,7 +1308,7 @@ c) Calculate speedup factor:
         window.addEventListener('DOMContentLoaded', () => {
             const savedName = localStorage.getItem('coa_student_name') || 'Sarvadnya Patil';
             document.getElementById('cell-name').innerText = savedName;
-            
+
             document.getElementById('cell-usn').innerText = localStorage.getItem('coa_student_usn') || '02FE25BCS017';
             document.getElementById('cell-prog').innerText = localStorage.getItem('coa_student_prog') || 'B.E. CSE';
             document.getElementById('cell-inst').innerText = localStorage.getItem('coa_student_inst') || 'KLE Tech, Belagavi';
@@ -1096,4 +1323,5 @@ c) Calculate speedup factor:
         }
     </script>
 </body>
+
 </html>
