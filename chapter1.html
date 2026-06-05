@@ -1,0 +1,2805 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>COA Portfolio - Chapter 1 Overview of Modern Processors Workspace</title>
+<!-- Google Fonts for Brutalist & Tech Aesthetics -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&amp;family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@700;800;900&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Charcoal & Ember Brutalist Design Tokens */
+        :root {
+            --bg-primary: #0a0a0c; /* Deep warm charcoal */
+            --bg-card: #121216; /* Dark slate card */
+            --accent-orange: #f97316; /* Magma/Ember Orange */
+            --accent-amber: #fbbf24; /* Golden amber */
+            --accent-blue: #38bdf8; /* Sky blue */
+            --accent-glow: rgba(249, 115, 22, 0.2);
+            --text-white: #f4f4f7;
+            --text-muted: #9ea2b0;
+            --border-width: 2.5px;
+            --border-color: #1c1c24;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-code: 'Fira Code', monospace;
+            --box-shadow: 6px 6px 0px #000000;
+            --box-shadow-hover: 2px 2px 0px #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Custom Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-orange);
+            border: 2px solid #0a0a0c;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-amber);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            background-image: radial-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-white);
+            font-family: var(--font-body);
+            line-height: 1.5;
+            padding: 2.5rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Top Header Nav Bullet */
+        .top-bullet {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .top-bullet span {
+            color: var(--accent-orange);
+        }
+
+        /* Chapter Title Styles */
+        .ch-num {
+            font-family: var(--font-code);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .ch-title {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--text-white);
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
+
+        .ch-title span {
+            color: var(--accent-orange);
+            text-decoration: underline;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.2);
+        }
+
+        .ch-desc {
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-top: 0.8rem;
+        }
+
+        /* Profile cell grid table */
+        .brutalist-grid-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            border: var(--border-width) solid #000000;
+            background: var(--bg-card);
+            box-shadow: var(--box-shadow);
+            margin-top: 1rem;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .grid-cell {
+            padding: 1.2rem;
+            border-right: var(--border-width) solid #000000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .grid-cell:last-child {
+            border-right: none;
+        }
+
+        .cell-value {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-white);
+        }
+
+        .cell-label {
+            font-family: var(--font-code);
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Dynamic Selector Dropdown styling */
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .custom-dropdown-trigger {
+            background: #08080b;
+            border: var(--border-width) solid var(--accent-orange);
+            padding: 0.7rem 1.2rem;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--accent-orange);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            box-shadow: 4px 4px 0px #000000;
+            transition: all 0.15s ease;
+        }
+
+        .custom-dropdown-trigger:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px #000000;
+        }
+
+        .custom-dropdown-arrow {
+            transition: transform 0.2s ease;
+            font-size: 0.8rem;
+        }
+
+        .custom-dropdown.active .custom-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .custom-dropdown-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            background: #08080b;
+            border: var(--border-width) solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            z-index: 100;
+            display: none;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .custom-dropdown.active .custom-dropdown-menu {
+            display: block;
+        }
+
+        .custom-dropdown-option {
+            padding: 0.65rem 1.2rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-white);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border-bottom: 1px solid #1a1a24;
+        }
+
+        .custom-dropdown-option:last-child {
+            border-bottom: none;
+        }
+
+        .custom-dropdown-option:hover {
+            background: var(--accent-orange);
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .custom-dropdown-option.selected {
+            background: rgba(249, 115, 22, 0.15);
+            border-left: 4px solid var(--accent-orange);
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        /* Specs Dashboard layout */
+        .specs-dashboard {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 1.5rem;
+            background: var(--bg-card);
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 4px;
+            padding: 1.8rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        @media (max-width: 900px) {
+            .specs-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .specs-terminal {
+            background: #000000;
+            border: 1px solid #1c1c24;
+            border-radius: 4px;
+            padding: 1.2rem;
+            font-family: var(--font-code);
+            font-size: 0.78rem;
+            color: #d1d5db;
+            min-height: 290px;
+            overflow-y: auto;
+            line-height: 1.5;
+            box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .terminal-header {
+            border-bottom: 1px dashed #1a1a24;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        .concepts-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            max-height: 290px;
+            overflow-y: auto;
+            padding-right: 0.3rem;
+        }
+
+        .concept-card {
+            background: #08080b;
+            border-left: 3.5px solid var(--accent-orange);
+            border-top: 1px solid #1c1c24;
+            border-right: 1px solid #1c1c24;
+            border-bottom: 1px solid #1c1c24;
+            border-radius: 4px;
+            padding: 0.8rem 1rem;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .concept-tag {
+            font-family: var(--font-code);
+            font-size: 0.64rem;
+            font-weight: bold;
+            color: var(--accent-amber);
+            text-transform: uppercase;
+        }
+
+        .concept-title {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-top: 0.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-white);
+        }
+
+        .concept-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* Playbook Activities Visual Navigation Grid */
+        .playbook-activities-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .playbook-act-card {
+            background: var(--bg-card);
+            border: var(--border-width) solid var(--border-color);
+            padding: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #000000;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .playbook-act-card:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #000000;
+            border-color: var(--accent-orange);
+        }
+
+        .playbook-act-badge {
+            align-self: flex-start;
+            font-family: var(--font-code);
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 0.15rem 0.4rem;
+            border: 1px solid #1a1a24;
+            background: #09090b;
+            color: var(--accent-amber);
+            border-radius: 2px;
+        }
+
+        .playbook-act-title {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-white);
+        }
+
+        .playbook-workspace {
+            background: var(--bg-card);
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 4px;
+            padding: 2.2rem;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            animation: chapterSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .playbook-workspace:hover {
+            border-color: rgba(249, 115, 22, 0.35);
+            box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Static Answer Card Styling */
+        .answer-box {
+            border: var(--border-width) solid #000000;
+            background: #08080b;
+            border-radius: 4px;
+            margin-top: 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 4px 4px 0px #000000;
+            overflow: hidden;
+        }
+
+        .answer-header {
+            background: #0f0f13;
+            border-bottom: var(--border-width) solid #000000;
+            padding: 0.5rem 0.8rem;
+            font-family: var(--font-code);
+            font-size: 0.72rem;
+            font-weight: bold;
+            color: var(--accent-orange);
+        }
+
+        .answer-content {
+            padding: 1.2rem;
+            color: var(--text-white);
+            font-family: var(--font-body);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .answer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .answer-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .answer-content ul, .answer-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .answer-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .answer-content code {
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            background: #1e1e24;
+            padding: 0.15rem 0.3rem;
+            border-radius: 3px;
+            color: var(--accent-amber);
+        }
+
+        .answer-content pre {
+            font-family: var(--font-code);
+            font-size: 0.82rem;
+            background: #000000;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #1a1a24;
+            overflow-x: auto;
+            margin: 0.8rem 0;
+            line-height: 1.35;
+            color: #d1d5db;
+        }
+
+        .fraction {
+            display: inline-flex;
+            flex-direction: column;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 1.1;
+            padding: 0 0.25rem;
+            font-family: var(--font-code);
+        }
+        .fraction .numerator {
+            border-bottom: 1.5px solid var(--text-white);
+            padding-bottom: 2px;
+            font-size: 0.85em;
+        }
+        .fraction .denominator {
+            padding-top: 2px;
+            font-size: 0.85em;
+        }
+
+        .question-text {
+            font-size: 0.94rem;
+            color: var(--text-white);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .question-text blockquote {
+            background: #08080b;
+            border-left: 3.5px solid var(--accent-orange);
+            padding: 0.8rem 1.2rem;
+            margin: 0.8rem 0;
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.88rem;
+        }
+
+        .brutalist-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.88rem;
+            border: var(--border-width) solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+        }
+        .brutalist-table th, .brutalist-table td {
+            border: 1.5px solid #1c1c24;
+            padding: 0.8rem;
+            text-align: left;
+        }
+        .brutalist-table th {
+            background: #0f0f13;
+            color: var(--accent-orange);
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+        .brutalist-table tr:nth-child(even) {
+            background: #0d0d11;
+        }
+
+        /* Interactive Simulator Styling */
+        .simulator-box {
+            background: #08080b;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 4px 4px 0 #000000;
+            padding: 1.5rem;
+        }
+        
+        .sim-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            border-bottom: 1.5px dashed var(--border-color);
+            padding-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sim-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .sim-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sim-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sim-slider-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .sim-slider-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            width: 140px;
+            flex-shrink: 0;
+        }
+
+        .sim-slider {
+            flex: 1;
+            accent-color: var(--accent-orange);
+        }
+
+        .sim-val {
+            font-family: var(--font-code);
+            font-size: 0.82rem;
+            color: var(--text-white);
+            background: #121216;
+            border: 1.5px solid #1c1c24;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            width: 70px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .sim-btn-row {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .sim-btn {
+            padding: 0.5rem 1rem;
+            background: #121216;
+            border: 2px solid var(--accent-orange);
+            color: var(--accent-orange);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 #000000;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+        }
+
+        .sim-btn:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0 #000000;
+            background: rgba(249, 115, 22, 0.05);
+        }
+
+        .sim-btn.active {
+            background: var(--accent-orange);
+            color: #000000;
+            font-weight: 800;
+        }
+
+        .sim-btn.active:hover {
+            background: var(--accent-orange);
+            color: #000000;
+        }
+
+        .sim-visual {
+            background: #040406;
+            border: 1px solid #1c1c24;
+            border-radius: 4px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .sim-terminal {
+            background: #000000;
+            border: 1px solid #1c1c24;
+            padding: 0.8rem;
+            border-radius: 4px;
+            font-family: var(--font-code);
+            font-size: 0.76rem;
+            line-height: 1.5;
+            color: #d1d5db;
+            width: 100%;
+            margin-top: 0.8rem;
+            min-height: 120px;
+        }
+
+        .sim-highlight {
+            color: var(--accent-amber);
+            font-weight: bold;
+        }
+
+        .sim-accent {
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        /* SVG Active Animation classes */
+        .active-node {
+            stroke: var(--accent-orange) !important;
+            fill: var(--accent-glow) !important;
+            filter: drop-shadow(0 0 5px var(--accent-orange));
+            stroke-width: 2.2px !important;
+        }
+        
+        .active-bus {
+            stroke: var(--accent-orange) !important;
+            stroke-width: 3.5px !important;
+            stroke-dasharray: 4,4;
+            animation: flowPackets 1s infinite linear;
+        }
+
+        @keyframes flowPackets {
+            to { stroke-dashoffset: -20; }
+        }
+
+        .active-text {
+            fill: var(--accent-amber) !important;
+            font-weight: bold;
+        }
+
+        /* Staggered Animations */
+        @keyframes chapterSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .playbook-activities-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .playbook-activities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .brutalist-grid-table {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    
+        /* --- PROBLEM 01: DIE MAP INTERACTIVE GRID --- */
+        .die-map-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .die-cell-btn {
+            border: var(--border-thick);
+            padding: 0.8rem 0;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 2px 2px 0px #000000;
+            transition: all 0.12s ease;
+            text-align: center;
+        }
+
+        .die-cell-btn:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #000000;
+        }
+
+        .die-cell-btn.p-core {
+            background: #1e293b;
+            color: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }
+
+        .die-cell-btn.e-core {
+            background: #1e1b4b;
+            color: var(--accent-amber);
+            border-color: var(--accent-amber);
+        }
+
+        .die-cell-btn.selected {
+            background: var(--accent-red) !important;
+            color: #ffffff !important;
+            border-color: #000000 !important;
+            animation: pulse-border 1.5s infinite;
+        }
+
+        .die-legend {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            align-items: center;
+            color: var(--text-muted);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .legend-box {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #000;
+            border-radius: 2px;
+        }
+
+        /* --- SKU Selector --- */
+        .sku-selector-container {
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .sku-label {
+            font-family: var(--font-code);
+            font-size: 0.72rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .sku-btn-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .sku-btn {
+            padding: 0.4rem 0.8rem;
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            font-weight: bold;
+            border: var(--border-thin);
+            background: var(--bg-card);
+            color: var(--text-white);
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #000;
+            border-radius: 2px;
+            transition: all 0.1s ease;
+        }
+
+        .sku-btn:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #000;
+            border-color: var(--accent-orange);
+        }
+
+        .sku-btn.active {
+            background: var(--accent-orange);
+            color: #000000;
+            box-shadow: 1px 1px 0px #000;
+            transform: translate(1px, 1px);
+            border-color: #000000;
+        }
+
+        /* --- Console Window --- */
+        .console-log {
+            background: #000000;
+            color: #22c55e;
+            font-family: var(--font-code);
+            font-size: 0.78rem;
+            padding: 0.8rem;
+            border: var(--border-thick);
+            border-radius: 4px;
+            min-height: 100px;
+            max-height: 180px;
+            overflow-y: auto;
+            margin-top: 1rem;
+            white-space: pre-line;
+            box-shadow: inset 0px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* --- PROBLEM 03: MEMORY HIERARCHY LATENCY STACK --- */
+        .memory-stack-split {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        @media (max-width: 800px) {
+            .memory-stack-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .memory-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .stack-bar {
+            border: var(--border-thick);
+            padding: 0.75rem 1rem;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #000000;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stack-bar:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #000000;
+        }
+
+        .stack-bar.active {
+            border-color: var(--text-white);
+            box-shadow: 2px 2px 0px #000000;
+        }
+
+        .stack-bar.bar-registers { background: var(--accent-red); color: #ffffff; width: 50%; }
+        .stack-bar.bar-l1 { background: var(--accent-orange); color: #000000; width: 60%; }
+        .stack-bar.bar-l2 { background: #1c1c24; color: var(--text-white); width: 70%; }
+        .stack-bar.bar-l3 { background: #2a2a35; color: var(--text-white); width: 80%; }
+        .stack-bar.bar-ram { background: #4a4a58; color: var(--text-white); width: 90%; }
+        .stack-bar.bar-ssd { background: #6b6b7c; color: var(--text-white); width: 100%; }
+
+        .stack-bar span {
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .stack-bar-desc-box {
+            background: var(--bg-card);
+            border: var(--border-thick);
+            padding: 1.2rem;
+            border-radius: 4px;
+            box-shadow: var(--box-shadow);
+            min-height: 190px;
+        }
+
+        .locality-card {
+            border: var(--border-thick);
+            background: var(--bg-card);
+            padding: 1.2rem;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .amat-formula {
+            background: #000000;
+            color: var(--accent-amber);
+            padding: 0.6rem 0.9rem;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 0.6rem;
+            display: inline-block;
+        }
+
+        /* --- PROBLEM 07: RING INTERCONNECT ROUTER --- */
+        .bus-diagram-visual {
+            border: var(--border-thick);
+            background: #08080b;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .ring-interconnect-label {
+            position: absolute;
+            top: 0.6rem;
+            left: 1rem;
+            font-family: var(--font-code);
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* --- Ambient Slider --- */
+        .ambient-slider-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .ambient-label {
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text-muted);
+            width: 140px;
+        }
+
+        .ambient-slider {
+            flex: 1;
+            accent-color: var(--accent-orange);
+        }
+
+        .ambient-val {
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            font-weight: bold;
+            width: 60px;
+            text-align: right;
+            color: var(--text-white);
+        }
+
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            margin-top: 1rem;
+            border: var(--border-width) solid #000000;
+            background: var(--bg-card);
+            box-shadow: 4px 4px 0px #000000;
+        }
+
+        .metrics-table th, .metrics-table td {
+            border: 1.5px solid var(--border-color);
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+        }
+
+        .metrics-table th {
+            background: #0f0f13;
+            color: var(--accent-orange);
+            font-family: var(--font-display);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.82rem;
+            letter-spacing: 0.05em;
+        }
+
+        .metrics-table tr:nth-child(even) {
+            background: #08080b;
+        }
+
+        .metrics-table td {
+            color: var(--text-white);
+        }
+
+        .alu-input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .alu-label {
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            display: block;
+            color: var(--text-muted);
+        }
+
+        .alu-input {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: var(--border-thick);
+            border-radius: 4px;
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            box-shadow: 2px 2px 0px #000000;
+            background: #08080b;
+            color: var(--text-white);
+        }
+
+        .alu-input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+
+        @keyframes pulse-border {
+            0% { outline: 0px solid rgba(239, 68, 68, 0.4); }
+            50% { outline: 4px solid rgba(239, 68, 68, 0.4); }
+            100% { outline: 0px solid rgba(239, 68, 68, 0); }
+        }
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+<div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
+<div class="top-bullet">
+<span>//</span> Chapter 1
+            </div>
+<div class="ch-title">Chapter 1: <span>Overview of Modern Processors</span></div>
+<p class="ch-desc" style="max-width: 800px;">
+                Examine the architectural foundations, technical specifications, and hardware characteristics of leading modern processors (Intel Core i9-13900K, Apple M3 Max, ARM Cortex-A15, and Cortex-A78) and map their layouts to the core concepts covered in COA theory and lab classes.
+            </p>
+</div>
+<!-- Synchronized Student Parameter Grid -->
+<div class="brutalist-grid-table">
+<div class="grid-cell">
+<div class="cell-value" id="cell-name">Sarvadnya Patil</div>
+<span class="cell-label">Student Name</span>
+</div>
+<div class="grid-cell">
+<div class="cell-value" id="cell-usn">02FE25BCS017</div>
+<span class="cell-label">USN / ID</span>
+</div>
+<div class="grid-cell">
+<div class="cell-value" id="cell-prog">B.E. CSE</div>
+<span class="cell-label">Programme</span>
+</div>
+<div class="grid-cell">
+<div class="cell-value" id="cell-inst">KLE Tech, Belagavi</div>
+<span class="cell-label">Institution</span>
+</div>
+</div>
+<!-- Interactive Specs Comparison & Concept Mapping Engine -->
+<div style="margin-top: 0.5rem;">
+<div class="ch-num" style="margin-bottom: 0.6rem; color: var(--accent-orange);">// CPU SPECS COMPARATOR &amp; CONCEPT MAPPER</div>
+<div style="margin-bottom: 1rem; width: 100%; max-width: 400px;">
+<div class="custom-dropdown" id="proc-dropdown">
+<div class="custom-dropdown-trigger" onclick="toggleDropdown()">
+<span id="selected-proc-label">Intel Core i9-13900K (x86 Hybrid)</span>
+<span class="custom-dropdown-arrow">▼</span>
+</div>
+<div class="custom-dropdown-menu">
+<div class="custom-dropdown-option selected" data-value="i9" onclick="selectProcessor('i9', 'Intel Core i9-13900K (x86 Hybrid)')">Intel Core i9-13900K (x86 Hybrid)</div>
+<div class="custom-dropdown-option" data-value="m3" onclick="selectProcessor('m3', 'Apple M3 Max (ARM64 Unified)')">Apple M3 Max (ARM64 Unified)</div>
+<div class="custom-dropdown-option" data-value="a15" onclick="selectProcessor('a15', 'ARM Cortex-A15 (ARMv7 Classic)')">ARM Cortex-A15 (ARMv7 Classic)</div>
+<div class="custom-dropdown-option" data-value="a78" onclick="selectProcessor('a78', 'ARM Cortex-A78 (ARMv8.2 Mobile)')">ARM Cortex-A78 (ARMv8.2 Mobile)</div>
+</div>
+</div>
+</div>
+<div class="specs-dashboard">
+<div class="specs-terminal">
+<div class="terminal-header">
+<span>[MOCK BIOS: LOAD SPECS]</span>
+<span id="term-status" style="color:var(--accent-amber);">ACTIVE</span>
+</div>
+<div id="term-content">
+<!-- Filled by JS -->
+</div>
+</div>
+<div class="concepts-panel" id="concepts-list">
+<!-- Mapped Concepts will display here as brutalist cards -->
+</div>
+</div>
+</div>
+<!-- Table of Contents Visual Navigator -->
+<div style="margin-top: 0.5rem;">
+<div class="ch-num" style="margin-bottom: 0.6rem; color: var(--accent-amber);">// QUICK NAVIGATOR</div>
+<div class="playbook-activities-grid">
+<div class="playbook-act-card" onclick="scrollToProblem(1)">
+<div class="playbook-act-badge">Q01</div>
+<div class="playbook-act-title">Architectural Paradigms</div>
+</div>
+<div class="playbook-act-card" onclick="scrollToProblem(2)">
+<div class="playbook-act-badge">Q02</div>
+<div class="playbook-act-title">Core Organization</div>
+</div>
+<div class="playbook-act-card" onclick="scrollToProblem(3)">
+<div class="playbook-act-badge">Q03</div>
+<div class="playbook-act-title">Cache &amp; Memory Hierarchy</div>
+</div>
+<div class="playbook-act-card" onclick="scrollToProblem(4)">
+<div class="playbook-act-badge">Q04</div>
+<div class="playbook-act-title">Instruction Flow &amp; Tracing</div>
+</div>
+<div class="playbook-act-card" onclick="scrollToProblem(5)">
+<div class="playbook-act-badge">Q05</div>
+<div class="playbook-act-title">Registers &amp; ISA Layout</div>
+</div>
+<div class="playbook-act-card" onclick="scrollToProblem(6)">
+<div class="playbook-act-badge">Q06</div>
+<div class="playbook-act-title">Von Neumann vs Harvard</div>
+</div>
+<div class="playbook-act-card" onclick="scrollToProblem(7)">
+<div class="playbook-act-badge">Q07</div>
+<div class="playbook-act-title">Buses &amp; Interconnects</div>
+</div>
+<div class="playbook-act-card" onclick="scrollToProblem(8)">
+<div class="playbook-act-badge">Q08</div>
+<div class="playbook-act-title">Computational ALUs</div>
+</div>
+<div class="playbook-act-card" onclick="scrollToProblem(9)">
+<div class="playbook-act-badge">Q09</div>
+<div class="playbook-act-title">Hazards &amp; Renaming</div>
+</div>
+<div class="playbook-act-card" onclick="scrollToProblem(10)">
+<div class="playbook-act-badge">Q10</div>
+<div class="playbook-act-title">Performance Equations</div>
+</div>
+</div>
+</div>
+<!-- Vertically Stacked Review Cards -->
+<div style="display: flex; flex-direction: column; gap: 2.5rem; margin-top: 1rem;">
+<!-- PROBLEM 1 -->
+<div class="playbook-workspace" id="problem-card-1">
+<div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 01</div>
+<h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Architectural Paradigms &amp; Execution Philosophy
+                </h3>
+<div class="question-text">
+                    Contrast the design paradigms of modern x86 CISC-based hybrid cores (Intel Core i9-13900K) and ARM RISC-based multicore packages (Apple M3 Max, ARM Cortex-A15/A78). How do they handle instruction decoding, superscalar dispatch, and Out-of-Order (OoO) execution in hardware? Map these features to the CPU design paradigms.
+                </div>
+<!-- PROBLEM 1 SIMULATOR -->
+<div class="simulator-box">
+<div class="sim-title">
+<span>i9-13900K Die Map Core Inspector</span>
+<span class="sim-highlight">// PROBLEM 01 INTERACTIVE</span>
+</div>
+<div class="sku-selector-container">
+<span class="sku-label">Select Processor SKU:</span>
+<div class="sku-btn-group">
+<button class="sku-btn active" id="sku-i9" onclick="changeSKU('i9')">Core i9-13900K</button>
+<button class="sku-btn" id="sku-i7" onclick="changeSKU('i7')">Core i7-13700K</button>
+<button class="sku-btn" id="sku-i5" onclick="changeSKU('i5')">Core i5-13600K</button>
+</div>
+</div>
+<div class="die-map-grid" id="die-grid">
+<!-- Filled dynamically -->
+</div>
+<div class="die-legend">
+<div class="legend-item">
+<div class="legend-box" style="background:#1e293b; border: 2px solid var(--accent-orange);"></div>
+<span>P-Core (Performance)</span>
+</div>
+<div class="legend-item">
+<div class="legend-box" style="background:#1e1b4b; border: 2px solid var(--accent-amber);"></div>
+<span>E-Core (Efficient)</span>
+</div>
+<div class="legend-item">
+<div class="legend-box" style="background:var(--accent-red); border: 2px solid #000;"></div>
+<span>Selected Core</span>
+</div>
+</div>
+<div class="console-log" id="die-console">
+[Console] Click a core on the physical die map grid above to inspect its architectural specs, pipeline blocks, and instruction cache.
+                </div>
+</div>
+
+<div class="answer-box">
+<div class="answer-header">// COA RESOLVED ANSWER</div>
+<div class="answer-content">
+<p><strong>1. CISC vs. RISC Paradigm Shift:</strong></p>
+<ul>
+<li><strong>Intel Core i9-13900K (CISC x86-64):</strong> Implements a complex, variable-length instruction set (1 to 15 bytes). To execute these instructions efficiently, the hardware front-end contains a complex pre-decode and decode block that translates variable-length x86 macro-instructions into small, fixed-length, RISC-like execution primitives called <strong>Micro-operations (uops)</strong>. This adds significant hardware decoder area and thermal power overhead but preserves backwards software compatibility.</li>
+<li><strong>Apple M3 Max &amp; ARM Cortex (RISC ARM64/ARMv7):</strong> Use fixed-length (32-bit/4-byte) instructions aligned on memory boundaries. Decoders are physically smaller and simpler, facilitating ultra-wide instruction fetch and decode blocks (e.g. Apple M3 Max decodes an industry-leading 8 instructions per cycle) without massive thermal or area penalties.</li>
+</ul>
+<p><strong>2. Superscalar Dispatch &amp; Execution Pipeline:</strong></p>
+<p>A superscalar processor features redundant execution ports to execute multiple instructions in a single cycle. In modern CPUs, instruction execution consists of three distinct segments: in-order front-end, out-of-order execution core, and in-order retirement:</p>
+<ul>
+<li><strong>Out-of-Order (OoO) Execution:</strong> Instructions are renamed and dispatched to <em>Reservation Stations / Unified Scheduler Queues</em>. Once operands become available (which is checked using tag matching on register files), the scheduler dispatches instructions out of their compiler-ordered sequence to available execution units. This prevents processing stalls due to cache misses or high-latency operations.</li>
+<li><strong>Reorder Buffer (ROB):</strong> To ensure precise exceptions, instructions are retired (state written back to architectural registers) strictly in program order using a circular queue called the Reorder Buffer. The Intel i9-13900K uses a 512-entry ROB, while the Apple M3 Max uses a massive 300+ entry ROB to extract high Instruction-Level Parallelism (ILP).</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- PROBLEM 2 -->
+<div class="playbook-workspace" id="problem-card-2">
+<div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 02</div>
+<h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Core Organization &amp; Functional Units
+                </h3>
+<div class="question-text">
+                    Analyze the internal core layout and functional hardware units of modern processors. Map the hybrid core partitions (Performance vs. Efficient cores in Intel i9-13900K and Apple M3 Max) to the basic functional unit concepts (ALU, Control Unit, and Memory Interfaces) covered in theory classes.
+                </div>
+<div class="answer-box">
+<div class="answer-header">// COA RESOLVED ANSWER</div>
+<div class="answer-content">
+<p><strong>1. Functional Units Mapping:</strong></p>
+<p>Every execution core on a processor package is a complete, self-contained computing system containing all five basic functional units: Input, Output, Memory, ALU, and Control Unit. Modern cores split these components into execution resources:</p>
+<ul>
+<li><strong>Control Unit (CU) / Front-End:</strong> Consists of Instruction Fetch, Branch Predictors, Instruction Decoders, Rename/Allocate stages, and Schedulers. It translates raw binary program streams into control words that configure the active pipelines.</li>
+<li><strong>Arithmetic Logic Unit (ALU):</strong> Organized into dedicated execution ports (e.g. Integer ALUs, Floating-Point/Vector pipelines, Load/Store address generation units). Modern processors contain multiple ALUs per core (e.g., 4 to 6 integer ALUs) to execute concurrent operations.</li>
+<li><strong>Memory Interfaces:</strong> Incorporate local L1 Data Caches, L2 Caches, Memory Management Units (MMUs), Translation Lookaside Buffers (TLBs), and Load/Store Queues to coordinate data transfers with the system buses.</li>
+</ul>
+<p><strong>2. Hybrid Core Organization (Performance vs. Efficient Cores):</strong></p>
+<ul>
+<li><strong>Performance Cores (P-Cores - e.g. Intel Raptor Cove):</strong> Engineered for minimum execution latency. P-cores feature wide instruction decoders (6-wide), massive out-of-order execution queues, large vector execution ports (AVX-512/AMX), and hyper-threading support (32-entry instruction queues per thread). They run at high clock speeds (up to 5.8 GHz TVB) to minimize execution time.</li>
+<li><strong>Efficient Cores (E-cores - e.g. Intel Gracemont):</strong> Engineered for energy efficiency and high throughput density. E-cores are physically smaller, feature narrow decoders (3-wide), smaller schedulers, lack hyper-threading, and run at lower clock rates (2.2 - 4.3 GHz). 4 E-cores occupy the same physical silicon area as 1 P-core, allowing the CPU to efficiently handle parallel background threads (e.g., OS services) and multi-threaded scaling.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- PROBLEM 3 -->
+<div class="playbook-workspace" id="problem-card-3">
+<div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 03</div>
+<h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Cache Hierarchy &amp; Memory Latency Shielding
+                </h3>
+<div class="question-text">
+                    Explain how the cache hierarchies of the Intel Core i9-13900K and Apple M3 Max are structured. Detail the physical capacities and mapping strategies (L1, L2, L3) and discuss how they shield the execution units from high-latency external memory accesses.
+                </div>
+<!-- PROBLEM 3 SIMULATOR -->
+<div class="simulator-box">
+<div class="sim-title">
+<span>Intel i9-13900K Memory Latency Stack</span>
+<span class="sim-highlight">// PROBLEM 03 INTERACTIVE</span>
+</div>
+<p style="font-size:0.85rem; margin-bottom:1rem; color:var(--text-muted); line-height:1.45;">
+                    Click on any level in the memory hierarchy stack to inspect capacity, physical latency, bandwidth, and cache mapping details. Adjust hit rates to calculate the Average Memory Access Time (AMAT).
+                </p>
+<div class="memory-stack-split">
+<div class="memory-stack">
+<div class="stack-bar bar-registers active" onclick="selectStackLevel('registers')">
+<span>Core Registers</span>
+<span id="stack-lat-registers">0.5 ns (1 cyc)</span>
+</div>
+<div class="stack-bar bar-l1" onclick="selectStackLevel('l1')">
+<span>L1 Instruction/Data Cache</span>
+<span id="stack-lat-l1">1.2 ns (4 cyc)</span>
+</div>
+<div class="stack-bar bar-l2" onclick="selectStackLevel('l2')">
+<span>L2 Mid-Level Cache</span>
+<span id="stack-lat-l2">3.5 ns (14 cyc)</span>
+</div>
+<div class="stack-bar bar-l3" onclick="selectStackLevel('l3')">
+<span>L3 Shared Last-Level Cache</span>
+<span id="stack-lat-l3">12.5 ns (46 cyc)</span>
+</div>
+<div class="stack-bar bar-ram" onclick="selectStackLevel('ram')">
+<span>System Memory (DDR5-5600)</span>
+<span id="stack-lat-ram">75.0 ns (280 cyc)</span>
+</div>
+<div class="stack-bar bar-ssd" onclick="selectStackLevel('ssd')">
+<span>NVMe PCIe 4.0 SSD</span>
+<span id="stack-lat-ssd">50,000 ns (180k cyc)</span>
+</div>
+</div>
+<div class="stack-bar-desc-box">
+<h4 id="mem-name" style="font-family:var(--font-display); color:var(--accent-orange); margin-bottom:0.4rem;">Core Registers</h4>
+<div id="mem-meta" style="font-size:0.82rem; font-family:var(--font-code); display:flex; flex-direction:column; gap:0.3rem;">
+<div>Capacity: <span style="color:#fff;">256 KB total register file</span></div>
+<div>Latency: <span style="color:var(--accent-amber);">~0.5 ns (1 clock cycle)</span></div>
+<div>Bandwidth: <span style="color:var(--accent-blue);">~10 TB/s (multi-ported)</span></div>
+<div>Associativity: <span style="color:#fff;">N/A</span></div>
+</div>
+<p id="mem-desc" style="font-size:0.84rem; color:var(--text-muted); margin-top:0.6rem; line-height:1.45;">
+                            Directly mapped to the execution units' instruction ports. Provides single-cycle read/write access to variables currently stored in the physical register file (PRF).
+                        </p>
+</div>
+</div>
+<div class="locality-card">
+<h4 style="font-family:var(--font-display); color:var(--accent-orange); margin-bottom:0.5rem;">AMAT Calculator (Cache Mapping Theory)</h4>
+<p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">
+                        AMAT = HitTime_L1 + MR_L1 * ( HitTime_L2 + MR_L2 * ( HitTime_L3 + MR_L3 * Penalty_DRAM ) )
+                    </p>
+<div class="ambient-slider-row">
+<span class="ambient-label">L1 Hit Rate:</span>
+<input class="ambient-slider" id="slider-l1-hit" max="100" min="80" oninput="calculateAMAT()" type="range" value="95"/>
+<span class="ambient-val" id="val-l1-hit">95%</span>
+</div>
+<div class="ambient-slider-row">
+<span class="ambient-label">L2 Hit Rate:</span>
+<input class="ambient-slider" id="slider-l2-hit" max="100" min="60" oninput="calculateAMAT()" type="range" value="85"/>
+<span class="ambient-val" id="val-l2-hit">85%</span>
+</div>
+<div class="ambient-slider-row">
+<span class="ambient-label">L3 Hit Rate:</span>
+<input class="ambient-slider" id="slider-l3-hit" max="100" min="40" oninput="calculateAMAT()" type="range" value="70"/>
+<span class="ambient-val" id="val-l3-hit">70%</span>
+</div>
+<div class="amat-formula">
+                        Calculated AMAT: <span id="val-amat" style="color:var(--accent-orange);">1.86 ns</span>
+</div>
+</div>
+</div>
+
+<div class="answer-box">
+<div class="answer-header">// COA RESOLVED ANSWER</div>
+<div class="answer-content">
+<p><strong>1. Cache Organization Parameters:</strong></p>
+<table class="brutalist-table">
+<thead>
+<tr>
+<th>Level</th>
+<th>Intel Core i9-13900K (Per Core / Package)</th>
+<th>Apple M3 Max (Per Cluster / Package)</th>
+<th>COA Theory Concept Mapped</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L1 Cache</strong></td>
+<td>P-core: 48KB I + 32KB D (8-way)<br/>E-core: 64KB I + 32KB D (8-way)</td>
+<td>P-core: 192KB I + 128KB D<br/>E-core: 128KB I + 64KB D</td>
+<td>Split Cache: Reconciles instruction/data parallelism (Modified Harvard).</td>
+</tr>
+<tr>
+<td><strong>L2 Cache</strong></td>
+<td>P-core: 2 MB dedicated (16-way)<br/>E-core cluster: 4 MB shared (16-way)</td>
+<td>P-cluster (4 cores): 16 MB shared L2<br/>E-cluster (4 cores): 4 MB shared L2</td>
+<td>Private/Shared intermediate buffer. Set-Associative Mapping.</td>
+</tr>
+<tr>
+<td><strong>L3 Cache</strong></td>
+<td>36 MB shared Smart Cache (up to 36-way)</td>
+<td>96 MB shared System Cache (unified)</td>
+<td>Globally Shared memory pool. Reduces main RAM access bottleneck.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. Shielding Execution Units from the "Memory Wall":</strong></p>
+<p>High-performance execution cores process data in fractions of a nanosecond (e.g. 5.8 GHz = 0.17 ns clock cycle). Main memory (DRAM) accesses take approximately 50 to 100 ns, creating a latency gap of hundreds of CPU cycles. The caches shield the processor through the <strong>Principle of Locality</strong>:</p>
+<ul>
+<li><strong>Temporal Locality:</strong> Recently accessed memory addresses are likely to be accessed again soon. The cache retains these lines in high-speed SRAM registers close to the core.</li>
+<li><strong>Spatial Locality:</strong> Memory addresses close to the recently accessed address are likely to be accessed soon. When a cache miss occurs, the Memory Controller fetches an entire <strong>Cache Line (typically 64 bytes)</strong> rather than just the requested word, pre-loading adjacent instructions and data blocks.</li>
+</ul>
+<p>By achieving an overall cache hit rate of over 95%, L1 caches (1-4 cycles latency), L2 caches (10-15 cycles latency), and L3 caches (30-40 cycles latency) ensure that CPU pipelines run continuously without stalling for high-latency external memory cycles.</p>
+</div>
+</div>
+</div>
+<!-- PROBLEM 4 -->
+<div class="playbook-workspace" id="problem-card-4">
+<div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 04</div>
+<h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Instruction Execution Flow &amp; Register Tracing
+                </h3>
+<div class="question-text">
+                    Trace the execution flow of a memory read instruction (e.g. <code>Load R2, LOC</code>) through the processor register file and buses. Use the interactive cycle-by-cycle simulator to visualize MAR, MDR, PC, and IR state updates.
+                </div>
+<!-- Simulation Block -->
+<div class="simulator-box">
+<div class="sim-title">
+<span>System Bus Instruction Trace Simulator</span>
+<span class="sim-highlight">Trace: Load R2, LOC</span>
+</div>
+<div class="sim-grid">
+<div class="sim-controls">
+<p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 0.5rem;">
+                                Step through the 4 execution cycles of the instruction <code>Load R2, LOC</code>. Observe how registers transfer data over the Address, Data, and Control buses.
+                            </p>
+<div class="sim-btn-row">
+<button class="sim-btn active" id="btn-trace-step" onclick="stepTrace()">Step Cycle</button>
+<button class="sim-btn" onclick="resetTrace()" style="border-color:var(--accent-amber); color:var(--accent-amber);">Reset</button>
+</div>
+<div class="sim-terminal">
+<span class="sim-accent" id="trace-step-title">Cycle 1: Instruction Fetch (IF)</span><br/>
+<span style="color: #6ee7b7;">Transfer:</span> <code id="trace-step-transfer" style="background:transparent; color:#fff; padding:0;">MAR ← PC; PC ← PC + 4; MDR ← Memory[PC]; IR ← MDR</code><br/>
+<span style="color: var(--accent-blue);">Bus Activity:</span> <span id="trace-step-bus">Address Bus = 0x1000 (PC), Data Bus = 0x00821050 (LOAD instruction), Control Bus = Memory READ</span><br/><br/>
+<span id="trace-step-desc" style="color: var(--text-muted);">The Control Unit drives the Program Counter value (0x1000) onto the Address Bus and issues a READ command. The memory subsystem responds by driving the instruction word (LOAD R2, LOC) onto the Data Bus, landing in the MDR. The CPU transfers this opcode to the Instruction Register (IR), and increments the PC to 0x1004.</span>
+</div>
+</div>
+<div class="sim-visual" style="min-height: 250px;">
+<svg height="240" style="background:#09090c; border:1px solid #1a1a24; border-radius:4px;" viewbox="0 0 360 240" width="100%" xmlns="http://www.w3.org/2000/svg">
+<!-- Buses -->
+<!-- Address Bus (Top) -->
+<path d="M 120,40 L 260,40" fill="none" id="bus-address" stroke="#222" stroke-width="2"></path>
+<text fill="#64748b" font-family="var(--font-code)" font-size="7" text-anchor="middle" x="190" y="32">Address Bus</text>
+<!-- Data Bus (Middle) -->
+<path d="M 120,95 L 260,95" fill="none" id="bus-data" stroke="#222" stroke-width="2"></path>
+<text fill="#64748b" font-family="var(--font-code)" font-size="7" text-anchor="middle" x="190" y="87">Data Bus</text>
+<!-- Control Bus (Bottom) -->
+<path d="M 120,150 L 260,150" fill="none" id="bus-control" stroke="#222" stroke-width="2"></path>
+<text fill="#64748b" font-family="var(--font-code)" font-size="7" text-anchor="middle" x="190" y="142">Control Bus</text>
+<!-- CPU Chassis -->
+<rect fill="#121216" height="215" rx="3" stroke="#1c1c24" stroke-width="1.5" width="110" x="10" y="10"></rect>
+<text fill="var(--accent-orange)" font-family="var(--font-display)" font-size="9" font-weight="bold" text-anchor="middle" x="65" y="25">CPU Core</text>
+<!-- Registers -->
+<g id="cpu-pc">
+<rect fill="#1e1e24" height="20" rx="2" stroke="#2a2a35" width="40" x="20" y="32"></rect>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" text-anchor="middle" x="40" y="44">PC</text>
+</g>
+<g id="cpu-mar">
+<rect fill="#1e1e24" height="20" rx="2" stroke="#2a2a35" width="40" x="70" y="32"></rect>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" text-anchor="middle" x="90" y="44">MAR</text>
+</g>
+<g id="cpu-ir">
+<rect fill="#1e1e24" height="20" rx="2" stroke="#2a2a35" width="40" x="20" y="85"></rect>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" text-anchor="middle" x="40" y="97">IR</text>
+</g>
+<g id="cpu-mdr">
+<rect fill="#1e1e24" height="20" rx="2" stroke="#2a2a35" width="40" x="70" y="85"></rect>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" text-anchor="middle" x="90" y="97">MDR</text>
+</g>
+<g id="cpu-r2">
+<rect fill="#1e1e24" height="20" rx="2" stroke="#2a2a35" width="40" x="20" y="140"></rect>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" text-anchor="middle" x="40" y="152">R2</text>
+</g>
+<g id="cpu-cu">
+<rect fill="#1e1e24" height="20" rx="2" stroke="#2a2a35" width="40" x="70" y="140"></rect>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" text-anchor="middle" x="90" y="152">CU</text>
+</g>
+<!-- Memory Chassis -->
+<rect fill="#121216" height="215" rx="3" stroke="#1c1c24" stroke-width="1.5" width="90" x="260" y="10"></rect>
+<text fill="var(--accent-amber)" font-family="var(--font-display)" font-size="9" font-weight="bold" text-anchor="middle" x="305" y="25">RAM Memory</text>
+<!-- Memory Addresses -->
+<g id="mem-code">
+<rect fill="#1e1e24" height="40" rx="2" stroke="#2a2a35" width="70" x="270" y="32"></rect>
+<text fill="#a1a1aa" font-family="var(--font-code)" font-size="6.5" text-anchor="middle" x="305" y="44">0x1000: Instruction</text>
+<text fill="#f4f4f7" font-family="var(--font-code)" font-size="6.5" font-weight="bold" text-anchor="middle" x="305" y="58">LOAD R2, 0x2050</text>
+</g>
+<g id="mem-data">
+<rect fill="#1e1e24" height="40" rx="2" stroke="#2a2a35" width="70" x="270" y="85"></rect>
+<text fill="#a1a1aa" font-family="var(--font-code)" font-size="6.5" text-anchor="middle" x="305" y="97">0x2050 (LOC): Data</text>
+<text fill="var(--accent-amber)" font-family="var(--font-code)" font-size="7" font-weight="bold" text-anchor="middle" x="305" y="111">0x000000FF</text>
+</g>
+<!-- Register Details Table Overlay -->
+<g fill="#a1a1aa" font-family="var(--font-code)" font-size="6.2" transform="translate(10, 182)">
+<text x="5" y="10">PC:  <tspan fill="#fff" id="lbl-pc">0x1000</tspan></text>
+<text x="75" y="10">IR:  <tspan fill="#fff" id="lbl-ir">0x00000000</tspan></text>
+<text x="155" y="10">MAR: <tspan fill="#fff" id="lbl-mar">0x0000</tspan></text>
+<text x="225" y="10">MDR: <tspan fill="#fff" id="lbl-mdr">0x00000000</tspan></text>
+<text x="295" y="10">R2:  <tspan fill="#fff" id="lbl-r2">0x00000000</tspan></text>
+</g>
+</svg>
+</div>
+</div>
+</div>
+<div class="answer-box">
+<div class="answer-header">// COA RESOLVED ANSWER</div>
+<div class="answer-content">
+<p>The register-transfer operations for executing a <code>Load R2, LOC</code> instruction occur in four distinct hardware cycles:</p>
+<ol>
+<li><strong>Cycle 1: Instruction Fetch (IF):</strong>
+<p>The Control Unit drives the Program Counter address onto the Address Bus and issues a memory read control signal. The memory subsystem drives the opcode onto the Data Bus. The instruction lands in the MDR and is immediately routed to the IR. Simultaneously, the PC is incremented to prepare for the next fetch.</p>
+<pre>MAR ← PC
+Control Bus ← Memory READ
+MDR ← Memory[Address Bus]
+IR ← MDR
+PC ← PC + 4</pre>
+</li>
+<li><strong>Cycle 2: Decode &amp; Address Generation (ID):</strong>
+<p>The decoders in the Control Unit read the opcode inside the IR, identifying a memory read into register R2. The offset address field of the instruction (pointing to memory coordinate <code>LOC</code>) is routed to the MAR via the internal CPU address paths.</p>
+<pre>Decode IR (opcode)
+MAR ← Address offset (LOC) from IR</pre>
+</li>
+<li><strong>Cycle 3: Operand Fetch (OF):</strong>
+<p>The Control Unit drives the MAR address (LOC) onto the Address Bus and issues a second Memory READ signal. The RAM memory decoder activates the word line at address LOC, driving the data word onto the Data Bus. The data arrives at the CPU interface and is latched into the MDR.</p>
+<pre>Control Bus ← Memory READ
+MDR ← Memory[Address Bus]</pre>
+</li>
+<li><strong>Cycle 4: Execute &amp; Writeback (WB):</strong>
+<p>The Control Unit asserts the write enable signal for register <code>R2</code> in the register file. The data word stored in the MDR is routed via internal pathways to the register write port, latching the value into register <code>R2</code> on the rising clock edge.</p>
+<pre>R2 ← MDR</pre>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<!-- PROBLEM 5 -->
+<div class="playbook-workspace" id="problem-card-5">
+<div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 05</div>
+<h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Register Architectures &amp; Register File Labs
+                </h3>
+<div class="question-text">
+                    Discuss the register file organization of x86-64 and ARM64 instruction set architectures. Explain the difference between architectural registers and physical registers. How do these map to the Register File designs constructed in Logisim lab classes?
+                </div>
+<div class="answer-box">
+<div class="answer-header">// COA RESOLVED ANSWER</div>
+<div class="answer-content">
+<p><strong>1. x86-64 vs. ARM64 Register Layout:</strong></p>
+<ul>
+<li><strong>x86-64 Architecture (Intel i9-13900K):</strong> Exposes 16 architectural General Purpose Registers (GPRs): <code>rax, rbx, rcx, rdx, rsi, rdi, rbp, rsp</code>, and <code>r8</code> to <code>r15</code>. Historically, registers had dedicated functional roles (e.g. <code>rax</code> as accumulator, <code>rcx</code> as counter), but in modern 64-bit systems, they serve general storage functions.</li>
+<li><strong>ARM64 Architecture (Apple M3 Max / Cortex):</strong> Exposes 31 architectural GPRs (named <code>X0</code> to <code>X30</code>), each 64 bits wide, alongside a dedicated Stack Pointer (SP) and Zero Register (XZR/WZR) that outputs zero when read. The large register count allows compilers to keep variables in registers longer, reducing high-latency memory fetches.</li>
+</ul>
+<p><strong>2. Architectural vs. Physical Registers:</strong></p>
+<p>In modern Out-of-Order processors, the execution core separates architectural registers (defined by the ISA) from the physical registers on the silicon die:</p>
+<ul>
+<li><strong>Architectural Registers:</strong> The registers exposed to assembly programmers (e.g. 16 in x86, 32 in ARM).</li>
+<li><strong>Physical Registers (Physical Register File - PRF):</strong> To execute instructions in parallel without false data dependencies (Write-After-Write [WAW] and Write-After-Read [WAR] hazards), the processor incorporates a large pool of physical registers (e.g. 256 in the i9-13900K and 300+ in the Apple M3 Max). The <strong>Register Alias Table (RAT)</strong> dynamically maps architectural register names to physical registers. This register renaming enables instructions to execute concurrently on separate physical units.</li>
+</ul>
+<p><strong>3. Mapping to Logisim Register File Labs:</strong></p>
+<p>In lab classes, register files are designed as structured arrays of D flip-flop blocks. A basic 8-register file uses:</p>
+<ul>
+<li><strong>Decoders:</strong> A 3-to-8 decoder routes the Write Enable control line to the select register when clock edge triggers.</li>
+<li><strong>Multiplexers:</strong> Dual 8-to-1 multiplexers route selected registers to Read Port A and Read Port B outputs.</li>
+<li><strong>Hazard Bypass:</strong> In labs, if a register is read and written in the same cycle, a bypass multiplexer routes the write value directly to the output. In modern processors, this bypass logic is expanded into dynamic forwarding networks between pipeline stages to prevent stalls.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- PROBLEM 6 -->
+<div class="playbook-workspace" id="problem-card-6">
+<div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 06</div>
+<h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Memory Partitioning &amp; Modified Harvard Architecture
+                </h3>
+<div class="question-text">
+                    Analyze the structural partition of memory in modern architectures. Explain the difference between Von Neumann and Harvard systems. How do modern processors reconcile these designs to achieve maximum parallel throughput without compromising programming simplicity?
+                </div>
+<div class="answer-box">
+<div class="answer-header">// COA RESOLVED ANSWER</div>
+<div class="answer-content">
+<p><strong>1. Architectural Paradigms:</strong></p>
+<ul>
+<li><strong>Von Neumann Architecture:</strong> Features a single, unified memory space holding both instructions and data. Program execution and data access share the same system bus lines. This introduces the <strong>Von Neumann Bottleneck</strong>, where instruction fetch and data read/write cannot occur simultaneously, limiting CPU performance.</li>
+<li><strong>Harvard Architecture:</strong> Separates physical memories and buses for instructions and data. The ALU can fetch an instruction from instruction memory and read/write operand data from data memory in the same clock cycle, preventing structural stalls.</li>
+</ul>
+<p><strong>2. The Modern Reconciliation (Modified Harvard Architecture):</strong></p>
+<p>Modern general-purpose processors (Intel i9-13900K, Apple M3 Max) resolve these competing paradigms by utilizing a hybrid system layout:</p>
+<ul>
+<li><strong>At the L1 Cache Level (Harvard Implementation):</strong> Inside the CPU core, memory access is split into separate L1 Instruction Cache (L1-I) and L1 Data Cache (L1-D). Each cache has independent buses, allowing parallel instruction fetches and data accesses in a single cycle.</li>
+<li><strong>At the Unified Cache &amp; RAM Level (Von Neumann Implementation):</strong> The split L1 caches interface with a unified shared L2 cache, L3 cache, and main memory (DRAM). This enables operating systems to load programs, allocate memory dynamically, and share data variables without physical memory partition limits.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- PROBLEM 7 -->
+<div class="playbook-workspace" id="problem-card-7">
+<div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 07</div>
+<h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    High-Speed System Interconnects &amp; Fabric Pathways
+                </h3>
+<div class="question-text">
+                    Evaluate the bus structures of modern processors. Map the physical interconnects (Intel's Ring Bus/DMI and Apple's Unified Memory Fabric) to the theoretical System Bus model (Address, Data, and Control buses) covered in theory classes.
+                </div>
+<!-- PROBLEM 7 SIMULATOR -->
+<div class="simulator-box">
+<div class="sim-title">
+<span>Intel i9-13900K Ring Interconnect Router</span>
+<span class="sim-highlight">// PROBLEM 07 INTERACTIVE</span>
+</div>
+<p style="font-size:0.85rem; margin-bottom:1rem; color:var(--text-muted); line-height:1.45;">
+                    Select a Source and Destination block on the bidirectional ring interconnect bus. Click "Route Transaction" to animate the packet routing path (Ring Stop Hops) and inspect bus control cycles.
+                </p>
+<div class="bus-diagram-visual">
+<span class="ring-interconnect-label">Bidirectional Ring Interconnect schematic</span>
+<svg height="200" id="ring-svg" style="background:#000000; border:1px solid #1a1a24; border-radius:4px; margin-bottom:1rem;" viewbox="0 0 550 200" width="550">
+<!-- Ring Bus Lines -->
+<rect fill="none" height="100" rx="15" stroke="#222" stroke-width="8" width="450" x="50" y="50"></rect>
+<rect fill="none" height="100" id="ring-path-clockwise" rx="15" stroke="#444" stroke-width="2" width="450" x="50" y="50"></rect>
+<rect fill="none" height="80" id="ring-path-counter" rx="10" stroke="#444" stroke-width="2" width="430" x="60" y="60"></rect>
+<!-- Ring Stop Nodes -->
+<!-- Top Row (P-cores / L3 Cache) -->
+<g class="ring-node" id="stop-node-P0" onclick="setRingEndpoint('P0')" style="cursor:pointer;" transform="translate(80, 50)">
+<circle fill="#121216" id="circle-P0" r="12" stroke="#fb923c" stroke-width="2"></circle>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" font-weight="bold" text-anchor="middle" y="4">P0</text>
+</g>
+<g class="ring-node" id="stop-node-P1" onclick="setRingEndpoint('P1')" style="cursor:pointer;" transform="translate(180, 50)">
+<circle fill="#121216" id="circle-P1" r="12" stroke="#fb923c" stroke-width="2"></circle>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" font-weight="bold" text-anchor="middle" y="4">P1</text>
+</g>
+<g class="ring-node" id="stop-node-P2" onclick="setRingEndpoint('P2')" style="cursor:pointer;" transform="translate(280, 50)">
+<circle fill="#121216" id="circle-P2" r="12" stroke="#fb923c" stroke-width="2"></circle>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" font-weight="bold" text-anchor="middle" y="4">P2</text>
+</g>
+<g class="ring-node" id="stop-node-P3" onclick="setRingEndpoint('P3')" style="cursor:pointer;" transform="translate(380, 50)">
+<circle fill="#121216" id="circle-P3" r="12" stroke="#fb923c" stroke-width="2"></circle>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" font-weight="bold" text-anchor="middle" y="4">P3</text>
+</g>
+<g class="ring-node" id="stop-node-GPU" onclick="setRingEndpoint('GPU')" style="cursor:pointer;" transform="translate(470, 50)">
+<circle fill="#121216" id="circle-GPU" r="12" stroke="#38bdf8" stroke-width="2"></circle>
+<text fill="#fff" font-family="var(--font-code)" font-size="7" font-weight="bold" text-anchor="middle" y="4">GPU</text>
+</g>
+<!-- Bottom Row (E-cores / L3 / SA) -->
+<g class="ring-node" id="stop-node-SA" onclick="setRingEndpoint('SA')" style="cursor:pointer;" transform="translate(80, 150)">
+<circle fill="#121216" id="circle-SA" r="12" stroke="#38bdf8" stroke-width="2"></circle>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" font-weight="bold" text-anchor="middle" y="4">SA</text>
+</g>
+<g class="ring-node" id="stop-node-E0" onclick="setRingEndpoint('E0')" style="cursor:pointer;" transform="translate(180, 150)">
+<circle fill="#121216" id="circle-E0" r="12" stroke="#fbbf24" stroke-width="2"></circle>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" font-weight="bold" text-anchor="middle" y="4">E0</text>
+</g>
+<g class="ring-node" id="stop-node-E1" onclick="setRingEndpoint('E1')" style="cursor:pointer;" transform="translate(280, 150)">
+<circle fill="#121216" id="circle-E1" r="12" stroke="#fbbf24" stroke-width="2"></circle>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" font-weight="bold" text-anchor="middle" y="4">E1</text>
+</g>
+<g class="ring-node" id="stop-node-E2" onclick="setRingEndpoint('E2')" style="cursor:pointer;" transform="translate(380, 150)">
+<circle fill="#121216" id="circle-E2" r="12" stroke="#fbbf24" stroke-width="2"></circle>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" font-weight="bold" text-anchor="middle" y="4">E2</text>
+</g>
+<g class="ring-node" id="stop-node-MEM" onclick="setRingEndpoint('MEM')" style="cursor:pointer;" transform="translate(470, 150)">
+<circle fill="#121216" id="circle-MEM" r="12" stroke="#38bdf8" stroke-width="2"></circle>
+<text fill="#fff" font-family="var(--font-code)" font-size="8" font-weight="bold" text-anchor="middle" y="4">MC</text>
+</g>
+</svg>
+<div style="display:flex; justify-content:space-between; width:100%; font-family:var(--font-code); font-size:0.8rem; margin-bottom:0.8rem;">
+<div>Source: <span id="ring-src-display" style="color:var(--accent-orange); font-weight:bold;">P0</span></div>
+<div>Destination: <span id="ring-dst-display" style="color:var(--accent-blue); font-weight:bold;">MEM</span></div>
+<button class="sim-btn" id="btn-route-ring" onclick="routeRingTransaction()" style="padding:0.3rem 0.8rem; font-size:0.75rem;">Route Transaction</button>
+</div>
+</div>
+<div class="console-log" id="ring-console" style="min-height:100px;">
+[Console] Click on the SVG nodes above to select Source and Destination.
+Clock Cycles per hop: 1 cycle. Bus lines width: 32-byte data width + address/coherence lines.
+                </div>
+</div>
+
+<div class="answer-box">
+<div class="answer-header">// COA RESOLVED ANSWER</div>
+<div class="answer-content">
+<p><strong>1. Theoretical System Bus Model:</strong></p>
+<p>In theory classes, the System Bus is represented as a set of physical parallel wire trunks connecting the CPU to memory and peripherals:</p>
+<ul>
+<li><strong>Address Bus (Unidirectional):</strong> Transmits memory locations from the CPU. Width determines address space ($2^N$ bytes).</li>
+<li><strong>Data Bus (Bidirectional):</strong> Transfers active instruction and data words. Width determines throughput bandwidth.</li>
+<li><strong>Control Bus (Bidirectional):</strong> Coordinates timing and read/write states.</li>
+</ul>
+<p><strong>2. Mapping to Modern Interconnect Topologies:</strong></p>
+<p>Modern multi-core processors expand the theoretical shared-bus model into high-speed, complex on-chip interconnect networks:</p>
+<ul>
+<li><strong>Intel Ring Bus &amp; DMI 4.0:</strong>
+<ul>
+<li><strong>On-Chip:</strong> A bidirectional Ring Bus connects all P-cores, E-core clusters, L3 cache slices, and the System Agent. The Ring Bus carries Address, Data, and Control signals in parallel ring paths, providing low-latency routing across the chip.</li>
+<li><strong>Off-Chip:</strong> DMI 4.0 (Direct Media Interface) serves as a dedicated system control bus connecting the CPU to the motherboard chipset, running at 15.75 GB/s per direction.</li>
+</ul>
+</li>
+<li><strong>Apple Unified Memory Fabric:</strong>
+<ul>
+<li>Replaces standard mother-board buses with an on-package silicon interconnect fabric. The CPU and GPU share a <strong>Unified Memory Pool</strong> via a extremely wide memory bus (512-bit bus width on M3 Max).</li>
+<li>This fabric achieves up to <strong>400 GB/s bandwidth</strong>, removing the traditional bottleneck associated with transferring data between host memory and dedicated graphics memory.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- PROBLEM 8 -->
+<div class="playbook-workspace" id="problem-card-8">
+<div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 08</div>
+<h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Execution Pipelines &amp; Computational ALUs
+                </h3>
+<div class="question-text">
+                    Discuss the arithmetic logic units (ALUs) and vector coprocessors of modern processors. Map these physical compute blocks to the 14-operation ALU constructed in Logisim lab classes, explaining how status flags (Z, C, S, OV) are determined.
+                </div>
+<!-- PROBLEM 8 SIMULATOR -->
+<div class="simulator-box">
+<div class="sim-title">
+<span>AVX-512 VNNI Vector Math Simulator</span>
+<span class="sim-highlight">// PROBLEM 08 INTERACTIVE</span>
+</div>
+<p style="font-size:0.85rem; margin-bottom:1rem; color:var(--text-muted); line-height:1.45;">
+                    Compare the execution profile of a 4-lane integer dot product operation using standard scalar instructions vs a hardware Vector Neural Network Instruction (VNNI: <code>vpdpbusd</code>).
+                </p>
+<div class="alu-input-grid" style="margin-bottom:1rem;">
+<div>
+<label class="alu-label">Vector A (four 8-bit unsigned integers: 0 to 255)</label>
+<div style="display:flex; gap:0.4rem;">
+<input class="alu-input" id="vnni-a0" style="text-align:center;" type="number" value="10"/>
+<input class="alu-input" id="vnni-a1" style="text-align:center;" type="number" value="25"/>
+<input class="alu-input" id="vnni-a2" style="text-align:center;" type="number" value="8"/>
+<input class="alu-input" id="vnni-a3" style="text-align:center;" type="number" value="15"/>
+</div>
+</div>
+<div>
+<label class="alu-label">Vector B (four 8-bit signed integers: -128 to 127)</label>
+<div style="display:flex; gap:0.4rem;">
+<input class="alu-input" id="vnni-b0" style="text-align:center;" type="number" value="5"/>
+<input class="alu-input" id="vnni-b1" style="text-align:center;" type="number" value="-2"/>
+<input class="alu-input" id="vnni-b2" style="text-align:center;" type="number" value="12"/>
+<input class="alu-input" id="vnni-b3" style="text-align:center;" type="number" value="4"/>
+</div>
+</div>
+</div>
+<div style="display:flex; gap:0.8rem; align-items:center; margin-bottom:1rem;">
+<div style="flex:1;">
+<label class="alu-label">Accumulator Input (32-bit INT)</label>
+<input class="alu-input" id="vnni-acc" type="number" value="100"/>
+</div>
+<button class="sim-btn" id="btn-run-vnni" onclick="runVNNISimulation()" style="height:42px; margin-top:16px;">Execute VPDPBUSD</button>
+</div>
+<table class="metrics-table" style="margin-top:1rem; margin-bottom:1rem;">
+<thead>
+<tr>
+<th>Metric</th>
+<th>Scalar Loop Execution</th>
+<th>VNNI Instruction (vpdpbusd)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Instructions Issued</strong></td>
+<td>4 mults + 4 adds + loop overhead</td>
+<td style="color:var(--accent-orange); font-weight:bold;">1 Instruction</td>
+</tr>
+<tr>
+<td><strong>Registers Utilized</strong></td>
+<td>Multiple General Purpose Registers (GPR)</td>
+<td>1 Vector Register (YMM/ZMM)</td>
+</tr>
+<tr>
+<td><strong>Clock Cycles Required</strong></td>
+<td>~8 to 12 cycles</td>
+<td style="color:var(--accent-amber); font-weight:bold;">1 cycle (Pipeline Latency)</td>
+</tr>
+<tr>
+<td><strong>Vector Result</strong></td>
+<td id="vnni-res-scalar">-</td>
+<td id="vnni-res-vector" style="color:var(--accent-orange); font-weight:bold;">-</td>
+</tr>
+</tbody>
+</table>
+<div class="console-log" id="vnni-console">
+[Console] Enter vector inputs above and click "Execute VPDPBUSD".
+VNNI facilitates single-instruction multiple-data (SIMD) hardware loops.
+                </div>
+</div>
+
+<div class="answer-box">
+<div class="answer-header">// COA RESOLVED ANSWER</div>
+<div class="answer-content">
+<p><strong>1. Execution Units in Modern CPUs:</strong></p>
+<p>A single modern CPU core contains multiple specialized ALUs organized as separate execution pipelines:</p>
+<ul>
+<li><strong>Integer ALUs:</strong> Handle basic 64-bit integer operations (addition, subtraction, shifts, logical operations).</li>
+<li><strong>Vector/SIMD Pipelines (AVX-512, Apple NEON):</strong> Process Single Instruction, Multiple Data (SIMD) registers. These units can calculate multiple float or integer additions concurrently in a single clock cycle (e.g. 512-bit registers processing eight 64-bit doubles in parallel).</li>
+<li><strong>Hardware Multipliers &amp; Dividers:</strong> Dedicated pipelines that calculate multiplication and division in a few clock cycles instead of using iterative software routines.</li>
+</ul>
+<p><strong>2. Mapping to the 14-Operation Lab ALU:</strong></p>
+<p>In lab classes, an 8-bit ALU is designed to compute 14 specific operations (Load, Store, Add, Sub, Mul, Div, AND, OR, XOR, 2's Complement, Compare, SHL, SHR, ASR) using multiplexer selection. In modern CPUs, these operations are computed by parallel, specialized blocks:</p>
+<ul>
+<li><strong>Status Flags Generation:</strong>
+<ul>
+<li><strong>Zero (Z):</strong> Evaluated using a NOR gate network over all output bits. If the result is <code>0x00</code>, $Z=1$, else $Z=0$.</li>
+<li><strong>Sign (S):</strong> Determined directly by copying the Most Significant Bit (MSB, Bit 7 in 8-bit or Bit 63 in 64-bit) of the ALU result. If $MSB=1$, the number is negative ($S=1$).</li>
+<li><strong>Carry (C):</strong> Evaluated by capturing the carry-out bit ($C_{out}$) of the adder/subtractor block.</li>
+<li><strong>Overflow (OV):</strong> Evaluated using the XOR logic: $OV = C_{in\_msb} \oplus C_{out\_msb}$. This flag indicates that the signed arithmetic result exceeded the representation range of the registers.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- PROBLEM 9 -->
+<div class="playbook-workspace" id="problem-card-9">
+<div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 09</div>
+<h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Instruction Cycles, Hazard Stalls, and Register Renaming
+                </h3>
+<div class="question-text">
+                    Analyze the execution pipeline of modern processors. How do out-of-order execution engines resolve Read-After-Write (RAW), Write-After-Read (WAR), and Write-After-Write (WAW) dependencies dynamically? Map these systems to the hazard traces in Chapter 5.
+                </div>
+<!-- PROBLEM 9 SIMULATOR -->
+<div class="simulator-box">
+<div class="sim-title">
+<span>Intel Hardware Thread Director Scheduler</span>
+<span class="sim-highlight">// PROBLEM 09 INTERACTIVE</span>
+</div>
+<p style="font-size:0.85rem; margin-bottom:1rem; color:var(--text-muted); line-height:1.45;">
+                    Select a software workload to run on the CPU. Observe how the Intel Thread Director assigns threads to P or E-cores dynamically based on instruction profiles, latency requirements, and thermal headroom.
+                </p>
+<div style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:1.5rem;">
+<div>
+<label class="sku-label" style="margin-bottom:0.5rem; display:block;">Select Workload Profile:</label>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-bottom:1rem;">
+<button class="sku-btn" id="w-idle" onclick="runWorkload('idle')">System Idle</button>
+<button class="sku-btn" id="w-gaming" onclick="runWorkload('gaming')">High-FPS Gaming</button>
+<button class="sku-btn" id="w-rendering" onclick="runWorkload('rendering')">3D Render (Cinebench)</button>
+<button class="sku-btn" id="w-bg" onclick="runWorkload('bg')">Background Virus Scan</button>
+</div>
+<div style="border:var(--border-thick); padding:0.8rem; background:#000000; border-radius:4px; font-family:var(--font-code); font-size:0.75rem;">
+<div style="color:var(--accent-orange); font-weight:bold; border-bottom:1px dashed #333; padding-bottom:0.3rem; margin-bottom:0.5rem;">
+                                OS SCHEDULER &amp; THERMAL SENSOR READINGS
+                            </div>
+<div>P-Core Clock Speed: <span id="th-pclock" style="color:var(--accent-blue); font-weight:bold;">3.0 GHz</span></div>
+<div>E-Core Clock Speed: <span id="th-eclock" style="color:var(--accent-yellow); font-weight:bold;">2.2 GHz</span></div>
+<div>Active Core Threads: <span id="th-active" style="font-weight:bold;">0 / 32</span></div>
+<div>CPU Package Power: <span id="th-power" style="color:#ef4444; font-weight:bold;">15 W</span></div>
+<div>Core Die Temperature: <span id="th-temp" style="color:#ef4444; font-weight:bold;">38°C</span></div>
+<div id="th-status" style="margin-top:0.4rem; padding-top:0.4rem; border-top:1px dashed #333; color:var(--accent-amber);">
+                                STATUS: TEMPERATURE STABLE
+                            </div>
+</div>
+</div>
+<div>
+<label class="sku-label" style="margin-bottom:0.5rem; display:block;">Physical Die Allocation:</label>
+<div class="die-map-grid" id="th-die-grid" style="grid-template-columns:repeat(4, 1fr); gap:0.4rem;">
+<!-- Filled dynamically -->
+</div>
+</div>
+</div>
+<div class="console-log" id="th-console" style="min-height:90px; margin-top:1rem;">
+[Console] Click a workload above to deploy threads.
+Intel Thread Director uses hardware feedback loop registers (EHFI) to advise the OS scheduler.
+                </div>
+</div>
+
+<div class="answer-box">
+<div class="answer-header">// COA RESOLVED ANSWER</div>
+<div class="answer-content">
+<p><strong>1. Pipeline Hazards &amp; Resolution Mappings:</strong></p>
+<p>In theory classes, pipeline hazards represent structural, data, or control dependencies that stall instruction execution:</p>
+<ul>
+<li><strong>Read-After-Write (RAW / True Data Dependency):</strong> Instruction B requires the result of Instruction A. If B reads the register file before A writes back, it obtains stale data.
+                                <br/><em>Modern CPU Resolution:</em> <strong>Operand Forwarding / Direct Bypassing</strong>. The result is routed directly from the ALU execution stage to the ALU input port in the next cycle, avoiding register write-back delays.
+                            </li>
+<li><strong>Write-After-Read (WAR / Anti-Dependency):</strong> Instruction B writes to a register before Instruction A reads it.
+                                <br/><em>Modern CPU Resolution:</em> <strong>Register Renaming</strong>. The processor maps the architectural register to a fresh physical register, allowing both instructions to proceed in parallel.
+                            </li>
+<li><strong>Write-After-Write (WAW / Output Dependency):</strong> Instruction B writes to a register before Instruction A writes to it, potentially causing an out-of-order write-back conflict.
+                                <br/><em>Modern CPU Resolution:</em> Register Renaming and the Reorder Buffer (ROB). The ROB ensures that the architectural register state is updated in program order at the retirement stage.
+                            </li>
+</ul>
+<p><strong>2. Tomasulo's Algorithm &amp; Schedulers:</strong></p>
+<p>Modern processors execute instructions using reservation stations. When an instruction is decoded, it is dispatched to a reservation station slot. If its operands are not yet computed, the reservation station listens to the <strong>Common Data Bus (CDB)</strong>. As soon as the producing execution unit completes the operation and drives the result onto the CDB, the dependent reservation station captures the value, allowing the instruction to execute without accessing the register file.</p>
+</div>
+</div>
+</div>
+<!-- PROBLEM 10 -->
+<div class="playbook-workspace" id="problem-card-10">
+<div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 10</div>
+<h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Performance Equations, CPI, and the Power Wall
+                </h3>
+<div class="question-text">
+                    Discuss the limits of CPU frequency scaling. Define the CPU Performance Equation, CMOS dynamic power dissipation, and the Power Wall. Use the interactive benchmarking simulator to analyze CPI and execution times under varying frequencies.
+                </div>
+<!-- Simulation Block -->
+<div class="simulator-box">
+<div class="sim-title">
+<span>CPU Performance &amp; Benchmark Simulator</span>
+<span class="sim-highlight">Machine A vs Machine B</span>
+</div>
+<div class="sim-grid">
+<div class="sim-controls">
+<p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 0.5rem;">
+                                Tweak CPU clock speed and instruction workload scales to dynamically compare benchmarking performance metrics.
+                            </p>
+<div class="sim-slider-row">
+<label class="sim-slider-label">Clock Frequency:</label>
+<input class="sim-slider" id="sim-freq" max="1000" min="100" oninput="simPerformance()" step="50" type="range" value="200"/>
+<span class="sim-val" id="sim-freq-val">200 MHz</span>
+</div>
+<div class="sim-slider-row">
+<label class="sim-slider-label">Workload Scale:</label>
+<input class="sim-slider" id="sim-workload" max="25" min="5" oninput="simPerformance()" step="1" type="range" value="10"/>
+<span class="sim-val" id="sim-workload-val">10.0M base</span>
+</div>
+<div class="sim-terminal" id="sim-res-comment" style="min-height: 80px; margin-top: 0.5rem;">
+<strong>Analysis:</strong> Adjust sliders to start calculations...
+                            </div>
+</div>
+<div class="sim-visual" style="align-items: stretch; justify-content: flex-start; padding: 0.8rem; gap: 0.8rem;">
+<div style="font-family: var(--font-code); font-size: 0.72rem; color: var(--accent-orange); font-weight: bold; border-bottom:1px solid #1a1a24; padding-bottom:0.2rem;">
+                                BENCHMARK CALCULATION DUMP
+                            </div>
+<table class="brutalist-table" style="margin:0; font-size:0.75rem; box-shadow:none;">
+<thead>
+<tr>
+<th>Metric</th>
+<th>Machine A</th>
+<th>Machine B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Instr Count (I<sub>c</sub>)</strong></td>
+<td id="sim-res-ica">18.00 M</td>
+<td id="sim-res-icb">24.00 M</td>
+</tr>
+<tr>
+<td><strong>Total Cycles</strong></td>
+<td id="sim-res-cyclesa">40.00 M</td>
+<td id="sim-res-cyclesb">46.00 M</td>
+</tr>
+<tr>
+<td><strong>Effective CPI</strong></td>
+<td class="sim-highlight" id="sim-res-cpia">2.22</td>
+<td class="sim-highlight" id="sim-res-cpib">1.92</td>
+</tr>
+<tr>
+<td><strong>MIPS Rate</strong></td>
+<td class="sim-highlight" id="sim-res-mipsa">90.09</td>
+<td class="sim-highlight" id="sim-res-mipsb">104.17</td>
+</tr>
+<tr>
+<td><strong>Execution Time</strong></td>
+<td class="sim-accent" id="sim-res-timea">0.2000 s</td>
+<td class="sim-accent" id="sim-res-timeb">0.2300 s</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="answer-box">
+<div class="answer-header">// COA RESOLVED ANSWER</div>
+<div class="answer-content">
+<p><strong>1. The CPU Performance Equation:</strong></p>
+<p>The total execution time ($T_{CPU}$) required to run a program is determined by the three variables of the performance equation:</p>
+<div style="margin: 0.5rem 0;">
+                            $T_{CPU} = I_c 	imes CPI 	imes T_c = rac{I_c 	imes CPI}{f}$
+                        </div>
+<p>Where $I_c$ is the instruction count (determined by ISA and compiler), $CPI$ is cycles per instruction (determined by hardware architecture), $T_c$ is clock cycle duration, and $f$ is clock frequency.</p>
+<p><strong>2. CMOS Power Dissipation &amp; The Power Wall:</strong></p>
+<p>Silicon processors are built using Complementary Metal-Oxide-Semiconductor (CMOS) logic gates. The dynamic power consumption ($P$) of a CMOS gate during switching states is expressed as:</p>
+<div style="margin: 0.5rem 0;">
+                            $P = C 	imes V^2 	imes f$
+                        </div>
+<p>Where $C$ is capacitive load, $V$ is supply voltage, and $f$ is clock frequency. Historically, manufacturers scaled performance by increasing frequency. However, increasing frequency requires a proportional increase in voltage, causing power consumption to grow quadratically.</p>
+<p>This led to the <strong>Power Wall</strong>: at clock speeds above 4 GHz, the thermal heat dissipation per unit area of the silicon die exceeded the limits of air-cooling systems. To prevent the chip from melting, manufacturers capped clock frequencies and transitioned to multi-core architectures and dynamic voltage/frequency scaling (DVFS).</p>
+<p><strong>3. Quantitative Benchmark Analysis (Machine A vs. Machine B):</strong></p>
+<p>Assume both machines run a benchmark workload at 200 MHz ($T_c = 5 	ext{ ns}$):</p>
+<ul>
+<li><strong>Machine A:</strong> Total instructions $I_c = 18 	imes 10^6$. Total cycles = $40 	imes 10^6$.
+                                <br/>$	ext{Effective CPI} = 40M / 18M pprox 2.22$
+                                <br/>$	ext{MIPS Rate} = 200 	ext{ MHz} / 2.22 pprox 90.09$
+                                <br/>$	ext{Execution Time} = 40 	imes 10^6 	imes 5 	ext{ ns} = 0.20 	ext{ seconds}$.
+                            </li>
+<li><strong>Machine B:</strong> Total instructions $I_c = 24 	imes 10^6$. Total cycles = $46 	imes 10^6$.
+                                <br/>$	ext{Effective CPI} = 46M / 24M pprox 1.92$
+                                <br/>$	ext{MIPS Rate} = 200 	ext{ MHz} / 1.92 pprox 104.17$
+                                <br/>$	ext{Execution Time} = 46 	imes 10^6 	imes 5 	ext{ ns} = 0.23 	ext{ seconds}$.
+                            </li>
+<li><strong>Conclusion:</strong> Although Machine B has a lower CPI and a higher MIPS rate, Machine A executes the benchmark faster because its instruction set layout allows it to complete the workload in fewer total clock cycles. This proves that execution time is the only reliable performance metric.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Script Block for DOM synchronization & simulators -->
+<script>
+        // Load synchronized student profiles on DOM Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedName = localStorage.getItem('coa_student_name') || 'Sarvadnya Patil';
+            document.getElementById('cell-name').innerText = savedName;
+            
+            document.getElementById('cell-usn').innerText = localStorage.getItem('coa_student_usn') || '02FE25BCS017';
+            document.getElementById('cell-prog').innerText = localStorage.getItem('coa_student_prog') || 'B.E. CSE';
+            document.getElementById('cell-inst').innerText = localStorage.getItem('coa_student_inst') || 'KLE Tech, Belagavi';
+            
+            // Set up dropdown click out handler
+            window.addEventListener('click', (e) => {
+                const dd = document.getElementById('proc-dropdown');
+                if (dd && !dd.contains(e.target)) {
+                    dd.classList.remove('active');
+                }
+            });
+
+            // Initialize
+            selectProcessor('i9', 'Intel Core i9-13900K (x86 Hybrid)');
+            resetTrace();
+            simPerformance();
+            // Initializations for new simulators
+            rebuildDieGrid();
+            selectStackLevel('registers');
+            calculateAMAT();
+            setRingEndpoint('P0');
+            setRingEndpoint('MEM');
+            rebuildThreadDirectorDie();
+            runWorkload('idle');
+        });
+
+        // Smooth scroll to problem IDs
+        function scrollToProblem(id) {
+            const el = document.getElementById('problem-card-' + id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // --- DYNAMIC SPECIFICATIONS ENGINE ---
+        const procData = {
+            i9: {
+                title: "Intel Core i9-13900K",
+                specs: [
+                    { label: "Architecture", val: "x86 Hybrid (Raptor Lake)" },
+                    { label: "Cores/Threads", val: "24 Cores (8 P-Cores + 16 E-Cores) / 32 Threads" },
+                    { label: "Clock Technologies", val: "3.0 GHz Base / 5.8 GHz Thermal Velocity Boost (TVB)" },
+                    { label: "Cache Hierarchy", val: "32 MB L2 (2MB/P-core, 4MB/E-cluster) + 36 MB shared L3" },
+                    { label: "System Bus / Interconnect", val: "On-Chip Ring Bus (100 GB/s) + Off-Chip DMI 4.0 link" },
+                    { label: "Bus Width / Channels", val: "Dual-Channel DDR5 (four 32-bit subchannels, ~89.6 GB/s)" },
+                    { label: "Power TDP Envelope", val: "125W Base TDP / 253W Max Turbo PL2 (peaks >300W)" },
+                    { label: "Instruction Set (ISA)", val: "x86-64 CISC (decodes variable-length instructions into uops)" }
+                ],
+                concepts: [
+                    {
+                        tag: "Functional Units & Hybrid Scheduling",
+                        title: "P-Cores vs E-Cores Load Balancing",
+                        desc: "Maps to ALU/Control Unit concepts. The hardware Thread Director assigns critical threads to wide 5.8 GHz P-cores and offloads background tasks to E-cores to maximize efficiency."
+                    },
+                    {
+                        tag: "Von Neumann vs Harvard",
+                        title: "Reconciled Modified Harvard L1 Cache",
+                        desc: "The i9-13900K implements split L1 Instruction and Data caches inside each core for parallel fetches (Harvard), but interfaces with a unified L3 cache and system RAM (Von Neumann)."
+                    },
+                    {
+                        tag: "Interconnects",
+                        title: "Bidirectional Ring Bus topology",
+                        desc: "Maps to the System Bus model. Rather than sharing a single set of lines, cores and cache segments communicate using high-bandwidth ring pathways."
+                    }
+                ]
+            },
+            m3: {
+                title: "Apple M3 Max",
+                specs: [
+                    { label: "Architecture", val: "ARM64 Monolithic System on Chip (SoC)" },
+                    { label: "Cores/Threads", val: "16 Cores (12 P-Cores + 4 E-Cores) / 16 Threads (No SMT)" },
+                    { label: "Clock Technologies", val: "4.05 GHz P-core Max / 3.12 GHz E-core Max" },
+                    { label: "Cache Hierarchy", val: "L2 Cache (16MB shared/P-cluster, 4MB/E-cluster) + 96MB L3" },
+                    { label: "System Bus / Interconnect", val: "On-Package Unified Memory Fabric (~400 GB/s)" },
+                    { label: "Bus Width / Channels", val: "512-bit wide unified memory bus (LPDDR5)" },
+                    { label: "Power TDP Envelope", val: "Capped at ~30W to 45W Max (high performance-per-watt)" },
+                    { label: "Instruction Set (ISA)", val: "ARM64 RISC (fixed 32-bit instructions, wide 8-wide decode)" }
+                ],
+                concepts: [
+                    {
+                        tag: "System Bus & Memory Architecture",
+                        title: "On-Package Unified Memory Bus",
+                        desc: "Maps to the System Bus model. Replaces the slow motherboard bus with an ultra-wide (512-bit) on-package fabric, sharing a single physical RAM pool between CPU and GPU."
+                    },
+                    {
+                        tag: "RISC Execution & Decoding",
+                        title: "8-Wide Decode front-end",
+                        desc: "Because ARM instructions are fixed-length, Apple M3 Max can decode 8 instructions per cycle, achieving high single-core performance at low power."
+                    },
+                    {
+                        tag: "Lab Register Files",
+                        title: "Large 31-GPR Register File",
+                        desc: "The 31 general-purpose registers reduce memory load/store instructions, aligning with the multi-port register files designed in COA Logisim lab classes."
+                    }
+                ]
+            },
+            a15: {
+                title: "ARM Cortex-A15",
+                specs: [
+                    { label: "Architecture", val: "ARMv7 Classic Out-of-Order (big.LITTLE)" },
+                    { label: "Cores/Threads", val: "2 to 4 Cores / 2 to 4 Threads (Single Thread per Core)" },
+                    { label: "Clock Technologies", val: "1.5 GHz - 2.0 GHz base frequency" },
+                    { label: "Cache Hierarchy", val: "32KB I + 32KB D L1 cache + up to 4MB shared L2 cache" },
+                    { label: "System Bus / Interconnect", val: "AMBA 4 ACE coherent interconnect (CCI-400)" },
+                    { label: "Bus Width / Channels", val: "128-bit memory bus (LPDDR3-1600)" },
+                    { label: "Power TDP Envelope", val: "3W to 5W per core (designed for low-power mobile/tablets)" },
+                    { label: "Instruction Set (ISA)", val: "ARMv7-A 32-bit RISC (supports Thumb-2 variable length)" }
+                ],
+                concepts: [
+                    {
+                        tag: "Theory: Functional Units",
+                        title: "Classic Load-Store Execution",
+                        desc: "Operations occur only on registers. Memory is accessed strictly through dedicated load/store units, matching standard COA functional unit pathways."
+                    },
+                    {
+                        tag: "Lab: 14-Operation ALU Mapping",
+                        title: "Integer Execution Unit",
+                        desc: "Features simple execution pipes that compute integer, logical, and shift operations, corresponding to the 14-operation ALU built in Logisim labs."
+                    }
+                ]
+            },
+            a78: {
+                title: "ARM Cortex-A78",
+                specs: [
+                    { label: "Architecture", val: "ARMv8.2 DynamIQ Mobile Core" },
+                    { label: "Cores/Threads", val: "1 to 4 Cores per cluster / 1 to 4 Threads" },
+                    { label: "Clock Technologies", val: "2.2 GHz base / up to 3.0 GHz peak frequency" },
+                    { label: "Cache Hierarchy", val: "64KB I + 64KB D L1 + 512KB L2 + up to 8MB shared L3 (DSU)" },
+                    { label: "System Bus / Interconnect", val: "AMBA 5 CHI coherent bus interface" },
+                    { label: "Bus Width / Channels", val: "128-bit memory interface (LPDDR5)" },
+                    { label: "Power TDP Envelope", val: "Approximately 3.5W to 4.5W at peak 3.0 GHz" },
+                    { label: "Instruction Set (ISA)", val: "ARMv8.2-A 64-bit RISC (supports vector/cryptographic pipelines)" }
+                ],
+                concepts: [
+                    {
+                        tag: "Theory: Pipelining & Stalls",
+                        title: "DynamIQ Shared Unit (DSU) & Branch Predictors",
+                        desc: "Features dynamic branch predictors to avoid pipeline branch stalls, linking to the pipeline hazard resolutions in Chapter 5."
+                    },
+                    {
+                        tag: "Lab: Memory Decoding",
+                        title: "D-latch Memory Interfaces",
+                        desc: "Implements high-speed local L1 caches to minimize data read/write latency, mapping to the memory decoder concepts in lab arrays."
+                    }
+                ]
+            }
+        };
+
+        function toggleDropdown() {
+            document.getElementById('proc-dropdown').classList.toggle('active');
+        }
+
+        function selectProcessor(key, labelText) {
+            document.getElementById('selected-proc-label').innerText = labelText;
+            document.getElementById('proc-dropdown').classList.remove('active');
+
+            // Set Selected dropdown styling
+            const options = document.querySelectorAll('#proc-dropdown .custom-dropdown-option');
+            options.forEach(opt => {
+                if (opt.getAttribute('data-value') === key) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+
+            // Populate Specs Terminal
+            const data = procData[key];
+            let specHtml = `<strong style="color:var(--accent-orange); font-size:0.9rem;">${data.title} Specification Sheet</strong><br><br>`;
+            data.specs.forEach(s => {
+                specHtml += `<span class="sim-accent">${s.label}:</span> <span style="color:#fff;">${s.val}</span><br>`;
+            });
+            document.getElementById('term-content').innerHTML = specHtml;
+
+            // Populate Mapped Concepts
+            let conceptHtml = "";
+            data.concepts.forEach(c => {
+                conceptHtml += `
+                    <div class="concept-card">
+                        <span class="concept-tag">${c.tag}</span>
+                        <div class="concept-title">${c.title}</div>
+                        <div class="concept-desc">${c.desc}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('concepts-list').innerHTML = conceptHtml;
+        }
+
+        // --- SIMULATOR 1: SYSTEM BUS INSTRUCTION TRACE ---
+        let currentCycle = 0;
+        const totalCycles = 4;
+        const cycleData = [
+            {
+                title: "Cycle 1: Instruction Fetch (IF)",
+                transfer: "MAR &larr; PC; PC &larr; PC + 4; MDR &larr; Memory[PC]; IR &larr; MDR",
+                bus: "Address Bus = 0x1000 (PC), Data Bus = 0x00821050 (LOAD instruction), Control Bus = Memory READ",
+                desc: "The Control Unit drives the Program Counter value (0x1000) onto the Address Bus and issues a READ command. The memory subsystem responds by driving the instruction word (LOAD R2, LOC) onto the Data Bus, landing in the MDR. The CPU transfers this opcode to the Instruction Register (IR), and increments the PC to 0x1004.",
+                activeBuses: ["bus-address", "bus-data", "bus-control"],
+                activeNodes: ["cpu-pc", "cpu-mar", "cpu-mdr", "cpu-ir", "cpu-cu", "mem-code"],
+                labels: { pc: "0x1004", ir: "0x00821050", mar: "0x1000", mdr: "0x00821050", r2: "0x00000000" }
+            },
+            {
+                title: "Cycle 2: Decode & Address Generation (ID)",
+                transfer: "Decode IR (opcode); MAR &larr; Address offset (LOC) from IR",
+                bus: "Address Bus = Idle, Data Bus = Idle, Control Bus = Internal Decode active",
+                desc: "The Control Unit decodes the instruction inside the IR and extracts the source register configuration and the memory address offset (LOC = 0x2050). The offset coordinates are transferred to the MAR to prepare for the data fetch.",
+                activeBuses: [],
+                activeNodes: ["cpu-ir", "cpu-mar", "cpu-cu"],
+                labels: { pc: "0x1004", ir: "0x00821050", mar: "0x2050", mdr: "0x00821050", r2: "0x00000000" }
+            },
+            {
+                title: "Cycle 3: Operand Fetch (OF)",
+                transfer: "Control Bus &larr; Memory READ; MDR &larr; Memory[Address Bus]",
+                bus: "Address Bus = 0x2050 (MAR), Data Bus = 0x000000FF (operand LOC), Control Bus = Memory READ",
+                desc: "The Control Unit drives the target operand address (0x2050) onto the Address Bus and triggers a memory READ. The memory subsystem decodes address 0x2050, locates the data cell, and drives the value (0x000000FF) onto the Data Bus, which is latched into the MDR.",
+                activeBuses: ["bus-address", "bus-data", "bus-control"],
+                activeNodes: ["cpu-mar", "cpu-mdr", "cpu-cu", "mem-data"],
+                labels: { pc: "0x1004", ir: "0x00821050", mar: "0x2050", mdr: "0x000000FF", r2: "0x00000000" }
+            },
+            {
+                title: "Cycle 4: Execute & Writeback (WB)",
+                transfer: "R2 &larr; MDR",
+                bus: "Address Bus = Idle, Data Bus = Idle, Control Bus = Register Write Enable active",
+                desc: "The Control Unit asserts the Register File write enable control line for register R2. The operand data stored in the MDR is routed via internal CPU buses and written into register R2 on the rising clock edge, completing the instruction execution.",
+                activeBuses: [],
+                activeNodes: ["cpu-mdr", "cpu-r2", "cpu-cu"],
+                labels: { pc: "0x1004", ir: "0x00821050", mar: "0x2050", mdr: "0x000000FF", r2: "0x000000FF" }
+            }
+        ];
+
+        function stepTrace() {
+            currentCycle = (currentCycle % totalCycles) + 1;
+            updateTraceUI();
+        }
+
+        function resetTrace() {
+            currentCycle = 1;
+            updateTraceUI();
+        }
+
+        function updateTraceUI() {
+            const step = cycleData[currentCycle - 1];
+            
+            // Set Text
+            document.getElementById('trace-step-title').innerHTML = `Cycle ${currentCycle}: ${step.title}`;
+            document.getElementById('trace-step-transfer').innerHTML = step.transfer;
+            document.getElementById('trace-step-bus').innerHTML = step.bus;
+            document.getElementById('trace-step-desc').innerHTML = step.desc;
+
+            // Set Table labels
+            document.getElementById('lbl-pc').innerText = step.labels.pc;
+            document.getElementById('lbl-ir').innerText = step.labels.ir;
+            document.getElementById('lbl-mar').innerText = step.labels.mar;
+            document.getElementById('lbl-mdr').innerText = step.labels.mdr;
+            document.getElementById('lbl-r2').innerText = step.labels.r2;
+
+            // Update SVG elements
+            const allBuses = ["bus-address", "bus-data", "bus-control"];
+            const allNodes = ["cpu-pc", "cpu-mar", "cpu-mdr", "cpu-ir", "cpu-r2", "cpu-cu", "mem-code", "mem-data"];
+
+            allBuses.forEach(bId => {
+                const el = document.getElementById(bId);
+                if (el) {
+                    if (step.activeBuses.includes(bId)) {
+                        el.classList.add('active-bus');
+                    } else {
+                        el.classList.remove('active-bus');
+                    }
+                }
+            });
+
+            allNodes.forEach(nId => {
+                const group = document.getElementById(nId);
+                if (group) {
+                    const rect = group.querySelector('rect');
+                    const text = group.querySelector('text');
+                    if (step.activeNodes.includes(nId)) {
+                        if (rect) rect.classList.add('active-node');
+                        if (text) text.classList.add('active-text');
+                    } else {
+                        if (rect) rect.classList.remove('active-node');
+                        if (text) text.classList.remove('active-text');
+                    }
+                }
+            });
+        }
+
+
+        // --- SIMULATOR 2: CPU PERFORMANCE BENCHMARKING ---
+        const sliderFreq = document.getElementById('sim-freq');
+        const sliderWorkload = document.getElementById('sim-workload');
+        const dispFreq = document.getElementById('sim-freq-val');
+        const dispWorkload = document.getElementById('sim-workload-val');
+
+        function simPerformance() {
+            const freqMHz = parseInt(sliderFreq.value);
+            const wScale = parseFloat(sliderWorkload.value);
+
+            dispFreq.innerText = freqMHz + " MHz";
+            dispWorkload.innerText = wScale.toFixed(1) + "M base";
+
+            // Base workloads mapping
+            // Machine A: Arithmetic 8M, Load 4M, Branch 2M, Other 4M (Total 18M)
+            const Ica = 18.0 * (wScale / 10.0);
+            const cyclesA = ((8 * 1) + (4 * 3) + (2 * 4) + (4 * 3)) * (wScale / 10.0);
+            const cpia = cyclesA / Ica;
+            const mipsa = freqMHz / cpia;
+            const timea = cyclesA / freqMHz;
+
+            // Machine B: Arithmetic 10M, Load 8M, Branch 2M, Other 4M (Total 24M)
+            const Icb = 24.0 * (wScale / 10.0);
+            const cyclesB = ((10 * 1) + (8 * 2) + (2 * 4) + (4 * 3)) * (wScale / 10.0);
+            const cpib = cyclesB / Icb;
+            const mipsb = freqMHz / cpib;
+            const timeb = cyclesB / freqMHz;
+
+            // Update Tables
+            document.getElementById('sim-res-ica').innerText = Ica.toFixed(2) + " M";
+            document.getElementById('sim-res-cpia').innerText = cpia.toFixed(2);
+            document.getElementById('sim-res-cyclesa').innerText = cyclesA.toFixed(2) + " M";
+            document.getElementById('sim-res-mipsa').innerText = mipsa.toFixed(2);
+            document.getElementById('sim-res-timea').innerText = timea.toFixed(4) + " s";
+
+            document.getElementById('sim-res-icb').innerText = Icb.toFixed(2) + " M";
+            document.getElementById('sim-res-cpib').innerText = cpib.toFixed(2);
+            document.getElementById('sim-res-cyclesb').innerText = cyclesB.toFixed(2) + " M";
+            document.getElementById('sim-res-mipsb').innerText = mipsb.toFixed(2);
+            document.getElementById('sim-res-timeb').innerText = timeb.toFixed(4) + " s";
+
+            // Update comments terminal
+            const commentsBox = document.getElementById('sim-res-comment');
+            if (timea < timeb) {
+                commentsBox.innerHTML = `<strong>Analysis Dump:</strong> Machine A executes the workload <strong>${(timeb/timea).toFixed(2)}x faster</strong> than Machine B, despite Machine B having a lower CPI (<strong>${cpib.toFixed(2)}</strong> vs <strong>${cpia.toFixed(2)}</strong>) and a higher MIPS rate (<strong>${mipsb.toFixed(1)}</strong> vs <strong>${mipsa.toFixed(1)}</strong>). <br/><span class="sim-accent">Conclusion: Instruction set efficiency and instruction count (Ic) drive actual performance.</span>`;
+            } else {
+                commentsBox.innerHTML = `<strong>Analysis Dump:</strong> Both machines take similar execution times. Adjust the sliders to see varying scaling behaviors.`;
+            }
+        }
+    
+        // ==========================================
+        // --- NEW SIMULATORS JAVASCRIPT LOGIC ---
+        // ==========================================
+
+        // --- PROBLEM 01: SKU SELECTOR & DIE GRID ---
+        const skuData = {
+            i9: {
+                name: "Intel Core i9-13900K",
+                pCores: 8,
+                eCores: 16,
+                freqP: "3.0 - 5.8 GHz",
+                freqE: "2.2 - 4.3 GHz",
+                l3Cache: "36 MB",
+                l2Cache: "32 MB total (2MB/P-core, 4MB/E-cluster)",
+                dmi: "DMI 4.0 x8 (16 GB/s per lane)"
+            },
+            i7: {
+                name: "Intel Core i7-13700K",
+                pCores: 8,
+                eCores: 8,
+                freqP: "3.4 - 5.4 GHz",
+                freqE: "2.5 - 4.2 GHz",
+                l3Cache: "30 MB",
+                l2Cache: "24 MB total",
+                dmi: "DMI 4.0 x8"
+            },
+            i5: {
+                name: "Intel Core i5-13600K",
+                pCores: 6,
+                eCores: 8,
+                freqP: "3.5 - 5.1 GHz",
+                freqE: "2.6 - 3.9 GHz",
+                l3Cache: "24 MB",
+                l2Cache: "20 MB total",
+                dmi: "DMI 4.0 x8"
+            }
+        };
+
+        let currentSKU = 'i9';
+        function rebuildDieGrid() {
+            const grid = document.getElementById('die-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            const data = skuData[currentSKU];
+            
+            // Add P-cores
+            for(let i=0; i<data.pCores; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'die-cell-btn p-core';
+                btn.innerText = `P${i}`;
+                btn.onclick = () => selectCore(`P${i}`, 'P');
+                grid.appendChild(btn);
+            }
+            // Add E-cores
+            for(let i=0; i<data.eCores; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'die-cell-btn e-core';
+                btn.innerText = `E${i}`;
+                btn.onclick = () => selectCore(`E${i}`, 'E');
+                grid.appendChild(btn);
+            }
+        }
+
+        function changeSKU(key) {
+            currentSKU = key;
+            document.querySelectorAll('.sku-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`sku-${key}`);
+            if (activeBtn) activeBtn.classList.add('active');
+            
+            rebuildDieGrid();
+            
+            const consoleLog = document.getElementById('die-console');
+            if (consoleLog) {
+                consoleLog.innerHTML = `[Console] SKU changed to ${skuData[key].name}.\nCores: ${skuData[key].pCores} P-Cores + ${skuData[key].eCores} E-Cores.\nL3 Cache: ${skuData[key].l3Cache}. Click any core block above to inspect physical properties.`;
+            }
+        }
+
+        function selectCore(name, type) {
+            document.querySelectorAll('.die-cell-btn').forEach(btn => btn.classList.remove('selected'));
+            
+            const buttons = document.querySelectorAll('.die-cell-btn');
+            buttons.forEach(btn => {
+                if (btn.innerText === name) btn.classList.add('selected');
+            });
+            
+            const consoleLog = document.getElementById('die-console');
+            if (!consoleLog) return;
+            if (type === 'P') {
+                consoleLog.innerHTML = `[Console] CORE INSPECTED: ${name} (Performance Core)
+- Architecture: Golden Cove (Intel 7 Process)
+- Threading: SMT Active (2 Threads/Core)
+- Decode Width: 6-wide superscalar decoder
+- Execution Ports: 12 ports with dedicated FP/Vector ALUs
+- Pipeline Depth: 14 stages OoO (Out-of-Order)
+- L1 Cache: 80KB (48KB I + 32KB D) per core
+- L2 Cache: 2.0MB dedicated MLC (Mid-Level Cache)
+- ISA Extensions: AVX2, AVX-VNNI, SHA-NI, Advanced Matrix Extensions (AMX)`;
+            } else {
+                consoleLog.innerHTML = `[Console] CORE INSPECTED: ${name} (Efficient Core)
+- Architecture: Gracemont (Intel 7 Process)
+- Threading: 1 Thread/Core (No SMT)
+- Decode Width: 3-wide clustered decoder
+- Execution Ports: 17 ports optimized for integer throughput
+- Pipeline Depth: 13 stages In-Order/OoO Hybrid
+- L1 Cache: 96KB (64KB I + 32KB D) per core
+- L2 Cache: 4.0MB shared L2 cache per 4-core cluster
+- ISA Extensions: AVX2, AVX-VNNI (optimized for low-power vector tasks)`;
+            }
+        }
+
+        // --- PROBLEM 03: MEMORY LATENCY HIERARCHY STACK ---
+        const stackData = {
+            registers: {
+                name: "Core Registers",
+                capacity: "256 KB total register file (PRF)",
+                latency: "~0.5 ns (1 clock cycle)",
+                bandwidth: "~10 TB/s (multi-ported access)",
+                associativity: "N/A (Direct Register Renaming Mapping)",
+                desc: "Directly mapped to the execution units' instruction ports. Provides single-cycle read/write access to variables currently stored in the physical register file (PRF) for out-of-order execution."
+            },
+            l1: {
+                name: "L1 Instruction/Data Cache",
+                capacity: "80KB per P-core (48KB I + 32KB D), 96KB per E-core cluster",
+                latency: "1.2 ns (4-5 clock cycles)",
+                bandwidth: "~400 GB/s per core",
+                associativity: "8-way Set Associative (Write-Back)",
+                desc: "Primary cache built directly next to the execution pipelines. Shields the CPU from L2 latencies using spatial locality (64-byte line prefetching)."
+            },
+            l2: {
+                name: "L2 Mid-Level Cache (MLC)",
+                capacity: "2.0 MB dedicated per P-core, 4.0 MB shared per 4-core E-cluster",
+                latency: "3.5 ns (14-16 clock cycles)",
+                bandwidth: "~250 GB/s",
+                associativity: "16-way Set Associative (Non-inclusive)",
+                desc: "Secondary, dedicated low-latency cache. Serves as a fast recovery buffer for L1 cache misses before accessing the shared ring interconnect."
+            },
+            l3: {
+                name: "L3 Shared Last-Level Cache (LLC)",
+                capacity: "36 MB shared across all cores & integrated GPU",
+                latency: "12.5 ns (45-50 clock cycles)",
+                bandwidth: "~150 GB/s",
+                associativity: "12-way Set Associative (Inclusive of L2)",
+                desc: "Global last-level cache. Shared via the high-speed ring interconnect, distributing memory chunks dynamically using a hash-routing scheme to maximize cache hit rates."
+            },
+            ram: {
+                name: "System Memory (DDR5-5600 Dual Channel)",
+                capacity: "Up to 128 GB",
+                latency: "75.0 ns (280-320 clock cycles)",
+                bandwidth: "89.6 GB/s",
+                associativity: "N/A (Paged / Direct DRAM Address Multiplexing)",
+                desc: "Main system storage. Connects to the CPU memory controllers via high-speed DRAM bus lines. L3 cache misses trigger a full system memory page activation."
+            },
+            ssd: {
+                name: "NVMe PCIe 4.0 x4 Solid State Drive",
+                capacity: "Up to 8 TB",
+                latency: "50,000 ns (180k+ clock cycles)",
+                bandwidth: "7.0 GB/s (Sequential Read)",
+                associativity: "N/A (Block / Sector Addressing)",
+                desc: "Non-volatile secondary storage. Requires virtual memory page table translations and OS interrupt handling, showing why physical cache hierarchies are critical."
+            }
+        };
+
+        function selectStackLevel(key) {
+            document.querySelectorAll('.stack-bar').forEach(el => el.classList.remove('active'));
+            const clickedBar = document.querySelector(`.bar-${key}`);
+            if (clickedBar) clickedBar.classList.add('active');
+            
+            const data = stackData[key];
+            if (!data) return;
+            document.getElementById('mem-name').innerText = data.name;
+            document.getElementById('mem-meta').innerHTML = `
+                <div>Capacity: <span style="color:#fff;">${data.capacity}</span></div>
+                <div>Latency: <span style="color:var(--accent-amber);">${data.latency}</span></div>
+                <div>Bandwidth: <span style="color:var(--accent-blue);">${data.bandwidth}</span></div>
+                <div>Associativity: <span style="color:#fff;">${data.associativity}</span></div>
+            `;
+            document.getElementById('mem-desc').innerText = data.desc;
+        }
+
+        function calculateAMAT() {
+            const sliderL1 = document.getElementById('slider-l1-hit');
+            const sliderL2 = document.getElementById('slider-l2-hit');
+            const sliderL3 = document.getElementById('slider-l3-hit');
+            if (!sliderL1 || !sliderL2 || !sliderL3) return;
+
+            const l1Hit = parseFloat(sliderL1.value) / 100.0;
+            const l2Hit = parseFloat(sliderL2.value) / 100.0;
+            const l3Hit = parseFloat(sliderL3.value) / 100.0;
+            
+            document.getElementById('val-l1-hit').innerText = Math.round(l1Hit * 100) + '%';
+            document.getElementById('val-l2-hit').innerText = Math.round(l2Hit * 100) + '%';
+            document.getElementById('val-l3-hit').innerText = Math.round(l3Hit * 100) + '%';
+            
+            const latL1 = 1.2; // ns
+            const latL2 = 3.5; // ns
+            const latL3 = 12.5; // ns
+            const latRAM = 75.0; // ns
+            
+            const mrL1 = 1.0 - l1Hit;
+            const mrL2 = 1.0 - l2Hit;
+            const mrL3 = 1.0 - l3Hit;
+            
+            const amat = latL1 + mrL1 * (latL2 + mrL2 * (latL3 + mrL3 * latRAM));
+            const clockCycles = amat / 0.172; // 0.172 ns per clock cycle at 5.8 GHz
+            
+            document.getElementById('val-amat').innerHTML = `${amat.toFixed(3)} ns <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(~${clockCycles.toFixed(1)} clock cycles)</span>`;
+        }
+
+        // --- PROBLEM 07: RING INTERCONNECT ROUTER ---
+        let ringSrc = 'P0';
+        let ringDst = 'MEM';
+
+        function setRingEndpoint(node) {
+            if (ringSrc === node) return;
+            
+            if (!ringSrc || (ringSrc && ringDst)) {
+                ringSrc = node;
+                ringDst = null;
+                document.querySelectorAll('#ring-svg circle').forEach(c => c.setAttribute('fill', '#121216'));
+                document.getElementById(`circle-${node}`).setAttribute('fill', 'var(--accent-orange)');
+            } else {
+                ringDst = node;
+                document.getElementById(`circle-${node}`).setAttribute('fill', 'var(--accent-blue)');
+            }
+            
+            document.getElementById('ring-src-display').innerText = ringSrc || 'None';
+            document.getElementById('ring-dst-display').innerText = ringDst || 'None';
+            
+            const consoleLog = document.getElementById('ring-console');
+            if (consoleLog) {
+                consoleLog.innerHTML = `[Console] Selected Source: ${ringSrc || 'None'}, Destination: ${ringDst || 'None'}. Click "Route Transaction" to execute.`;
+            }
+        }
+
+        function routeRingTransaction() {
+            if (!ringSrc || !ringDst) {
+                alert("Please select both a Source and a Destination node on the ring bus!");
+                return;
+            }
+            
+            const nodes = ['P0', 'P1', 'P2', 'P3', 'GPU', 'MEM', 'E2', 'E1', 'E0', 'SA'];
+            const idxSrc = nodes.indexOf(ringSrc);
+            const idxDst = nodes.indexOf(ringDst);
+            
+            // Clockwise path
+            let pathClockwise = [];
+            let idx = idxSrc;
+            while(idx !== idxDst) {
+                pathClockwise.push(nodes[idx]);
+                idx = (idx + 1) % nodes.length;
+            }
+            pathClockwise.push(nodes[idxDst]);
+            
+            // Counterclockwise path
+            let pathCounter = [];
+            idx = idxSrc;
+            while(idx !== idxDst) {
+                pathCounter.push(nodes[idx]);
+                idx = (idx - 1 + nodes.length) % nodes.length;
+            }
+            pathCounter.push(nodes[idxDst]);
+            
+            let path = pathClockwise.length <= pathCounter.length ? pathClockwise : pathCounter;
+            
+            let hop = 0;
+            const consoleLog = document.getElementById('ring-console');
+            consoleLog.innerHTML = `[Console] Initializing Ring Transaction...\nAddress bus assert: Read request for L3 cache line at [${ringSrc}] to target [${ringDst}]...`;
+            
+            function animateHop() {
+                if (hop >= path.length) {
+                    consoleLog.innerHTML += `\n[Success] Data transfer complete. Coherence state updated to 'Shared' (MESI protocol). Total latency: ${path.length - 1} clock cycles (hops).`;
+                    return;
+                }
+                
+                const node = path[hop];
+                const circle = document.getElementById(`circle-${node}`);
+                
+                if (circle) {
+                    circle.setAttribute('fill', 'var(--accent-red)');
+                    setTimeout(() => {
+                        if (node === ringSrc) circle.setAttribute('fill', 'var(--accent-orange)');
+                        else if (node === ringDst) circle.setAttribute('fill', 'var(--accent-blue)');
+                        else {
+                            if (node.startsWith('P')) circle.setAttribute('fill', '#121216');
+                            else if (node.startsWith('E')) circle.setAttribute('fill', '#121216');
+                            else circle.setAttribute('fill', '#121216');
+                        }
+                    }, 300);
+                }
+                
+                if (hop > 0) {
+                    consoleLog.innerHTML += `\n  Hop ${hop}: Packet reaches Ring Stop [${node}] (Bus Cycle ${hop}).`;
+                    consoleLog.scrollTop = consoleLog.scrollHeight;
+                }
+                
+                hop++;
+                setTimeout(animateHop, 350);
+            }
+            
+            animateHop();
+        }
+
+        // --- PROBLEM 08: AVX-512 VNNI DOT-PRODUCT ---
+        function runVNNISimulation() {
+            const a0 = parseInt(document.getElementById('vnni-a0').value) || 0;
+            const a1 = parseInt(document.getElementById('vnni-a1').value) || 0;
+            const a2 = parseInt(document.getElementById('vnni-a2').value) || 0;
+            const a3 = parseInt(document.getElementById('vnni-a3').value) || 0;
+            
+            const b0 = parseInt(document.getElementById('vnni-b0').value) || 0;
+            const b1 = parseInt(document.getElementById('vnni-b1').value) || 0;
+            const b2 = parseInt(document.getElementById('vnni-b2').value) || 0;
+            const b3 = parseInt(document.getElementById('vnni-b3').value) || 0;
+            
+            const acc = parseInt(document.getElementById('vnni-acc').value) || 0;
+            
+            const term0 = a0 * b0;
+            const term1 = a1 * b1;
+            const term2 = a2 * b2;
+            const term3 = a3 * b3;
+            
+            const result = term0 + term1 + term2 + term3 + acc;
+            
+            document.getElementById('vnni-res-scalar').innerText = result;
+            document.getElementById('vnni-res-vector').innerText = result;
+            
+            const consoleLog = document.getElementById('vnni-console');
+            if (consoleLog) {
+                consoleLog.innerHTML = `[Console] Executing VPDPBUSD ymm0, ymm1, ymm2...
+- Step 1: Multiply pairs of 8-bit integers:
+    (${a0} * ${b0}) = ${term0}
+    (${a1} * ${b1}) = ${term1}
+    (${a2} * ${b2}) = ${term2}
+    (${a3} * ${b3}) = ${term3}
+- Step 2: Sum the four products:
+    ${term0} + (${term1}) + ${term2} + ${term3} = ${term0 + term1 + term2 + term3}
+- Step 3: Accumulate into 32-bit destination register:
+    ${term0 + term1 + term2 + term3} + ${acc} = ${result}
+
+[VNNI Analysis] 
+In standard x86 scalar execution, this requires 4 PMULLD (Multiply) and 4 PADDD (Add) instructions, taking ~8 cycles of execution port occupancy.
+VNNI executes this 4-lane multiply-accumulate on Vector Execution Ports 0/5 in a SINGLE clock cycle!`;
+            }
+        }
+
+        // --- PROBLEM 09: THREAD DIRECTOR ---
+        function rebuildThreadDirectorDie() {
+            const grid = document.getElementById('th-die-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            
+            for (let i = 0; i < 8; i++) {
+                const d = document.createElement('div');
+                d.id = `th-core-P${i}`;
+                d.className = 'die-cell-btn p-core';
+                d.style.padding = '0.35rem 0';
+                d.style.fontSize = '0.72rem';
+                d.innerText = `P${i}`;
+                grid.appendChild(d);
+            }
+            for (let i = 0; i < 16; i++) {
+                const d = document.createElement('div');
+                d.id = `th-core-E${i}`;
+                d.className = 'die-cell-btn e-core';
+                d.style.padding = '0.35rem 0';
+                d.style.fontSize = '0.72rem';
+                d.innerText = `E${i}`;
+                grid.appendChild(d);
+            }
+        }
+
+        function runWorkload(type) {
+            document.querySelectorAll('[id^="w-"]').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`w-${type}`);
+            if (activeBtn) activeBtn.classList.add('active');
+            
+            document.querySelectorAll('#th-die-grid div').forEach(c => {
+                c.classList.remove('selected');
+                c.style.background = '';
+            });
+            
+            const consoleLog = document.getElementById('th-console');
+            if (!consoleLog) return;
+            
+            if (type === 'idle') {
+                document.getElementById('th-pclock').innerText = "3.0 GHz";
+                document.getElementById('th-eclock').innerText = "2.2 GHz";
+                document.getElementById('th-active').innerText = "2 / 32";
+                document.getElementById('th-power').innerText = "15 W";
+                document.getElementById('th-temp').innerText = "38°C";
+                document.getElementById('th-status').innerText = "STATUS: TEMPERATURE STABLE";
+                document.getElementById('th-status').style.color = "var(--accent-amber)";
+                
+                consoleLog.innerHTML = `[Console] Workload: System Idle.
+- OS schedules minor background daemon threads to E-cores to keep P-cores in low-power C-states.
+- Overall power consumption is minimal. CPU runs cool.`;
+            }
+            else if (type === 'gaming') {
+                document.getElementById('th-pclock').innerText = "5.8 GHz (Turbo Boost)";
+                document.getElementById('th-eclock').innerText = "4.3 GHz";
+                document.getElementById('th-active').innerText = "12 / 32";
+                document.getElementById('th-power').innerText = "125 W";
+                document.getElementById('th-temp').innerText = "68°C";
+                document.getElementById('th-status').innerText = "STATUS: INTEL TVB ACTIVE";
+                document.getElementById('th-status').style.color = "var(--accent-blue)";
+                
+                for (let i = 0; i < 6; i++) {
+                    const el = document.getElementById(`th-core-P${i}`);
+                    if (el) el.style.background = 'var(--accent-red)';
+                }
+                
+                consoleLog.innerHTML = `[Console] Workload: High-FPS Gaming.
+- ITD detects vector-heavy, branch-intensive loop threads (DirectX render threads and game logic).
+- Schedulers route all primary threads to P-Cores P0-P5 for maximum single-threaded IPC and latency shielding.
+- P-cores run at Max Turbo frequency (5.8 GHz). CPU package power increases to 125W.`;
+            }
+            else if (type === 'rendering') {
+                document.getElementById('th-pclock').innerText = "5.2 GHz";
+                document.getElementById('th-eclock').innerText = "4.0 GHz";
+                document.getElementById('th-active').innerText = "32 / 32";
+                document.getElementById('th-power').innerText = "253 W (PL2 Max)";
+                document.getElementById('th-temp').innerText = "92°C";
+                document.getElementById('th-status').innerText = "WARNING: THERMAL THROTTLING NEAR LIMIT";
+                document.getElementById('th-status').style.color = "#ef4444";
+                
+                document.querySelectorAll('#th-die-grid div').forEach(c => {
+                    c.style.background = 'var(--accent-red)';
+                });
+                
+                consoleLog.innerHTML = `[Console] Workload: Cinebench Multi-Threaded Render.
+- Parallel processing load: OS activates all 32 logical threads.
+- All 8 P-Cores (16 threads) and 16 E-Cores (16 threads) are running at 100% load.
+- Power draw peaks at 253W limit (PL2), generating substantial heat. Temperature rises to 92°C.`;
+            }
+            else if (type === 'bg') {
+                document.getElementById('th-pclock').innerText = "1.5 GHz (Low Power)";
+                document.getElementById('th-eclock').innerText = "3.8 GHz";
+                document.getElementById('th-active').innerText = "8 / 32";
+                document.getElementById('th-power').innerText = "35 W";
+                document.getElementById('th-temp').innerText = "48°C";
+                document.getElementById('th-status').innerText = "STATUS: POWER CONSERVATION ACTIVE";
+                document.getElementById('th-status').style.color = "var(--accent-amber)";
+                
+                for (let i = 0; i < 8; i++) {
+                    const el = document.getElementById(`th-core-E${i}`);
+                    if (el) el.style.background = 'var(--accent-red)';
+                }
+                
+                consoleLog.innerHTML = `[Console] Workload: Background Virus Scan.
+- ITD detects low-priority background threads with low scalar IPC.
+- These threads are strictly bound to E-cores E0-E7.
+- P-cores remain in low-frequency power saving states, demonstrating the efficiency aspect of the hybrid architecture.`;
+            }
+        }
+</script>
+</body>
+</html>
