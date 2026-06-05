@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COA Portfolio - Chapter 4 Memory Organization Workspace</title>
+    <!-- Google Fonts for Brutalist & Tech Aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Charcoal & Ember Brutalist Design Tokens */
+        :root {
+            --bg-primary: #0a0a0c; /* Deep warm charcoal */
+            --bg-card: #121216; /* Dark slate card */
+            --accent-orange: #f97316; /* Magma/Ember Orange */
+            --accent-amber: #fbbf24; /* Golden amber */
+            --accent-blue: #38bdf8; /* Sky blue */
+            --accent-glow: rgba(249, 115, 22, 0.2);
+            --text-white: #f4f4f7;
+            --text-muted: #9ea2b0;
+            --border-width: 2.5px;
+            --border-color: #1c1c24;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-code: 'Fira Code', monospace;
+            --box-shadow: 6px 6px 0px #000000;
+            --box-shadow-hover: 2px 2px 0px #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Custom Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-orange);
+            border: 2px solid #0a0a0c;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-amber);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            background-image: radial-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-white);
+            font-family: var(--font-body);
+            line-height: 1.5;
+            padding: 2.5rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Top Header Nav Bullet */
+        .top-bullet {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .top-bullet span {
+            color: var(--accent-orange);
+        }
+
+        /* Chapter Title Styles */
+        .ch-num {
+            font-family: var(--font-code);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .ch-title {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--text-white);
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
+
+        .ch-title span {
+            color: var(--accent-orange);
+            text-decoration: underline;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.2);
+        }
+
+        .ch-desc {
+            font-size: 0.96rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-top: 0.8rem;
+        }
+
+        /* Profile cell grid table */
+        .brutalist-grid-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            border: var(--border-width) solid #000000;
+            background: var(--bg-card);
+            box-shadow: var(--box-shadow);
+            margin-top: 1rem;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .grid-cell {
+            padding: 1.2rem;
+            border-right: var(--border-width) solid #000000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .grid-cell:last-child {
+            border-right: none;
+        }
+
+        .cell-value {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-white);
+        }
+
+        .cell-label {
+            font-family: var(--font-code);
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Playbook Activities Visual Navigation Grid */
+        .playbook-activities-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .playbook-act-card {
+            background: var(--bg-card);
+            border: var(--border-width) solid var(--border-color);
+            padding: 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #000000;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .playbook-act-card:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #000000;
+            border-color: var(--accent-orange);
+        }
+
+        .playbook-act-badge {
+            align-self: flex-start;
+            font-family: var(--font-code);
+            font-size: 0.62rem;
+            font-weight: bold;
+            padding: 0.12rem 0.35rem;
+            border: 1px solid #1a1a24;
+            background: #09090b;
+            color: var(--accent-amber);
+            border-radius: 2px;
+        }
+
+        .playbook-act-title {
+            font-family: var(--font-display);
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--text-white);
+        }
+
+        .playbook-workspace {
+            background: var(--bg-card);
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 4px;
+            padding: 2.2rem;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            animation: chapterSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .playbook-workspace:hover {
+            border-color: rgba(249, 115, 22, 0.35);
+            box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Static Answer Card Styling */
+        .answer-box {
+            border: var(--border-width) solid #000000;
+            background: #08080b;
+            border-radius: 4px;
+            margin-top: 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 4px 4px 0px #000000;
+            overflow: hidden;
+        }
+
+        .answer-header {
+            background: #0f0f13;
+            border-bottom: var(--border-width) solid #000000;
+            padding: 0.5rem 0.8rem;
+            font-family: var(--font-code);
+            font-size: 0.72rem;
+            font-weight: bold;
+            color: var(--accent-orange);
+        }
+
+        .answer-content {
+            padding: 1.2rem;
+            color: var(--text-white);
+            font-family: var(--font-body);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .answer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .answer-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .answer-content ul, .answer-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .answer-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .answer-content code {
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            background: #1e1e24;
+            padding: 0.15rem 0.3rem;
+            border-radius: 3px;
+            color: var(--accent-amber);
+        }
+
+        .answer-content pre {
+            font-family: var(--font-code);
+            font-size: 0.82rem;
+            background: #000000;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #1a1a24;
+            overflow-x: auto;
+            margin: 0.8rem 0;
+            line-height: 1.35;
+            color: #d1d5db;
+        }
+
+        .fraction {
+            display: inline-flex;
+            flex-direction: column;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 1.1;
+            padding: 0 0.25rem;
+            font-family: var(--font-code);
+        }
+        .fraction .numerator {
+            border-bottom: 1.5px solid var(--text-white);
+            padding-bottom: 2px;
+            font-size: 0.85em;
+        }
+        .fraction .denominator {
+            padding-top: 2px;
+            font-size: 0.85em;
+        }
+
+        .question-text {
+            font-size: 0.94rem;
+            color: var(--text-white);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .question-text blockquote {
+            background: #08080b;
+            border-left: 3.5px solid var(--accent-orange);
+            padding: 0.8rem 1.2rem;
+            margin: 0.8rem 0;
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.88rem;
+        }
+
+        .brutalist-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.88rem;
+            border: var(--border-width) solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+        }
+        .brutalist-table th, .brutalist-table td {
+            border: 1.5px solid #1c1c24;
+            padding: 0.8rem;
+            text-align: left;
+        }
+        .brutalist-table th {
+            background: #0f0f13;
+            color: var(--accent-orange);
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+        .brutalist-table tr:nth-child(even) {
+            background: #0d0d11;
+        }
+
+        /* Simulator CSS */
+        .simulator-box {
+            background: #08080b;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 4px 4px 0 #000000;
+            padding: 1.5rem;
+        }
+        
+        .sim-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            border-bottom: 1.5px dashed var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .sim-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .sim-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sim-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sim-input-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .sim-input-label {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            width: 140px;
+            flex-shrink: 0;
+        }
+
+        .sim-text-input {
+            background: #121216;
+            border: 2px solid var(--accent-orange);
+            color: var(--text-white);
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            width: 100%;
+            outline: none;
+        }
+
+        .sim-text-input:focus {
+            box-shadow: 0 0 8px rgba(249, 115, 22, 0.4);
+            border-color: var(--accent-amber);
+        }
+
+        /* Custom Dropdown Styling */
+        .custom-dropdown {
+            position: relative;
+            width: 100%;
+            font-family: var(--font-body);
+            user-select: none;
+        }
+
+        .custom-dropdown-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.45rem 0.8rem;
+            background: #121216;
+            border: 2px solid var(--accent-orange);
+            color: var(--text-white);
+            font-size: 0.82rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-code);
+        }
+
+        .custom-dropdown-trigger:hover {
+            background: rgba(249, 115, 22, 0.05);
+        }
+
+        .custom-dropdown.active .custom-dropdown-trigger {
+            border-color: var(--accent-amber);
+        }
+
+        .custom-dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.2s;
+        }
+
+        .custom-dropdown.active .custom-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .custom-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border: 2px solid #000000;
+            border-radius: 4px;
+            box-shadow: var(--box-shadow);
+            z-index: 150;
+            max-height: 200px;
+            overflow-y: auto;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: all 0.2s;
+        }
+
+        .custom-dropdown.active .custom-dropdown-menu {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .custom-dropdown-option {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: var(--font-code);
+        }
+
+        .custom-dropdown-option:hover {
+            background: var(--accent-glow);
+            color: var(--accent-orange);
+        }
+
+        .custom-dropdown-option.selected {
+            background: var(--accent-orange);
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .sim-btn-row {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .sim-btn {
+            padding: 0.5rem 1rem;
+            background: #121216;
+            border: 2px solid var(--accent-orange);
+            color: var(--accent-orange);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 #000000;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+        }
+
+        .sim-btn:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0 #000000;
+            background: rgba(249, 115, 22, 0.05);
+        }
+
+        .sim-btn.active {
+            background: var(--accent-orange);
+            color: #000000;
+            font-weight: 800;
+        }
+
+        .sim-visual {
+            background: #040406;
+            border: 1px solid #1c1c24;
+            border-radius: 4px;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.5);
+            gap: 1rem;
+        }
+
+        .sim-terminal {
+            background: #000000;
+            border: 1px solid #1c1c24;
+            padding: 0.8rem;
+            border-radius: 4px;
+            font-family: var(--font-code);
+            font-size: 0.76rem;
+            line-height: 1.5;
+            color: #d1d5db;
+            width: 100%;
+        }
+
+        .sim-highlight {
+            color: var(--accent-amber);
+            font-weight: bold;
+        }
+
+        .sim-accent {
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        .address-partition-blocks {
+            display: flex;
+            width: 100%;
+            height: 45px;
+            border: 2px solid #000000;
+            border-radius: 4px;
+            overflow: hidden;
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .part-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #000000;
+            transition: width 0.3s ease;
+        }
+
+        .part-tag { background: #38bdf8; }
+        .part-index { background: #fbbf24; }
+        .part-offset { background: #f97316; }
+
+        .part-bits-label {
+            font-size: 0.65rem;
+            opacity: 0.8;
+            margin-top: 0.1rem;
+        }
+
+        .binary-cell-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-top: 0.3rem;
+        }
+
+        .binary-bit {
+            width: 16px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-code);
+            font-size: 0.65rem;
+            font-weight: bold;
+            color: #000000;
+            border-radius: 2px;
+        }
+
+        /* Staggered Animations */
+        @keyframes chapterSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .playbook-activities-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .playbook-activities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .brutalist-grid-table {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header -->
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
+            <div class="top-bullet">
+                <span>//</span> Chapter 4
+            </div>
+            <div class="ch-title">Chapter 4: <span>Memory Organization</span></div>
+            <p class="ch-desc" style="max-width: 800px;">
+                Investigate the structure of semiconductor memory modules. Explore multi-tier cache memory layouts (specifically mapped to the Intel Core i9-13900K platform), SSD vs HDD access times, dynamic bit cell array organizations, address partitioning equations, and set-associative cache line indexing.
+            </p>
+        </div>
+
+        <!-- Synchronized Student Parameter Grid -->
+        <div class="brutalist-grid-table">
+            <div class="grid-cell">
+                <div class="cell-value" id="cell-name">Sarvadnya Patil</div>
+                <span class="cell-label">Student Name</span>
+            </div>
+            <div class="grid-cell">
+                <div class="cell-value" id="cell-usn">02FE25BCS017</div>
+                <span class="cell-label">USN / ID</span>
+            </div>
+            <div class="grid-cell">
+                <div class="cell-value" id="cell-prog">B.E. CSE</div>
+                <span class="cell-label">Programme</span>
+            </div>
+            <div class="grid-cell">
+                <div class="cell-value" id="cell-inst">KLE Tech, Belagavi</div>
+                <span class="cell-label">Institution</span>
+            </div>
+        </div>
+
+        <!-- Table of Contents Visual Navigator -->
+        <div style="margin-top: 0.5rem;">
+            <div class="ch-num" style="margin-bottom: 0.6rem; color: var(--accent-amber);">// QUICK NAVIGATOR</div>
+            <div class="playbook-activities-grid">
+                <div class="playbook-act-card" onclick="scrollToProblem(1)">
+                    <div class="playbook-act-badge">Q01</div>
+                    <div class="playbook-act-title">i9-13900K Caches</div>
+                </div>
+                <div class="playbook-act-card" onclick="scrollToProblem(2)">
+                    <div class="playbook-act-badge">Q02</div>
+                    <div class="playbook-act-title">SSD / HDD Storage</div>
+                </div>
+                <div class="playbook-act-card" onclick="scrollToProblem(3)">
+                    <div class="playbook-act-badge">Q03</div>
+                    <div class="playbook-act-title">RAM Bit Cell</div>
+                </div>
+                <div class="playbook-act-card" onclick="scrollToProblem(4)">
+                    <div class="playbook-act-badge">Q04</div>
+                    <div class="playbook-act-title">Memory Sizing</div>
+                </div>
+                <div class="playbook-act-card" onclick="scrollToProblem(5)">
+                    <div class="playbook-act-badge">Q05</div>
+                    <div class="playbook-act-title">Locality/Hierarchy</div>
+                </div>
+                <div class="playbook-act-card" onclick="scrollToProblem(6)">
+                    <div class="playbook-act-badge">Q06</div>
+                    <div class="playbook-act-title">Mapping Theory</div>
+                </div>
+                <div class="playbook-act-card" onclick="scrollToProblem(7)">
+                    <div class="playbook-act-badge">Q07</div>
+                    <div class="playbook-act-title">Mapping Numerical</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vertically Stacked Numerical Workspace Cards -->
+        <div style="display: flex; flex-direction: column; gap: 2.5rem; margin-top: 1rem;">
+
+            <!-- PROBLEM 1 -->
+            <div class="playbook-workspace" id="problem-card-1">
+                <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 01</div>
+                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Intel Core i9-13900K Cache Hierarchy
+                </h3>
+                <div class="question-text">
+                    Describe the internal cache memory organization of your allotted processor (Intel Core i9-13900K). Detail the size, association, and distribution of Level 1, Level 2, and Level 3 cache across the Performance cores (P-cores) and Efficient cores (E-cores).
+                </div>
+
+                <div class="answer-box">
+                    <div class="answer-header">// COA RESOLVED ANSWER</div>
+                    <div class="answer-content">
+                        <p>The Intel Core i9-13900K features a hybrid x86 architecture with 24 physical cores (8 P-cores, Raptor Cove; and 16 E-cores, Gracemont) and 32 threads. Its high-speed cache hierarchy is organized as follows:</p>
+                        
+                        <p><strong>1. Level 1 (L1) Cache (Private, Split Instruction/Data):</strong></p>
+                        <ul>
+                            <li><strong>8 Performance Cores (P-cores):</strong> Each core has its own dedicated 80 KB L1 cache, split into:
+                                <ul>
+                                    <li>32 KB L1 Data Cache (L1-D) (12-way set-associative)</li>
+                                    <li>48 KB L1 Instruction Cache (L1-I) (12-way set-associative)</li>
+                                </ul>
+                                Total P-core L1: 8 &times; 80 KB = 640 KB.
+                            </li>
+                            <li><strong>16 Efficient Cores (E-cores):</strong> Arranged in 4 clusters of 4 cores. Inside each cluster, each individual core has its own:
+                                <ul>
+                                    <li>32 KB L1 Data Cache (L1-D) (8-way set-associative)</li>
+                                    <li>64 KB L1 Instruction Cache (L1-I) (8-way set-associative)</li>
+                                </ul>
+                                Total E-core L1: 16 &times; 96 KB = 1,536 KB = 1.5 MB.
+                            </li>
+                            <li><strong>Total L1 Cache:</strong> 640 KB + 1536 KB = <strong>2.125 MB</strong> (2,176 KB).</li>
+                        </ul>
+
+                        <p><strong>2. Level 2 (L2) Cache (Dedicated for P-cores, Shared for E-core Clusters):</strong></p>
+                        <ul>
+                            <li><strong>P-cores:</strong> Each core has a dedicated, private <strong>2 MB L2 cache</strong> (16-way set-associative) to minimize core-to-core latency.
+                                <br>Total P-core L2: 8 &times; 2 MB = 16 MB.
+                            </li>
+                            <li><strong>E-cores:</strong> Each of the 4 E-core clusters shares a <strong>4 MB L2 cache</strong> (16-way set-associative) among its 4 constituent cores.
+                                <br>Total E-core L2: 4 &times; 4 MB = 16 MB.
+                            </li>
+                            <li><strong>Total L2 Cache:</strong> 16 MB + 16 MB = <strong>32 MB</strong>.</li>
+                        </ul>
+
+                        <p><strong>3. Level 3 (L3) Cache (Globally Shared Smart Cache):</strong></p>
+                        <ul>
+                            <li>A massive <strong>36 MB L3 cache</strong> (36-way set-associative) is shared globally across all 8 P-cores and all 4 E-core clusters.</li>
+                            <li>Communication is managed via a bidirectional ring bus connecting cores, L3 cache slices, and the system agent. The L3 is non-inclusive, avoiding redundant storage of L2 lines to maximize effective capacity.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROBLEM 2 -->
+            <div class="playbook-workspace" id="problem-card-2">
+                <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 02</div>
+                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Secondary Storage Overview (SSD vs. HDD)
+                </h3>
+                <div class="question-text">
+                    Provide a comparative overview of solid-state drives (SSDs) and hard disk drives (HDDs) as secondary storage. Analyze the performance differences in latency and transfer rates on a platform powered by the Intel Core i9-13900K, focusing on PCIe Gen 4.0/5.0 NVMe M.2 interfaces.
+                </div>
+
+                <div class="answer-box">
+                    <div class="answer-header">// COA RESOLVED ANSWER</div>
+                    <div class="answer-content">
+                        <p><strong>1. Architectural Comparison Table:</strong></p>
+                        <table class="brutalist-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Hard Disk Drive (HDD)</th>
+                                    <th>Solid-State Drive (SSD)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Physical Mechanism</strong></td>
+                                    <td>Rotating magnetic platters and mechanical read/write heads.</td>
+                                    <td>Non-volatile semiconductor NAND flash memory.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Access Latency</strong></td>
+                                    <td>High: 5 ms – 15 ms (mechanical seek and rotational delay).</td>
+                                    <td>Extremely Low: 10 &mu;s – 100 &mu;s (electronic routing).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sequential Read/Write</strong></td>
+                                    <td>Slow: 80 MB/s – 250 MB/s.</td>
+                                    <td>Extremely Fast: 3,500 MB/s – 14,000 MB/s (via PCIe NVMe).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Reliability</strong></td>
+                                    <td>Vulnerable to mechanical shock, drops, magnetic fields.</td>
+                                    <td>Highly shock-resistant (no moving parts); lifespan limited by TBW.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Connection Protocol</strong></td>
+                                    <td>Legacy SATA III (limits interface bandwidth to 600 MB/s).</td>
+                                    <td>PCIe Gen 4.0/5.0 M.2 slots using the NVMe protocol.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p><strong>2. Interfacing & Performance on the i9-13900K Platform:</strong></p>
+                        <ul>
+                            <li>The Intel Core i9-13900K CPU provides 16 native lanes of <strong>PCIe Gen 5.0</strong> (up to 128 GB/s bandwidth) directly from the processor, alongside PCIe 4.0 lanes from the Z790 chipset.</li>
+                            <li>When paired with a **PCIe Gen 5.0 NVMe M.2 SSD** (e.g., Crucial T700), the system reaches sequential read speeds of <strong>14,000 MB/s</strong> and write speeds of <strong>12,000 MB/s</strong>, bypassing SATA bottlenecks.</li>
+                            <li><strong>Avoiding CPU Stalls:</strong> An i9-13900K running 32 execution threads can parse gigabytes of data per second. Feeding this CPU from a slow mechanical HDD (latency ~10ms) forces the cores into massive wait states (stalls). Using an NVMe SSD with microsecond latency ensures memory pathways are kept filled, preventing data starvation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROBLEM 3 -->
+            <div class="playbook-workspace" id="problem-card-3">
+                <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 03</div>
+                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Memory Chip Internal Organization
+                </h3>
+                <div class="question-text">
+                    Explain the internal organization of a basic memory chip. Detail how a 16x8 bit cell matrix is structured and trace the operation of select, word, and bit lines during read and write cycles.
+                </div>
+
+                <div class="answer-box">
+                    <div class="answer-header">// COA RESOLVED ANSWER</div>
+                    <div class="answer-content">
+                        <p>A memory chip is organized internally as an array of binary storage cells, where each cell stores one bit of information (0 or 1). For a <strong>16 &times; 8 Memory Chip</strong> (16 words of 8 bits each, totaling 128 bits), the layout is organized as follows:</p>
+                        
+                        <p><strong>1. Internal Components:</strong></p>
+                        <ul>
+                            <li><strong>Bit Cell Array:</strong> Organized as a grid of 16 rows and 8 columns. Each row corresponds to a single 8-bit memory word.</li>
+                            <li><strong>Address Decoder (4-to-16 Decoder):</strong> Accepts 4 address lines (A<sub>0</sub>–A<sub>3</sub>) and decodes them to activate exactly one of the 16 word lines (W<sub>0</sub>–W<sub>15</sub>).</li>
+                            <li><strong>Word Lines (W<sub>0</sub>–W<sub>15</sub>):</strong> Horizontal lines. Activating a word line turns on the access transistors for all 8 bit cells in that row.</li>
+                            <li><strong>Bit Lines (b<sub>0</sub>–b<sub>7</sub> & complement b'<sub>0</sub>–b'<sub>7</sub>):</strong> Vertical lines. They carry data into cells (during Write) or read data out of cells (during Read).</li>
+                            <li><strong>Sense/Write Circuits:</strong> Positioned at the bottom of the bit line columns. During a Read operation, they amplify the small voltage differences driven by the cells onto the bit lines. During a Write operation, they drive strong voltages to overwrite the cells.</li>
+                            <li><strong>Control Lines:</strong> Chip Select (CS) enables the chip; Read/Write (R/W) selects the operational cycle.</li>
+                        </ul>
+
+                        <p><strong>2. Operational Cycle Traces:</strong></p>
+                        <ul>
+                            <li><strong>Read Operation:</strong>
+                                <ol>
+                                    <li>Address lines A<sub>3</sub>A<sub>2</sub>A<sub>1</sub>A<sub>0</sub> are driven, and Chip Select (CS) is set to High. The Address Decoder activates the matching Word Line (e.g., W<sub>3</sub>).</li>
+                                    <li>The access transistors for the 8 cells in row 3 are switched ON.</li>
+                                    <li>Each cell drives a charge onto its vertical Bit Lines (b<sub>i</sub> and b'<sub>i</sub>).</li>
+                                    <li>The Sense Amplifiers detect this voltage shift, convert it to standard logic levels, and drive the 8 data lines (D<sub>0</sub>–D<sub>7</sub>).</li>
+                                </ol>
+                            </li>
+                            <li><strong>Write Operation:</strong>
+                                <ol>
+                                    <li>The target address is decoded, activating the target Word Line (e.g., W<sub>3</sub>). CS is enabled, and the R/W line is driven Low (Write mode).</li>
+                                    <li>The input data on lines D<sub>0</sub>–D<sub>7</sub> is driven to the Write circuits.</li>
+                                    <li>The Write drivers apply strong voltage differentials onto the vertical Bit Lines (b<sub>i</sub> and b'<sub>i</sub>).</li>
+                                    <li>These voltages force the storage elements (cross-coupled latches or capacitors) of row 3 cells to flip state, saving the data.</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROBLEM 4 -->
+            <div class="playbook-workspace" id="problem-card-4">
+                <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 04</div>
+                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Sized Memory Chip Expansion Design
+                </h3>
+                <div class="question-text">
+                    Design the organization of a memory module of total capacity 16M &times; 16 using 2048K &times; 8 static memory chips. Determine the total number of chips required, the address decoder configuration, and the number of external connections.
+                </div>
+
+                <div class="answer-box">
+                    <div class="answer-header">// COA RESOLVED ANSWER</div>
+                    <div class="answer-content">
+                        <p>We need to design a <strong>16M &times; 16 Memory Module</strong> using individual <strong>2048K &times; 8 Chips</strong>. Note that 2048K is equivalent to 2M (2048 &times; 1024 = 2,097,152 locations).</p>
+
+                        <p><strong>1. Chip Count Calculation:</strong></p>
+                        <ul>
+                            <li><strong>Row Expansion (Address Depth):</strong> We need 16M locations, and each chip has 2M locations.
+                                <div style="margin:0.4rem 0;">
+                                    Rows = <div class="fraction"><span class="numerator">Target Depth</span><span class="denominator">Chip Depth</span></div> = <div class="fraction"><span class="numerator">16M</span><span class="denominator">2M</span></div> = 8 rows of chips
+                                </div>
+                            </li>
+                            <li><strong>Column Expansion (Word Width):</strong> The target word size is 16 bits, and each chip provides 8 bits.
+                                <div style="margin:0.4rem 0;">
+                                    Columns = <div class="fraction"><span class="numerator">Target Width</span><span class="denominator">Chip Width</span></div> = <div class="fraction"><span class="numerator">16 bits</span><span class="denominator">8 bits</span></div> = 2 columns of chips
+                                </div>
+                            </li>
+                            <li><strong>Total Chips Required:</strong>
+                                <pre>Total Chips = Rows &times; Columns = 8 &times; 2 = 16 chips</pre>
+                            </li>
+                        </ul>
+
+                        <p><strong>2. Address Line Allocations and Row Decoder:</strong></p>
+                        <ul>
+                            <li>Total address lines needed for a 16M memory space:
+                                <pre>2<sup>Address Lines</sup> = 16M = 16 &times; 2<sup>20</sup> = 2<sup>24</sup> &rarr; 24 Address Lines (A<sub>0</sub>–A<sub>23</sub>)</pre>
+                            </li>
+                            <li>Address lines connected internally to each 2M chip:
+                                <pre>2<sup>Internal Lines</sup> = 2M = 2 &times; 2<sup>20</sup> = 2<sup>21</sup> &rarr; 21 Address Lines (A<sub>0</sub>–A<sub>20</sub>)</pre>
+                            </li>
+                            <li>The remaining high-order address lines are used for chip-row selection:
+                                <pre>Row Selection Lines = 24 - 21 = 3 Address Lines (A<sub>21</sub>, A<sub>22</sub>, A<sub>23</sub>)</pre>
+                            </li>
+                            <li><strong>Decoder Configuration:</strong> A **3-to-8 line decoder** is used. Its inputs connect to address lines A<sub>23</sub>, A<sub>22</sub>, and A<sub>21</sub>. The 8 output lines (Y<sub>0</sub>–Y<sub>7</sub>) connect to the Chip Select (CS) pins of the chips in rows 0 through 7 respectively. Only one row of 2 chips is enabled at any time.</li>
+                        </ul>
+
+                        <p><strong>3. External Bus Connections:</strong></p>
+                        <ul>
+                            <li><strong>Address Bus:</strong> 24 lines (A<sub>0</sub>–A<sub>23</sub>). Lines A<sub>0</sub>–A<sub>20</sub> are routed to all 16 chips in parallel; lines A<sub>21</sub>–A<sub>23</sub> route to the row decoder.</li>
+                            <li><strong>Data Bus:</strong> 16 lines (D<sub>0</sub>–D<sub>15</sub>). 
+                                <ul>
+                                    <li>Data lines D<sub>0</sub>–D<sub>7</sub> are routed to Column 0 chips (handling lower 8 bits).</li>
+                                    <li>Data lines D<sub>8</sub>–D<sub>15</sub> are routed to Column 1 chips (handling upper 8 bits).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Control Bus:</strong> 2 lines: Read/Write (R/W) and Chip Enable/Output Enable (OE) connected to all chips in parallel.</li>
+                            <li><strong>Total Connection Pins:</strong> 24 (Address) + 16 (Data) + 2 (Control) + 2 (Power/Gnd) = <strong>44 pins</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROBLEM 5 -->
+            <div class="playbook-workspace" id="problem-card-5">
+                <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 05</div>
+                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Memory Hierarchy Performance Layout
+                </h3>
+                <div class="question-text">
+                    Explain the memory hierarchy concept in computer systems. Present a layout mapping capacities, typical access times, and relative costs. Highlight the role of temporal and spatial locality in cache performance.
+                </div>
+
+                <div class="answer-box">
+                    <div class="answer-header">// COA RESOLVED ANSWER</div>
+                    <div class="answer-content">
+                        <p><strong>1. Memory Hierarchy Pyramid Layout:</strong></p>
+                        <p>Computer memory is organized as a hierarchy because fast memory is expensive and small, while cheap memory is slow but large. The hierarchy matches performance at different tiers:</p>
+                        
+                        <table class="brutalist-table">
+                            <thead>
+                                <tr>
+                                    <th>Hierarchy Level</th>
+                                    <th>Typical Capacity</th>
+                                    <th>Access Time Latency</th>
+                                    <th>Cost per Bit</th>
+                                    <th>Technology</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. CPU Registers</strong></td>
+                                    <td>&lt; 2 KB</td>
+                                    <td>0.25 ns – 0.5 ns</td>
+                                    <td>Highest</td>
+                                    <td>On-chip D-Flip-Flops</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. L1 Cache</strong></td>
+                                    <td>32 KB – 64 KB per core</td>
+                                    <td>0.8 ns – 1.2 ns</td>
+                                    <td>Very High</td>
+                                    <td>On-chip SRAM (6-transistor cell)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. L2 Cache</strong></td>
+                                    <td>512 KB – 2 MB per core</td>
+                                    <td>3 ns – 8 ns</td>
+                                    <td>High</td>
+                                    <td>On-chip SRAM</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. L3 Cache</strong></td>
+                                    <td>8 MB – 64 MB shared</td>
+                                    <td>15 ns – 40 ns</td>
+                                    <td>Medium-High</td>
+                                    <td>Shared On-chip SRAM</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Main Memory (RAM)</strong></td>
+                                    <td>8 GB – 64 GB</td>
+                                    <td>60 ns – 100 ns</td>
+                                    <td>Medium-Low</td>
+                                    <td>Off-chip DRAM (1-transistor 1-capacitor cell)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Solid-State Storage (SSD)</strong></td>
+                                    <td>500 GB – 4 TB</td>
+                                    <td>10 &mu;s – 100 &mu;s</td>
+                                    <td>Low</td>
+                                    <td>Non-volatile NAND Flash</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7. Magnetic Disk (HDD)</strong></td>
+                                    <td>2 TB – 16 TB</td>
+                                    <td>5 ms – 15 ms</td>
+                                    <td>Lowest</td>
+                                    <td>Mechanical rotating platters</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p><strong>2. Role of Locality of Reference in Cache Performance:</strong></p>
+                        <p>Caches are small and can only hold a tiny fraction of the main memory's contents. They succeed because programs exhibit the **Locality of Reference** principle:</p>
+                        <ul>
+                            <li><strong>Temporal Locality (Locality in Time):</strong>
+                                <p>If a program accesses a memory location once, it is highly likely to access the same location again in the near future.
+                                <br><em>Example:</em> Loop counter variables or reuse of instruction blocks in a loop. Caches exploit this by retaining recently accessed blocks in memory.</p>
+                            </li>
+                            <li><strong>Spatial Locality (Locality in Space):</strong>
+                                <p>If a program accesses a specific memory location, it is highly likely to access nearby locations soon.
+                                <br><em>Example:</em> Traversing an array or executing sequential machine instructions. Caches exploit this by fetching an entire **Cache Line (e.g., 64 bytes)** containing surrounding words rather than just fetching the single requested word.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROBLEM 6 -->
+            <div class="playbook-workspace" id="problem-card-6">
+                <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 06</div>
+                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Cache Address Mapping Field Partitioning
+                </h3>
+                <div class="question-text">
+                    Contrast the three cache memory mapping techniques: Direct, Associative, and Set-Associative. Explain how a main memory address is partitioned into Tag, Index, and Block Offset fields for each mapping type.
+                </div>
+
+                <div class="answer-box">
+                    <div class="answer-header">// COA RESOLVED ANSWER</div>
+                    <div class="answer-content">
+                        <p>Cache mapping determines how blocks from the large main memory space are mapped into the smaller cache line array. A main memory address is partitioned differently depending on the mapping scheme:</p>
+                        
+                        <p><strong>1. Direct Mapping:</strong></p>
+                        <ul>
+                            <li><strong>Mapping Rule:</strong> Each main memory block maps to exactly one specific line in the cache, calculated as: <code>Line = (Block Number) Modulo (Total Cache Lines)</code>.</li>
+                            <li><strong>Address Partitioning:</strong>
+                                <pre>[ Tag Field ] [ Line Index Field ] [ Word Offset Field ]</pre>
+                            </li>
+                            <li><strong>Field Roles:</strong>
+                                <ul>
+                                    <li><strong>Word Offset:</strong> Identifies the specific word inside the block.</li>
+                                    <li><strong>Line Index:</strong> Selects the specific cache line to check.</li>
+                                    <li><strong>Tag:</strong> Stored alongside the line. The CPU compares this Tag with the address's Tag field to verify if it is a Cache Hit.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Pros/Cons:</strong> Simplest and cheapest lookup logic, but prone to **conflict misses** when two active memory blocks map to the same line index.</li>
+                        </ul>
+
+                        <p><strong>2. Fully Associative Mapping:</strong></p>
+                        <ul>
+                            <li><strong>Mapping Rule:</strong> A main memory block can reside in any line of the cache.</li>
+                            <li><strong>Address Partitioning:</strong>
+                                <pre>[ Tag Field ] [ Word Offset Field ]</pre>
+                            </li>
+                            <li><strong>Field Roles:</strong>
+                                <ul>
+                                    <li><strong>Word Offset:</strong> Identifies the specific word in the block.</li>
+                                    <li><strong>Tag:</strong> Spans the remaining bits. The CPU must compare the Tag field against all cache line tags simultaneously (using associative comparator hardware).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Pros/Cons:</strong> Completely avoids conflict misses, but requires expensive comparator circuitry, limiting practical sizes.</li>
+                        </ul>
+
+                        <p><strong>3. N-Way Set-Associative Mapping:</strong></p>
+                        <ul>
+                            <li><strong>Mapping Rule:</strong> The cache is divided into Sets, each containing <code>N</code> lines. A memory block maps to one specific Set, but can reside in any of the <code>N</code> lines within that set.</li>
+                            <li><strong>Address Partitioning:</strong>
+                                <pre>[ Tag Field ] [ Set Index Field ] [ Word Offset Field ]</pre>
+                            </li>
+                            <li><strong>Field Roles:</strong>
+                                <ul>
+                                    <li><strong>Word Offset:</strong> Identifies the specific word in the block.</li>
+                                    <li><strong>Set Index:</strong> Selects the specific Set to check.</li>
+                                    <li><strong>Tag:</strong> The CPU compares the Tag against the <code>N</code> line tags in that Set in parallel.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Pros/Cons:</strong> The industry standard. Combines the speed and simplicity of direct mapping with the conflict-avoidance of associative mapping.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROBLEM 7 -->
+            <div class="playbook-workspace" id="problem-card-7">
+                <div class="ch-num" style="color: var(--accent-orange);">// PROBLEM 07</div>
+                <h3 class="playbook-act-title" style="font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid #1a1a24; padding-bottom: 0.4rem;">
+                    Cache Address Formatting Numerical
+                </h3>
+                <div class="question-text">
+                    A set-associative cache consists of 64 lines (slots) divided into 4-line sets. Main memory contains 4K blocks of 128 words each. Show the format of main memory addresses. Calculate Tag, Set Index, and Word Offset widths. Also compare with direct and associative mapping formats.
+                </div>
+
+                <!-- Simulation Widget inside Q7 -->
+                <div class="simulator-box">
+                    <div class="sim-title">Interactive Cache Mapping Simulator</div>
+                    <div class="sim-grid">
+                        <div class="sim-controls">
+                            <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.45;">
+                                Input a Main Memory hex address to dynamically trace how the CPU splits it into Tag, Index, and Offset fields.
+                            </p>
+                            
+                            <div class="sim-input-row">
+                                <span class="sim-input-label">Memory Address (Hex):</span>
+                                <input type="text" class="sim-text-input" id="sim-hex-addr" value="3F5A8" oninput="runCacheSim()">
+                            </div>
+
+                            <div class="sim-input-row">
+                                <span class="sim-input-label">Cache Mapping:</span>
+                                <div class="custom-dropdown" id="sim-map-dropdown">
+                                    <input type="hidden" id="sim-map-scheme" value="4way">
+                                    <div class="custom-dropdown-trigger">
+                                        <span class="custom-dropdown-value">4-Way Set Associative</span>
+                                        <span class="custom-dropdown-arrow">&#9662;</span>
+                                    </div>
+                                    <div class="custom-dropdown-menu">
+                                        <div class="custom-dropdown-option" data-value="direct">Direct Mapped (64 Lines)</div>
+                                        <div class="custom-dropdown-option selected" data-value="4way">4-Way Set Associative (16 Sets)</div>
+                                        <div class="custom-dropdown-option" data-value="associative">Fully Associative</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sim-terminal" id="sim-log">
+                                <strong>Log:</strong> Initializing address partitions...
+                            </div>
+                        </div>
+                        
+                        <div class="sim-visual">
+                            <div style="font-family: var(--font-display); font-size: 0.82rem; font-weight: 800; color: var(--text-white); margin-bottom: 0.5rem; text-align: left; width: 100%;">
+                                Address Partition Layout (19-bit Address):
+                            </div>
+                            
+                            <div class="address-partition-blocks" id="part-container">
+                                <div class="part-block part-tag" id="part-tag-box" style="width: 42%;">
+                                    <span>TAG</span>
+                                    <span class="part-bits-label" id="part-tag-lbl">8 bits</span>
+                                </div>
+                                <div class="part-block part-index" id="part-idx-box" style="width: 21%;">
+                                    <span>SET</span>
+                                    <span class="part-bits-label" id="part-idx-lbl">4 bits</span>
+                                </div>
+                                <div class="part-block part-offset" id="part-off-box" style="width: 37%;">
+                                    <span>OFFSET</span>
+                                    <span class="part-bits-label" id="part-off-lbl">7 bits</span>
+                                </div>
+                            </div>
+
+                            <div style="font-family: var(--font-display); font-size: 0.82rem; font-weight: 800; color: var(--text-white); margin-top: 0.8rem; margin-bottom: 0.2rem; text-align: left; width: 100%;">
+                                Binary Breakdown:
+                            </div>
+                            <div class="binary-cell-grid" id="bit-grid">
+                                <!-- Generated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer-box">
+                    <div class="answer-header">// COA RESOLVED ANSWER</div>
+                    <div class="answer-content">
+                        <p><strong>1. Given System Parameters:</strong></p>
+                        <ul>
+                            <li>Total Cache Lines = 64 lines</li>
+                            <li>Set size = 4 lines per set</li>
+                            <li>Block Size = 128 words</li>
+                            <li>Main Memory = 4K blocks &times; 128 words = 4096 &times; 128 = 524,288 words</li>
+                        </ul>
+
+                        <p><strong>2. Address Space Sizing:</strong></p>
+                        <p>Total addressable words = 524,288. Sizing the Address Bus:</p>
+                        <pre>Address Width = log<sub>2</sub>(524,288) = log<sub>2</sub>(2<sup>19</sup>) = 19 bits</pre>
+
+                        <p><strong>3. Word Offset Field Width:</strong></p>
+                        <p>The Word Offset points to a specific word inside the 128-word block:</p>
+                        <pre>Word Offset Width = log<sub>2</sub>(Block Size in words) = log<sub>2</sub>(128) = log<sub>2</sub>(2<sup>7</sup>) = 7 bits</pre>
+
+                        <p><strong>4. Formatting Set-Associative Mapping (4-way):</strong></p>
+                        <ul>
+                            <li>Number of Sets in Cache:
+                                <div style="margin:0.4rem 0;">
+                                    Sets = <div class="fraction"><span class="numerator">Total Cache Lines</span><span class="denominator">Lines per Set</span></div> = <div class="fraction"><span class="numerator">64</span><span class="denominator">4</span></div> = 16 sets
+                                </div>
+                            </li>
+                            <li>Set Index Field Width:
+                                <pre>Set Index Width = log<sub>2</sub>(Sets) = log<sub>2</sub>(16) = log<sub>2</sub>(2<sup>4</sup>) = 4 bits</pre>
+                            </li>
+                            <li>Tag Field Width:
+                                <pre>Tag Width = Address Width - (Set Index + Word Offset)
+          = 19 - (4 + 7) = 8 bits</pre>
+                            </li>
+                            <li><strong>4-Way Set Associative Address Format:</strong>
+                                <pre>[ Tag: 8 bits ] [ Set Index: 4 bits ] [ Word Offset: 7 bits ]</pre>
+                            </li>
+                        </ul>
+
+                        <p><strong>5. Comparison with Alternative Mapping Techniques:</strong></p>
+                        <ul>
+                            <li><strong>Direct Mapping Format:</strong>
+                                <ul>
+                                    <li>Cache Lines = 64. Line Index bits = log<sub>2</sub>(64) = 6 bits.</li>
+                                    <li>Word Offset = 7 bits.</li>
+                                    <li>Tag bits = 19 - (6 + 7) = 6 bits.</li>
+                                    <li><strong>Address Format:</strong> <code>[ Tag: 6 bits ] [ Line Index: 6 bits ] [ Word Offset: 7 bits ]</code></li>
+                                </ul>
+                            </li>
+                            <li><strong>Fully Associative Mapping Format:</strong>
+                                <ul>
+                                    <li>No Index or Line field exists.</li>
+                                    <li>Word Offset = 7 bits.</li>
+                                    <li>Tag bits = 19 - 7 = 12 bits.</li>
+                                    <li><strong>Address Format:</strong> <code>[ Tag: 12 bits ] [ Word Offset: 7 bits ]</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Script Block for DOM synchronization & scroll navigator -->
+    <script>
+        // Load synchronized student profiles on DOM Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedName = localStorage.getItem('coa_student_name') || 'Sarvadnya Patil';
+            document.getElementById('cell-name').innerText = savedName;
+            
+            document.getElementById('cell-usn').innerText = localStorage.getItem('coa_student_usn') || '02FE25BCS017';
+            document.getElementById('cell-prog').innerText = localStorage.getItem('coa_student_prog') || 'B.E. CSE';
+            document.getElementById('cell-inst').innerText = localStorage.getItem('coa_student_inst') || 'KLE Tech, Belagavi';
+            
+            // Dropdown Setup
+            setupDropdown();
+            
+            // Initial Simulator Run
+            runCacheSim();
+        });
+
+        // Smooth scroll to problem IDs
+        function scrollToProblem(id) {
+            const el = document.getElementById('problem-card-' + id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Dropdown Event Bindings
+        function setupDropdown() {
+            const dropdown = document.getElementById('sim-map-dropdown');
+            const trigger = dropdown.querySelector('.custom-dropdown-trigger');
+            const options = dropdown.querySelectorAll('.custom-dropdown-option');
+            const hiddenVal = document.getElementById('sim-map-scheme');
+            
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('active');
+            });
+            
+            options.forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    
+                    options.forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    
+                    const text = opt.innerText;
+                    const val = opt.getAttribute('data-value');
+                    
+                    dropdown.querySelector('.custom-dropdown-value').innerText = text;
+                    hiddenVal.value = val;
+                    
+                    dropdown.classList.remove('active');
+                    
+                    // Trigger recalculation
+                    runCacheSim();
+                });
+            });
+            
+            document.addEventListener('click', () => {
+                dropdown.classList.remove('active');
+            });
+        }
+
+        // Cache Simulator Logic
+        function runCacheSim() {
+            const hexInput = document.getElementById('sim-hex-addr').value.trim();
+            const scheme = document.getElementById('sim-map-scheme').value;
+            
+            // Validate hex input
+            const hexClean = hexInput.replace(/^0x/i, '');
+            const parsedAddr = parseInt(hexClean, 16);
+            
+            if (isNaN(parsedAddr) || parsedAddr < 0) {
+                document.getElementById('sim-log').innerHTML = '<span class="sim-accent">Error:</span> Invalid Hexadecimal Address.';
+                return;
+            }
+            
+            // Limit address to 19 bits (524,287 maximum)
+            const maskedAddr = parsedAddr & 0x7FFFF;
+            const hexFormatted = '0x' + maskedAddr.toString(16).toUpperCase();
+            
+            // Determine partitions
+            let tagWidth = 0;
+            let idxWidth = 0;
+            let offWidth = 7; // Fixed block size of 128 words
+            let idxLabel = "INDEX";
+            
+            if (scheme === 'direct') {
+                idxWidth = 6; // 64 cache lines
+                tagWidth = 6; // 19 - 6 - 7
+                idxLabel = "LINE";
+            } else if (scheme === '4way') {
+                idxWidth = 4; // 16 sets
+                tagWidth = 8; // 19 - 4 - 7
+                idxLabel = "SET";
+            } else {
+                idxWidth = 0; // Fully associative
+                tagWidth = 12; // 19 - 7
+                idxLabel = "NONE";
+            }
+            
+            // Shift values
+            const offsetVal = maskedAddr & 0x7F; // lower 7 bits
+            const indexVal = (maskedAddr >> 7) & ((1 << idxWidth) - 1);
+            const tagVal = (maskedAddr >> (7 + idxWidth)) & ((1 << tagWidth) - 1);
+            
+            // Update partitions bars widths
+            const tagBox = document.getElementById('part-tag-box');
+            const idxBox = document.getElementById('part-idx-box');
+            const offBox = document.getElementById('part-off-box');
+            
+            const tagLbl = document.getElementById('part-tag-lbl');
+            const idxLbl = document.getElementById('part-idx-lbl');
+            const offLbl = document.getElementById('part-off-lbl');
+            
+            tagBox.querySelector('span').innerText = "TAG";
+            tagLbl.innerText = tagWidth + " bits";
+            offLbl.innerText = offWidth + " bits";
+            
+            if (idxWidth > 0) {
+                idxBox.style.display = 'flex';
+                idxBox.querySelector('span').innerText = idxLabel;
+                idxLbl.innerText = idxWidth + " bits";
+                
+                // Adjust width layout percentages
+                const tagPct = (tagWidth / 19) * 100;
+                const idxPct = (idxWidth / 19) * 100;
+                const offPct = (offWidth / 19) * 100;
+                
+                tagBox.style.width = tagPct + "%";
+                idxBox.style.width = idxPct + "%";
+                offBox.style.width = offPct + "%";
+            } else {
+                idxBox.style.display = 'none';
+                tagBox.style.width = ((tagWidth / 19) * 100) + "%";
+                offBox.style.width = ((offWidth / 19) * 100) + "%";
+            }
+            
+            // Generate bit cell visualization (colored)
+            const bitGrid = document.getElementById('bit-grid');
+            bitGrid.innerHTML = '';
+            
+            for (let i = 18; i >= 0; i--) {
+                const bitVal = (maskedAddr >> i) & 1;
+                const bitDiv = document.createElement('div');
+                bitDiv.className = 'binary-bit';
+                bitDiv.innerText = bitVal;
+                
+                // Color formatting based on boundary
+                if (i >= (7 + idxWidth)) {
+                    bitDiv.classList.add('part-tag');
+                } else if (i >= 7 && idxWidth > 0) {
+                    bitDiv.classList.add('part-index');
+                } else {
+                    bitDiv.classList.add('part-offset');
+                }
+                bitGrid.appendChild(bitDiv);
+            }
+            
+            // Format log report
+            let logHTML = `// Address Mapping Analysis for <span class="sim-highlight">${hexFormatted}</span>:<br>`;
+            logHTML += `Parsed Address (Dec): <span class="sim-highlight">${maskedAddr}</span><br>`;
+            logHTML += `1. Word Offset: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sim-accent">${offsetVal}</span> (0x${offsetVal.toString(16).toUpperCase()})<br>`;
+            
+            if (idxWidth > 0) {
+                logHTML += `2. ${idxLabel === 'LINE' ? 'Line Index' : 'Set Index'}: &nbsp;&nbsp;&nbsp;<span class="sim-highlight">${indexVal}</span> (0x${indexVal.toString(16).toUpperCase()}) &rarr; Maps to ${idxLabel === 'LINE' ? 'Line' : 'Set'} ${indexVal}<br>`;
+            } else {
+                logHTML += `2. Index Field: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sim-highlight">N/A (Fully Associative)</span><br>`;
+            }
+            
+            logHTML += `3. Block Tag: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sim-accent">${tagVal}</span> (0x${tagVal.toString(16).toUpperCase()})`;
+            document.getElementById('sim-log').innerHTML = logHTML;
+        }
+    </script>
+</body>
+</html>
