@@ -1967,7 +1967,7 @@ MDR ← Memory[Address Bus]</pre>
                             connecting the CPU to memory and peripherals:</p>
                         <ul>
                             <li><strong>Address Bus (Unidirectional):</strong> Transmits memory locations from the CPU.
-                                Width determines address space ($2^N$ bytes).</li>
+                                Width determines address space (2<sup>N</sup> bytes).</li>
                             <li><strong>Data Bus (Bidirectional):</strong> Transfers active instruction and data words.
                                 Width determines throughput bandwidth.</li>
                             <li><strong>Control Bus (Bidirectional):</strong> Coordinates timing and read/write states.
@@ -2123,14 +2123,13 @@ MDR ← Memory[Address Bus]</pre>
                             <li><strong>Status Flags Generation:</strong>
                                 <ul>
                                     <li><strong>Zero (Z):</strong> Evaluated using a NOR gate network over all output
-                                        bits. If the result is <code>0x00</code>, $Z=1$, else $Z=0$.</li>
+                                        bits. If the result is <code>0x00</code>, Z = 1, else Z = 0.</li>
                                     <li><strong>Sign (S):</strong> Determined directly by copying the Most Significant
-                                        Bit (MSB, Bit 7 in 8-bit or Bit 63 in 64-bit) of the ALU result. If $MSB=1$, the
-                                        number is negative ($S=1$).</li>
-                                    <li><strong>Carry (C):</strong> Evaluated by capturing the carry-out bit ($C_{out}$)
+                                        Bit (MSB, Bit 7 in 8-bit or Bit 63 in 64-bit) of the ALU result. If MSB = 1, the
+                                        number is negative (S = 1).</li>
+                                    <li><strong>Carry (C):</strong> Evaluated by capturing the carry-out bit (C<sub>out</sub>)
                                         of the adder/subtractor block.</li>
-                                    <li><strong>Overflow (OV):</strong> Evaluated using the XOR logic: $OV = C_{in\_msb}
-                                        \oplus C_{out\_msb}$. This flag indicates that the signed arithmetic result
+                                    <li><strong>Overflow (OV):</strong> Evaluated using the XOR logic: OV = C<sub>in_msb</sub> &oplus; C<sub>out_msb</sub>. This flag indicates that the signed arithmetic result
                                         exceeded the representation range of the registers.</li>
                                 </ul>
                             </li>
@@ -2340,22 +2339,22 @@ MDR ← Memory[Address Bus]</pre>
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">
                         <p><strong>1. The CPU Performance Equation:</strong></p>
-                        <p>The total execution time ($T_{CPU}$) required to run a program is determined by the three
+                        <p>The total execution time (T<sub>CPU</sub>) required to run a program is determined by the three
                             variables of the performance equation:</p>
                         <div style="margin: 0.5rem 0;">
-                            $T_{CPU} = I_c imes CPI imes T_c = rac{I_c imes CPI}{f}$
+                            T<sub>CPU</sub> = I<sub>c</sub> &times; CPI &times; T<sub>c</sub> = (I<sub>c</sub> &times; CPI) / f
                         </div>
-                        <p>Where $I_c$ is the instruction count (determined by ISA and compiler), $CPI$ is cycles per
-                            instruction (determined by hardware architecture), $T_c$ is clock cycle duration, and $f$ is
+                        <p>Where I<sub>c</sub> is the instruction count (determined by ISA and compiler), CPI is cycles per
+                            instruction (determined by hardware architecture), T<sub>c</sub> is clock cycle duration, and f is
                             clock frequency.</p>
                         <p><strong>2. CMOS Power Dissipation &amp; The Power Wall:</strong></p>
                         <p>Silicon processors are built using Complementary Metal-Oxide-Semiconductor (CMOS) logic
-                            gates. The dynamic power consumption ($P$) of a CMOS gate during switching states is
+                            gates. The dynamic power consumption (P) of a CMOS gate during switching states is
                             expressed as:</p>
                         <div style="margin: 0.5rem 0;">
-                            $P = C imes V^2 imes f$
+                            P = C &times; V<sup>2</sup> &times; f
                         </div>
-                        <p>Where $C$ is capacitive load, $V$ is supply voltage, and $f$ is clock frequency.
+                        <p>Where C is capacitive load, V is supply voltage, and f is clock frequency.
                             Historically, manufacturers scaled performance by increasing frequency. However, increasing
                             frequency requires a proportional increase in voltage, causing power consumption to grow
                             quadratically.</p>
@@ -2364,19 +2363,17 @@ MDR ← Memory[Address Bus]</pre>
                             prevent the chip from melting, manufacturers capped clock frequencies and transitioned to
                             multi-core architectures and dynamic voltage/frequency scaling (DVFS).</p>
                         <p><strong>3. Quantitative Benchmark Analysis (Machine A vs. Machine B):</strong></p>
-                        <p>Assume both machines run a benchmark workload at 200 MHz ($T_c = 5 ext{ ns}$):</p>
+                        <p>Assume both machines run a benchmark workload at 200 MHz (T<sub>c</sub> = 5 ns):</p>
                         <ul>
-                            <li><strong>Machine A:</strong> Total instructions $I_c = 18 imes 10^6$. Total cycles = $40
-                                imes 10^6$.
-                                <br />$ ext{Effective CPI} = 40M / 18M pprox 2.22$
-                                <br />$ ext{MIPS Rate} = 200 ext{ MHz} / 2.22 pprox 90.09$
-                                <br />$ ext{Execution Time} = 40 imes 10^6 imes 5 ext{ ns} = 0.20 ext{ seconds}$.
+                            <li><strong>Machine A:</strong> Total instructions I<sub>c</sub> = 18 &times; 10<sup>6</sup>. Total cycles = 40 &times; 10<sup>6</sup>.
+                                <br />Effective CPI = 40M / 18M &approx; 2.22
+                                <br />MIPS Rate = 200 MHz / 2.22 &approx; 90.09
+                                <br />Execution Time = 40 &times; 10<sup>6</sup> &times; 5 ns = 0.20 seconds.
                             </li>
-                            <li><strong>Machine B:</strong> Total instructions $I_c = 24 imes 10^6$. Total cycles = $46
-                                imes 10^6$.
-                                <br />$ ext{Effective CPI} = 46M / 24M pprox 1.92$
-                                <br />$ ext{MIPS Rate} = 200 ext{ MHz} / 1.92 pprox 104.17$
-                                <br />$ ext{Execution Time} = 46 imes 10^6 imes 5 ext{ ns} = 0.23 ext{ seconds}$.
+                            <li><strong>Machine B:</strong> Total instructions I<sub>c</sub> = 24 &times; 10<sup>6</sup>. Total cycles = 46 &times; 10<sup>6</sup>.
+                                <br />Effective CPI = 46M / 24M &approx; 1.92
+                                <br />MIPS Rate = 200 MHz / 1.92 &approx; 104.17
+                                <br />Execution Time = 46 &times; 10<sup>6</sup> &times; 5 ns = 0.23 seconds.
                             </li>
                             <li><strong>Conclusion:</strong> Although Machine B has a lower CPI and a higher MIPS rate,
                                 Machine A executes the benchmark faster because its instruction set layout allows it to

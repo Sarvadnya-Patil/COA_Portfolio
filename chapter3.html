@@ -959,115 +959,112 @@
                                 <tr>
                                     <td><code>0x00</code></td>
                                     <td><strong>LOAD A</strong></td>
-                                    <td>$Y = A$</td>
-                                    <td>Passes input $A$ directly to output $Y$. Registers state change flags (Z, S).
+                                    <td>Y = A</td>
+                                    <td>Passes input A directly to output Y. Registers state change flags (Z, S).
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><code>0x01</code></td>
                                     <td><strong>STORE A</strong></td>
-                                    <td>$Y = A$</td>
-                                    <td>Passes operand $A$ to output bus to be buffered by primary memory data lines.
+                                    <td>Y = A</td>
+                                    <td>Passes operand A to output bus to be buffered by primary memory data lines.
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><code>0x02</code></td>
                                     <td><strong>ADD</strong></td>
-                                    <td>$Y = A + B$</td>
+                                    <td>Y = A + B</td>
                                     <td>Computes 8-bit binary addition. Updates Zero (Z), Carry (C), Sign (S), and
                                         Overflow (OV) status flags.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x03</code></td>
                                     <td><strong>SUB</strong></td>
-                                    <td>$Y = A - B$</td>
+                                    <td>Y = A - B</td>
                                     <td>Computes 8-bit binary subtraction. Updates flags. Carry (C) acts as borrow-out.
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><code>0x04</code></td>
                                     <td><strong>MUL</strong></td>
-                                    <td>$Y = (A \times B) \pmod{256}$</td>
+                                    <td>Y = (A &times; B) mod 256</td>
                                     <td>Performs unsigned multiplication. Truncates result to the lower 8 bits. Sets Z
                                         and S flags.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x05</code></td>
                                     <td><strong>DIV</strong></td>
-                                    <td>$Y = \lfloor A / B \rfloor$</td>
-                                    <td>Performs unsigned division. If $B = 0$, registers division-by-zero error, and
-                                        output remains $0$ with overflow active.</td>
+                                    <td>Y = &lfloor;A / B&rfloor;</td>
+                                    <td>Performs unsigned division. If B = 0, registers division-by-zero error, and
+                                        output remains 0 with overflow active.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x06</code></td>
                                     <td><strong>AND</strong></td>
-                                    <td>$Y = A \text{ AND } B$</td>
-                                    <td>Computes bitwise logical AND operation ($Y_i = A_i \cdot B_i$).</td>
+                                    <td>Y = A AND B</td>
+                                    <td>Computes bitwise logical AND operation (Y<sub>i</sub> = A<sub>i</sub> &middot; B<sub>i</sub>).</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x07</code></td>
                                     <td><strong>OR</strong></td>
-                                    <td>$Y = A \text{ OR } B$</td>
-                                    <td>Computes bitwise logical OR operation ($Y_i = A_i + B_i$).</td>
+                                    <td>Y = A OR B</td>
+                                    <td>Computes bitwise logical OR operation (Y<sub>i</sub> = A<sub>i</sub> + B<sub>i</sub>).</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x08</code></td>
                                     <td><strong>XOR</strong></td>
-                                    <td>$Y = A \text{ XOR } B$</td>
-                                    <td>Computes bitwise logical XOR operation ($Y_i = A_i \oplus B_i$).</td>
+                                    <td>Y = A XOR B</td>
+                                    <td>Computes bitwise logical XOR operation (Y<sub>i</sub> = A<sub>i</sub> &oplus; B<sub>i</sub>).</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x09</code></td>
                                     <td><strong>2's COMP</strong></td>
-                                    <td>$Y = \overline{A} + 1$</td>
-                                    <td>Calculates the 2's complement (negation) of input $A$ by inverting all bits and
-                                        adding $1$.</td>
+                                    <td>Y = <span style="text-decoration: overline;">A</span> + 1</td>
+                                    <td>Calculates the 2's complement (negation) of input A by inverting all bits and
+                                        adding 1.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x0A</code></td>
                                     <td><strong>COMPARE</strong></td>
-                                    <td>$A - B$ (flags only)</td>
-                                    <td>Compares $A$ and $B$. Status flag bits are set ($Z=1$ if $A=B$, $S=1$ if $A <
-                                            B$, etc.). Results bus remains $0$.</td>
+                                    <td>A - B (flags only)</td>
+                                    <td>Compares A and B. Status flag bits are set (Z = 1 if Z = 1 if A = B, S = 1 if A &lt; B, etc.). Results bus remains 0.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x0B</code></td>
                                     <td><strong>SHL, #n</strong></td>
-                                    <td>$Y = A \ll n$</td>
-                                    <td>Logical Shift Left: shifts operand $A$ to the left by $n$ bits. LSB positions
+                                    <td>Y = A &lt;&lt; n</td>
+                                    <td>Logical Shift Left: shifts operand A to the left by n bits. LSB positions
                                         are filled with zeros.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x0C</code></td>
                                     <td><strong>SHR, #n</strong></td>
-                                    <td>$Y = A \gg n$</td>
-                                    <td>Logical Shift Right: shifts operand $A$ to the right by $n$ bits. MSB positions
+                                    <td>Y = A &gt;&gt; n</td>
+                                    <td>Logical Shift Right: shifts operand A to the right by n bits. MSB positions
                                         are filled with zeros.</td>
                                 </tr>
                                 <tr>
                                     <td><code>0x0D</code></td>
                                     <td><strong>ASR, #n</strong></td>
-                                    <td>$Y = A \text{ ASR } n$</td>
-                                    <td>Arithmetic Shift Right: shifts operand $A$ to the right by $n$ bits, replicating
-                                        the sign bit ($A_7$) in all shifted MSB spots.</td>
+                                    <td>Y = A ASR n</td>
+                                    <td>Arithmetic Shift Right: shifts operand A to the right by n bits, replicating
+                                        the sign bit (A<sub>7</sub>) in all shifted MSB spots.</td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <p><strong>2. Summary of ALU Flag Operations:</strong></p>
                         <ul>
-                            <li><strong>Zero Flag (Z):</strong> Evaluated using a NOR gate combining all output bits ($Z
-                                = \overline{Y_7 + Y_6 + \dots + Y_0}$). Evaluates to $1$ if the result is exactly $0$.
+                            <li><strong>Zero Flag (Z):</strong> Evaluated using a NOR gate combining all output bits (Z = <span style="text-decoration: overline;">Y<sub>7</sub> + Y<sub>6</sub> + ... + Y<sub>0</sub></span>). Evaluates to 1 if the result is exactly 0.
                             </li>
                             <li><strong>Carry Flag (C):</strong> Set when an addition generates a carry out of the MSB
-                                ($C_8$), or when a subtraction requires a borrow out of the MSB. For shifts, it caches
+                                (C<sub>8</sub>), or when a subtraction requires a borrow out of the MSB. For shifts, it caches
                                 the last shifted-out bit.</li>
-                            <li><strong>Sign Flag (S):</strong> Set equal to the MSB of the output result ($S = Y_7$),
+                            <li><strong>Sign Flag (S):</strong> Set equal to the MSB of the output result (S = Y<sub>7</sub>),
                                 representing negative results in 2's complement notation.</li>
                             <li><strong>Overflow Flag (OV):</strong> Indicates signed arithmetic overflow. For addition,
                                 it is set if adding two positive numbers yields a negative, or two negative numbers
-                                yields a positive: $OV = A_7 \cdot B_7 \cdot \overline{Y_7} + \overline{A_7} \cdot
-                                \overline{B_7} \cdot Y_7$. For subtraction, it occurs if subtracting a negative from a
+                                yields a positive: OV = A<sub>7</sub> &middot; B<sub>7</sub> &middot; <span style="text-decoration: overline;">Y<sub>7</sub></span> + <span style="text-decoration: overline;">A<sub>7</sub></span> &middot; <span style="text-decoration: overline;">B<sub>7</sub></span> &middot; Y<sub>7</sub>. For subtraction, it occurs if subtracting a negative from a
                                 positive gives a negative result, or vice versa.</li>
                         </ul>
                     </div>
@@ -1230,43 +1227,41 @@
                         <ul>
                             <li><strong>Select Input (SEL):</strong> Activated by the row decoder to enable the cell for
                                 reading or writing.</li>
-                            <li><strong>Write Enable (WE):</strong> Gated with SEL. When $SEL=1$ and $WE=1$, input data
+                            <li><strong>Write Enable (WE):</strong> Gated with SEL. When SEL = 1 and WE = 1, input data
                                 on the data line is latched into the cell.</li>
                             <li><strong>Read/Output Enable:</strong> Controls the connection of the internal latch
-                                output $Q$ to the output Bit Line via a tri-state buffer. When $SEL=1$ and $WE=0$, the
+                                output Q to the output Bit Line via a tri-state buffer. When SEL = 1 and WE = 0, the
                                 buffer is active and drives the stored data onto the output line.</li>
                         </ul>
-                        <p>Inside the cell, the logic structure ensures that the latch's enable terminal $E = SEL \cdot
-                            WE$. Output $Q$ is driven to Data Out through a tri-state buffer: $DataOut = (SEL \cdot
-                            \overline{WE}) ? Q : \text{High-Z}$.</p>
+                        <p>Inside the cell, the logic structure ensures that the latch's enable terminal E = SEL &middot; WE. Output Q is driven to Data Out through a tri-state buffer: DataOut = (SEL &middot; <span style="text-decoration: overline;">WE</span>) ? Q : High-Z.</p>
 
                         <p><strong>2. Structural Layout of the 4x4 RAM Array:</strong></p>
                         <p>To arrange 16 bits of storage as a 4-word by 4-bit array, the cells are structured in a 2D
-                            matrix (4 rows $\times$ 4 columns):</p>
+                            matrix (4 rows &times; 4 columns):</p>
                         <ul>
                             <li><strong>Address Decoder:</strong> A 2-to-4 active-high binary decoder takes address
-                                lines $A_1 A_0$ to generate four Word Lines ($WL_0$ to $WL_3$). Each Word Line is
+                                lines A<sub>1</sub>A<sub>0</sub> to generate four Word Lines (WL<sub>0</sub> to WL<sub>3</sub>). Each Word Line is
                                 connected in parallel to the Select (SEL) pin of all four cells in its respective row.
                             </li>
-                            <li><strong>Write Control Lines:</strong> The Write Enable ($WE$) signal from the CPU is
+                            <li><strong>Write Control Lines:</strong> The Write Enable (WE) signal from the CPU is
                                 routed in parallel to all 16 cells in the array.</li>
                             <li><strong>Bit Lines (Data Inputs/Outputs):</strong> The array contains four vertical Data
-                                Input paths ($D_3$ to $D_0$) and four vertical Data Output paths ($Q_3$ to $Q_0$).
-                                Column $j$ cells share input line $D_j$ and output line $Q_j$ via tri-state terminals.
+                                Input paths (D<sub>3</sub> to D<sub>0</sub>) and four vertical Data Output paths (Q<sub>3</sub> to Q<sub>0</sub>).
+                                Column j cells share input line D<sub>j</sub> and output line Q<sub>j</sub> via tri-state terminals.
                             </li>
                         </ul>
 
                         <p><strong>3. Write and Read Operations Flow:</strong></p>
                         <ul>
-                            <li><strong>Write Operation ($A_1A_0 = \text{address}, WE = 1$):</strong> The 2-to-4 decoder
-                                activates one Word Line (e.g. $WL_k$). The Select pin of all four cells in row $k$ goes
-                                High. Because $WE = 1$, the gate logic inside the cells activates their latch clocks.
-                                The values on input lines $D_3 - D_0$ are immediately written into the latches of row
-                                $k$. Cells in inactive rows ($WL = 0$) remain unaffected.</li>
-                            <li><strong>Read Operation ($A_1A_0 = \text{address}, WE = 0$):</strong> The decoder
-                                activates Word Line $WL_k$. Since $WE = 0$, the tri-state buffer of all four cells in
-                                row $k$ is enabled. Their stored charge values drive the shared vertical column Bit
-                                Lines, sending the data out on lines $Q_3 - Q_0$. Cells in all other rows remain
+                            <li><strong>Write Operation (A<sub>1</sub>A<sub>0</sub> = address, WE = 1):</strong> The 2-to-4 decoder
+                                activates one Word Line (e.g. WL<sub>k</sub>). The Select pin of all four cells in row k goes
+                                High. Because WE = 1, the gate logic inside the cells activates their latch clocks.
+                                The values on input lines D<sub>3</sub> - D<sub>0</sub> are immediately written into the latches of row
+                                k. Cells in inactive rows (WL = 0) remain unaffected.</li>
+                            <li><strong>Read Operation (A<sub>1</sub>A<sub>0</sub> = address, WE = 0):</strong> The decoder
+                                activates Word Line WL<sub>k</sub>. Since WE = 0, the tri-state buffer of all four cells in
+                                row k is enabled. Their stored charge values drive the shared vertical column Bit
+                                Lines, sending the data out on lines Q<sub>3</sub> - Q<sub>0</sub>. Cells in all other rows remain
                                 disconnected (in High-Z state).</li>
                         </ul>
                     </div>
@@ -1406,7 +1401,7 @@
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">
                         <p><strong>1. Systematic Calculations & Design Steps:</strong></p>
-                        <p>To construct a $1024 \times 32$ memory array using $512 \times 16$ basic memory chips, we
+                        <p>To construct a 1024 &times; 32 memory array using 512 &times; 16 basic memory chips, we
                             calculate the requirements for both word size (bit width) and word capacity (address space):
                         </p>
 
@@ -1420,8 +1415,8 @@
                                 <div class="fraction">
                                     <span class="numerator">32 bits</span>
                                     <span class="denominator">16 bits</span>
-                                </div> = $2$ chips in parallel. Each row bank requires two chips: Column 0 (Low half)
-                                handles bits $D_{15} - D_0$, while Column 1 (High half) handles bits $D_{31} - D_{16}$.
+                                </div> = 2 chips in parallel. Each row bank requires two chips: Column 0 (Low half)
+                                handles bits D<sub>15</sub> - D<sub>0</sub>, while Column 1 (High half) handles bits D<sub>31</sub> - D<sub>16</sub>.
                             </li>
                             <li><strong>Word Capacity (Address Space) Expansion:</strong> The target capacity is 1024
                                 words, while each chip holds only 512 words. We must stack chips vertically in banks.
@@ -1432,33 +1427,31 @@
                                 <div class="fraction">
                                     <span class="numerator">1024 words</span>
                                     <span class="denominator">512 words</span>
-                                </div> = $2$ stacked banks of chips.
+                                </div> = 2 stacked banks of chips.
                             </li>
                             <li><strong>Total Basic Chips Required:</strong>
-                                $\text{Total Chips} = \text{Capacity Expansion} \times \text{Width Expansion} = 2 \text{
-                                rows} \times 2 \text{ columns} = 4 \text{ chips}$.
+                                Total Chips = Capacity Expansion &times; Width Expansion = 2 rows &times; 2 columns = 4 chips.
                             </li>
                             <li><strong>Address Line Mapping:</strong>
                                 <ul>
-                                    <li>A $1024$-word capacity requires $10$ address lines ($A_9 - A_0$) since $2^{10} =
-                                        1024$.</li>
-                                    <li>Each $512$-word chip requires $9$ address lines ($A_8 - A_0$) since $2^9 = 512$.
+                                    <li>A 1024-word capacity requires 10 address lines (A<sub>9</sub> - A<sub>0</sub>) since 2<sup>10</sup> = 1024.</li>
+                                    <li>Each 512-word chip requires 9 address lines (A<sub>8</sub> - A<sub>0</sub>) since 2<sup>9</sup> = 512.
                                     </li>
-                                    <li>The lower $9$ address lines ($A_8 - A_0$) are wired in parallel directly to the
+                                    <li>The lower 9 address lines (A<sub>8</sub> - A<sub>0</sub>) are wired in parallel directly to the
                                         address pins of all four chips.</li>
-                                    <li>The MSB address line ($A_9$) is decoded to select between Bank 0 (upper row) and
+                                    <li>The MSB address line (A<sub>9</sub>) is decoded to select between Bank 0 (upper row) and
                                         Bank 1 (lower row).</li>
                                 </ul>
                             </li>
                             <li><strong>Chip Select (CS) Logic Generation:</strong>
                                 <ul>
-                                    <li>We use a 1-to-2 active-high decoder (or an inverter) fed by address line $A_9$.
+                                    <li>We use a 1-to-2 active-high decoder (or an inverter) fed by address line A<sub>9</sub>.
                                     </li>
-                                    <li>$\text{Bank Select 0 } (BS_0) = \overline{A_9}$. Selects Bank 0 when address
-                                        space is $0$ to $511$ ($0\text{x}000$ to $0\text{x}1\text{FF}$). It drives the
+                                    <li>Bank Select 0 (BS<sub>0</sub>) = <span style="text-decoration: overline;">A<sub>9</sub></span>. Selects Bank 0 when address
+                                        space is 0 to 511 (0x000 to 0x1FF). It drives the
                                         CS pins of Chip 0 and Chip 1.</li>
-                                    <li>$\text{Bank Select 1 } (BS_1) = A_9$. Selects Bank 1 when address space is $512$
-                                        to $1023$ ($0\text{x}200$ to $0\text{x}3\text{FF}$). It drives the CS pins of
+                                    <li>Bank Select 1 (BS<sub>1</sub>) = A<sub>9</sub>. Selects Bank 1 when address space is 512
+                                        to 1023 (0x200 to 0x3FF). It drives the CS pins of
                                         Chip 2 and Chip 3.</li>
                                 </ul>
                             </li>
@@ -1466,19 +1459,19 @@
 
                         <p><strong>2. Detailed Read/Write Operations:</strong></p>
                         <ul>
-                            <li><strong>Data Bus Splitting:</strong> The 32-bit CPU Data Bus ($D_{31} - D_0$) is split
-                                into two halves. The lower data bus lines ($D_{15} - D_0$) connect to Chip 0 (Bank 0)
-                                and Chip 2 (Bank 1). The upper data bus lines ($D_{31} - D_{16}$) connect to Chip 1
+                            <li><strong>Data Bus Splitting:</strong> The 32-bit CPU Data Bus (D<sub>31</sub> - D<sub>0</sub>) is split
+                                into two halves. The lower data bus lines (D<sub>15</sub> - D<sub>0</sub>) connect to Chip 0 (Bank 0)
+                                and Chip 2 (Bank 1). The upper data bus lines (D<sub>31</sub> - D<sub>16</sub>) connect to Chip 1
                                 (Bank 0) and Chip 3 (Bank 1).</li>
-                            <li><strong>Write Cycle ($WE=1$):</strong> The CPU drives a 10-bit address onto $A_9 - A_0$
-                                and 32-bit write data onto $D_{31} - D_0$. If $A_9 = 0$, $BS_0$ goes High, enabling Chip
-                                0 and Chip 1. The lower 9 bits ($A_8-A_0$) identify the offset within the bank. Chip 0
-                                writes $D_{15}-D_0$ and Chip 1 writes $D_{31}-D_{16}$ into offset location $A_8-A_0$.
-                                Chips 2 and 3 remain disabled ($BS_1=0$).</li>
-                            <li><strong>Read Cycle ($WE=0$):</strong> The CPU drives the address. If $A_9 = 1$, $BS_1$
+                            <li><strong>Write Cycle (WE = 1):</strong> The CPU drives a 10-bit address onto A<sub>9</sub> - A<sub>0</sub>
+                                and 32-bit write data onto D<sub>31</sub> - D<sub>0</sub>. If A<sub>9</sub> = 0, BS<sub>0</sub> goes High, enabling Chip
+                                0 and Chip 1. The lower 9 bits (A<sub>8</sub> - A<sub>0</sub>) identify the offset within the bank. Chip 0
+                                writes D<sub>15</sub> - D<sub>0</sub> and Chip 1 writes D<sub>31</sub> - D<sub>16</sub> into offset location A<sub>8</sub> - A<sub>0</sub>.
+                                Chips 2 and 3 remain disabled (BS<sub>1</sub> = 0).</li>
+                            <li><strong>Read Cycle (WE = 0):</strong> The CPU drives the address. If A<sub>9</sub> = 1, BS<sub>1</sub>
                                 goes High, activating Chip 2 and Chip 3. Chip 2 outputs its stored 16-bit word onto data
-                                lines $D_{15}-D_0$, and Chip 3 outputs its stored 16-bit word onto data lines
-                                $D_{31}-D_{16}$. Together, they form the 32-bit word read by the CPU.</li>
+                                lines D<sub>15</sub> - D<sub>0</sub>, and Chip 3 outputs its stored 16-bit word onto data lines
+                                D<sub>31</sub> - D<sub>16</sub>. Together, they form the 32-bit word read by the CPU.</li>
                         </ul>
                     </div>
                 </div>
@@ -1688,7 +1681,7 @@
                 <div class="answer-box">
                     <div class="answer-header">// COA RESOLVED ANSWER</div>
                     <div class="answer-content">
-                        <p>A dual-ported register file containing 8 registers ($R_0 - R_7$) of 8 bits each is designed
+                        <p>A dual-ported register file containing 8 registers (R<sub>0</sub> - R<sub>7</sub>) of 8 bits each is designed
                             to allow two read operations and one write operation to proceed concurrently during a single
                             clock cycle. This multi-port functionality is achieved using one of two primary
                             architectural alternatives:</p>
@@ -1701,13 +1694,13 @@
                                 8-bit contents in parallel to two independent 8-to-1 multiplexer trees (Mux A and Mux
                                 B).</li>
                             <li><strong>Read Operations:</strong> The CPU provides two 3-bit read addresses,
-                                $\text{Addr}_A$ and $\text{Addr}_B$. Mux A select lines are driven by $\text{Addr}_A$,
+                                Addr<sub>A</sub> and Addr<sub>B</sub>. Mux A select lines are driven by Addr<sub>A</sub>,
                                 outputting the selected register onto Bus A. Mux B select lines are driven by
-                                $\text{Addr}_B$, outputting the selected register onto Bus B. Both reads are purely
+                                Addr<sub>B</sub>, outputting the selected register onto Bus B. Both reads are purely
                                 combinational and occur simultaneously.</li>
-                            <li><strong>Write Operation:</strong> Driven by a 3-bit write address ($\text{Addr}_W$),
-                                8-bit input write data ($\text{Data}_W$), and a Write Enable ($\text{WE}$) control
-                                signal. A 3-to-8 decoder asserts one of 8 Write Select lines when $WE = 1$. The write is
+                            <li><strong>Write Operation:</strong> Driven by a 3-bit write address (Addr<sub>W</sub>),
+                                8-bit input write data (Data<sub>W</sub>), and a Write Enable (WE) control
+                                signal. A 3-to-8 decoder asserts one of 8 Write Select lines when WE = 1. The write is
                                 edge-triggered, latching data into the selected register on the rising edge of the
                                 system clock.</li>
                             <li><strong>Complexity & Hazards:</strong> Highly area-efficient but can suffer from
@@ -1726,7 +1719,7 @@
                             </li>
                             <li><strong>Write Operation:</strong> To maintain data consistency (coherence) across the
                                 replicated structures, every write operation is broadcast to both Bank A and Bank B in
-                                parallel. Both banks receive the same $\text{Addr}_W$, $\text{Data}_W$, and $WE$ control
+                                parallel. Both banks receive the same Addr<sub>W</sub>, Data<sub>W</sub>, and WE control
                                 signal, updating their respective register slots simultaneously on the active clock
                                 edge.</li>
                             <li><strong>Complexity & Hazards:</strong> Eliminates read-port routing bottlenecks and
@@ -1906,15 +1899,15 @@
                         <ol>
                             <li><strong>Fetch (IF):</strong> The instruction is fetched from Code Memory at the location
                                 pointed to by the Program Counter (PC) and loaded into the Instruction Register (IR). PC
-                                is incremented ($PC \leftarrow PC + 4$).</li>
+                                is incremented (PC &larr; PC + 4).</li>
                             <li><strong>Decode (ID):</strong> The Control Unit parses the opcode. Register file
                                 addresses are read: Register R1 is loaded onto Bus A. For R-type, Register R2 is loaded
                                 onto Bus B. For I-type, the immediate constant <code>0x45</code> is sign-extended.</li>
                             <li><strong>Execute (EX):</strong> The ALUSrc Mux routes either Bus B (R2) or the Immediate
-                                constant to the ALU. The ALU performs addition: $\text{ALUOut} = R1 + \text{Operand}_2$.
+                                constant to the ALU. The ALU performs addition: ALUOut = R1 + Operand<sub>2</sub>.
                             </li>
                             <li><strong>Writeback (WB):</strong> The control signal <code>RegWrite = 1</code> is
-                                asserted. The value on the writeback bus ($\text{ALUOut}$) is written back to Register
+                                asserted. The value on the writeback bus (ALUOut) is written back to Register
                                 R0 on the rising clock edge.</li>
                         </ol>
                     </div>
